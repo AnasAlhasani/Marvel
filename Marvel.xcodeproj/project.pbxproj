@@ -404,10 +404,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5DB531DC227DDBCC0044E86F /* Coordinators */ = {
+		5D433D0C227E1B4E00C116FA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				5DB531DD227DDBE70044E86F /* Coordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5DB531DC227DDBCC0044E86F /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				5D433D0C227E1B4E00C116FA /* Protocols */,
+				5DB531E3227DDDA20044E86F /* Router */,
 				5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */,
 				5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */,
 				5D433D05227DF52300C116FA /* SearchCoordinator.swift */,
@@ -507,7 +516,6 @@
 				5D217FD4227B444300006DBE /* Application */,
 				5D217FF9227B534000006DBE /* Core */,
 				5D217FFA227B534A00006DBE /* NetworkPlatfrom */,
-				5DB531E3227DDDA20044E86F /* Router */,
 				5DB531DC227DDBCC0044E86F /* Coordinators */,
 				5D217FD5227B445400006DBE /* Scenes */,
 				5D217FDE227B4A6300006DBE /* Commons */,
