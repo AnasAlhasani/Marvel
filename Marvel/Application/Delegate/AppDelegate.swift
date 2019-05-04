@@ -13,6 +13,7 @@ final class AppDelegate: PluggableApplicationDelegate {
     
     override func services() -> [ApplicationService] {
         return [
+            ApplicationCoordinatorService(with: window),
             ThemeApplicationService()
         ]
     }

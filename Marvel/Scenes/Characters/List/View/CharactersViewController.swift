@@ -17,27 +17,17 @@ final class CharactersViewController: UIViewController {
     // MARK: - Properties
     
     private lazy var dataSource = TableDataSource<CharactersCell>(tableView)
-    private lazy var useCase = APICharacterUseCase()
-    private lazy var viewModel = CharactersViewModel(useCase: useCase)
+    var viewModel: CharactersViewModel!
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
         viewModel.loadCharecters()
+        viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
         dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharecters(at: $0) }
-        dataSource.didSelectHandler = { [weak self] indexPath in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let identifier = "\(CharacterDetailViewController.self)"
-            let controller = storyboard.instantiateViewController(withIdentifier: identifier)
-            if let details = controller as? CharacterDetailViewController {
-                details.viewItem = self?.viewModel.state.value.items[indexPath.row]
-            }
-            self?.navigationController?.pushViewController(controller, animated: true)
-        }
+        dataSource.didSelectHandler = { [weak self] in self?.viewModel.didSelectRow(at: $0) }
     }
- 
 }
 
 // MARK: - Interactions
@@ -45,8 +35,6 @@ final class CharactersViewController: UIViewController {
 private extension CharactersViewController {
     
     @IBAction func didTapSearchButtonItem(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "\(SearchViewController.self)")
-        navigationController?.pushViewController(controller, animated: true)
+        viewModel.didTapSearch()
     }
 }

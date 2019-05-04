@@ -28,6 +28,5 @@ extension ComicTableCell: CellConfigurable {
     func configure(with item: DetailViewItem) {
         titleLabel.text = item.title
         dataSource.state = item.state
-        collectionView.setContentOffset(collectionView.contentOffset, animated: false)
     }
 }

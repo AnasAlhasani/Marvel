@@ -13,20 +13,18 @@ final class CharacterDetailViewModel {
     
     // MARK: - Properties
 
-    private let useCase: ComicUseCase
-    private let item: CharacterViewItem
-    
+    private let comicUseCase: ComicUseCase
+    private(set) var character: Dynamic<CharacterViewItem>
     private(set) var state = Dynamic<State<DetailViewItem>>(.loading)
-    
+
     // MARK: - Init / Deinit
     
     init(
-        useCase: ComicUseCase,
-        item: CharacterViewItem
+        comicUseCase: ComicUseCase,
+        character: CharacterViewItem
     ) {
-        self.useCase = useCase
-        self.item = item
-        
+        self.comicUseCase = comicUseCase
+        self.character = Dynamic(character)
     }
 }
 
@@ -35,8 +33,8 @@ final class CharacterDetailViewModel {
 extension CharacterDetailViewModel {
 
     func loadComics() {
-        let parameters = item.comicIds.map { ComicParameter(id: $0) }
-        let promises = parameters.map { useCase.loadComics(with: $0) }
+        let parameters = character.value.comicIds.map { ComicParameter(id: $0) }
+        let promises = parameters.map { comicUseCase.loadComics(with: $0) }
         all(promises).then {
             let comics = $0.map { $0.results }.flatMap { $0 }
             let viewItems = comics.map { ComicViewItem(comic: $0) }
