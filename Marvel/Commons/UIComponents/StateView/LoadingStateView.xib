@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="stg-w8-ds4" userLabel="Loading View">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wnA-b6-FhW">
+                    <rect key="frame" x="50" y="15.5" width="275" height="20"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="mzn-a5-2my">
+                            <rect key="frame" x="127.5" y="0.0" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="wnA-b6-FhW" firstAttribute="centerX" secondItem="stg-w8-ds4" secondAttribute="centerX" id="i6h-CP-vvS"/>
+                <constraint firstItem="wnA-b6-FhW" firstAttribute="centerY" secondItem="stg-w8-ds4" secondAttribute="centerY" id="oPl-Qj-hNb"/>
+                <constraint firstItem="wnA-b6-FhW" firstAttribute="leading" secondItem="CFm-Pq-xtp" secondAttribute="leading" constant="50" id="uDg-MX-5qb"/>
+                <constraint firstItem="CFm-Pq-xtp" firstAttribute="trailing" secondItem="wnA-b6-FhW" secondAttribute="trailing" constant="50" id="uyH-H0-0sl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="CFm-Pq-xtp"/>
+            <point key="canvasLocation" x="53.600000000000001" y="-619.34032983508246"/>
+        </view>
+    </objects>
+</document>
