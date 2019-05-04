@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		103D77633FFA8F359494DBD9 /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 292242833494A667A4BAE493 /* Pods_Marvel.framework */; };
 		5D217FDB227B467B00006DBE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FDA227B467B00006DBE /* Assets.swift */; };
 		5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FE1227B4AC000006DBE /* UIImageView.swift */; };
 		5D217FE4227B4C8A00006DBE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FE3227B4C8A00006DBE /* UIColor.swift */; };
@@ -67,6 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11F720ADDD58EAD4EFF03B72 /* Pods-Marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.release.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.release.xcconfig"; sourceTree = "<group>"; };
+		292242833494A667A4BAE493 /* Pods_Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D217FDA227B467B00006DBE /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		5D217FE1227B4AC000006DBE /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		5D217FE3227B4C8A00006DBE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		5DF872B3227D9C1D00DB0CCD /* DetailViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewItem.swift; sourceTree = "<group>"; };
 		5DF872B5227DAC2700DB0CCD /* ComicViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewItem.swift; sourceTree = "<group>"; };
 		5DF872B7227DB42500DB0CCD /* ResourceURI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceURI.swift; sourceTree = "<group>"; };
+		A8BCBD1E01AA39E7F70C7984 /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				103D77633FFA8F359494DBD9 /* Pods_Marvel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +147,8 @@
 		243E33EBF7D69B382D1FB406 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				A8BCBD1E01AA39E7F70C7984 /* Pods-Marvel.debug.xcconfig */,
+				11F720ADDD58EAD4EFF03B72 /* Pods-Marvel.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -416,6 +423,7 @@
 				5DCC0D37227B42790065DA28 /* Marvel */,
 				5DCC0D36227B42790065DA28 /* Products */,
 				243E33EBF7D69B382D1FB406 /* Pods */,
+				A768FBBB3F68AE7768B688F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -492,6 +500,14 @@
 			path = "ViewModel+Item";
 			sourceTree = "<group>";
 		};
+		A768FBBB3F68AE7768B688F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				292242833494A667A4BAE493 /* Pods_Marvel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -499,11 +515,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5DCC0D47227B427A0065DA28 /* Build configuration list for PBXNativeTarget "Marvel" */;
 			buildPhases = (
+				2ABB515C404D562D63AE5212 /* [CP] Check Pods Manifest.lock */,
 				5D217FD8227B44F800006DBE /* SwiftLint */,
 				5D217FD9227B44F900006DBE /* SwiftGen */,
 				5DCC0D31227B42790065DA28 /* Sources */,
 				5DCC0D32227B42790065DA28 /* Frameworks */,
 				5DCC0D33227B42790065DA28 /* Resources */,
+				B6D378D8B3EF5ABDF932142B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -567,6 +585,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2ABB515C404D562D63AE5212 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Marvel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5D217FD8227B44F800006DBE /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -602,6 +642,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "RSROOT=$SRCROOT/Marvel/Resources\n\n\"$PODS_ROOT/SwiftGen/bin/swiftgen\" \\\nxcassets -t swift3 \"$RSROOT/Assets.xcassets\" \\\n--output \"$RSROOT/Assets.swift\"\n";
+		};
+		B6D378D8B3EF5ABDF932142B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Marvel/Pods-Marvel-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CoreNetwork/CoreNetwork.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreNetwork.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Marvel/Pods-Marvel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -801,6 +873,7 @@
 		};
 		5DCC0D48227B427A0065DA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8BCBD1E01AA39E7F70C7984 /* Pods-Marvel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -820,6 +893,7 @@
 		};
 		5DCC0D49227B427A0065DA28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11F720ADDD58EAD4EFF03B72 /* Pods-Marvel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
