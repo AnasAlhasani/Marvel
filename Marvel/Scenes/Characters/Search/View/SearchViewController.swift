@@ -17,8 +17,8 @@ final class SearchViewController: UIViewController {
     // MARK: - Properties
     
     private lazy var dataSource = TableDataSource<SearchCell>(tableView)
-    private lazy var useCase = APICharacterUseCase()
-    private lazy var viewModel = CharactersViewModel(useCase: useCase)
+    var viewModel: CharactersViewModel!
+    
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.definesPresentationContext = true
@@ -38,15 +38,7 @@ final class SearchViewController: UIViewController {
         setUpNavigationItem()
         viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
         dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharecters(at: $0) }
-        dataSource.didSelectHandler = { [weak self] indexPath in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let identifier = "\(CharacterDetailViewController.self)"
-            let controller = storyboard.instantiateViewController(withIdentifier: identifier)
-            if let details = controller as? CharacterDetailViewController {
-                details.viewItem = self?.viewModel.state.value.items[indexPath.row]
-            }
-            self?.navigationController?.pushViewController(controller, animated: true)
-        }
+        dataSource.didSelectHandler = { [weak self] in self?.viewModel.didSelectRow(at: $0) }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,8 +65,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        navigationItem.setHidesBackButton(true, animated: false)
-        navigationController?.popViewController(animated: true)
+        viewModel.didTapCancelSearch()
     }
 }
 

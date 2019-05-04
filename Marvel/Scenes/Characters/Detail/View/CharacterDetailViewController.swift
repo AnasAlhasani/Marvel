@@ -20,29 +20,35 @@ final class CharacterDetailViewController: UIViewController {
     // MARK: - Properties
     
     private lazy var dataSource = TableDataSource<ComicTableCell>(tableView)
-    private lazy var useCase = APIComicUseCase()
-    private var viewModel: CharacterDetailViewModel!
-    var viewItem: CharacterViewItem?
+    var viewModel: CharacterDetailViewModel!
     
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let item = viewItem else { return }
-        title = item.name
-        headerView.configure(with: item)
-        viewModel = CharacterDetailViewModel(useCase: useCase, item: item)
-        viewModel.loadComics()
-        viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
-        dataSource.cellIndexPathHandler = { [weak self] cell, indexPath in
-            self?.didConfigure(cell, at: indexPath)
-        }
-    }
+        handleViewModel()
+        handleDataSource()
+    } 
 }
 
 // MARK: - Configurations 
 
 private extension CharacterDetailViewController {
+    func handleViewModel() {
+        viewModel.loadComics()
+        viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
+        viewModel.character.bind { [weak self] in
+            self?.title = $0.name
+            self?.headerView.configure(with: $0)
+        }
+    }
+    
+    func handleDataSource() {
+        dataSource.cellIndexPathHandler = { [weak self] cell, indexPath in
+            self?.didConfigure(cell, at: indexPath)
+        }
+    }
+    
     func didConfigure<Cell: TableCell>(_ cell: Cell, at indexPath: IndexPath) {
         guard let cell = cell as? ComicTableCell else { return }
         let item = viewModel.state.value.items[indexPath.row]

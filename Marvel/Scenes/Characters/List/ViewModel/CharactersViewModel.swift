@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol CharactersCoordinatorDelegate: AnyObject {
+    func didTapSearch()
+    func didTapCancelSearch()
+    func didSelect(character: CharacterViewItem)
+}
+
 final class CharactersViewModel {
     
     // MARK: - Typealias
@@ -16,7 +22,8 @@ final class CharactersViewModel {
     
     // MARK: - Properties
     
-    private let useCase: CharacterUseCase
+    private weak var coordinator: CharactersCoordinatorDelegate!
+    private let characterUseCase: CharacterUseCase
     private(set) var state = Dynamic<CharacterItemState>(.default)
     private let throttler = Throttler(minimumDelay: 0.5)
     private var shouldLoadCharecters = true
@@ -24,8 +31,26 @@ final class CharactersViewModel {
     
     // MARK: - Init / Deinit
     
-    init(useCase: CharacterUseCase) {
-        self.useCase = useCase
+    init(coordinator: CharactersCoordinatorDelegate, characterUseCase: CharacterUseCase) {
+        self.coordinator = coordinator
+        self.characterUseCase = characterUseCase
+    }
+}
+
+// MARK: - Interactions
+
+extension CharactersViewModel {
+    func didSelectRow(at indexPath: IndexPath) {
+        let item = state.value.items[indexPath.row]
+        coordinator.didSelect(character: item)
+    }
+    
+    func didTapSearch() {
+        coordinator.didTapSearch()
+    }
+    
+    func didTapCancelSearch() {
+        coordinator.didTapCancelSearch()
     }
 }
 
@@ -53,7 +78,7 @@ extension CharactersViewModel {
         guard shouldLoadCharecters else { return }
         shouldLoadCharecters = false
         let parameter = CharacterParameter(query: query, limit: Constant.limit, offset: offset)
-        useCase.loadCharacters(with: parameter).then {
+        characterUseCase.loadCharacters(with: parameter).then {
             self.handleCharecters(paginator: $0)
         }.catch {
             self.state.value = .error($0)
