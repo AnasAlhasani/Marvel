@@ -39,6 +39,7 @@
 		5D433D0B227E08CE00C116FA /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */; };
 		5D4739CE227DB6D4000941C6 /* ComicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4739CD227DB6D4000941C6 /* ComicUseCase.swift */; };
 		5D4739D0227DB729000941C6 /* APIComicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4739CF227DB729000941C6 /* APIComicUseCase.swift */; };
+		5D5C126E2280831600B9B4EF /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C126D2280831600B9B4EF /* Optional.swift */; };
 		5DB531DE227DDBE70044E86F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DD227DDBE70044E86F /* Coordinator.swift */; };
 		5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */; };
 		5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */; };
@@ -112,6 +113,7 @@
 		5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		5D4739CD227DB6D4000941C6 /* ComicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicUseCase.swift; sourceTree = "<group>"; };
 		5D4739CF227DB729000941C6 /* APIComicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIComicUseCase.swift; sourceTree = "<group>"; };
+		5D5C126D2280831600B9B4EF /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		5DB531DD227DDBE70044E86F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCoordinator.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				5D217FEA227B4D3600006DBE /* KeyedDecodingContainer.swift */,
 				5DC64846227CBD1C0080B1F4 /* String.swift */,
+				5D5C126D2280831600B9B4EF /* Optional.swift */,
 			);
 			path = SwiftStdlib;
 			sourceTree = "<group>";
@@ -766,6 +769,7 @@
 				5D217FE6227B4CE000006DBE /* UIAlertAction.swift in Sources */,
 				5DC64850227D019E0080B1F4 /* CollectionDataSource.swift in Sources */,
 				5D217FEE227B4DA900006DBE /* PluggableApplicationDelegate.swift in Sources */,
+				5D5C126E2280831600B9B4EF /* Optional.swift in Sources */,
 				5D217FF5227B50BF00006DBE /* Color.swift in Sources */,
 				5DC6483C227C88850080B1F4 /* CharactersViewModel.swift in Sources */,
 				5DB531E5227DDDAF0044E86F /* Routable.swift in Sources */,

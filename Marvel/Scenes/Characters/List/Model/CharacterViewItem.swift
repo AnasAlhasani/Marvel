@@ -18,8 +18,8 @@ struct CharacterViewItem {
     
     init(_ character: ComicCharacter) {
         self.id = character.id
-        self.name = character.name?.nilIfEmpty ?? "Not Available."
-        self.description = character.description?.nilIfEmpty ?? "Not Available."
+        self.name = character.name.defaultIfEmpty
+        self.description = character.description.defaultIfEmpty
         self.imageURL = character.thumbnail?.url
         self.comicIds = character.comics?.items?.compactMap { $0.resourceURI?.comicId } ?? []
     }

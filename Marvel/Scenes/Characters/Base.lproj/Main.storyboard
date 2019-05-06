@@ -34,13 +34,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sDq-Tt-hEn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="179"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="179.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="sDq-Tt-hEn" secondAttribute="height" multiplier="414:179" id="EcT-bh-eT3"/>
+                                                        <constraint firstAttribute="width" secondItem="sDq-Tt-hEn" secondAttribute="height" multiplier="414:179" priority="999" id="EcT-bh-eT3"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2N-US-GeO" customClass="ParallelogramView" customModule="Marvel" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="114" width="145" height="45"/>
+                                                    <rect key="frame" x="15" y="114.5" width="145" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iron Man" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="P7e-Pb-Cw4">
                                                             <rect key="frame" x="10" y="0.0" width="125" height="45"/>
@@ -201,7 +201,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="p01-M9-5vK" customClass="CharecterDetailHeaderView" customModule="Marvel" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="384"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="341"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.23529411759999999" green="0.2470588235" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </view>

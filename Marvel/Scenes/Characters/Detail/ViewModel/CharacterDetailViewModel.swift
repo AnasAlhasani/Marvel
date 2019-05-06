@@ -11,12 +11,19 @@ import Promises
 
 final class CharacterDetailViewModel {
     
+    // MARK: - Typealias
+    
+    typealias DetaiItemState = State<DetailViewItem>
+    
     // MARK: - Properties
 
     private let comicUseCase: ComicUseCase
     private(set) var character: Dynamic<CharacterViewItem>
-    private(set) var state = Dynamic<State<DetailViewItem>>(.loading)
-
+    private(set) lazy var state: Dynamic<DetaiItemState> = {
+        let items = [DetailViewItem(type: .comics)]
+        return Dynamic<DetaiItemState>(.populated(items))
+    }()
+    
     // MARK: - Init / Deinit
     
     init(
@@ -38,7 +45,7 @@ extension CharacterDetailViewModel {
         all(promises).then {
             let comics = $0.map { $0.results }.flatMap { $0 }
             let viewItems = comics.map { ComicViewItem(comic: $0) }
-            let items = [DetailViewItem(title: "Comics", state: .populated(viewItems))]
+            let items = [DetailViewItem(type: .comics, state: .populated(viewItems))]
             self.state.value = .populated(items)
         }.catch {
             self.state.value = .error($0)
