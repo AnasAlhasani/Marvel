@@ -1,5 +1,5 @@
 //
-//  APIGateway.swift
+//  APIClient.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/2/19.
@@ -14,29 +14,14 @@ import Promises
 typealias RequestBuilder<T: Decodable> = CoreNetwork.RequestBuilder<MarvelResponse<T>>
 typealias Promise<T> = Promises.Promise<T>
 
-// MARK: - APIGateway
+// MARK: - APIClient
 
-protocol APIGateway {
-    func execute<T: APIRequest, D: Decodable>(_ request: T) -> Promise<Paginator<D>>
-}
-
-// MARK: - DefaultAPIGateway
-
-final class DefaultAPIGateway {
-
-    private let apiClient: APIClient
-    
-    // Checkout my CoreNetwork framework: https://github.com/AnasAlhasani/CoreNetwork
-    init(apiClient: APIClient = DefaultAPIClient()) {
-        self.apiClient = apiClient
-    }
-}
-
-extension DefaultAPIGateway: APIGateway {
+// Checkout my CoreNetwork framework: https://github.com/AnasAlhasani/CoreNetwork
+extension APIClient {
     
     func execute<T: APIRequest, D: Decodable>(_ request: T) -> Promise<Paginator<D>> {
         return Promise<Paginator<D>>(on: .global(qos: .background)) { fullfill, reject in
-            self.apiClient.execute(request).then {
+            self.execute(request).then {
                 let response = $0 as? MarvelResponse<D>
                 
                 if let dataContainer = response?.data {

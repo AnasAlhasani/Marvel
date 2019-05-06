@@ -14,7 +14,7 @@ final class CharactersCoordinator {
 
     private let router: Router
     private let characterUseCase: CharacterUseCase
-    private lazy var comicUseCase: ComicUseCase = APIComicUseCase()
+    private lazy var comicUseCase: ComicUseCase = DefaultComicUseCase()
     
     // MARK: - Init / Deinit
     
