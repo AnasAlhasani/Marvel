@@ -26,7 +26,7 @@ final class ComicTableCell: UITableViewCell {
 
 extension ComicTableCell: CellConfigurable {
     func configure(with item: DetailViewItem) {
-        titleLabel.text = item.title
+        titleLabel.text = item.type.title
         dataSource.state = item.state
     }
 }

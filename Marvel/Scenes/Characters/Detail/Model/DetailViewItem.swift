@@ -9,6 +9,22 @@
 import Foundation
 
 struct DetailViewItem {
-    let title: String
+    let type: Type
     let state: State<ComicViewItem>
+    
+    init(type: Type, state: State<ComicViewItem> = .loading) {
+        self.type = type
+        self.state = state
+    }
+}
+
+extension DetailViewItem {
+    enum `Type`: String {
+        case comics
+        case series
+        
+        var title: String {
+            return rawValue.capitalized
+        }
+    }
 }

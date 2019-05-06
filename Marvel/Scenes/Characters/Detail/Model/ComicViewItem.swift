@@ -13,7 +13,7 @@ struct ComicViewItem {
     let imageURL: URL?
     
     init(comic: Comic) {
-        self.title = comic.title?.nilIfEmpty ?? "Not Available."
+        self.title = comic.title.defaultIfEmpty
         self.imageURL = comic.thumbnail?.url
     }
 }
