@@ -13,7 +13,7 @@ final class ApplicationCoordinator {
     // MARK: - Properties
     
     let window: UIWindow
-    lazy var characterUseCase: CharacterUseCase = APICharacterUseCase()
+    lazy var characterUseCase: CharacterUseCase = DefaultCharacterUseCase()
     lazy var rootViewController = UINavigationController()
     lazy var router = Router(navigationController: rootViewController)
     lazy var charactersCoordinator = CharactersCoordinator(router: router, characterUseCase: characterUseCase)

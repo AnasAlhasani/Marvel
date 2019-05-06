@@ -1,30 +1,28 @@
 //
-//  APIComicUseCase.swift
+//  ComicGateway.swift
 //  Marvel
 //
-//  Created by Anas Alhasani on 5/4/19.
+//  Created by Anas Alhasani on 5/7/19.
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
-import Foundation
+import CoreNetwork
 
-final class APIComicUseCase {
-    private let gateway: APIGateway
+final class ComicGateway {
+    private let apiClient: APIClient
     
-    init(gateway: APIGateway = DefaultAPIGateway()) {
-        self.gateway = gateway
+    init(apiClient: APIClient = DefaultAPIClient()) {
+        self.apiClient = apiClient
     }
 }
 
-// MARK: - ComicUseCase
-
-extension APIComicUseCase: ComicUseCase {
+extension ComicGateway {
     func loadComics(with parameter: ComicParameter) -> Promise<ComicPaginator> {
         let request = RequestBuilder<[Comic]>()
             .path("comics/\(parameter.id)")
             .method(.get)
             .urlParameters(MarvelParameter<VoidParameter>())
             .build()
-        return gateway.execute(request)
+        return apiClient.execute(request)
     }
 }
