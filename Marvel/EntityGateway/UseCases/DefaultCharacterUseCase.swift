@@ -8,11 +8,13 @@
 
 import Foundation
 
-final class DefaultCharacterUseCase {
+final class DefaultCharacterUseCase<Repository: RepositoryProtocol> where Repository.Entity == ComicCharacter {
     private let gateway: CharacterGateway
+    private let repository: Repository
     
-    init(gateway: CharacterGateway = CharacterGateway()) {
+    init(gateway: CharacterGateway, repository: Repository) {
         self.gateway = gateway
+        self.repository = repository
     }
 }
 

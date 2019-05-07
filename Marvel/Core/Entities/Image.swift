@@ -10,14 +10,17 @@ import Foundation
 
 struct Image: Decodable {
     
-    let url: URL
+    let url: URL?
+    
+    init(_ url: URL?) {
+        self.url = url
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let path = try container.decode(String.self, forKey: .path)
         let fileExtension = try container.decode(String.self, forKey: .fileExtension)
-        guard let url = URL(string: "\(path).\(fileExtension)") else { throw MarvelError.decode }
-        self.url = url
+        self.url = URL(string: "\(path).\(fileExtension)")
     }
     
     enum CodingKeys: String, CodingKey {

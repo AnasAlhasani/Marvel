@@ -11,6 +11,10 @@ import Foundation
 struct ResourceURI: Decodable {
     let comicId: Int
     
+    init(_ comicId: Int) {
+        self.comicId = comicId
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let uri = try container.decode(String.self)

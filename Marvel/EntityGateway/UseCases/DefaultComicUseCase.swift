@@ -8,11 +8,13 @@
 
 import Foundation
 
-final class DefaultComicUseCase {
+final class DefaultComicUseCase<Repository: RepositoryProtocol> where Repository.Entity == Comic {
     private let gateway: ComicGateway
+    private let repository: Repository
     
-    init(gateway: ComicGateway = ComicGateway()) {
+    init(gateway: ComicGateway, repository: Repository) {
         self.gateway = gateway
+        self.repository = repository
     }
 }
 

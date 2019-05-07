@@ -21,7 +21,21 @@ struct Paginator<Value: Decodable>: Decodable {
     private let total: Int
     private let count: Int
     let results: Value
-
+    
+    init(
+        offset: Int = 0,
+        limit: Int = 0,
+        total: Int = 0,
+        count: Int = 0,
+        results: Value
+    ) {
+        self.offset = offset
+        self.limit = limit
+        self.total = total
+        self.count = count
+        self.results = results
+    }
+    
     var hasMorePages: Bool {
         return total - (offset + limit) > 0
     }

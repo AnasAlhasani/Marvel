@@ -14,7 +14,9 @@ final class CharactersCoordinator {
 
     private let router: Router
     private let characterUseCase: CharacterUseCase
-    private lazy var comicUseCase: ComicUseCase = DefaultComicUseCase()
+    private lazy var comicGateway = ComicGateway()
+    private lazy var comicRepository = RealmRepository<Comic>()
+    private lazy var comicUseCase = DefaultComicUseCase(gateway: comicGateway, repository: comicRepository)
     
     // MARK: - Init / Deinit
     
