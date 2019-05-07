@@ -14,13 +14,11 @@ struct CharacterViewItem {
     let imageURL: URL?
     let name: String
     let description: String
-    let comicIds: [Int]
     
-    init(_ character: ComicCharacter) {
+    init(_ character: MarvelCharacter) {
         self.id = character.id
         self.name = character.name.defaultIfEmpty
         self.description = character.description.defaultIfEmpty
         self.imageURL = character.thumbnail?.url
-        self.comicIds = character.comics?.items?.compactMap { $0.resourceURI?.comicId } ?? []
     }
 }

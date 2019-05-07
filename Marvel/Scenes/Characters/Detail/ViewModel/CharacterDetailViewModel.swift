@@ -7,30 +7,28 @@
 //
 
 import Foundation
-import Promises
 
 final class CharacterDetailViewModel {
     
     // MARK: - Typealias
     
-    typealias DetaiItemState = State<DetailViewItem>
+    typealias CharacterDetailState = State<CharacterDetailsViewItem>
     
     // MARK: - Properties
 
-    private let comicUseCase: ComicUseCase
+    private let mediaUseCase: MediaUseCase
     private(set) var character: Dynamic<CharacterViewItem>
-    private(set) lazy var state: Dynamic<DetaiItemState> = {
-        let items = [DetailViewItem(type: .comics)]
-        return Dynamic<DetaiItemState>(.populated(items))
-    }()
+    private(set) lazy var state = Dynamic<CharacterDetailState>(.populated([comicsItem, seriesItem]))
+    private lazy var comicsItem = CharacterDetailsViewItem(type: .comics)
+    private lazy var seriesItem = CharacterDetailsViewItem(type: .series)
     
     // MARK: - Init / Deinit
     
     init(
-        comicUseCase: ComicUseCase,
+        mediaUseCase: MediaUseCase,
         character: CharacterViewItem
     ) {
-        self.comicUseCase = comicUseCase
+        self.mediaUseCase = mediaUseCase
         self.character = Dynamic(character)
     }
 }
@@ -39,16 +37,28 @@ final class CharacterDetailViewModel {
 
 extension CharacterDetailViewModel {
 
-    func loadComics() {
-        let parameters = character.value.comicIds.map { ComicParameter(id: $0) }
-        let promises = parameters.map { comicUseCase.loadComics(with: $0) }
-        all(promises).then {
-            let comics = $0.map { $0.results }.flatMap { $0 }
-            let viewItems = comics.map { ComicViewItem(comic: $0) }
-            let items = [DetailViewItem(type: .comics, state: .populated(viewItems))]
-            self.state.value = .populated(items)
+    func loadItems() {
+        loadItem(of: .comics)
+        loadItem(of: .series)
+    }
+    
+    private func loadItem(of type: MediaType) {
+        let parameter = MediaParameter(id: character.value.id, type: type)
+        mediaUseCase.loadMediaItems(with: parameter).then {
+            let viewItems = $0.results.map { MediaViewItem(comic: $0) }
+            self.updateItem(type: type, with: .populated(viewItems))
         }.catch {
             self.state.value = .error($0)
         }
+    }
+    
+    private func updateItem(type: MediaType, with state: State<MediaViewItem>) {
+        switch type {
+        case .comics:
+            comicsItem.state = state
+        case .series:
+            seriesItem.state = state
+        }
+        self.state.value = .populated([comicsItem, seriesItem])
     }
 }

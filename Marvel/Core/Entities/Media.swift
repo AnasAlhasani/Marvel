@@ -1,5 +1,5 @@
 //
-//  Comic.swift
+//  Media.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/2/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Comic: Decodable {
+struct Media: Decodable {
     let id: Int
     let title: String?
     let thumbnail: Image?

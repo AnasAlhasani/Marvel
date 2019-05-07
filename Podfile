@@ -7,6 +7,7 @@ target 'Marvel' do
   pod 'SwiftLint'
   pod 'SwiftGen'
   pod 'CryptoSwift'
+  pod 'RealmSwift'
 end
 
 post_install do |installer|

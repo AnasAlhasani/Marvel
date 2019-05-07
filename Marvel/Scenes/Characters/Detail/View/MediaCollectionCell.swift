@@ -1,5 +1,5 @@
 //
-//  ComicCollectionCell.swift
+//  MediaCollectionCell.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ComicCollectionCell: UICollectionViewCell {
+final class MediaCollectionCell: UICollectionViewCell {
 
     // MARK: - Outlets
     
@@ -18,8 +18,8 @@ final class ComicCollectionCell: UICollectionViewCell {
 
 // MARK: - CellConfigurable
 
-extension ComicCollectionCell: CellConfigurable {
-    func configure(with item: ComicViewItem) {
+extension MediaCollectionCell: CellConfigurable {
+    func configure(with item: MediaViewItem) {
         nameLabel.text = item.title
         comicImageView.download(image: item.imageURL)
     }

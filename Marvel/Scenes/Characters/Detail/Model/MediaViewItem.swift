@@ -1,5 +1,5 @@
 //
-//  ComicViewItem.swift
+//  MediaViewItem.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct ComicViewItem {
+struct MediaViewItem {
     let title: String
     let imageURL: URL?
     
-    init(comic: Comic) {
+    init(comic: Media) {
         self.title = comic.title.defaultIfEmpty
         self.imageURL = comic.thumbnail?.url
     }
