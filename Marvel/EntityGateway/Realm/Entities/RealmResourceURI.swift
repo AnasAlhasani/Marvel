@@ -11,18 +11,13 @@ import RealmSwift
 
 final class RealmResourceURI: Object {
     dynamic var comicId = 0
-    
-    convenience init(_ comicId: Int) {
-        self.init()
-        self.comicId = comicId
-    }
 }
 
 // MARK: - RealmRepresentable
 
 extension ResourceURI: RealmRepresentable {
     func asRealm() -> RealmResourceURI {
-        return RealmResourceURI(comicId)
+        return RealmResourceURI.build { $0.comicId = comicId }
     }
 }
 

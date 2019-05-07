@@ -16,21 +16,6 @@ final class RealmCharacter: Object {
     @objc dynamic var thumbnail: RealmImage?
     @objc dynamic var comics: RealmCharacterComic?
     
-    convenience init(
-        id: Int,
-        name: String?,
-        charDescription: String?,
-        thumbnail: RealmImage?,
-        comics: RealmCharacterComic?
-    ) {
-        self.init()
-        self.id = id
-        self.name = name
-        self.charDescription = charDescription
-        self.thumbnail = thumbnail
-        self.comics = comics
-    }
-    
     override class func primaryKey() -> String? {
         return "id"
     }
@@ -41,13 +26,13 @@ final class RealmCharacter: Object {
 
 extension ComicCharacter: RealmRepresentable {
     func asRealm() -> RealmCharacter {
-        return RealmCharacter(
-            id: id,
-            name: name,
-            charDescription: description,
-            thumbnail: thumbnail?.asRealm(),
-            comics: comics?.asRealm()
-        )
+        return RealmCharacter.build {
+            $0.id = id
+            $0.name = name
+            $0.charDescription = description
+            $0.thumbnail = thumbnail?.asRealm()
+            $0.comics = comics?.asRealm()
+        }
     }
 }
 

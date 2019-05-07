@@ -11,18 +11,13 @@ import RealmSwift
 
 final class RealmImage: Object {
     @objc dynamic var url = ""
-    
-    convenience init(_ url: String) {
-        self.init()
-        self.url = url
-    }
 }
 
 // MARK: - RealmRepresentable
 
 extension Image: RealmRepresentable {
     func asRealm() -> RealmImage {
-        return RealmImage(url?.absoluteString ?? "")
+        return RealmImage.build { $0.url = url?.absoluteString ?? "" }
     }
 }
 

@@ -12,22 +12,16 @@ import RealmSwift
 final class RealmCharacterComicItem: Object {
     dynamic var name: String?
     dynamic var resourceURI: RealmResourceURI?
-    
-    convenience init(name: String?, resourceURI: RealmResourceURI?) {
-        self.init()
-        self.name = name
-        self.resourceURI = resourceURI
-    }
 }
 
 // MARK: - RealmRepresentable
 
 extension ComicCharacter.Item: RealmRepresentable {
     func asRealm() -> RealmCharacterComicItem {
-        return RealmCharacterComicItem(
-            name: name,
-            resourceURI: resourceURI?.asRealm()
-        )
+        return RealmCharacterComicItem.build {
+            $0.name = name
+            $0.resourceURI = resourceURI?.asRealm()
+        }
     }
 }
 

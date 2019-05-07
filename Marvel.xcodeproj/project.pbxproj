@@ -51,6 +51,7 @@
 		5D9229092281BDEE0048C614 /* EntityConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9229082281BDEE0048C614 /* EntityConvertible.swift */; };
 		5D92290E2281C13C0048C614 /* RealmCharacterComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D92290D2281C13C0048C614 /* RealmCharacterComic.swift */; };
 		5D9229102281C1960048C614 /* RealmCharacterComicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D92290F2281C1960048C614 /* RealmCharacterComicItem.swift */; };
+		5D9229132281D15A0048C614 /* ObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9229122281D15A0048C614 /* ObjectBuilder.swift */; };
 		5DB531DE227DDBE70044E86F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DD227DDBE70044E86F /* Coordinator.swift */; };
 		5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */; };
 		5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */; };
@@ -136,6 +137,7 @@
 		5D9229082281BDEE0048C614 /* EntityConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityConvertible.swift; sourceTree = "<group>"; };
 		5D92290D2281C13C0048C614 /* RealmCharacterComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCharacterComic.swift; sourceTree = "<group>"; };
 		5D92290F2281C1960048C614 /* RealmCharacterComicItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCharacterComicItem.swift; sourceTree = "<group>"; };
+		5D9229122281D15A0048C614 /* ObjectBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectBuilder.swift; sourceTree = "<group>"; };
 		5DB531DD227DDBE70044E86F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCoordinator.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				5D9228F822817CF70048C614 /* Entities */,
+				5D9229112281D1320048C614 /* Builder */,
 				5D922903228191180048C614 /* Repository */,
 			);
 			path = Realm;
@@ -502,6 +505,14 @@
 				5D92290F2281C1960048C614 /* RealmCharacterComicItem.swift */,
 			);
 			path = RealmCharacter;
+			sourceTree = "<group>";
+		};
+		5D9229112281D1320048C614 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				5D9229122281D15A0048C614 /* ObjectBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 		5DB531DC227DDBCC0044E86F /* Coordinators */ = {
@@ -895,6 +906,7 @@
 				5DC6484E227CEB060080B1F4 /* CharacterDetailViewModel.swift in Sources */,
 				5DC64849227CC50B0080B1F4 /* Throttler.swift in Sources */,
 				5D433D00227DF30000C116FA /* CharacterDetailsCoordinator.swift in Sources */,
+				5D9229132281D15A0048C614 /* ObjectBuilder.swift in Sources */,
 				5D218018227B996D00006DBE /* MarvelParameter.swift in Sources */,
 				5D433CFD227DEBBE00C116FA /* ApplicationCoordinatorService.swift in Sources */,
 				5DC64835227C813D0080B1F4 /* CellConfigurable.swift in Sources */,

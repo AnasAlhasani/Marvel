@@ -11,20 +11,13 @@ import RealmSwift
 
 final class RealmCharacterComic: Object {
     dynamic var items: [RealmCharacterComicItem]?
-    
-    convenience init(items: [RealmCharacterComicItem]?) {
-        self.init()
-        self.items = items
-    }
 }
 
 // MARK: - RealmRepresentable
 
 extension ComicCharacter.Comic: RealmRepresentable {
     func asRealm() -> RealmCharacterComic {
-        return RealmCharacterComic(
-            items: items?.asRealm()
-        )
+        return RealmCharacterComic.build { $0.items = items?.asRealm() }
     }
 }
 

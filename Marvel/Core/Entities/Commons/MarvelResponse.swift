@@ -16,11 +16,11 @@ struct MarvelResponse<Value: Decodable>: Decodable {
 
 struct Paginator<Value: Decodable>: Decodable {
     
-    private let offset: Int
-    private let limit: Int
-    private let total: Int
-    private let count: Int
-    let results: Value
+    private(set) var offset: Int
+    private(set) var limit: Int
+    private(set) var total: Int
+    private(set) var count: Int
+    private(set) var results: Value
     
     init(
         offset: Int = 0,
