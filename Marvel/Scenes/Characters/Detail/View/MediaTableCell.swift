@@ -1,5 +1,5 @@
 //
-//  ComicTableCell.swift
+//  MediaTableCell.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-final class ComicTableCell: UITableViewCell {
+final class MediaTableCell: UITableViewCell {
     
     // MARK: - Outlets
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView! {
-        didSet { collectionView.register(ComicCollectionCell.self) }
+        didSet { collectionView.register(MediaCollectionCell.self) }
     }
     
     // MARK: - Properties
 
-    private lazy var dataSource = CollectionDataSource<ComicCollectionCell>(collectionView)
+    private lazy var dataSource = CollectionDataSource<MediaCollectionCell>(collectionView)
 }
 
 // MARK: - CellConfigurable
 
-extension ComicTableCell: CellConfigurable {
-    func configure(with item: DetailViewItem) {
+extension MediaTableCell: CellConfigurable {
+    func configure(with item: CharacterDetailsViewItem) {
         titleLabel.text = item.type.title
         dataSource.state = item.state
     }

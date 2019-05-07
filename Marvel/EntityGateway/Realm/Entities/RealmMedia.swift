@@ -1,5 +1,5 @@
 //
-//  RealmComic.swift
+//  RealmMedia.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/7/19.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class RealmComic: Object {
+final class RealmMedia: Object {
     @objc dynamic var id = 0
     @objc dynamic var title: String?
     @objc dynamic var thumbnail: RealmImage?
@@ -21,9 +21,9 @@ final class RealmComic: Object {
 
 // MARK: - RealmRepresentable
 
-extension Comic: RealmRepresentable {
-    func asRealm() -> RealmComic {
-        return RealmComic.build {
+extension Media: RealmRepresentable {
+    func asRealm() -> RealmMedia {
+        return RealmMedia.build {
             $0.id = id
             $0.title = title
             $0.thumbnail = thumbnail?.asRealm()
@@ -33,9 +33,9 @@ extension Comic: RealmRepresentable {
 
 // MARK: - CoreConvertible
 
-extension RealmComic: CoreConvertible {
-    func asCore() -> Comic {
-        return Comic(
+extension RealmMedia: CoreConvertible {
+    func asCore() -> Media {
+        return Media(
             id: id,
             title: title,
             thumbnail: thumbnail?.asCore()

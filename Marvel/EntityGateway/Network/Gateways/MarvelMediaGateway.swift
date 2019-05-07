@@ -1,5 +1,5 @@
 //
-//  ComicGateway.swift
+//  MarvelMediaGateway.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/7/19.
@@ -8,7 +8,7 @@
 
 import CoreNetwork
 
-final class ComicGateway {
+final class MarvelMediaGateway {
     private let apiClient: APIClient
     
     init(apiClient: APIClient = DefaultAPIClient()) {
@@ -16,10 +16,10 @@ final class ComicGateway {
     }
 }
 
-extension ComicGateway {
-    func loadComics(with parameter: ComicParameter) -> Promise<ComicPaginator> {
-        let request = RequestBuilder<[Comic]>()
-            .path("characters/\(parameter.id)/comics")
+extension MarvelMediaGateway {
+    func loadMediaItems(with parameter: MediaParameter) -> Promise<MediaPaginator> {
+        let request = RequestBuilder<[Media]>()
+            .path("characters/\(parameter.id)/\(parameter.type.rawValue)")
             .method(.get)
             .urlParameters(MarvelParameter<VoidParameter>())
             .build()

@@ -13,18 +13,18 @@ final class CharacterDetailsCoordinator {
     // MARK: - Properties
     
     private let router: Router
-    private let comicUseCase: ComicUseCase
+    private let mediaUseCase: MediaUseCase
     private let character: CharacterViewItem
     
     // MARK: - Init / Deinit
     
     init(
         router: Router,
-        comicUseCase: ComicUseCase,
+        mediaUseCase: MediaUseCase,
         character: CharacterViewItem
     ) {
         self.router = router
-        self.comicUseCase = comicUseCase
+        self.mediaUseCase = mediaUseCase
         self.character = character
     }
 }
@@ -34,7 +34,7 @@ final class CharacterDetailsCoordinator {
 extension CharacterDetailsCoordinator: Coordinator {
     func start() {
         let controller = CharacterDetailViewController.instantiate()
-        controller.viewModel = CharacterDetailViewModel(comicUseCase: comicUseCase, character: character)
+        controller.viewModel = CharacterDetailViewModel(mediaUseCase: mediaUseCase, character: character)
         router.push(controller, animated: true, completion: nil)
     }
 }

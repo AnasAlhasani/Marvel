@@ -14,9 +14,9 @@ final class CharactersCoordinator {
 
     private let router: Router
     private let characterUseCase: CharacterUseCase
-    private lazy var comicGateway = ComicGateway()
-    private lazy var comicRepository = RealmRepository<Comic>()
-    private lazy var comicUseCase = DefaultComicUseCase(gateway: comicGateway, repository: comicRepository)
+    private lazy var mediaGateway = MarvelMediaGateway()
+    private lazy var mediaRepository = RealmRepository<Media>()
+    private lazy var mediaUseCase = DefaultMediaUseCase(gateway: mediaGateway, repository: mediaRepository)
     
     // MARK: - Init / Deinit
     
@@ -52,7 +52,7 @@ extension CharactersCoordinator: CharactersCoordinatorDelegate {
     func didSelect(character: CharacterViewItem) {
         let coordinator = CharacterDetailsCoordinator(
             router: router,
-            comicUseCase: comicUseCase,
+            mediaUseCase: mediaUseCase,
             character: character
         )
         coordinator.start()
