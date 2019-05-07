@@ -18,7 +18,7 @@ final class CharacterGateway {
 
 extension CharacterGateway {
     func loadCharacters(with parameter: CharacterParameter) -> Promise<CharacterPaginator> {
-        let request = RequestBuilder<[ComicCharacter]>()
+        let request = RequestBuilder<[MarvelCharacter]>()
             .path("characters")
             .method(.get)
             .urlParameters(MarvelParameter(parameter))

@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 final class RealmComic: Object {
-    dynamic var id = 0
-    dynamic var title: String?
-    dynamic var thumbnail: RealmImage?
+    @objc dynamic var id = 0
+    @objc dynamic var title: String?
+    @objc dynamic var thumbnail: RealmImage?
     
     override class func primaryKey() -> String? {
         return "id"

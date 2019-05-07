@@ -22,6 +22,9 @@ final class DefaultComicUseCase<Repository: RepositoryProtocol> where Repository
 
 extension DefaultComicUseCase: ComicUseCase {
     func loadComics(with parameter: ComicParameter) -> Promise<ComicPaginator> {
-        return gateway.loadComics(with: parameter)
+        return gateway
+            .loadComics(with: parameter)
+            .then { self.repository.save(entites: $0.results) }
+            .recover { _ in self.repository.fetchAll().then { ComicPaginator(results: $0) } }
     }
 }

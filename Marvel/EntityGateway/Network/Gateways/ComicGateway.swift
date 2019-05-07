@@ -19,7 +19,7 @@ final class ComicGateway {
 extension ComicGateway {
     func loadComics(with parameter: ComicParameter) -> Promise<ComicPaginator> {
         let request = RequestBuilder<[Comic]>()
-            .path("comics/\(parameter.id)")
+            .path("characters/\(parameter.id)/comics")
             .method(.get)
             .urlParameters(MarvelParameter<VoidParameter>())
             .build()

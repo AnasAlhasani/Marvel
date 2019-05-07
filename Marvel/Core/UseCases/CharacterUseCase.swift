@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Typealias
 
-typealias CharacterPaginator = Paginator<[ComicCharacter]>
+typealias CharacterPaginator = Paginator<[MarvelCharacter]>
 
 // MARK: - UseCase
 

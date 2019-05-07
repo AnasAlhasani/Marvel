@@ -11,6 +11,7 @@ import Foundation
 protocol RepositoryProtocol {
     associatedtype Entity
     
-    func fetchAll() -> Promise<[Entity]>
+    @discardableResult
     func save(entites: [Entity]) -> Promise<Void>
+    func fetchAll() -> Promise<[Entity]>
 }
