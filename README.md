@@ -1,4 +1,13 @@
 # Marvel iOS
+
+<p align="justify">
+    <img src="https://img.shields.io/badge/Swift-5-orange.svg" />
+    <img src="https://img.shields.io/badge/Platforms-iOS-blue.svg?style=flat" />
+    <a href="https://codebeat.co/projects/github-com-anasalhasani-marvel-master">
+      <img alt="codebeat badge" src="https://codebeat.co/badges/83c897c4-7ea2-4db6-9b6a-b5b855f29b46" />
+    </a>
+</p>
+
 Marvel iOS application written in Swift 5 using MVVM-C with clean architecture concepts 🚀.
 
 ## Requirements
