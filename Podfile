@@ -7,7 +7,7 @@ target 'Marvel' do
   pod 'SwiftLint'
   pod 'SwiftGen'
   pod 'CryptoSwift'
-  pod 'RealmSwift'
+  pod 'RealmSwift', '~> 3.20.0'
 end
 
 post_install do |installer|
