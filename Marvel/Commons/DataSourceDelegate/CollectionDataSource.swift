@@ -9,12 +9,12 @@
 import UIKit
 
 typealias CollectionCell = CellConfigurable & UICollectionViewCell
+typealias CollectionDataSourceDelegate = UICollectionViewDataSource & UICollectionViewDelegate
 
-final class CollectionDataSource<Cell: CollectionCell>: NSObject, CollectionDataSource.DataSourceDelegate {
+final class CollectionDataSource<Cell: CollectionCell>: NSObject, CollectionDataSourceDelegate {
     
     // MARK: - Typealias
     
-    typealias DataSourceDelegate = UICollectionViewDataSource & UICollectionViewDelegate
     typealias DidSelectHandler = (IndexPath) -> Void
     typealias PagingHandler = (Int) -> Void
     

@@ -9,12 +9,12 @@
 import UIKit
 
 typealias TableCell = CellConfigurable & UITableViewCell
+typealias TableDataSourceDelegate = UITableViewDataSource & UITableViewDelegate
 
-final class TableDataSource<Cell: TableCell>: NSObject, TableDataSource.Protocols {
+final class TableDataSource<Cell: TableCell>: NSObject, TableDataSourceDelegate {
     
     // MARK: - Typealias
     
-    typealias Protocols = UITableViewDataSource & UITableViewDelegate
     typealias DidSelectHandler = (IndexPath) -> Void
     typealias PagingHandler = (Int) -> Void
     typealias CellIndexPathHandler = (Cell, IndexPath) -> Void
