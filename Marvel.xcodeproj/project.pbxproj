@@ -47,6 +47,8 @@
 		5D9229052281912B0048C614 /* AbstractRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9229042281912B0048C614 /* AbstractRepository.swift */; };
 		5D922907228191360048C614 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D922906228191360048C614 /* RealmRepository.swift */; };
 		5D9B671C2525234B0070C08D /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9B671B2525234B0070C08D /* Codable.swift */; };
+		5D9B671F25252D8A0070C08D /* Configuration .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9B671E25252D8A0070C08D /* Configuration .swift */; };
+		5D9B672125252D960070C08D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9B672025252D960070C08D /* Environment.swift */; };
 		5DB531DE227DDBE70044E86F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DD227DDBE70044E86F /* Coordinator.swift */; };
 		5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */; };
 		5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */; };
@@ -128,6 +130,11 @@
 		5D9229042281912B0048C614 /* AbstractRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRepository.swift; sourceTree = "<group>"; };
 		5D922906228191360048C614 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		5D9B671B2525234B0070C08D /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
+		5D9B671E25252D8A0070C08D /* Configuration .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration .swift"; sourceTree = "<group>"; };
+		5D9B672025252D960070C08D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		5D9B672225252DA70070C08D /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		5D9B672325252DB20070C08D /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		5D9B6724252530B60070C08D /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
 		5DB531DD227DDBE70044E86F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCoordinator.swift; sourceTree = "<group>"; };
@@ -467,6 +474,18 @@
 			path = Gateways;
 			sourceTree = "<group>";
 		};
+		5D9B671D25252D700070C08D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5D9B671E25252D8A0070C08D /* Configuration .swift */,
+				5D9B672025252D960070C08D /* Environment.swift */,
+				5D9B6724252530B60070C08D /* Default.xcconfig */,
+				5D9B672225252DA70070C08D /* Debug.xcconfig */,
+				5D9B672325252DB20070C08D /* Release.xcconfig */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		5DB531DC227DDBCC0044E86F /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,6 +570,7 @@
 		5DCC0D2C227B42790065DA28 = {
 			isa = PBXGroup;
 			children = (
+				5D9B671D25252D700070C08D /* Settings */,
 				5DCC0D37227B42790065DA28 /* Marvel */,
 				5DCC0D36227B42790065DA28 /* Products */,
 				243E33EBF7D69B382D1FB406 /* Pods */,
@@ -809,6 +829,7 @@
 				5DC64850227D019E0080B1F4 /* CollectionDataSource.swift in Sources */,
 				5D47378625251EE700360C4A /* Entity.swift in Sources */,
 				5D217FEE227B4DA900006DBE /* PluggableApplicationDelegate.swift in Sources */,
+				5D9B672125252D960070C08D /* Environment.swift in Sources */,
 				5D5C126E2280831600B9B4EF /* Optional.swift in Sources */,
 				5D217FF5227B50BF00006DBE /* Color.swift in Sources */,
 				5DC6483C227C88850080B1F4 /* CharactersViewModel.swift in Sources */,
@@ -819,6 +840,7 @@
 				5D433D08227DF84B00C116FA /* StoryboardIdentifiable.swift in Sources */,
 				5D217FEB227B4D3600006DBE /* KeyedDecodingContainer.swift in Sources */,
 				5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */,
+				5D9B671F25252D8A0070C08D /* Configuration .swift in Sources */,
 				5D21802B227C3F3900006DBE /* ErrorStateView.swift in Sources */,
 				5D217FF2227B4DF000006DBE /* ThemeApplicationService.swift in Sources */,
 				5D9228F42280F1200048C614 /* APIClient.swift in Sources */,
@@ -890,6 +912,7 @@
 /* Begin XCBuildConfiguration section */
 		5DCC0D45227B427A0065DA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D9B672225252DA70070C08D /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -951,6 +974,7 @@
 		};
 		5DCC0D46227B427A0065DA28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D9B672325252DB20070C08D /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1010,7 +1034,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				HOST_NAME = "https://gateway.marvel.com/v1/public";
 				INFOPLIST_FILE = "$(SRCROOT)/Marvel/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1030,7 +1053,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				HOST_NAME = "https://gateway.marvel.com/v1/public";
 				INFOPLIST_FILE = "$(SRCROOT)/Marvel/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

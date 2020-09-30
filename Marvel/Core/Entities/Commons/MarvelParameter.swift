@@ -20,8 +20,8 @@ struct MarvelParameter<Value: Encodable> {
     
     init(
         _ parameter: Value? = nil,
-        publicKey: String = "5d94fab0240e515bd064e7d9362f8e78",
-        privateKey: String = "1098df006e7e6edce50211c7be6431daabee3d73"
+        publicKey: String = Configuration.publicKey,
+        privateKey: String = Configuration.privateKey
     ) {
         self.timestamp = "\(Date().timeIntervalSince1970)"
         self.hash = "\(timestamp)\(privateKey)\(publicKey)".md5()
