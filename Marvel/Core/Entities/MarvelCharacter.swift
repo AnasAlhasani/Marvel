@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MarvelCharacter: Decodable {
+struct MarvelCharacter: Entity {
     let id: Int
     let name: String?
     let description: String?
