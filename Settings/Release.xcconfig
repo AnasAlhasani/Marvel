@@ -1,0 +1,9 @@
+//
+//  Release.xcconfig
+//  Marvel
+//
+//  Created by Anas Alhasani on 10/1/20.
+//  Copyright © 2020 Anas Alhasani. All rights reserved.
+//
+
+#include "Settings/Default.xcconfig"
