@@ -135,6 +135,10 @@
 		5D9B672225252DA70070C08D /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		5D9B672325252DB20070C08D /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		5D9B6724252530B60070C08D /* Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Default.xcconfig; sourceTree = "<group>"; };
+		5D9B672525253C0D0070C08D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		5D9B672625253C0D0070C08D /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5D9B672725253C0D0070C08D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		5D9B672825253C0E0070C08D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		5DB531DD227DDBE70044E86F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCoordinator.swift; sourceTree = "<group>"; };
@@ -482,6 +486,10 @@
 				5D9B6724252530B60070C08D /* Default.xcconfig */,
 				5D9B672225252DA70070C08D /* Debug.xcconfig */,
 				5D9B672325252DB20070C08D /* Release.xcconfig */,
+				5D9B672725253C0D0070C08D /* .gitignore */,
+				5D9B672525253C0D0070C08D /* .swiftlint.yml */,
+				5D9B672625253C0D0070C08D /* Podfile */,
+				5D9B672825253C0E0070C08D /* README.md */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
