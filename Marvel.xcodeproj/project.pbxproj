@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,6 +34,8 @@
 		5D433D06227DF52300C116FA /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D05227DF52300C116FA /* SearchCoordinator.swift */; };
 		5D433D08227DF84B00C116FA /* StoryboardIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */; };
 		5D433D0B227E08CE00C116FA /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */; };
+		5D47378425251E6A00360C4A /* RealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47378325251E6A00360C4A /* RealmObject.swift */; };
+		5D47378625251EE700360C4A /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47378525251EE700360C4A /* Entity.swift */; };
 		5D4739CE227DB6D4000941C6 /* MediaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4739CD227DB6D4000941C6 /* MediaUseCase.swift */; };
 		5D50C87C22821F37008A4BFA /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50C87B22821F37008A4BFA /* MediaType.swift */; };
 		5D5C126E2280831600B9B4EF /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C126D2280831600B9B4EF /* Optional.swift */; };
@@ -42,13 +44,9 @@
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
 		5D9228F52280F1200048C614 /* CharacterGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F02280F1200048C614 /* CharacterGateway.swift */; };
 		5D9228F62280F1200048C614 /* MarvelMediaGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F12280F1200048C614 /* MarvelMediaGateway.swift */; };
-		5D9228FC22817E0C0048C614 /* RealmMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228FB22817E0C0048C614 /* RealmMedia.swift */; };
-		5D9228FE22817E3D0048C614 /* RealmImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228FD22817E3D0048C614 /* RealmImage.swift */; };
-		5D92290022817EAA0048C614 /* RealmCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228FF22817EAA0048C614 /* RealmCharacter.swift */; };
-		5D9229052281912B0048C614 /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9229042281912B0048C614 /* RepositoryProtocol.swift */; };
+		5D9229052281912B0048C614 /* AbstractRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9229042281912B0048C614 /* AbstractRepository.swift */; };
 		5D922907228191360048C614 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D922906228191360048C614 /* RealmRepository.swift */; };
-		5D9229092281BDEE0048C614 /* EntityConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9229082281BDEE0048C614 /* EntityConvertible.swift */; };
-		5D9229132281D15A0048C614 /* ObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9229122281D15A0048C614 /* ObjectBuilder.swift */; };
+		5D9B671C2525234B0070C08D /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9B671B2525234B0070C08D /* Codable.swift */; };
 		5DB531DE227DDBE70044E86F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DD227DDBE70044E86F /* Coordinator.swift */; };
 		5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */; };
 		5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */; };
@@ -117,6 +115,8 @@
 		5D433D05227DF52300C116FA /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiable.swift; sourceTree = "<group>"; };
 		5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
+		5D47378325251E6A00360C4A /* RealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmObject.swift; sourceTree = "<group>"; };
+		5D47378525251EE700360C4A /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5D4739CD227DB6D4000941C6 /* MediaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUseCase.swift; sourceTree = "<group>"; };
 		5D50C87B22821F37008A4BFA /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		5D5C126D2280831600B9B4EF /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
@@ -125,13 +125,9 @@
 		5D9228EF2280F1200048C614 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5D9228F02280F1200048C614 /* CharacterGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterGateway.swift; sourceTree = "<group>"; };
 		5D9228F12280F1200048C614 /* MarvelMediaGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelMediaGateway.swift; sourceTree = "<group>"; };
-		5D9228FB22817E0C0048C614 /* RealmMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMedia.swift; sourceTree = "<group>"; };
-		5D9228FD22817E3D0048C614 /* RealmImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmImage.swift; sourceTree = "<group>"; };
-		5D9228FF22817EAA0048C614 /* RealmCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCharacter.swift; sourceTree = "<group>"; };
-		5D9229042281912B0048C614 /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
+		5D9229042281912B0048C614 /* AbstractRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRepository.swift; sourceTree = "<group>"; };
 		5D922906228191360048C614 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
-		5D9229082281BDEE0048C614 /* EntityConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityConvertible.swift; sourceTree = "<group>"; };
-		5D9229122281D15A0048C614 /* ObjectBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectBuilder.swift; sourceTree = "<group>"; };
+		5D9B671B2525234B0070C08D /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		5DB531DD227DDBE70044E86F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCoordinator.swift; sourceTree = "<group>"; };
@@ -277,6 +273,7 @@
 		5D217FE7227B4D0600006DBE /* SwiftStdlib */ = {
 			isa = PBXGroup;
 			children = (
+				5D9B671B2525234B0070C08D /* Codable.swift */,
 				5D217FEA227B4D3600006DBE /* KeyedDecodingContainer.swift */,
 				5DC64846227CBD1C0080B1F4 /* String.swift */,
 				5D5C126D2280831600B9B4EF /* Optional.swift */,
@@ -292,7 +289,6 @@
 				5DC64834227C813D0080B1F4 /* CellConfigurable.swift */,
 				5DC64853227D03F50080B1F4 /* ReusableView.swift */,
 				5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */,
-				5D9229082281BDEE0048C614 /* EntityConvertible.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -447,30 +443,11 @@
 		5D9228F722817CE30048C614 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				5D9228F822817CF70048C614 /* Entities */,
-				5D9229112281D1320048C614 /* Builder */,
-				5D922903228191180048C614 /* Repository */,
-			);
-			path = Realm;
-			sourceTree = "<group>";
-		};
-		5D9228F822817CF70048C614 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				5D9228FF22817EAA0048C614 /* RealmCharacter.swift */,
-				5D9228FB22817E0C0048C614 /* RealmMedia.swift */,
-				5D9228FD22817E3D0048C614 /* RealmImage.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		5D922903228191180048C614 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				5D9229042281912B0048C614 /* RepositoryProtocol.swift */,
+				5D47378325251E6A00360C4A /* RealmObject.swift */,
+				5D9229042281912B0048C614 /* AbstractRepository.swift */,
 				5D922906228191360048C614 /* RealmRepository.swift */,
 			);
-			path = Repository;
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		5D92290A2281BFCE0048C614 /* APIClient */ = {
@@ -488,14 +465,6 @@
 				5D9228F12280F1200048C614 /* MarvelMediaGateway.swift */,
 			);
 			path = Gateways;
-			sourceTree = "<group>";
-		};
-		5D9229112281D1320048C614 /* Builder */ = {
-			isa = PBXGroup;
-			children = (
-				5D9229122281D15A0048C614 /* ObjectBuilder.swift */,
-			);
-			path = Builder;
 			sourceTree = "<group>";
 		};
 		5DB531DC227DDBCC0044E86F /* Coordinators */ = {
@@ -537,6 +506,7 @@
 				5D217FFF227B545300006DBE /* MarvelResponse.swift */,
 				5D218017227B996D00006DBE /* MarvelParameter.swift */,
 				5D217FFD227B53C600006DBE /* MarvelError.swift */,
+				5D47378525251EE700360C4A /* Entity.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -833,20 +803,19 @@
 				5D9228F52280F1200048C614 /* CharacterGateway.swift in Sources */,
 				5DB531E9227DDDF20044E86F /* Router.swift in Sources */,
 				5D9228F22280F1200048C614 /* DefaultCharacterUseCase.swift in Sources */,
-				5D9228FC22817E0C0048C614 /* RealmMedia.swift in Sources */,
 				5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */,
 				5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */,
 				5D217FE6227B4CE000006DBE /* UIAlertAction.swift in Sources */,
 				5DC64850227D019E0080B1F4 /* CollectionDataSource.swift in Sources */,
+				5D47378625251EE700360C4A /* Entity.swift in Sources */,
 				5D217FEE227B4DA900006DBE /* PluggableApplicationDelegate.swift in Sources */,
 				5D5C126E2280831600B9B4EF /* Optional.swift in Sources */,
-				5D92290022817EAA0048C614 /* RealmCharacter.swift in Sources */,
 				5D217FF5227B50BF00006DBE /* Color.swift in Sources */,
 				5DC6483C227C88850080B1F4 /* CharactersViewModel.swift in Sources */,
 				5DB531E5227DDDAF0044E86F /* Routable.swift in Sources */,
 				5DC64838227C81610080B1F4 /* TableDataSource.swift in Sources */,
+				5D9B671C2525234B0070C08D /* Codable.swift in Sources */,
 				5DC64845227CA6310080B1F4 /* SearchCell.swift in Sources */,
-				5D9229092281BDEE0048C614 /* EntityConvertible.swift in Sources */,
 				5D433D08227DF84B00C116FA /* StoryboardIdentifiable.swift in Sources */,
 				5D217FEB227B4D3600006DBE /* KeyedDecodingContainer.swift in Sources */,
 				5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */,
@@ -866,8 +835,8 @@
 				5DC6482C227C41CF0080B1F4 /* TableViewable.swift in Sources */,
 				5DC6484E227CEB060080B1F4 /* CharacterDetailViewModel.swift in Sources */,
 				5DC64849227CC50B0080B1F4 /* Throttler.swift in Sources */,
+				5D47378425251E6A00360C4A /* RealmObject.swift in Sources */,
 				5D433D00227DF30000C116FA /* CharacterDetailsCoordinator.swift in Sources */,
-				5D9229132281D15A0048C614 /* ObjectBuilder.swift in Sources */,
 				5D218018227B996D00006DBE /* MarvelParameter.swift in Sources */,
 				5D433CFD227DEBBE00C116FA /* ApplicationCoordinatorService.swift in Sources */,
 				5DC64835227C813D0080B1F4 /* CellConfigurable.swift in Sources */,
@@ -889,10 +858,9 @@
 				5DF872B6227DAC2700DB0CCD /* MediaViewItem.swift in Sources */,
 				5D21801F227C318F00006DBE /* CharactersCell.swift in Sources */,
 				5DC64852227D03750080B1F4 /* UICollectionView.swift in Sources */,
-				5D9229052281912B0048C614 /* RepositoryProtocol.swift in Sources */,
+				5D9229052281912B0048C614 /* AbstractRepository.swift in Sources */,
 				5D217FFE227B53C600006DBE /* MarvelError.swift in Sources */,
 				5D922907228191360048C614 /* RealmRepository.swift in Sources */,
-				5D9228FE22817E3D0048C614 /* RealmImage.swift in Sources */,
 				5D9228F62280F1200048C614 /* MarvelMediaGateway.swift in Sources */,
 				5D4739CE227DB6D4000941C6 /* MediaUseCase.swift in Sources */,
 			);

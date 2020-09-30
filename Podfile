@@ -1,5 +1,7 @@
 platform :ios, '11.0'
 
+inhibit_all_warnings!
+
 target 'Marvel' do
   use_frameworks!
   pod 'CoreNetwork', :git => 'https://github.com/AnasAlhasani/CoreNetwork', :tag => 'v1.0.4'

@@ -9,26 +9,28 @@
 import Foundation
 import RealmSwift
 
-final class RealmRepository<T: RealmRepresentable>: RepositoryProtocol where T == T.Realm.Core, T.Realm: Object {
-
-    func fetchAll() -> Promise<[T]> {
-        return Promise<[T]> { fullfill, reject in
+final class RealmRepository<E: Entity>: AbstractRepository {
+    
+    func fetchAll() -> Promise<[E]> {
+        return Promise<[E]> { fullfill, reject in
             do {
                 let realm = try Realm()
-                let objects = realm.objects(T.Realm.self)
-                fullfill(objects.asCore())
+                let objects = realm.objects(RealmObject.self).filter("key == %@", E.key)
+                let entities: [E] = try objects.map { try $0.data.decoded() }
+                fullfill(entities)
             } catch {
                 reject(error)
             }
         }
     }
     
-    func save(entites: [T]) -> Promise<Void> {
+    func save(entites: [E]) -> Promise<Void> {
         return Promise<Void> { fullfill, reject in
             do {
                 let realm = try Realm()
                 try realm.write {
-                    realm.add(entites.asRealm(), update: true)
+                    let objects = try entites.map { RealmObject(id: "\($0.id)", key: E.key, data: try $0.encoded()) }
+                    realm.add(objects, update: .all)
                 }
                 fullfill(())
             } catch {

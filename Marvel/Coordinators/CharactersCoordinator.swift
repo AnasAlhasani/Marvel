@@ -16,7 +16,7 @@ final class CharactersCoordinator {
     private let characterUseCase: CharacterUseCase
     private lazy var mediaGateway = MarvelMediaGateway()
     private lazy var mediaRepository = RealmRepository<Media>()
-    private lazy var mediaUseCase = DefaultMediaUseCase(gateway: mediaGateway, repository: mediaRepository)
+    private lazy var mediaUseCase = DefaultMediaUseCase(gateway: mediaGateway, repository: .init(mediaRepository))
     
     // MARK: - Init / Deinit
     

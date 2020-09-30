@@ -15,7 +15,7 @@ final class ApplicationCoordinator {
     let window: UIWindow
     lazy var characterGateway = CharacterGateway()
     lazy var characterRepository = RealmRepository<MarvelCharacter>()
-    lazy var characterUseCase = DefaultCharacterUseCase(gateway: characterGateway, repository: characterRepository)
+    lazy var characterUseCase = DefaultCharacterUseCase(gateway: characterGateway, repository: .init(characterRepository))
     lazy var rootViewController = UINavigationController()
     lazy var router = Router(navigationController: rootViewController)
     lazy var charactersCoordinator = CharactersCoordinator(router: router, characterUseCase: characterUseCase)

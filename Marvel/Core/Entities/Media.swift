@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Media: Decodable {
+struct Media: Entity {
     let id: Int
     let title: String?
     let thumbnail: Image?

@@ -8,11 +8,11 @@
 
 import Foundation
 
-final class DefaultMediaUseCase<Repository: RepositoryProtocol> where Repository.Entity == Media {
+final class DefaultMediaUseCase {
     private let gateway: MarvelMediaGateway
-    private let repository: Repository
+    private let repository: AnyRepository<Media>
     
-    init(gateway: MarvelMediaGateway, repository: Repository) {
+    init(gateway: MarvelMediaGateway, repository: AnyRepository<Media>) {
         self.gateway = gateway
         self.repository = repository
     }
