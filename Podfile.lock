@@ -1,64 +1,20 @@
 PODS:
-  - Alamofire (4.8.2)
-  - CoreNetwork (1.0.4):
-    - Alamofire
-    - PromisesSwift
-  - CryptoSwift (1.0.0)
-  - Kingfisher (5.4.0)
-  - PromisesObjC (1.2.8)
-  - PromisesSwift (1.2.8):
-    - PromisesObjC (= 1.2.8)
-  - Realm (3.20.0):
-    - Realm/Headers (= 3.20.0)
-  - Realm/Headers (3.20.0)
-  - RealmSwift (3.20.0):
-    - Realm (= 3.20.0)
   - SwiftGen (6.1.0)
   - SwiftLint (0.32.0)
 
 DEPENDENCIES:
-  - CoreNetwork (from `https://github.com/AnasAlhasani/CoreNetwork`, tag `v1.0.4`)
-  - CryptoSwift
-  - Kingfisher (~> 5.0)
-  - RealmSwift (~> 3.20.0)
   - SwiftGen
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - Alamofire
-    - CryptoSwift
-    - Kingfisher
-    - PromisesObjC
-    - PromisesSwift
+  trunk:
     - SwiftGen
     - SwiftLint
-  trunk:
-    - Realm
-    - RealmSwift
-
-EXTERNAL SOURCES:
-  CoreNetwork:
-    :git: https://github.com/AnasAlhasani/CoreNetwork
-    :tag: v1.0.4
-
-CHECKOUT OPTIONS:
-  CoreNetwork:
-    :git: https://github.com/AnasAlhasani/CoreNetwork
-    :tag: v1.0.4
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  CoreNetwork: 7b027dabb401303b7cc5785ce296ce366a744354
-  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
-  Kingfisher: 9c8f2cc6710334e06f32ba2b45e77707d5e2f0c9
-  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-  PromisesSwift: 37bad6f4daddb02f7c9c531efe91e8b21c13ee2f
-  Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
-  RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
 
-PODFILE CHECKSUM: 0be5579b6a012313a2f9d44e90c1027325585cf2
+PODFILE CHECKSUM: edcc74d04ec33837cd083484d8c53825866d970f
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
