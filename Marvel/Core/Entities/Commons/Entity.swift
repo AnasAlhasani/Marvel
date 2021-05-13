@@ -8,12 +8,9 @@
 
 import Foundation
 
-protocol Entity: Codable {
-    var id: Int { get }
-}
+protocol Entity: Codable, Equatable {}
+protocol IdentifiableEntity: Entity, Identifiable where RawIdentifier == Int {}
 
 extension Entity {
-    static var key: String {
-        String(describing: self)
-    }
+    static var key: String { String(describing: self) }
 }

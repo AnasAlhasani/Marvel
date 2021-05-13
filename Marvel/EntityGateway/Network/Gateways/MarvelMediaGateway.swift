@@ -17,11 +17,11 @@ final class MarvelMediaGateway {
 }
 
 extension MarvelMediaGateway {
-    func loadMediaItems(with parameter: MediaParameter) -> Promise<MediaPaginator> {
-        let request = RequestBuilder<[Media]>()
-            .path("characters/\(parameter.id)/\(parameter.type.rawValue)")
+    func loadMediaItems(with parameter: MarvelParameter<MediaParameter>) -> Promise<MediaPaginator> {
+        let request = RequestBuilder<Media>()
+            .path("characters/\(parameter.value.id)/\(parameter.value.type.rawValue)")
             .method(.get)
-            .urlParameters(MarvelParameter<VoidParameter>())
+            .urlParameters(parameter)
             .build()
         return apiClient.execute(request)
     }

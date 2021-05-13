@@ -17,11 +17,11 @@ final class CharacterGateway {
 }
 
 extension CharacterGateway {
-    func loadCharacters(with parameter: CharacterParameter) -> Promise<CharacterPaginator> {
-        let request = RequestBuilder<[MarvelCharacter]>()
+    func loadCharacters(with parameter: MarvelParameter<CharacterParameter>) -> Promise<CharacterPaginator> {
+        let request = RequestBuilder<MarvelCharacter>()
             .path("characters")
             .method(.get)
-            .urlParameters(MarvelParameter(parameter))
+            .urlParameters(parameter)
             .build()
         return apiClient.execute(request)
     }

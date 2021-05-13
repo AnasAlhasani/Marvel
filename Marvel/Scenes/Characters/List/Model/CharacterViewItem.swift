@@ -9,7 +9,7 @@
 import UIKit
 
 struct CharacterViewItem {
-    let id: Int
+    let id: MarvelCharacter.ID
     let imageURL: URL?
     let name: String
     let description: String

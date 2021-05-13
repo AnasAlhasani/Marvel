@@ -8,11 +8,14 @@
 
 import Foundation
 
-struct Image: Codable {
+struct Image: Entity {
     private let path: String
     private let `extension`: String
 
-    var url: URL? {
-        URL(string: "\(path).\(`extension`)")
+    var url: URL? { URL(string: "\(path).\(`extension`)") }
+
+    init(path: String, extension: String) {
+        self.path = path
+        self.extension = `extension`
     }
 }

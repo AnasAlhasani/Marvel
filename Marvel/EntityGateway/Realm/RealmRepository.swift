@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class RealmRepository<E: Entity>: AbstractRepository {
+final class RealmRepository<E: IdentifiableEntity>: AbstractRepository {
     func fetchAll() -> Promise<[E]> {
         Promise<[E]> { fullfill, reject in
             do {

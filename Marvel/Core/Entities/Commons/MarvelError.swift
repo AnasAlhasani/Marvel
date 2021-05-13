@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MarvelError {
+struct MarvelError: Equatable {
     private(set) var message: String
 
     init(_ message: String) {
