@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1h1-QF-tKB" userLabel="Empty View">
+        <view contentMode="scaleToFill" id="1h1-QF-tKB" userLabel="Empty View" customClass="EmptyStateView" customModule="Marvel" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -28,6 +26,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="ZK4-BV-3Jr"/>
             <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="TlT-VE-y5p" firstAttribute="centerX" secondItem="1h1-QF-tKB" secondAttribute="centerX" id="6jU-ut-uIV"/>
@@ -36,7 +35,9 @@
                 <constraint firstItem="ZK4-BV-3Jr" firstAttribute="trailing" secondItem="TlT-VE-y5p" secondAttribute="trailing" constant="50" id="kAn-wf-hq5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="ZK4-BV-3Jr"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="SfP-WM-gcq" id="d97-ww-nY1"/>
+            </connections>
             <point key="canvasLocation" x="53.600000000000001" y="-22.938530734632685"/>
         </view>
     </objects>

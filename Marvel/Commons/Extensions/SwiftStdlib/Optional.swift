@@ -12,9 +12,9 @@ extension Optional where Wrapped == String {
     var defaultIfEmpty: String {
         switch self {
         case let .some(value):
-            return value.nilIfEmpty ?? "Not Available."
+            return value.nilIfEmpty ?? L10n.Common.notAvailable
         case .none:
-            return "Not Available."
+            return L10n.Common.notAvailable
         }
     }
 }

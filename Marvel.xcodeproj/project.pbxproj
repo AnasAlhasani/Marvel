@@ -18,7 +18,6 @@
 		5D217FEB227B4D3600006DBE /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FEA227B4D3600006DBE /* KeyedDecodingContainer.swift */; };
 		5D217FEE227B4DA900006DBE /* PluggableApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FED227B4DA900006DBE /* PluggableApplicationDelegate.swift */; };
 		5D217FF2227B4DF000006DBE /* ThemeApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FF1227B4DF000006DBE /* ThemeApplicationService.swift */; };
-		5D217FF5227B50BF00006DBE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FF4227B50BF00006DBE /* Color.swift */; };
 		5D217FFE227B53C600006DBE /* MarvelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FFD227B53C600006DBE /* MarvelError.swift */; };
 		5D218000227B545300006DBE /* MarvelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FFF227B545300006DBE /* MarvelResponse.swift */; };
 		5D218005227B58CE00006DBE /* CharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D218004227B58CE00006DBE /* CharacterUseCase.swift */; };
@@ -46,6 +45,9 @@
 		5D50C87C22821F37008A4BFA /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50C87B22821F37008A4BFA /* MediaType.swift */; };
 		5D5C126E2280831600B9B4EF /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C126D2280831600B9B4EF /* Optional.swift */; };
 		5D606E12264CC98600E8D23D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E11264CC98600E8D23D /* Strings.swift */; };
+		5D606E14264D60C400E8D23D /* Resources+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E13264D60C400E8D23D /* Resources+Types.swift */; };
+		5D606E16264D64B900E8D23D /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E15264D64B900E8D23D /* EmptyStateView.swift */; };
+		5D606E18264D64C500E8D23D /* LoadingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E17264D64C500E8D23D /* LoadingStateView.swift */; };
 		5D9228F22280F1200048C614 /* DefaultCharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */; };
 		5D9228F32280F1200048C614 /* DefaultMediaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */; };
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
@@ -104,7 +106,6 @@
 		5D217FEA227B4D3600006DBE /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		5D217FED227B4DA900006DBE /* PluggableApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluggableApplicationDelegate.swift; sourceTree = "<group>"; };
 		5D217FF1227B4DF000006DBE /* ThemeApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeApplicationService.swift; sourceTree = "<group>"; };
-		5D217FF4227B50BF00006DBE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5D217FFD227B53C600006DBE /* MarvelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelError.swift; sourceTree = "<group>"; };
 		5D217FFF227B545300006DBE /* MarvelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelResponse.swift; sourceTree = "<group>"; };
 		5D218004227B58CE00006DBE /* CharacterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUseCase.swift; sourceTree = "<group>"; };
@@ -148,6 +149,9 @@
 		5D606E0F264CC6CE00E8D23D /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		5D606E10264CC8AD00E8D23D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		5D606E11264CC98600E8D23D /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		5D606E13264D60C400E8D23D /* Resources+Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resources+Types.swift"; sourceTree = "<group>"; };
+		5D606E15264D64B900E8D23D /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		5D606E17264D64C500E8D23D /* LoadingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateView.swift; sourceTree = "<group>"; };
 		5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCharacterUseCase.swift; sourceTree = "<group>"; };
 		5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMediaUseCase.swift; sourceTree = "<group>"; };
 		5D9228EF2280F1200048C614 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				5D45D069264CBFE800345602 /* Colors */,
 				5D45D06C264CC00A00345602 /* Strings */,
 				5D45D06D264CC01800345602 /* Generated */,
+				5D606E13264D60C400E8D23D /* Resources+Types.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -290,7 +295,6 @@
 				5D217FEC227B4D9B00006DBE /* Protocols */,
 				5DC64828227C418D0080B1F4 /* Utillties */,
 				5D217FDF227B4A6D00006DBE /* Extensions */,
-				5D217FF6227B50D600006DBE /* Constants */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -356,14 +360,6 @@
 				5D217FF1227B4DF000006DBE /* ThemeApplicationService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		5D217FF6227B50D600006DBE /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				5D217FF4227B50BF00006DBE /* Color.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		5D217FF9227B534000006DBE /* Core */ = {
@@ -437,10 +433,12 @@
 		5D218024227C3F1F00006DBE /* StateView */ = {
 			isa = PBXGroup;
 			children = (
+				5D606E15264D64B900E8D23D /* EmptyStateView.swift */,
 				5D218026227C3F3900006DBE /* EmptyStateView.xib */,
-				5D218028227C3F3900006DBE /* ErrorStateView.xib */,
-				5D218025227C3F3900006DBE /* LoadingStateView.xib */,
 				5D218027227C3F3900006DBE /* ErrorStateView.swift */,
+				5D218028227C3F3900006DBE /* ErrorStateView.xib */,
+				5D606E17264D64C500E8D23D /* LoadingStateView.swift */,
+				5D218025227C3F3900006DBE /* LoadingStateView.xib */,
 			);
 			path = StateView;
 			sourceTree = "<group>";
@@ -993,7 +991,7 @@
 				5D217FEE227B4DA900006DBE /* PluggableApplicationDelegate.swift in Sources */,
 				5D9B672125252D960070C08D /* Environment.swift in Sources */,
 				5D5C126E2280831600B9B4EF /* Optional.swift in Sources */,
-				5D217FF5227B50BF00006DBE /* Color.swift in Sources */,
+				5D606E14264D60C400E8D23D /* Resources+Types.swift in Sources */,
 				5DC6483C227C88850080B1F4 /* CharactersViewModel.swift in Sources */,
 				5DB531E5227DDDAF0044E86F /* Routable.swift in Sources */,
 				5DC64838227C81610080B1F4 /* TableDataSource.swift in Sources */,
@@ -1005,6 +1003,7 @@
 				5D9B671F25252D8A0070C08D /* Config.swift in Sources */,
 				5D21802B227C3F3900006DBE /* ErrorStateView.swift in Sources */,
 				5D217FF2227B4DF000006DBE /* ThemeApplicationService.swift in Sources */,
+				5D606E18264D64C500E8D23D /* LoadingStateView.swift in Sources */,
 				5D9228F42280F1200048C614 /* APIClient.swift in Sources */,
 				5D21801D227C2B7000006DBE /* CharactersViewController.swift in Sources */,
 				5DC64840227C99A90080B1F4 /* CharacterViewItem.swift in Sources */,
@@ -1044,6 +1043,7 @@
 				5D21801F227C318F00006DBE /* CharactersCell.swift in Sources */,
 				5DC64852227D03750080B1F4 /* UICollectionView.swift in Sources */,
 				5D9229052281912B0048C614 /* AbstractRepository.swift in Sources */,
+				5D606E16264D64B900E8D23D /* EmptyStateView.swift in Sources */,
 				5D217FFE227B53C600006DBE /* MarvelError.swift in Sources */,
 				5D922907228191360048C614 /* RealmRepository.swift in Sources */,
 				5D9228F62280F1200048C614 /* MarvelMediaGateway.swift in Sources */,

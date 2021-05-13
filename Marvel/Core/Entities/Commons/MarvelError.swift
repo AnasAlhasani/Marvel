@@ -27,6 +27,6 @@ extension MarvelError: LocalizedError {
 // MARK: - Constants
 
 extension MarvelError {
-    static let general = MarvelError("Something went wrong.\nPlease try again later")
-    static let decode = MarvelError("Failed to decode response.")
+    static let general = MarvelError(L10n.Error.general)
+    static let decode = MarvelError(L10n.Error.decode)
 }

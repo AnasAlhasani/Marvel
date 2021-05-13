@@ -13,6 +13,8 @@ struct CharacterViewItem {
     let imageURL: URL?
     let name: String
     let description: String
+    var nameTitle: String { L10n.Character.name }
+    var descriptionTitle: String { L10n.Character.description }
 
     init(_ character: MarvelCharacter) {
         self.id = character.id

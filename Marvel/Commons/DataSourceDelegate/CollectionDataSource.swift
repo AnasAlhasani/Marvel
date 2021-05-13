@@ -74,6 +74,6 @@ private extension CollectionDataSource {
     func setup() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = Color.gray.rawValue
+        collectionView.backgroundColor = Colors.gray.color
     }
 }

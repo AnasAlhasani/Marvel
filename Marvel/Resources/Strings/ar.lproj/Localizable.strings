@@ -5,3 +5,14 @@
   Created by Anas Alhasani on 13/05/2021.
   Copyright © 2021 Anas Alhasani. All rights reserved.
 */
+
+"search.title" = "Search";
+"state.empty" = "No Results Found!";
+"state.error" = "Ooops!";
+"error.general" = "Something went wrong.\nPlease try again later";
+"error.decode" = "Failed to decode response.";
+"common.notAvailable" = "Not Available.";
+"character.comics" = "Comics";
+"character.series" = "Series";
+"character.name" = "Name";
+"character.description" = "Description";

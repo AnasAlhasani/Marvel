@@ -9,15 +9,17 @@
 import UIKit
 
 final class ErrorStateView: UIView {
-    // MARK: - Outlets
+    // MARK: Outlets
 
-    @IBOutlet private var errorLabel: UILabel!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
 }
 
 // MARK: - Presentation
 
 extension ErrorStateView {
     func display(message: String) {
-        errorLabel.text = message
+        titleLabel.text = L10n.State.error
+        descriptionLabel.text = message
     }
 }
