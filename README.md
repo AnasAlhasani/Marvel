@@ -20,10 +20,10 @@ Marvel iOS application written in Swift 5 using MVVM-C with clean architecture c
 
 <table style="width:100%">
   <tr>
-    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Screenshots/Launch.png" alt="Marvel" width=400 height=375/></td>
-    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Screenshots/Characters.png" alt="Marvel" width=400 height=375/></td>
-    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Screenshots/Search.png" alt="Marvel" width=400 height=375/></td>
-    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Screenshots/Details.png" alt="Marvel" width=400 height=375/></td>
+    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Settings/Assets/Launch.png" alt="Marvel" width=400 height=375/></td>
+    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Settings/Assets/Characters.png" alt="Marvel" width=400 height=375/></td>
+    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Settings/Assets/Search.png" alt="Marvel" width=400 height=375/></td>
+    <td><img src="https://github.com/AnasAlhasani/Marvel/blob/master/Settings/Assets/Details.png" alt="Marvel" width=400 height=375/></td>
   </tr>
 </table>
 

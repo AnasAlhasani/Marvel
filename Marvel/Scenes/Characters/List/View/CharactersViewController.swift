@@ -9,18 +9,18 @@
 import UIKit
 
 final class CharactersViewController: UIViewController {
-
     // MARK: - Outlets
-    
-    @IBOutlet private weak var tableView: UITableView!
-    
+
+    @IBOutlet private var tableView: UITableView!
+
     // MARK: - Properties
-    
+
     private lazy var dataSource = TableDataSource<CharactersCell>(tableView)
+    // swiftlint:disable implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
-    
+
     // MARK: - LifeCycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.loadCharecters()
@@ -33,8 +33,8 @@ final class CharactersViewController: UIViewController {
 // MARK: - Interactions
 
 private extension CharactersViewController {
-    
-    @IBAction func didTapSearchButtonItem(_ sender: UIBarButtonItem) {
+    @IBAction
+    func didTapSearchButtonItem(_ sender: UIBarButtonItem) {
         viewModel.didTapSearch()
     }
 }

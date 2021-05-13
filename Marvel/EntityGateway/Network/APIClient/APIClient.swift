@@ -18,12 +18,11 @@ typealias Promise<T> = Promises.Promise<T>
 
 // Checkout my CoreNetwork framework: https://github.com/AnasAlhasani/CoreNetwork
 extension APIClient {
-    
     func execute<T: APIRequest, D: Decodable>(_ request: T) -> Promise<Paginator<D>> {
-        return Promise<Paginator<D>>(on: .global(qos: .background)) { fullfill, reject in
+        Promise<Paginator<D>>(on: .global(qos: .background)) { fullfill, reject in
             self.execute(request).then {
                 let response = $0 as? MarvelResponse<D>
-                
+
                 if let dataContainer = response?.data {
                     fullfill(dataContainer)
                 } else if let message = response?.message {
@@ -36,5 +35,4 @@ extension APIClient {
             }
         }
     }
-    
 }

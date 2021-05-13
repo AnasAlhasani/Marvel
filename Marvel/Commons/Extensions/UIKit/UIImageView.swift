@@ -6,8 +6,8 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 extension UIImageView {
     func download(image url: URL?, placeholder: ImageAsset? = nil) {

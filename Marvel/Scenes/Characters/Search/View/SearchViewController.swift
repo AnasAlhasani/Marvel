@@ -9,30 +9,29 @@
 import UIKit
 
 final class SearchViewController: UIViewController {
-    
     // MARK: - Outlets
-    
-    @IBOutlet private weak var tableView: UITableView!
-    
+
+    @IBOutlet private var tableView: UITableView!
+
     // MARK: - Properties
-    
+
     private lazy var dataSource = TableDataSource<SearchCell>(tableView)
+    // swiftlint:disable implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
-    
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.definesPresentationContext = true
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.delegate = self
         searchController.searchBar.placeholder = "Search"
         return searchController
     }()
-    
+
     // MARK: - LifeCycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationItem()
@@ -40,12 +39,11 @@ final class SearchViewController: UIViewController {
         dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharecters(at: $0) }
         dataSource.didSelectHandler = { [weak self] in self?.viewModel.didSelectRow(at: $0) }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchController.isActive = true
     }
-        
 }
 
 // MARK: - Configurations
@@ -63,7 +61,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.loadCharecters(with: searchBar.text)
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.didTapCancelSearch()
     }

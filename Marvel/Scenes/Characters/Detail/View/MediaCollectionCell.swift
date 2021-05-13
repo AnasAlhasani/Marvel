@@ -9,11 +9,10 @@
 import UIKit
 
 final class MediaCollectionCell: UICollectionViewCell {
-
     // MARK: - Outlets
-    
-    @IBOutlet private weak var comicImageView: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
+
+    @IBOutlet private var comicImageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
 }
 
 // MARK: - CellConfigurable

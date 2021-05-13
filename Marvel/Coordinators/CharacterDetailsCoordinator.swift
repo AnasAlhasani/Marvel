@@ -9,15 +9,14 @@
 import UIKit
 
 final class CharacterDetailsCoordinator {
-    
     // MARK: - Properties
-    
+
     private let router: Router
     private let mediaUseCase: MediaUseCase
     private let character: CharacterViewItem
-    
+
     // MARK: - Init / Deinit
-    
+
     init(
         router: Router,
         mediaUseCase: MediaUseCase,

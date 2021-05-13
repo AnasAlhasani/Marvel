@@ -12,48 +12,46 @@ typealias CollectionCell = CellConfigurable & UICollectionViewCell
 typealias CollectionDataSourceDelegate = UICollectionViewDataSource & UICollectionViewDelegate
 
 final class CollectionDataSource<Cell: CollectionCell>: NSObject, CollectionDataSourceDelegate {
-    
     // MARK: - Typealias
-    
+
     typealias DidSelectHandler = (IndexPath) -> Void
     typealias PagingHandler = (Int) -> Void
-    
+
     // MARK: - Properties
-    
+
     private let collectionView: UICollectionView
-    
+
     var state: State<Cell.Item> = .loading {
         didSet { collectionView.display(state) }
     }
-    
+
     // MARK: - Handlers
-    
+
     var didSelectHandler: DidSelectHandler?
     var pagingHandler: PagingHandler?
-    
+
     // MARK: - Init / Deinit
-    
+
     init(_ collectionView: UICollectionView) {
         self.collectionView = collectionView
         super.init()
         setup()
     }
-    
+
     // MARK: - UICollectionViewDataSource
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return state.items.count
+        state.items.count
     }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        
         let cell: Cell = collectionView.dequeueReusableCell(at: indexPath)
         let item = state.items[indexPath.row]
         cell.configure(with: item)
@@ -62,9 +60,9 @@ final class CollectionDataSource<Cell: CollectionCell>: NSObject, CollectionData
         }
         return cell
     }
-    
+
     // MARK: - UICollectionViewDelegate
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectHandler?(indexPath)
     }

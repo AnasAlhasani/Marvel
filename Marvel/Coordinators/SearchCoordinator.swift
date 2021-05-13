@@ -9,14 +9,13 @@
 import UIKit
 
 final class SearchCoordinator {
-    
     // MARK: - Properties
 
     private let router: Router
     private let viewModel: CharactersViewModel
-    
+
     // MARK: - Init / Deinit
-    
+
     init(router: Router, viewModel: CharactersViewModel) {
         self.router = router
         self.viewModel = viewModel

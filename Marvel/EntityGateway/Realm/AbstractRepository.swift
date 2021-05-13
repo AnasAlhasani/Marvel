@@ -10,7 +10,7 @@ import Foundation
 
 protocol AbstractRepository {
     associatedtype Entity
-    
+
     @discardableResult
     func save(entites: [Entity]) -> Promise<Void>
     func fetchAll() -> Promise<[Entity]>
@@ -19,7 +19,7 @@ protocol AbstractRepository {
 final class AnyRepository<E>: AbstractRepository {
     private typealias SaveAction = ([E]) -> Promise<Void>
     private typealias FetchAllAction = () -> Promise<[E]>
-        
+
     private let saveAction: SaveAction
     private let fetchAllAction: FetchAllAction
 
@@ -27,12 +27,12 @@ final class AnyRepository<E>: AbstractRepository {
         self.saveAction = repository.save
         self.fetchAllAction = repository.fetchAll
     }
-    
+
     @discardableResult
     func save(entites: [E]) -> Promise<Void> {
         saveAction(entites)
     }
-    
+
     func fetchAll() -> Promise<[E]> {
         fetchAllAction()
     }

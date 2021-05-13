@@ -1,0 +1,84 @@
+# braces
+--allman false
+
+# elseOnSameLine
+--elseposition same-line
+
+# fileHeader
+--header ignore
+
+# hoistPatternLet
+--patternlet hoist
+
+# indent
+--indent 4
+--indentcase false
+--ifdef no-indent
+--xcodeindentation disabled
+
+# linebreakAtEndOfFile
+--linebreaks lf
+
+# modifierOrder
+--modifierorder
+
+# numberFormatting
+--decimalgrouping none
+--binarygrouping none
+--octalgrouping none
+--hexgrouping none
+--exponentgrouping disabled
+--fractiongrouping disabled
+--hexliteralcase lowercase
+--exponentcase lowercase
+
+# redundantSelf
+--self init-only
+--selfrequired
+
+# semicolons
+--semicolons inline
+
+# sortedImports
+--importgrouping alphabetized
+
+# spaceAroundOperators
+--operatorfunc spaced
+--ranges no-space
+
+# trailingClosures
+--trailingclosures
+--nevertrailing
+
+# trailingCommas
+--commas inline
+
+# trailingSpace
+--trimwhitespace always
+
+# typeSugar
+--shortoptionals always
+
+# unusedArguments
+--stripunusedargs closure-only
+
+# void
+--voidtype void
+
+# wrapArguments
+--wraparguments before-first
+--wrapcollections before-first
+--closingparen balanced
+
+# wrapAttributes
+--funcattributes prev-line
+--typeattributes prev-line
+--varattributes preserve
+
+# SwiftVersion
+--swiftversion 5.4
+
+# rules
+
+--disable initCoderUnavailable
+--enable isEmpty

@@ -1,0 +1,18 @@
+input_dir: ../../Marvel/Resources
+output_dir: ../../Marvel/Resources/Generated
+strings:
+  inputs: Strings/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: Strings.swift
+      params:
+        publicAccess: true
+xcassets:
+  inputs:
+    - Images/Images.xcassets
+    - Colors/Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: Assets.swift
+      params:
+        publicAccess: true

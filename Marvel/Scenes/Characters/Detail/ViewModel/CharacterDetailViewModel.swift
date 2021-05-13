@@ -9,11 +9,10 @@
 import Foundation
 
 final class CharacterDetailViewModel {
-    
     // MARK: - Typealias
-    
+
     typealias CharacterDetailState = State<CharacterDetailsViewItem>
-    
+
     // MARK: - Properties
 
     private let mediaUseCase: MediaUseCase
@@ -21,9 +20,9 @@ final class CharacterDetailViewModel {
     private(set) lazy var state = Dynamic<CharacterDetailState>(.populated([comicsItem, seriesItem]))
     private lazy var comicsItem = CharacterDetailsViewItem(type: .comics)
     private lazy var seriesItem = CharacterDetailsViewItem(type: .series)
-    
+
     // MARK: - Init / Deinit
-    
+
     init(
         mediaUseCase: MediaUseCase,
         character: CharacterViewItem
@@ -36,12 +35,11 @@ final class CharacterDetailViewModel {
 // MARK: - UseCase
 
 extension CharacterDetailViewModel {
-
     func loadItems() {
         loadItem(of: .comics)
         loadItem(of: .series)
     }
-    
+
     private func loadItem(of type: MediaType) {
         let parameter = MediaParameter(id: character.value.id, type: type)
         mediaUseCase.loadMediaItems(with: parameter).then {
@@ -51,7 +49,7 @@ extension CharacterDetailViewModel {
             self.state.value = .error($0)
         }
     }
-    
+
     private func updateItem(type: MediaType, with state: State<MediaViewItem>) {
         switch type {
         case .comics:

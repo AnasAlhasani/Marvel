@@ -9,25 +9,23 @@
 import UIKit
 
 final class CharecterDetailHeaderView: UIView {
-    
     // MARK: - Outlets
-    
-    @IBOutlet private weak var characterImageView: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    
+
+    @IBOutlet private var characterImageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
+
     // MARK: - LifeCycle
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadFromNib()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromNib()
     }
-
 }
 
 // MARK: - Configurations

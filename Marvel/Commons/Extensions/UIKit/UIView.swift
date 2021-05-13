@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIView {
-    
     static func instantiateFromNib() -> Self {
         func instanceFromNib<T: UIView>() -> T {
             let nib = UINib(nibName: "\(self)", bundle: nil)
@@ -18,10 +17,10 @@ extension UIView {
             }
             return view
         }
-        
+
         return instanceFromNib()
     }
-    
+
     static func loadView(form nibName: String) -> UIView {
         let nib = UINib(nibName: nibName, bundle: nil)
         guard let view = nib.instantiate(withOwner: nil, options: nil).first as? UIView else {
@@ -29,15 +28,15 @@ extension UIView {
         }
         return view
     }
-    
+
     func loadFromNib() {
         guard let subView = UINib(nibName: "\(type(of: self))", bundle: nil)
             .instantiate(withOwner: self, options: nil).first as? UIView
-            else { return }
-        
+        else { return }
+
         subView.frame = bounds
         subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+
         addSubview(subView)
     }
 }

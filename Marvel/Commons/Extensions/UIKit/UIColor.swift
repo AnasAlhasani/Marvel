@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIColor {
-    
     convenience init(red: Int, green: Int, blue: Int, transparency: CGFloat = 1) {
         self.init(
             red: CGFloat(red) / 255.0,
@@ -18,7 +17,7 @@ extension UIColor {
             alpha: transparency
         )
     }
-    
+
     convenience init(p3Red: Int, green: Int, blue: Int, transparency: CGFloat = 1) {
         self.init(
             displayP3Red: CGFloat(p3Red) / 255.0,

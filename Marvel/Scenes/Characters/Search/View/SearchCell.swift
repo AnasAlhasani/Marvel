@@ -8,4 +8,4 @@
 
 import UIKit
 
-final class SearchCell: CharactersCell { }
+final class SearchCell: CharactersCell {}

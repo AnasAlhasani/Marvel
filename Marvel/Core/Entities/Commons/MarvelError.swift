@@ -10,7 +10,7 @@ import Foundation
 
 struct MarvelError {
     private(set) var message: String
-    
+
     init(_ message: String) {
         self.message = message
     }
@@ -20,7 +20,7 @@ struct MarvelError {
 
 extension MarvelError: LocalizedError {
     var localizedDescription: String {
-        return message
+        message
     }
 }
 

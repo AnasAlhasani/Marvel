@@ -1,14 +1,8 @@
-excluded: 
-  - Carthage
-  - Pods
-  
-disabled_rules: 
+disabled_rules:
   - trailing_whitespace
-
-opt_in_rules: 
+opt_in_rules:
   - anyobject_protocol
   - array_init
-  - attributes
   - block_based_kvo
   - class_delegate_protocol
   - closing_brace
@@ -50,6 +44,7 @@ opt_in_rules:
   - identifier_name
   - implicit_getter
   - implicit_return
+  - implicitly_unwrapped_optional
   - is_disjoint
   - joined_default_parameter
   - large_tuple
@@ -59,7 +54,6 @@ opt_in_rules:
   - legacy_constant
   - legacy_constructor
   - legacy_nsgeometry_functions
-  - let_var_whitespace
   - line_length
   - literal_expression_end_indentation
   - lower_acl_than_parent
@@ -67,7 +61,6 @@ opt_in_rules:
   - modifier_order
   - multiline_arguments
   - multiline_parameters
-  - multiline_literal_brackets
   - multiline_parameters_brackets
   - multiple_closures_with_trailing_closure
   - nesting
@@ -79,6 +72,7 @@ opt_in_rules:
   - operator_whitespace
   - overridden_super_call
   - override_in_extension
+  - object_literal
   - pattern_matching_keywords
   - private_action
   - private_outlet
@@ -110,10 +104,8 @@ opt_in_rules:
   - trailing_comma
   - trailing_newline
   - trailing_semicolon
-  - trailing_whitespace
   - type_body_length
   - type_name
-  - unavailable_function
   - unneeded_break_in_switch
   - unneeded_parentheses_in_closure_argument
   - untyped_error_in_catch
@@ -121,7 +113,6 @@ opt_in_rules:
   - unused_closure_parameter
   - unused_enumerated
   - unused_optional_binding
-  - unused_private_declaration
   - valid_ibinspectable
   - vertical_parameter_alignment
   - vertical_parameter_alignment_on_call
@@ -130,50 +121,86 @@ opt_in_rules:
   - weak_delegate
   - xctfail_message
   - yoda_condition
-
-
-# special configuration for rules 
-
-identifier_name:
-  excluded:
-    - id
-    - or
-    - in
-
+operator_usage_whitespace:
+  severity: error
+syntactic_sugar: error
+trailing_comma:
+  severity: error
+trailing_newline: error
+trailing_semicolon: error
+unused_closure_parameter: error
+unused_optional_binding:
+  severity: error
+vertical_whitespace:
+  severity: error
 colon:
   flexible_right_spacing: false
   apply_to_dictionaries: true
-
 cyclomatic_complexity:
   warning: 10
   error: 20
   ignores_case_statements: false
-
 file_length:
   warning: 400
-  error: 1000
-
+  error: 500
 function_body_length:
-  warning: 40
-  error: 100
-
+  warning: 50
+  error: 60
 function_parameter_count:
   warning: 5
-  error: 8
-
-implicitly_unwrapped_optional:
-  mode: allExceptIBOutlets
-
+  error: 6
 large_tuple:
   warning: 2
   error: 3
-
 line_length:
-  warning: 120
-  error: 200
+  warning: 150
+  error: 180
   ignores_urls: false
   ignores_function_declarations: false
-  ignores_comments: false
-
-number_separator:
-minimum_length: 0a
+  ignores_comments: true
+nesting:
+  type_level: 2
+type_name:
+  excluded:
+    - ID
+  max_length:
+    warning: 50
+    error: 60
+identifier_name:
+  excluded:
+    - id
+    - or
+    - in 
+    - ok
+    - x
+    - y
+    - z
+force_unwrapping:
+  severity: error
+custom_rules:
+  asset_prohibited:
+    included: '.*\.swift'
+    name: 'Use Images or Colors instead of Asset'
+    regex: ' Asset\.'
+    message: 'Incorrect enum'
+    severity: error
+        
+included:
+  - ${SRCROOT}
+  - ${SRCROOT}/../Sources
+  - ${SRCROOT}/../../Sources
+excluded:
+  - ${SRCROOT}/Carthage
+  - ${SRCROOT}/.build
+  - ${SRCROOT}/Playgrounds
+  - ${SRCROOT}/Submodules
+  - ${SRCROOT}/SourcePackages
+  - ${SRCROOT}/*/SourcePackages
+  - ${SRCROOT}/*/*/SourcePackages
+  - ${SRCROOT}/*/*/*/SourcePackages
+  - ${SRCROOT}/Vendor
+  - ${SRCROOT}/Pods
+  - ${SRCROOT}/bundle
+  - ${SRCROOT}/*Tests
+  - ${SRCROOT}/*UITests
+  - ${SRCROOT}/Tests

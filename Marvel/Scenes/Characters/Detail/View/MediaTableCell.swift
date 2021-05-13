@@ -9,14 +9,13 @@
 import UIKit
 
 final class MediaTableCell: UITableViewCell {
-    
     // MARK: - Outlets
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var collectionView: UICollectionView! {
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var collectionView: UICollectionView! {
         didSet { collectionView.register(MediaCollectionCell.self) }
     }
-    
+
     // MARK: - Properties
 
     private lazy var dataSource = CollectionDataSource<MediaCollectionCell>(collectionView)

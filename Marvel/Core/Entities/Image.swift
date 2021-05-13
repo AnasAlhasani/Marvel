@@ -11,7 +11,7 @@ import Foundation
 struct Image: Codable {
     private let path: String
     private let `extension`: String
-    
+
     var url: URL? {
         URL(string: "\(path).\(`extension`)")
     }
