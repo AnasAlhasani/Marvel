@@ -14,10 +14,10 @@ final class ThemeApplicationService: ApplicationService {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().tintColor = Color.white.rawValue
-        UINavigationBar.appearance().barTintColor = Color.primary.rawValue
-        UINavigationBar.appearance().backgroundColor = Color.primary.rawValue
-        UINavigationBar.appearance().titleTextAttributes = titleTextAttributes(with: .white, and: 17)
+        UINavigationBar.appearance().tintColor = Colors.white.color
+        UINavigationBar.appearance().barTintColor = Colors.primary.color
+        UINavigationBar.appearance().backgroundColor = Colors.primary.color
+        UINavigationBar.appearance().titleTextAttributes = titleTextAttributes(with: Colors.white, and: 17)
 
         UITabBarItem.appearance().setTitleTextAttributes(
             [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10, weight: .semibold)],
@@ -25,16 +25,16 @@ final class ThemeApplicationService: ApplicationService {
         )
 
         UIBarButtonItem.appearance().setTitleTextAttributes(
-            titleTextAttributes(with: .white, and: 14),
+            titleTextAttributes(with: Colors.white, and: 14),
             for: .normal
         )
 
-        UISwitch.appearance().onTintColor = Color.primary.rawValue.withAlphaComponent(0.3)
-        UISwitch.appearance().thumbTintColor = Color.primary.rawValue
+        UISwitch.appearance().onTintColor = Colors.primary.color.withAlphaComponent(0.3)
+        UISwitch.appearance().thumbTintColor = Colors.primary.color
 
-        UISegmentedControl.appearance().tintColor = Color.primary.rawValue
+        UISegmentedControl.appearance().tintColor = Colors.primary.color
 
-        UITableViewCell.appearance().tintColor = Color.primary.rawValue
+        UITableViewCell.appearance().tintColor = Colors.primary.color
         UITableViewCell.appearance().selectionStyle = .none
 
         return true
@@ -44,9 +44,12 @@ final class ThemeApplicationService: ApplicationService {
 // MARK: - Helper Methods
 
 private extension ThemeApplicationService {
-    func titleTextAttributes(with color: Color, and fontSize: CGFloat) -> [NSAttributedString.Key: Any]? {
+    func titleTextAttributes(
+        with colorAsset: ColorAsset,
+        and fontSize: CGFloat
+    ) -> [NSAttributedString.Key: Any]? {
         [
-            NSAttributedString.Key.foregroundColor: color.rawValue,
+            NSAttributedString.Key.foregroundColor: colorAsset.color,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize, weight: .semibold)
         ]
     }

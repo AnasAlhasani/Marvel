@@ -12,8 +12,10 @@ final class CharecterDetailHeaderView: UIView {
     // MARK: - Outlets
 
     @IBOutlet private var characterImageView: UIImageView!
-    @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var nameTitleLabel: UILabel!
+    @IBOutlet private var nameValueLabel: UILabel!
+    @IBOutlet private var descriptionTitleLabel: UILabel!
+    @IBOutlet private var descriptionValueLabel: UILabel!
 
     // MARK: - LifeCycle
 
@@ -33,7 +35,9 @@ final class CharecterDetailHeaderView: UIView {
 extension CharecterDetailHeaderView {
     func configure(with item: CharacterViewItem) {
         characterImageView.download(image: item.imageURL)
-        nameLabel.text = item.name
-        descriptionLabel.text = item.description
+        nameTitleLabel.text = item.nameTitle
+        nameValueLabel.text = item.name
+        descriptionTitleLabel.text = item.descriptionTitle
+        descriptionValueLabel.text = item.description
     }
 }

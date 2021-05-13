@@ -26,7 +26,7 @@ final class SearchViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.delegate = self
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = L10n.Search.title
         return searchController
     }()
 

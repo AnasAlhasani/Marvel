@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,6 +32,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Grv-Rw-2lk"/>
             <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="18O-eL-lLu" firstAttribute="leading" secondItem="Grv-Rw-2lk" secondAttribute="leading" constant="50" id="4AF-Ht-PAV"/>
@@ -42,9 +41,9 @@
                 <constraint firstItem="18O-eL-lLu" firstAttribute="centerX" secondItem="NEt-W7-adY" secondAttribute="centerX" id="b92-zk-xDW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="Grv-Rw-2lk"/>
             <connections>
-                <outlet property="errorLabel" destination="kIv-RN-DS1" id="KcC-YH-AlY"/>
+                <outlet property="descriptionLabel" destination="kIv-RN-DS1" id="KcC-YH-AlY"/>
+                <outlet property="titleLabel" destination="aBj-Gp-AHA" id="Aye-k1-k59"/>
             </connections>
             <point key="canvasLocation" x="53.600000000000001" y="-23.388305847076463"/>
         </view>

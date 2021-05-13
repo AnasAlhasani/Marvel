@@ -75,6 +75,6 @@ private extension TableDataSource {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-        tableView.backgroundColor = Color.darkGray.rawValue
+        tableView.backgroundColor = Colors.darkGray.color
     }
 }

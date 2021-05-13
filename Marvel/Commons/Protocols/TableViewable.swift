@@ -12,11 +12,6 @@ protocol TableViewable {
     func display<Value>(_ state: State<Value>)
 }
 
-private enum StateViewName {
-    static let loading = "LoadingStateView"
-    static let empty = "EmptyStateView"
-}
-
 extension UITableView: TableViewable {
     func display<Value>(_ state: State<Value>) {
         switch state {
@@ -24,10 +19,10 @@ extension UITableView: TableViewable {
             tableFooterView = UIView(frame: .zero)
             backgroundView = nil
         case .loading:
-            backgroundView = UIView.loadView(form: StateViewName.loading)
+            backgroundView = LoadingStateView.instantiateFromNib()
             tableFooterView = UIView(frame: .zero)
         case .empty:
-            backgroundView = UIView.loadView(form: StateViewName.empty)
+            backgroundView = EmptyStateView.instantiateFromNib()
             tableFooterView = UIView(frame: .zero)
         case let .error(error):
             let errorView = ErrorStateView.instantiateFromNib()
@@ -35,10 +30,10 @@ extension UITableView: TableViewable {
             backgroundView = errorView
             tableFooterView = UIView(frame: .zero)
         case .paging:
-            tableFooterView = UIView.loadView(form: StateViewName.loading)
+            tableFooterView = LoadingStateView.instantiateFromNib()
         case let .populated(items):
             if items.isEmpty {
-                backgroundView = UIView.loadView(form: StateViewName.empty)
+                backgroundView = EmptyStateView.instantiateFromNib()
             } else {
                 backgroundView = nil
             }
@@ -54,16 +49,16 @@ extension UICollectionView: TableViewable {
         case .default:
             backgroundView = nil
         case .loading, .paging:
-            backgroundView = UIView.loadView(form: StateViewName.loading)
+            backgroundView = LoadingStateView.instantiateFromNib()
         case .empty:
-            backgroundView = UIView.loadView(form: StateViewName.empty)
+            backgroundView = EmptyStateView.instantiateFromNib()
         case let .error(error):
             let errorView = ErrorStateView.instantiateFromNib()
             errorView.display(message: error.localizedDescription)
             backgroundView = errorView
         case let .populated(items):
             if items.isEmpty {
-                backgroundView = UIView.loadView(form: StateViewName.empty)
+                backgroundView = EmptyStateView.instantiateFromNib()
             } else {
                 backgroundView = nil
             }
