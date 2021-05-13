@@ -11,7 +11,7 @@ import Promises
 
 // MARK: - Typealias
 
-typealias RequestBuilder<T: Decodable> = CoreNetwork.RequestBuilder<MarvelResponse<T>>
+typealias RequestBuilder<T: Entity> = CoreNetwork.RequestBuilder<MarvelResponse<T>>
 typealias Promise<T> = Promises.Promise<T>
 
 // MARK: - APIClient

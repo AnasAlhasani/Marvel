@@ -8,8 +8,18 @@
 
 import Foundation
 
-struct Media: Entity {
-    let id: Int
+struct Media: IdentifiableEntity {
+    let id: ID
     let title: String?
     let thumbnail: Image?
+
+    init(
+        id: ID,
+        title: String?,
+        thumbnail: Image?
+    ) {
+        self.id = id
+        self.title = title
+        self.thumbnail = thumbnail
+    }
 }

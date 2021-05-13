@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Typealias
 
-typealias MediaPaginator = Paginator<[Media]>
+typealias MediaPaginator = Paginator<Media>
 
 // MARK: - UseCase
 
@@ -20,11 +20,9 @@ protocol MediaUseCase {
 
 // MARK: - Parameters
 
-struct MediaParameter: Encodable {
-    private(set) var id: Int
+struct MediaParameter: Parameter {
+    private(set) var id: MarvelCharacter.ID
     private(set) var type: MediaType
 
-    enum CodingKeys: String, CodingKey {
-        case id
-    }
+    func encode(to encoder: Encoder) throws {}
 }

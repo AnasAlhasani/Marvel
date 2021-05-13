@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct MarvelCharacter: Entity {
-    let id: Int
+struct MarvelCharacter: IdentifiableEntity {
+    let id: ID
     let name: String?
     let description: String?
     let thumbnail: Image?

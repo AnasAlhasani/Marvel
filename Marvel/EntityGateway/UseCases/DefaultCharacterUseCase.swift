@@ -23,7 +23,7 @@ final class DefaultCharacterUseCase {
 extension DefaultCharacterUseCase: CharacterUseCase {
     func loadCharacters(with parameter: CharacterParameter) -> Promise<CharacterPaginator> {
         gateway
-            .loadCharacters(with: parameter)
+            .loadCharacters(with: .init(parameter))
             .then { self.repository.save(entites: $0.results) }
             .recover { _ in self.repository.fetchAll().then { CharacterPaginator(results: $0) } }
     }

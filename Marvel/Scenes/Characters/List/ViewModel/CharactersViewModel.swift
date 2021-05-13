@@ -85,7 +85,7 @@ extension CharactersViewModel {
         }
     }
 
-    private func handleCharecters(paginator: Paginator<[MarvelCharacter]>) {
+    private func handleCharecters(paginator: Paginator<MarvelCharacter>) {
         let viewItems = paginator.results.map { CharacterViewItem($0) }
 
         var allItems = state.value.items

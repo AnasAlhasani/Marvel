@@ -23,7 +23,7 @@ final class DefaultMediaUseCase {
 extension DefaultMediaUseCase: MediaUseCase {
     func loadMediaItems(with parameter: MediaParameter) -> Promise<MediaPaginator> {
         gateway
-            .loadMediaItems(with: parameter)
+            .loadMediaItems(with: .init(parameter))
             .then { self.repository.save(entites: $0.results) }
             .recover { _ in self.repository.fetchAll().then { MediaPaginator(results: $0) } }
     }

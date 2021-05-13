@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Typealias
 
-typealias CharacterPaginator = Paginator<[MarvelCharacter]>
+typealias CharacterPaginator = Paginator<MarvelCharacter>
 
 // MARK: - UseCase
 
@@ -20,7 +20,7 @@ protocol CharacterUseCase {
 
 // MARK: - Parameters
 
-struct CharacterParameter: Encodable {
+struct CharacterParameter: Parameter {
     private let nameStartsWith: String?
     private let limit: Int?
     private let offset: Int?

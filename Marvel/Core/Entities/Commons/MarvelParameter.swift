@@ -9,23 +9,22 @@
 import CryptoSwift
 import Foundation
 
-struct VoidParameter: Encodable {}
-
-struct MarvelParameter<Value: Encodable> {
-    private let timestamp: String
-    private let hash: String
-    private let apiKey: String
-    private let parameter: Value?
+struct MarvelParameter<Value: Parameter>: Parameter {
+    private(set) var timestamp: String
+    private(set) var hash: String
+    private(set) var apiKey: String
+    private(set) var value: Value
 
     init(
-        _ parameter: Value? = nil,
+        _ value: Value,
+        timestamp: String = "\(Date().timeIntervalSince1970)",
         publicKey: String = Config.publicKey,
         privateKey: String = Config.privateKey
     ) {
-        self.timestamp = "\(Date().timeIntervalSince1970)"
+        self.timestamp = timestamp
         self.hash = "\(timestamp)\(privateKey)\(publicKey)".md5()
         self.apiKey = publicKey
-        self.parameter = parameter
+        self.value = value
     }
 }
 
@@ -38,13 +37,13 @@ extension MarvelParameter: Encodable {
         try container.encode(timestamp, forKey: .timestamp)
         try container.encode(hash, forKey: .hash)
         try container.encode(apiKey, forKey: .apiKey)
-        try parameter?.encode(to: encoder)
+        try value.encode(to: encoder)
     }
 
     enum CodingKeys: String, CodingKey {
         case timestamp = "ts"
         case apiKey = "apikey"
         case hash
-        case parameter
+        case value
     }
 }
