@@ -48,6 +48,7 @@
 		5D606E14264D60C400E8D23D /* Resources+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E13264D60C400E8D23D /* Resources+Types.swift */; };
 		5D606E16264D64B900E8D23D /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E15264D64B900E8D23D /* EmptyStateView.swift */; };
 		5D606E18264D64C500E8D23D /* LoadingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E17264D64C500E8D23D /* LoadingStateView.swift */; };
+		5D606E20264D71AA00E8D23D /* MarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E1F264D71AA00E8D23D /* MarvelTests.swift */; };
 		5D9228F22280F1200048C614 /* DefaultCharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */; };
 		5D9228F32280F1200048C614 /* DefaultMediaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */; };
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
@@ -96,6 +97,16 @@
 		5DF872B6227DAC2700DB0CCD /* MediaViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF872B5227DAC2700DB0CCD /* MediaViewItem.swift */; };
 		7B015650CB189EE6C2307FB8 /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E159CBEF17E8D81275012B /* Pods_Marvel.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5D606E22264D71AA00E8D23D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DCC0D2D227B42790065DA28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DCC0D34227B42790065DA28;
+			remoteInfo = Marvel;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3F80D662F0B3E7D5CAF89E4E /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +163,9 @@
 		5D606E13264D60C400E8D23D /* Resources+Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resources+Types.swift"; sourceTree = "<group>"; };
 		5D606E15264D64B900E8D23D /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		5D606E17264D64C500E8D23D /* LoadingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateView.swift; sourceTree = "<group>"; };
+		5D606E1D264D71AA00E8D23D /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D606E1F264D71AA00E8D23D /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
+		5D606E21264D71AA00E8D23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCharacterUseCase.swift; sourceTree = "<group>"; };
 		5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMediaUseCase.swift; sourceTree = "<group>"; };
 		5D9228EF2280F1200048C614 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -209,6 +223,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5D606E1A264D71AA00E8D23D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DCC0D32227B42790065DA28 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -576,6 +597,15 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		5D606E1E264D71AA00E8D23D /* MarvelTests */ = {
+			isa = PBXGroup;
+			children = (
+				5D606E1F264D71AA00E8D23D /* MarvelTests.swift */,
+				5D606E21264D71AA00E8D23D /* Info.plist */,
+			);
+			path = MarvelTests;
+			sourceTree = "<group>";
+		};
 		5D9228EB2280F1200048C614 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +754,7 @@
 			children = (
 				5D9B671D25252D700070C08D /* Settings */,
 				5DCC0D37227B42790065DA28 /* Marvel */,
+				5D606E1E264D71AA00E8D23D /* MarvelTests */,
 				5DCC0D36227B42790065DA28 /* Products */,
 				243E33EBF7D69B382D1FB406 /* Pods */,
 				4C1EACCC0FFC86BE92A27FC5 /* Frameworks */,
@@ -734,6 +765,7 @@
 			isa = PBXGroup;
 			children = (
 				5DCC0D35227B42790065DA28 /* Marvel.app */,
+				5D606E1D264D71AA00E8D23D /* MarvelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -804,6 +836,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5D606E1C264D71AA00E8D23D /* MarvelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D606E26264D71AA00E8D23D /* Build configuration list for PBXNativeTarget "MarvelTests" */;
+			buildPhases = (
+				5D606E19264D71AA00E8D23D /* Sources */,
+				5D606E1A264D71AA00E8D23D /* Frameworks */,
+				5D606E1B264D71AA00E8D23D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5D606E23264D71AA00E8D23D /* PBXTargetDependency */,
+			);
+			name = MarvelTests;
+			productName = MarvelTests;
+			productReference = 5D606E1D264D71AA00E8D23D /* MarvelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5DCC0D34227B42790065DA28 /* Marvel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5DCC0D47227B427A0065DA28 /* Build configuration list for PBXNativeTarget "Marvel" */;
@@ -837,10 +887,14 @@
 		5DCC0D2D227B42790065DA28 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Anas Alhasani";
 				TargetAttributes = {
+					5D606E1C264D71AA00E8D23D = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 5DCC0D34227B42790065DA28;
+					};
 					5DCC0D34227B42790065DA28 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -867,11 +921,19 @@
 			projectRoot = "";
 			targets = (
 				5DCC0D34227B42790065DA28 /* Marvel */,
+				5D606E1C264D71AA00E8D23D /* MarvelTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5D606E1B264D71AA00E8D23D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DCC0D33227B42790065DA28 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -972,6 +1034,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5D606E19264D71AA00E8D23D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D606E20264D71AA00E8D23D /* MarvelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DCC0D31227B42790065DA28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1053,6 +1123,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5D606E23264D71AA00E8D23D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DCC0D34227B42790065DA28 /* Marvel */;
+			targetProxy = 5D606E22264D71AA00E8D23D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		5D45D066264CBF5E00345602 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -1082,6 +1160,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5D606E24264D71AA00E8D23D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MarvelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.anasalhasani.Marvel.MarvelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Marvel.app/Marvel";
+			};
+			name = Debug;
+		};
+		5D606E25264D71AA00E8D23D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MarvelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.anasalhasani.Marvel.MarvelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Marvel.app/Marvel";
+			};
+			name = Release;
+		};
 		5DCC0D45227B427A0065DA28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5D9B672225252DA70070C08D /* Debug.xcconfig */;
@@ -1245,6 +1363,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5D606E26264D71AA00E8D23D /* Build configuration list for PBXNativeTarget "MarvelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D606E24264D71AA00E8D23D /* Debug */,
+				5D606E25264D71AA00E8D23D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5DCC0D30227B42790065DA28 /* Build configuration list for PBXProject "Marvel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
