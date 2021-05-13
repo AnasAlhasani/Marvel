@@ -15,13 +15,12 @@ struct MarvelResponse<Value: Decodable>: Decodable {
 }
 
 struct Paginator<Value: Decodable>: Decodable {
-    
     private(set) var offset: Int
     private(set) var limit: Int
     private(set) var total: Int
     private(set) var count: Int
     private(set) var results: Value
-    
+
     init(
         offset: Int = 0,
         limit: Int = 0,
@@ -35,12 +34,12 @@ struct Paginator<Value: Decodable>: Decodable {
         self.count = count
         self.results = results
     }
-    
+
     var hasMorePages: Bool {
-        return total - (offset + limit) > 0
+        total - (offset + limit) > 0
     }
-    
+
     var nextOffset: Int {
-        return hasMorePages ? offset + limit : offset
+        hasMorePages ? offset + limit : offset
     }
 }

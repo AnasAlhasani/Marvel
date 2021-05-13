@@ -24,7 +24,7 @@ struct CharacterParameter: Encodable {
     private let nameStartsWith: String?
     private let limit: Int?
     private let offset: Int?
-    
+
     init(
         query: String? = nil,
         limit: Int? = nil,

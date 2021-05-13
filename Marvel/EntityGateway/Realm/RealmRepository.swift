@@ -10,9 +10,8 @@ import Foundation
 import RealmSwift
 
 final class RealmRepository<E: Entity>: AbstractRepository {
-    
     func fetchAll() -> Promise<[E]> {
-        return Promise<[E]> { fullfill, reject in
+        Promise<[E]> { fullfill, reject in
             do {
                 let realm = try Realm()
                 let objects = realm.objects(RealmObject.self).filter("key == %@", E.key)
@@ -23,9 +22,9 @@ final class RealmRepository<E: Entity>: AbstractRepository {
             }
         }
     }
-    
+
     func save(entites: [E]) -> Promise<Void> {
-        return Promise<Void> { fullfill, reject in
+        Promise<Void> { fullfill, reject in
             do {
                 let realm = try Realm()
                 try realm.write {

@@ -14,9 +14,9 @@ protocol StoryboardIdentifiable {
 
 extension StoryboardIdentifiable where Self: UIViewController {
     static var storyboardIdentifier: String {
-        return String(describing: self)
+        String(describing: self)
     }
-    
+
     static func instantiate() -> Self {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let identifier = "\(self)"
@@ -27,4 +27,4 @@ extension StoryboardIdentifiable where Self: UIViewController {
     }
 }
 
-extension UIViewController: StoryboardIdentifiable { }
+extension UIViewController: StoryboardIdentifiable {}

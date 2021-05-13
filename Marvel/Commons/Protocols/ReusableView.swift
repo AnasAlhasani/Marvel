@@ -14,10 +14,10 @@ protocol ReusableView {
 
 extension ReusableView {
     static var reuseIdentifier: String {
-        return String(describing: self)
+        String(describing: self)
     }
 }
 
-extension UITableViewCell: ReusableView { }
+extension UITableViewCell: ReusableView {}
 
-extension UICollectionViewCell: ReusableView { }
+extension UICollectionViewCell: ReusableView {}

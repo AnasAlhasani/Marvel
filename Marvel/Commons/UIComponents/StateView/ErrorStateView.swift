@@ -9,10 +9,9 @@
 import UIKit
 
 final class ErrorStateView: UIView {
-    
     // MARK: - Outlets
-    
-    @IBOutlet private weak var errorLabel: UILabel!
+
+    @IBOutlet private var errorLabel: UILabel!
 }
 
 // MARK: - Presentation

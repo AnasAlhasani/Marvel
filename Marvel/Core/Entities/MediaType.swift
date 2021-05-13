@@ -11,8 +11,8 @@ import Foundation
 enum MediaType: String, CaseIterable {
     case comics
     case series
-    
+
     var title: String {
-        return rawValue.capitalized
+        rawValue.capitalized
     }
 }

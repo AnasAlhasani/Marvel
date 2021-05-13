@@ -9,7 +9,6 @@
 import UIKit
 
 final class CharactersCoordinator {
-    
     // MARK: - Properties
 
     private let router: Router
@@ -17,9 +16,9 @@ final class CharactersCoordinator {
     private lazy var mediaGateway = MarvelMediaGateway()
     private lazy var mediaRepository = RealmRepository<Media>()
     private lazy var mediaUseCase = DefaultMediaUseCase(gateway: mediaGateway, repository: .init(mediaRepository))
-    
+
     // MARK: - Init / Deinit
-    
+
     init(router: Router, characterUseCase: CharacterUseCase) {
         self.router = router
         self.characterUseCase = characterUseCase
@@ -44,11 +43,11 @@ extension CharactersCoordinator: CharactersCoordinatorDelegate {
         let coordinator = SearchCoordinator(router: router, viewModel: viewModel)
         coordinator.start()
     }
-    
+
     func didTapCancelSearch() {
         router.pop()
     }
-    
+
     func didSelect(character: CharacterViewItem) {
         let coordinator = CharacterDetailsCoordinator(
             router: router,

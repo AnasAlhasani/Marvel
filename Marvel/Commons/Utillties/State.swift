@@ -15,7 +15,7 @@ enum State<Value> {
     case populated([Value])
     case empty
     case error(Error)
-    
+
     var items: [Value] {
         switch self {
         case let .paging(items, _):

@@ -8,13 +8,12 @@
 
 import UIKit
 
- class CharactersCell: UITableViewCell {
-
+class CharactersCell: UITableViewCell {
     // MARK: - Outlets
-    
-    @IBOutlet private weak var characterImageView: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
-    
+
+    @IBOutlet private var characterImageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
+
     override func prepareForReuse() {
         super.prepareForReuse()
         characterImageView.image = nil

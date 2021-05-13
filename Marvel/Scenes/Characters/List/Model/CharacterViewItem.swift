@@ -9,12 +9,11 @@
 import UIKit
 
 struct CharacterViewItem {
-    
     let id: Int
     let imageURL: URL?
     let name: String
     let description: String
-    
+
     init(_ character: MarvelCharacter) {
         self.id = character.id
         self.name = character.name.defaultIfEmpty

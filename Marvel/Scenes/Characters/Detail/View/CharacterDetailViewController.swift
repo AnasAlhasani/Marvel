@@ -9,29 +9,30 @@
 import UIKit
 
 final class CharacterDetailViewController: UIViewController {
-
     // MARK: - Outlets
-    
-    @IBOutlet private weak var tableView: UITableView! {
+
+    @IBOutlet private var tableView: UITableView! {
         didSet { tableView.register(MediaTableCell.self) }
     }
-    @IBOutlet private weak var headerView: CharecterDetailHeaderView!
-    
+
+    @IBOutlet private var headerView: CharecterDetailHeaderView!
+
     // MARK: - Properties
-    
+
     private lazy var dataSource = TableDataSource<MediaTableCell>(tableView)
+    // swiftlint:disable implicitly_unwrapped_optional
     var viewModel: CharacterDetailViewModel!
-    
+
     // MARK: - LifeCycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         handleViewModel()
         handleDataSource()
-    } 
+    }
 }
 
-// MARK: - Configurations 
+// MARK: - Configurations
 
 private extension CharacterDetailViewController {
     func handleViewModel() {
@@ -42,13 +43,13 @@ private extension CharacterDetailViewController {
             self?.headerView.configure(with: $0)
         }
     }
-    
+
     func handleDataSource() {
         dataSource.cellIndexPathHandler = { [weak self] cell, indexPath in
             self?.didConfigure(cell, at: indexPath)
         }
     }
-    
+
     func didConfigure<Cell: TableCell>(_ cell: Cell, at indexPath: IndexPath) {
         guard let cell = cell as? MediaTableCell else { return }
         let item = viewModel.state.value.items[indexPath.row]

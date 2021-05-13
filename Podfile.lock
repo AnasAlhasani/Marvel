@@ -1,20 +1,24 @@
 PODS:
-  - SwiftGen (6.1.0)
-  - SwiftLint (0.32.0)
+  - SwiftFormat/CLI (0.48.1)
+  - SwiftGen (6.4.0)
+  - SwiftLint (0.43.1)
 
 DEPENDENCIES:
+  - SwiftFormat/CLI
   - SwiftGen
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - SwiftFormat
     - SwiftGen
     - SwiftLint
 
 SPEC CHECKSUMS:
-  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
-  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+  SwiftFormat: 094c5e2e6c36dafdd128d04cff4a0a7d87492e73
+  SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: edcc74d04ec33837cd083484d8c53825866d970f
+PODFILE CHECKSUM: 330f507f85e1aefb2fb46edfabfda2618ad05e14
 
 COCOAPODS: 1.10.1

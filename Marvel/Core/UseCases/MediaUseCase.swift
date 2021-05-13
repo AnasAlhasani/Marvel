@@ -23,7 +23,7 @@ protocol MediaUseCase {
 struct MediaParameter: Encodable {
     private(set) var id: Int
     private(set) var type: MediaType
-    
+
     enum CodingKeys: String, CodingKey {
         case id
     }

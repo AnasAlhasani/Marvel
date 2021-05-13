@@ -2,12 +2,26 @@ iOS_version = '12.0'
 platform :ios, iOS_version
 
 inhibit_all_warnings!
+use_frameworks!
+
+workspace 'Marvel.xcworkspace'
+
+## Pods
+
+def toolsPods
+    pod 'SwiftLint'
+    pod 'SwiftGen'
+    pod 'SwiftFormat/CLI'
+end
+
+## Application
 
 target 'Marvel' do
-  use_frameworks!
-  pod 'SwiftLint'
-  pod 'SwiftGen'
+  project 'Marvel.project'
+  toolsPods
 end
+
+## Helpers
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|

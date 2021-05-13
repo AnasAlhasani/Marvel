@@ -18,7 +18,6 @@ private enum StateViewName {
 }
 
 extension UITableView: TableViewable {
-    
     func display<Value>(_ state: State<Value>) {
         switch state {
         case .default:
@@ -50,7 +49,6 @@ extension UITableView: TableViewable {
 }
 
 extension UICollectionView: TableViewable {
-    
     func display<Value>(_ state: State<Value>) {
         switch state {
         case .default:
