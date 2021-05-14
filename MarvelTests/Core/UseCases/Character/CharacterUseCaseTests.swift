@@ -53,7 +53,7 @@ final class CharacterUseCaseTests: XCTestCase {
 
         XCTAssertEqual(repositroyStub.entites, results)
         XCTAssertEqual(repositroyStub.saveCallCount, 1)
-        XCTAssertTrue(repositroyStub.savePromise.value == ())
+        XCTAssertTrue(repositroyStub.savePromise.value! == ())
         XCTAssertNil(repositroyStub.savePromise.error)
 
         XCTAssertEqual(promise.value, paginator)

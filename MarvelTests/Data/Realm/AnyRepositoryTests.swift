@@ -35,7 +35,7 @@ final class AnyRepositoryTests: XCTestCase {
 
         // Then
         XCTAssert(waitForPromises(timeout: 1.0))
-        XCTAssertTrue(promise.value == ())
+        XCTAssertTrue(promise.value! == ())
         XCTAssertNil(promise.error)
         XCTAssertEqual(spy.entites, entites)
         XCTAssertEqual(spy.saveCallCount, 1)

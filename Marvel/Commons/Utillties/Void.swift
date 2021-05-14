@@ -9,4 +9,3 @@
 import Foundation
 
 func == (lhs: Void, rhs: Void) -> Bool { true }
-func == (lhs: Void?, rhs: Void?) -> Bool { true }

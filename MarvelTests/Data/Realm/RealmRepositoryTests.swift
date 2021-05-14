@@ -33,7 +33,7 @@ final class RealmRepositoryTests: XCTestCase {
 
         // Then
         XCTAssert(waitForPromises(timeout: 1.0))
-        XCTAssertTrue(promise.value == ())
+        XCTAssertTrue(promise.value! == ())
         XCTAssertNil(promise.error)
     }
 
