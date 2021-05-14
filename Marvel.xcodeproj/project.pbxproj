@@ -67,8 +67,8 @@
 		5D606E52264EC56300E8D23D /* MediaGatewayStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E51264EC56300E8D23D /* MediaGatewayStub.swift */; };
 		5D606E55264EC5DE00E8D23D /* CharacterGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E54264EC5DE00E8D23D /* CharacterGateway.swift */; };
 		5D606E57264EC5E700E8D23D /* MediaGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E56264EC5E700E8D23D /* MediaGateway.swift */; };
-		5D9228F22280F1200048C614 /* DefaultCharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */; };
-		5D9228F32280F1200048C614 /* DefaultMediaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */; };
+		5D606E5C264EC7F000E8D23D /* CharacterUseCaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E5B264EC7F000E8D23D /* CharacterUseCaseStub.swift */; };
+		5D606E5E264EC7F900E8D23D /* MediaUseCaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E5D264EC7F900E8D23D /* MediaUseCaseStub.swift */; };
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
 		5D9228F52280F1200048C614 /* APICharacterGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F02280F1200048C614 /* APICharacterGateway.swift */; };
 		5D9228F62280F1200048C614 /* APIMarvelMediaGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F12280F1200048C614 /* APIMarvelMediaGateway.swift */; };
@@ -202,8 +202,8 @@
 		5D606E51264EC56300E8D23D /* MediaGatewayStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaGatewayStub.swift; sourceTree = "<group>"; };
 		5D606E54264EC5DE00E8D23D /* CharacterGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterGateway.swift; sourceTree = "<group>"; };
 		5D606E56264EC5E700E8D23D /* MediaGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaGateway.swift; sourceTree = "<group>"; };
-		5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCharacterUseCase.swift; sourceTree = "<group>"; };
-		5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMediaUseCase.swift; sourceTree = "<group>"; };
+		5D606E5B264EC7F000E8D23D /* CharacterUseCaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUseCaseStub.swift; sourceTree = "<group>"; };
+		5D606E5D264EC7F900E8D23D /* MediaUseCaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUseCaseStub.swift; sourceTree = "<group>"; };
 		5D9228EF2280F1200048C614 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5D9228F02280F1200048C614 /* APICharacterGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICharacterGateway.swift; sourceTree = "<group>"; };
 		5D9228F12280F1200048C614 /* APIMarvelMediaGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIMarvelMediaGateway.swift; sourceTree = "<group>"; };
@@ -435,7 +435,6 @@
 			children = (
 				5D9228EE2280F1200048C614 /* Network */,
 				5D9228F722817CE30048C614 /* Realm */,
-				5D9228EB2280F1200048C614 /* UseCases */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -649,8 +648,7 @@
 			isa = PBXGroup;
 			children = (
 				5D606E37264DB2AF00E8D23D /* APIClient */,
-				5D606E38264DB2BA00E8D23D /* CharacterGateway */,
-				5D606E39264DB2C500E8D23D /* MediaGateway */,
+				5D606E61264EC92100E8D23D /* Gateways */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -658,11 +656,8 @@
 		5D606E2A264D755E00E8D23D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5D606E2B264D757400E8D23D /* EntityTestDouble.swift */,
-				5D606E2F264D79D300E8D23D /* MarvelCharacter.swift */,
-				5D606E35264DB16300E8D23D /* Media.swift */,
-				5D606E31264D7B2700E8D23D /* Paginator.swift */,
-				5D606E40264DBDAA00E8D23D /* IdentityTests.swift */,
+				5D606E5F264EC8EF00E8D23D /* Entities */,
+				5D606E5A264EC7D300E8D23D /* UseCases */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -675,30 +670,30 @@
 			path = APIClient;
 			sourceTree = "<group>";
 		};
-		5D606E38264DB2BA00E8D23D /* CharacterGateway */ = {
+		5D606E38264DB2BA00E8D23D /* Character */ = {
 			isa = PBXGroup;
 			children = (
 				5D606E2D264D773900E8D23D /* CharacterGatewayTests.swift */,
 				5D606E4F264EC55600E8D23D /* CharacterGatewayStub.swift */,
 			);
-			path = CharacterGateway;
+			path = Character;
 			sourceTree = "<group>";
 		};
-		5D606E39264DB2C500E8D23D /* MediaGateway */ = {
+		5D606E39264DB2C500E8D23D /* Media */ = {
 			isa = PBXGroup;
 			children = (
 				5D606E33264DB0B400E8D23D /* MediaGatewayTests.swift */,
 				5D606E51264EC56300E8D23D /* MediaGatewayStub.swift */,
 			);
-			path = MediaGateway;
+			path = Media;
 			sourceTree = "<group>";
 		};
 		5D606E42264E849100E8D23D /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				5D606E43264E84CA00E8D23D /* RealmRepositorySpy.swift */,
 				5D606E45264E857E00E8D23D /* AnyRepositoryTests.swift */,
 				5D606E47264E89AD00E8D23D /* RealmRepositoryTests.swift */,
+				5D606E43264E84CA00E8D23D /* RealmRepositorySpy.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -723,19 +718,48 @@
 		5D606E59264EC79A00E8D23D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5D606E42264E849100E8D23D /* Realm */,
 				5D606E27264D748400E8D23D /* Network */,
+				5D606E42264E849100E8D23D /* Realm */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		5D9228EB2280F1200048C614 /* UseCases */ = {
+		5D606E5A264EC7D300E8D23D /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */,
-				5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */,
+				5D606E5B264EC7F000E8D23D /* CharacterUseCaseStub.swift */,
+				5D606E5D264EC7F900E8D23D /* MediaUseCaseStub.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		5D606E5F264EC8EF00E8D23D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5D606E60264EC90B00E8D23D /* Commons */,
+				5D606E2F264D79D300E8D23D /* MarvelCharacter.swift */,
+				5D606E35264DB16300E8D23D /* Media.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		5D606E60264EC90B00E8D23D /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				5D606E2B264D757400E8D23D /* EntityTestDouble.swift */,
+				5D606E31264D7B2700E8D23D /* Paginator.swift */,
+				5D606E40264DBDAA00E8D23D /* IdentityTests.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
+		5D606E61264EC92100E8D23D /* Gateways */ = {
+			isa = PBXGroup;
+			children = (
+				5D606E38264DB2BA00E8D23D /* Character */,
+				5D606E39264DB2C500E8D23D /* Media */,
+			);
+			path = Gateways;
 			sourceTree = "<group>";
 		};
 		5D9228EE2280F1200048C614 /* Network */ = {
@@ -1166,9 +1190,11 @@
 			files = (
 				5D606E2E264D773900E8D23D /* CharacterGatewayTests.swift in Sources */,
 				5D606E34264DB0B400E8D23D /* MediaGatewayTests.swift in Sources */,
+				5D606E5E264EC7F900E8D23D /* MediaUseCaseStub.swift in Sources */,
 				5D606E44264E84CA00E8D23D /* RealmRepositorySpy.swift in Sources */,
 				5D606E46264E857F00E8D23D /* AnyRepositoryTests.swift in Sources */,
 				5D606E30264D79D300E8D23D /* MarvelCharacter.swift in Sources */,
+				5D606E5C264EC7F000E8D23D /* CharacterUseCaseStub.swift in Sources */,
 				5D606E48264E89AD00E8D23D /* RealmRepositoryTests.swift in Sources */,
 				5D606E52264EC56300E8D23D /* MediaGatewayStub.swift in Sources */,
 				5D606E41264DBDAA00E8D23D /* IdentityTests.swift in Sources */,
@@ -1191,7 +1217,6 @@
 				5D9228F52280F1200048C614 /* APICharacterGateway.swift in Sources */,
 				5D606E57264EC5E700E8D23D /* MediaGateway.swift in Sources */,
 				5DB531E9227DDDF20044E86F /* Router.swift in Sources */,
-				5D9228F22280F1200048C614 /* DefaultCharacterUseCase.swift in Sources */,
 				5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */,
 				5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */,
 				5D217FE6227B4CE000006DBE /* UIAlertAction.swift in Sources */,
@@ -1244,7 +1269,6 @@
 				5D433D06227DF52300C116FA /* SearchCoordinator.swift in Sources */,
 				5DF872B4227D9C1D00DB0CCD /* CharacterDetailsViewItem.swift in Sources */,
 				5DC64843227CA3ED0080B1F4 /* SearchViewController.swift in Sources */,
-				5D9228F32280F1200048C614 /* DefaultMediaUseCase.swift in Sources */,
 				5DC6483A227C838D0080B1F4 /* UITableView.swift in Sources */,
 				5DC6483E227C8ACB0080B1F4 /* Dynamic.swift in Sources */,
 				5D218005227B58CE00006DBE /* CharacterUseCase.swift in Sources */,
