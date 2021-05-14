@@ -1,5 +1,5 @@
 //
-//  CharacterGateway.swift
+//  APICharacterGateway.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/7/19.
@@ -8,7 +8,7 @@
 
 import CoreNetwork
 
-final class CharacterGateway {
+final class APICharacterGateway: CharacterGateway {
     private let apiClient: APIClient
 
     init(apiClient: APIClient = DefaultAPIClient()) {
@@ -16,7 +16,7 @@ final class CharacterGateway {
     }
 }
 
-extension CharacterGateway {
+extension APICharacterGateway {
     func loadCharacters(with parameter: MarvelParameter<CharacterParameter>) -> Promise<CharacterPaginator> {
         let request = RequestBuilder<MarvelCharacter>()
             .path("characters")

@@ -13,7 +13,7 @@ final class CharactersCoordinator {
 
     private let router: Router
     private let characterUseCase: CharacterUseCase
-    private lazy var mediaGateway = MarvelMediaGateway()
+    private lazy var mediaGateway = APIMarvelMediaGateway()
     private lazy var mediaRepository = RealmRepository<Media>()
     private lazy var mediaUseCase = DefaultMediaUseCase(gateway: mediaGateway, repository: .init(mediaRepository))
 

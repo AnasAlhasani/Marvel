@@ -16,6 +16,12 @@ protocol AbstractRepository {
     func fetchAll() -> Promise<[Entity]>
 }
 
+extension AbstractRepository {
+    func eraseToAnyRepository() -> AnyRepository<Entity> {
+        .init(self)
+    }
+}
+
 final class AnyRepository<E>: AbstractRepository {
     private typealias SaveAction = ([E]) -> Promise<Void>
     private typealias FetchAllAction = () -> Promise<[E]>

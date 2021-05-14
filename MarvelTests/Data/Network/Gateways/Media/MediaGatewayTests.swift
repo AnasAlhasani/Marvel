@@ -1,5 +1,5 @@
 //
-//  CharacterGatewayTests.swift
+//  MediaGatewayTests.swift
 //  MarvelTests
 //
 //  Created by Anas Alhasani on 13/05/2021.
@@ -11,35 +11,35 @@ import Foundation
 @testable import Promises
 import XCTest
 
-final class CharacterGatewayTests: XCTestCase {
-    var apiClientSpy: APIClientSpy<MarvelCharacter>!
-    var characterGateway: CharacterGateway!
+final class MediaGatewayTests: XCTestCase {
+    var apiClientSpy: APIClientSpy<Media>!
+    var mediaGateway: MediaGateway!
 
     override func setUp() {
         apiClientSpy = .init()
-        characterGateway = .init(apiClient: apiClientSpy)
+        mediaGateway = APIMarvelMediaGateway(apiClient: apiClientSpy)
     }
 
     override func tearDown() {
         apiClientSpy = nil
-        characterGateway = nil
+        mediaGateway = nil
         super.tearDown()
     }
 
-    func testLoadCharactersWithSuccess() {
+    func testLoadMediaWithSuccess() {
         // Given
-        let results = MarvelCharacter.items()
+        let results = Media.items()
         let paginator = Paginator.paginator(results: results)
-        let parameter = MarvelParameter(CharacterParameter(query: "any"))
+        let parameter = MarvelParameter(MediaParameter(id: 1, type: .comics))
         apiClientSpy.promise = .init { MarvelResponse(data: paginator) }
 
         // When
-        let promise = characterGateway.loadCharacters(with: parameter)
+        let promise = mediaGateway.loadMediaItems(with: parameter)
 
         // Then
 
         XCTAssert(waitForPromises(timeout: 1.0))
-        XCTAssertEqual(apiClientSpy.request.path, "characters")
+        XCTAssertEqual(apiClientSpy.request.path, "characters/\(parameter.value.id)/\(parameter.value.type.rawValue)")
         XCTAssertEqual(apiClientSpy.request.method, .get)
         XCTAssertEqual(
             apiClientSpy.request.urlParameters,
@@ -49,14 +49,14 @@ final class CharacterGatewayTests: XCTestCase {
         XCTAssertNil(promise.error)
     }
 
-    func testLoadCharactersWithFailure() {
+    func testLoadMediaWithFailure() {
         // Given
         let error = MarvelError.general
-        let parameter = MarvelParameter(CharacterParameter(query: "any"))
-        apiClientSpy.promise = .init { MarvelResponse<MarvelCharacter>(message: error.message) }
+        let parameter = MarvelParameter(MediaParameter(id: 1, type: .comics))
+        apiClientSpy.promise = .init { MarvelResponse<Media>(message: error.message) }
 
         // When
-        let promise = characterGateway.loadCharacters(with: parameter)
+        let promise = mediaGateway.loadMediaItems(with: parameter)
 
         // Then
 
