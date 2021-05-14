@@ -13,6 +13,7 @@ final class CharacterGatewayStub: CharacterGateway {
     var parameter: MarvelParameter<CharacterParameter>!
     var promise: Promise<CharacterPaginator>!
     var callCount = 0
+
     func loadCharacters(
         with parameter: MarvelParameter<CharacterParameter>
     ) -> Promise<CharacterPaginator> {
