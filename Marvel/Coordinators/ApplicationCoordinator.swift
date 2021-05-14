@@ -12,7 +12,7 @@ final class ApplicationCoordinator {
     // MARK: - Properties
 
     let window: UIWindow
-    lazy var characterGateway = CharacterGateway()
+    lazy var characterGateway = APICharacterGateway()
     lazy var characterRepository = RealmRepository<MarvelCharacter>()
     lazy var characterUseCase = DefaultCharacterUseCase(gateway: characterGateway, repository: .init(characterRepository))
     lazy var rootViewController = UINavigationController()

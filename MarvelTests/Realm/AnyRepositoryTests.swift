@@ -1,5 +1,5 @@
 //
-//  RepositoryTests.swift
+//  AnyRepositoryTests.swift
 //  MarvelTests
 //
 //  Created by Anas Alhasani on 14/05/2021.
@@ -10,7 +10,7 @@
 @testable import Promises
 import XCTest
 
-final class RepositoryTests: XCTestCase {
+final class AnyRepositoryTests: XCTestCase {
     var spy: RealmRepositorySpy<EntityTestDouble>!
     var repository: AnyRepository<EntityTestDouble>!
 

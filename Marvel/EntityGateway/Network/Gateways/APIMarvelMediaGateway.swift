@@ -1,5 +1,5 @@
 //
-//  MarvelMediaGateway.swift
+//  APIMarvelMediaGateway.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/7/19.
@@ -8,7 +8,7 @@
 
 import CoreNetwork
 
-final class MarvelMediaGateway {
+final class APIMarvelMediaGateway: MediaGateway {
     private let apiClient: APIClient
 
     init(apiClient: APIClient = DefaultAPIClient()) {
@@ -16,7 +16,7 @@ final class MarvelMediaGateway {
     }
 }
 
-extension MarvelMediaGateway {
+extension APIMarvelMediaGateway {
     func loadMediaItems(with parameter: MarvelParameter<MediaParameter>) -> Promise<MediaPaginator> {
         let request = RequestBuilder<Media>()
             .path("characters/\(parameter.value.id)/\(parameter.value.type.rawValue)")

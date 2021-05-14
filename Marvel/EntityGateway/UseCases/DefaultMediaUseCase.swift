@@ -9,10 +9,10 @@
 import Foundation
 
 final class DefaultMediaUseCase {
-    private let gateway: MarvelMediaGateway
+    private let gateway: MediaGateway
     private let repository: AnyRepository<Media>
 
-    init(gateway: MarvelMediaGateway, repository: AnyRepository<Media>) {
+    init(gateway: MediaGateway, repository: AnyRepository<Media>) {
         self.gateway = gateway
         self.repository = repository
     }

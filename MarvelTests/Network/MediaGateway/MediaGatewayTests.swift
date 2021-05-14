@@ -13,11 +13,11 @@ import XCTest
 
 final class MediaGatewayTests: XCTestCase {
     var apiClientSpy: APIClientSpy<Media>!
-    var mediaGateway: MarvelMediaGateway!
+    var mediaGateway: MediaGateway!
 
     override func setUp() {
         apiClientSpy = .init()
-        mediaGateway = .init(apiClient: apiClientSpy)
+        mediaGateway = APIMarvelMediaGateway(apiClient: apiClientSpy)
     }
 
     override func tearDown() {

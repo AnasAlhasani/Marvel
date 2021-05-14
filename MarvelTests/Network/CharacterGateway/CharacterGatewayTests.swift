@@ -17,7 +17,7 @@ final class CharacterGatewayTests: XCTestCase {
 
     override func setUp() {
         apiClientSpy = .init()
-        characterGateway = .init(apiClient: apiClientSpy)
+        characterGateway = APICharacterGateway(apiClient: apiClientSpy)
     }
 
     override func tearDown() {
