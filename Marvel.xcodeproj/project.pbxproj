@@ -639,8 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				5D606E2A264D755E00E8D23D /* Core */,
-				5D606E42264E849100E8D23D /* Realm */,
-				5D606E27264D748400E8D23D /* Network */,
+				5D606E59264EC79A00E8D23D /* Data */,
 				5D606E21264D71AA00E8D23D /* Info.plist */,
 			);
 			path = MarvelTests;
@@ -719,6 +718,15 @@
 				5D9229042281912B0048C614 /* AbstractRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		5D606E59264EC79A00E8D23D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5D606E42264E849100E8D23D /* Realm */,
+				5D606E27264D748400E8D23D /* Network */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		5D9228EB2280F1200048C614 /* UseCases */ = {
