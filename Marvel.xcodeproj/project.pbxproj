@@ -59,6 +59,10 @@
 		5D606E3D264DBC1900E8D23D /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E3C264DBC1900E8D23D /* Identifiable.swift */; };
 		5D606E3F264DBC3200E8D23D /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E3E264DBC3200E8D23D /* Parameter.swift */; };
 		5D606E41264DBDAA00E8D23D /* IdentityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E40264DBDAA00E8D23D /* IdentityTests.swift */; };
+		5D606E44264E84CA00E8D23D /* RealmRepositorySpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E43264E84CA00E8D23D /* RealmRepositorySpy.swift */; };
+		5D606E46264E857F00E8D23D /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E45264E857E00E8D23D /* RepositoryTests.swift */; };
+		5D606E48264E89AD00E8D23D /* RealmRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E47264E89AD00E8D23D /* RealmRepositoryTests.swift */; };
+		5D606E4C264EBAEE00E8D23D /* Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E4B264EBAEE00E8D23D /* Void.swift */; };
 		5D9228F22280F1200048C614 /* DefaultCharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */; };
 		5D9228F32280F1200048C614 /* DefaultMediaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */; };
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
@@ -186,6 +190,10 @@
 		5D606E3C264DBC1900E8D23D /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		5D606E3E264DBC3200E8D23D /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
 		5D606E40264DBDAA00E8D23D /* IdentityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityTests.swift; sourceTree = "<group>"; };
+		5D606E43264E84CA00E8D23D /* RealmRepositorySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositorySpy.swift; sourceTree = "<group>"; };
+		5D606E45264E857E00E8D23D /* RepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
+		5D606E47264E89AD00E8D23D /* RealmRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryTests.swift; sourceTree = "<group>"; };
+		5D606E4B264EBAEE00E8D23D /* Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Void.swift; sourceTree = "<group>"; };
 		5D9228EC2280F1200048C614 /* DefaultCharacterUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCharacterUseCase.swift; sourceTree = "<group>"; };
 		5D9228ED2280F1200048C614 /* DefaultMediaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMediaUseCase.swift; sourceTree = "<group>"; };
 		5D9228EF2280F1200048C614 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -621,6 +629,7 @@
 			isa = PBXGroup;
 			children = (
 				5D606E2A264D755E00E8D23D /* Core */,
+				5D606E42264E849100E8D23D /* Realm */,
 				5D606E27264D748400E8D23D /* Network */,
 				5D606E21264D71AA00E8D23D /* Info.plist */,
 			);
@@ -671,6 +680,16 @@
 				5D606E33264DB0B400E8D23D /* MediaGatewayTests.swift */,
 			);
 			path = MediaGateway;
+			sourceTree = "<group>";
+		};
+		5D606E42264E849100E8D23D /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5D606E43264E84CA00E8D23D /* RealmRepositorySpy.swift */,
+				5D606E45264E857E00E8D23D /* RepositoryTests.swift */,
+				5D606E47264E89AD00E8D23D /* RealmRepositoryTests.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		5D9228EB2280F1200048C614 /* UseCases */ = {
@@ -764,6 +783,7 @@
 				5DC64829227C419E0080B1F4 /* State.swift */,
 				5DC6483D227C8ACB0080B1F4 /* Dynamic.swift */,
 				5DC64848227CC50B0080B1F4 /* Throttler.swift */,
+				5D606E4B264EBAEE00E8D23D /* Void.swift */,
 			);
 			path = Utillties;
 			sourceTree = "<group>";
@@ -1110,7 +1130,10 @@
 			files = (
 				5D606E2E264D773900E8D23D /* CharacterGatewayTests.swift in Sources */,
 				5D606E34264DB0B400E8D23D /* MediaGatewayTests.swift in Sources */,
+				5D606E44264E84CA00E8D23D /* RealmRepositorySpy.swift in Sources */,
+				5D606E46264E857F00E8D23D /* RepositoryTests.swift in Sources */,
 				5D606E30264D79D300E8D23D /* MarvelCharacter.swift in Sources */,
+				5D606E48264E89AD00E8D23D /* RealmRepositoryTests.swift in Sources */,
 				5D606E41264DBDAA00E8D23D /* IdentityTests.swift in Sources */,
 				5D606E2C264D757400E8D23D /* EntityTestDouble.swift in Sources */,
 				5D606E29264D752200E8D23D /* APIClientSpy.swift in Sources */,
@@ -1194,6 +1217,7 @@
 				5D606E3D264DBC1900E8D23D /* Identifiable.swift in Sources */,
 				5D606E16264D64B900E8D23D /* EmptyStateView.swift in Sources */,
 				5D217FFE227B53C600006DBE /* MarvelError.swift in Sources */,
+				5D606E4C264EBAEE00E8D23D /* Void.swift in Sources */,
 				5D922907228191360048C614 /* RealmRepository.swift in Sources */,
 				5D606E3B264DBA3300E8D23D /* MarvelPaginator.swift in Sources */,
 				5D9228F62280F1200048C614 /* MarvelMediaGateway.swift in Sources */,
