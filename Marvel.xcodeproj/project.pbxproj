@@ -424,6 +424,7 @@
 			children = (
 				5D21800F227B5B0000006DBE /* Entities */,
 				5D218001227B586E00006DBE /* UseCases */,
+				5D606E58264EC74400E8D23D /* Repositories */,
 				5D606E53264EC5C800E8D23D /* Gateways */,
 			);
 			path = Core;
@@ -712,6 +713,14 @@
 			path = Gateways;
 			sourceTree = "<group>";
 		};
+		5D606E58264EC74400E8D23D /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				5D9229042281912B0048C614 /* AbstractRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		5D9228EB2280F1200048C614 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,7 +743,6 @@
 			isa = PBXGroup;
 			children = (
 				5D47378325251E6A00360C4A /* RealmObject.swift */,
-				5D9229042281912B0048C614 /* AbstractRepository.swift */,
 				5D922906228191360048C614 /* RealmRepository.swift */,
 			);
 			path = Realm;
