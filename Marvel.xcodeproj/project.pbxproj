@@ -430,14 +430,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		5D217FFA227B534A00006DBE /* EntityGateway */ = {
+		5D217FFA227B534A00006DBE /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				5D9228EE2280F1200048C614 /* Network */,
 				5D9228F722817CE30048C614 /* Realm */,
 				5D9228EB2280F1200048C614 /* UseCases */,
 			);
-			path = EntityGateway;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		5D218001227B586E00006DBE /* UseCases */ = {
@@ -893,7 +893,7 @@
 			children = (
 				5D217FD4227B444300006DBE /* Application */,
 				5D217FF9227B534000006DBE /* Core */,
-				5D217FFA227B534A00006DBE /* EntityGateway */,
+				5D217FFA227B534A00006DBE /* Data */,
 				5DB531DC227DDBCC0044E86F /* Coordinators */,
 				5D217FD5227B445400006DBE /* Scenes */,
 				5D217FDE227B4A6300006DBE /* Commons */,
