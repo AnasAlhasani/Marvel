@@ -23,6 +23,7 @@ final class RealmRepository<E: IdentifiableEntity>: AbstractRepository {
         }
     }
 
+    @discardableResult
     func save(entites: [E]) -> Promise<Void> {
         Promise<Void> { fullfill, reject in
             do {
