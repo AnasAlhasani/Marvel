@@ -9,6 +9,7 @@
 import UIKit
 
 protocol CellConfigurable {
-    associatedtype Item
+    associatedtype Item: Equatable
+
     func configure(with item: Item)
 }

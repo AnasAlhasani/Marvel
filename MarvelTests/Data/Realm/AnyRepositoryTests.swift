@@ -34,7 +34,7 @@ final class AnyRepositoryTests: XCTestCase {
         let promise = repository.save(entites: entites)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertTrue(promise.value! == ())
         XCTAssertNil(promise.error)
         XCTAssertEqual(spy.entites, entites)
@@ -51,7 +51,7 @@ final class AnyRepositoryTests: XCTestCase {
         let promise = repository.save(entites: entites)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertNil(promise.value)
         XCTAssertEqual(promise.error as? MarvelError, error)
         XCTAssertEqual(spy.entites, entites)
@@ -67,7 +67,7 @@ final class AnyRepositoryTests: XCTestCase {
         let promise = repository.fetchAll()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(promise.value, entites)
         XCTAssertNil(promise.error)
         XCTAssertEqual(spy.fetchCallCount, 1)
@@ -82,7 +82,7 @@ final class AnyRepositoryTests: XCTestCase {
         let promise = repository.fetchAll()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertNil(promise.value)
         XCTAssertEqual(promise.error as? MarvelError, error)
         XCTAssertEqual(spy.fetchCallCount, 1)

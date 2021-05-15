@@ -8,7 +8,11 @@
 
 import Foundation
 
-final class Throttler {
+protocol Throttler {
+    func throttle(_ block: @escaping () -> Void)
+}
+
+final class DefaultThrottler {
     private var workItem = DispatchWorkItem {}
     private var previousRun = Date.distantPast
     private let queue: DispatchQueue
@@ -18,7 +22,9 @@ final class Throttler {
         self.minimumDelay = minimumDelay
         self.queue = queue
     }
+}
 
+extension DefaultThrottler: Throttler {
     func throttle(_ block: @escaping () -> Void) {
         workItem.cancel()
 

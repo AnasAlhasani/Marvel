@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CharacterDetailsViewItem {
+struct CharacterDetailsViewItem: Equatable {
     let type: MediaType
     var state: State<MediaViewItem>
 

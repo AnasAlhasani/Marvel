@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CharacterViewItem {
+struct CharacterViewItem: Equatable {
     let id: MarvelCharacter.ID
     let imageURL: URL?
     let name: String

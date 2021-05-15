@@ -32,7 +32,7 @@ final class RealmRepositoryTests: XCTestCase {
         let promise = repository.save(entites: entites)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertTrue(promise.value! == ())
         XCTAssertNil(promise.error)
     }
@@ -46,7 +46,7 @@ final class RealmRepositoryTests: XCTestCase {
         let promise = repository.save(entites: entites)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertNil(promise.value)
         XCTAssertEqual(promise.error as? MarvelError, error)
     }
@@ -60,7 +60,7 @@ final class RealmRepositoryTests: XCTestCase {
         let promise = repository.fetchAll()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(promise.value, entites)
         XCTAssertNil(promise.error)
     }

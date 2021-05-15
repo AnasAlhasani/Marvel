@@ -35,7 +35,7 @@ final class CharacterUseCaseTests: XCTestCase {
     func testLoadCharacters() {
         // Given
         let results = MarvelCharacter.items()
-        let paginator = Paginator.paginator(results: results)
+        let paginator = Paginator.value(results: results)
         let parameter = CharacterParameter(query: "any")
         gatewayStub.promise = .init { paginator }
         repositroyStub.savePromise = .init {}
@@ -44,7 +44,7 @@ final class CharacterUseCaseTests: XCTestCase {
         let promise = useCase.loadCharacters(with: parameter)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
 
         // XCTAssertEqual(gatewayStub.parameter, .init(parameter))
         XCTAssertEqual(gatewayStub.callCount, 1)
@@ -64,7 +64,7 @@ final class CharacterUseCaseTests: XCTestCase {
         // Given
         let error = MarvelError.general
         let results = MarvelCharacter.items()
-        let paginator = Paginator.paginator(results: results)
+        let paginator = Paginator.value(offset: 0, limit: 0, total: 0, count: 0, results: results)
         let parameter = CharacterParameter(query: "any")
         gatewayStub.promise = .init(error)
         repositroyStub.savePromise = .init {}
@@ -74,7 +74,7 @@ final class CharacterUseCaseTests: XCTestCase {
         let promise = useCase.loadCharacters(with: parameter)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
 
         XCTAssertEqual(gatewayStub.callCount, 1)
         XCTAssertNil(gatewayStub.promise.value)

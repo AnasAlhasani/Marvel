@@ -10,15 +10,25 @@ import Foundation
 @testable import Marvel
 
 extension Paginator {
-    static func paginator(
-        results: [Value],
+    static func value(
         offset: Int = 0,
-        limit: Int = 0,
-        total: Int = 0,
-        count: Int = 0
+        limit: Int = 20,
+        total: Int = 40,
+        count: Int = 20,
+        results: [Value]
     ) -> Self {
         .init(
             offset: offset,
+            limit: limit,
+            total: total,
+            count: count,
+            results: results
+        )
+    }
+
+    func next(with results: [Value]) -> Self {
+        .init(
+            offset: nextOffset,
             limit: limit,
             total: total,
             count: count,

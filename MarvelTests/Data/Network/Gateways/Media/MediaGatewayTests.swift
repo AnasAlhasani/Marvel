@@ -29,7 +29,7 @@ final class MediaGatewayTests: XCTestCase {
     func testLoadMediaWithSuccess() {
         // Given
         let results = Media.items()
-        let paginator = Paginator.paginator(results: results)
+        let paginator = Paginator.value(results: results)
         let parameter = MarvelParameter(MediaParameter(id: 1, type: .comics))
         apiClientSpy.promise = .init { MarvelResponse(data: paginator) }
 
@@ -38,7 +38,7 @@ final class MediaGatewayTests: XCTestCase {
 
         // Then
 
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(apiClientSpy.request.path, "characters/\(parameter.value.id)/\(parameter.value.type.rawValue)")
         XCTAssertEqual(apiClientSpy.request.method, .get)
         XCTAssertEqual(
@@ -60,7 +60,7 @@ final class MediaGatewayTests: XCTestCase {
 
         // Then
 
-        XCTAssert(waitForPromises(timeout: 1.0))
+        XCTAssert(waitForPromises(timeout: 10.0))
 
         XCTAssertNil(promise.value)
         XCTAssertEqual(promise.error as? MarvelError, error)

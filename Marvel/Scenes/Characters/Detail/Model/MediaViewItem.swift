@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MediaViewItem {
+struct MediaViewItem: Equatable {
     let title: String
     let imageURL: URL?
 

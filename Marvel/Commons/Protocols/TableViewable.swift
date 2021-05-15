@@ -15,7 +15,7 @@ protocol TableViewable {
 extension UITableView: TableViewable {
     func display<Value>(_ state: State<Value>) {
         switch state {
-        case .default:
+        case .idle:
             tableFooterView = UIView(frame: .zero)
             backgroundView = nil
         case .loading:
@@ -46,7 +46,7 @@ extension UITableView: TableViewable {
 extension UICollectionView: TableViewable {
     func display<Value>(_ state: State<Value>) {
         switch state {
-        case .default:
+        case .idle:
             backgroundView = nil
         case .loading, .paging:
             backgroundView = LoadingStateView.instantiateFromNib()

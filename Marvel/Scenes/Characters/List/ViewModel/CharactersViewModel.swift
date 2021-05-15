@@ -23,16 +23,21 @@ final class CharactersViewModel {
 
     private weak var coordinator: CharactersCoordinatorDelegate?
     private let characterUseCase: CharacterUseCase
-    private(set) var state = Dynamic<CharacterItemState>(.default)
-    private let throttler = Throttler(minimumDelay: 0.5)
-    private var shouldLoadCharecters = true
-    private var query: String?
+    private(set) var state = Dynamic<CharacterItemState>(.idle)
+    private(set) var throttler: Throttler
+    private(set) var shouldLoadCharecters = true
+    private(set) var query: String?
 
     // MARK: - Init / Deinit
 
-    init(coordinator: CharactersCoordinatorDelegate, characterUseCase: CharacterUseCase) {
+    init(
+        coordinator: CharactersCoordinatorDelegate,
+        characterUseCase: CharacterUseCase,
+        throttler: Throttler
+    ) {
         self.coordinator = coordinator
         self.characterUseCase = characterUseCase
+        self.throttler = throttler
     }
 }
 
@@ -65,8 +70,8 @@ private extension CharactersViewModel {
 
 extension CharactersViewModel {
     func loadCharecters(with text: String? = nil) {
-        let isDefaultState = query != nil && text?.nilIfEmpty == nil
-        guard !isDefaultState else { state.value = .default; return }
+        let isIdle = query != nil && text?.nilIfEmpty == nil
+        guard !isIdle else { return state.value = .idle }
         query = text?.nilIfEmpty?.lowercased()
         state.value = .loading
         throttler.throttle { [weak self] in self?.loadCharecters(at: 0) }

@@ -16,6 +16,7 @@ final class CharactersCoordinator {
     private lazy var mediaGateway = APIMarvelMediaGateway()
     private lazy var mediaRepository = RealmRepository<Media>()
     private lazy var mediaUseCase = DefaultMediaUseCase(gateway: mediaGateway, repository: .init(mediaRepository))
+    private lazy var throttler = DefaultThrottler(minimumDelay: 0.5)
 
     // MARK: - Init / Deinit
 
@@ -30,7 +31,11 @@ final class CharactersCoordinator {
 extension CharactersCoordinator: Coordinator {
     func start() {
         let controller = CharactersViewController.instantiate()
-        controller.viewModel = CharactersViewModel(coordinator: self, characterUseCase: characterUseCase)
+        controller.viewModel = CharactersViewModel(
+            coordinator: self,
+            characterUseCase: characterUseCase,
+            throttler: throttler
+        )
         router.push(controller, animated: true, completion: nil)
     }
 }
@@ -39,7 +44,11 @@ extension CharactersCoordinator: Coordinator {
 
 extension CharactersCoordinator: CharactersCoordinatorDelegate {
     func didTapSearch() {
-        let viewModel = CharactersViewModel(coordinator: self, characterUseCase: characterUseCase)
+        let viewModel = CharactersViewModel(
+            coordinator: self,
+            characterUseCase: characterUseCase,
+            throttler: throttler
+        )
         let coordinator = SearchCoordinator(router: router, viewModel: viewModel)
         coordinator.start()
     }
