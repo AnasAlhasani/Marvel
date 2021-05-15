@@ -1,0 +1,22 @@
+default_platform(:ios)
+
+platform :ios do
+end
+
+desc 'Runs unit tests'
+lane :test do
+    clear_derived_data
+
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
+    ENV["FASTLANE_XCODE_LIST_TIMEOUT"] = "120"
+
+    begin
+        scan(
+            code_coverage: true,
+            skip_slack: true,
+            prelaunch_simulator: true,
+        )
+    rescue => ex
+        UI.important("Tests failed for #{ex}")
+    end
+end

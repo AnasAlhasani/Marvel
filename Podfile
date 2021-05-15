@@ -19,6 +19,10 @@ end
 target 'Marvel' do
   project 'Marvel.project'
   toolsPods
+  
+  target 'MarvelTests' do
+    inherit! :search_paths
+  end
 end
 
 ## Helpers
