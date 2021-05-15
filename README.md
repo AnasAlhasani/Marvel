@@ -7,6 +7,9 @@
     <a href="https://codebeat.co/projects/github-com-anasalhasani-marvel-master">
       <img alt="codebeat badge" src="https://codebeat.co/badges/83c897c4-7ea2-4db6-9b6a-b5b855f29b46" />
     </a>
+    <a href="https://codecov.io/gh/anasalhasani/marvel">
+      <img src="https://codecov.io/gh/anasalhasani/marvel/branch/master/graph/badge.svg" />
+    </a>
 </p>
 
 Marvel iOS application written in Swift 5 using MVVM-C with clean architecture concepts 🚀.
@@ -36,6 +39,7 @@ Marvel iOS application written in Swift 5 using MVVM-C with clean architecture c
 * [**CryptoSwift**](https://github.com/krzyzanowskim/CryptoSwift)
 * [**SwiftLint**](https://github.com/realm/SwiftLint)
 * [**SwiftGen**](https://github.com/SwiftGen/SwiftGen)
+* [**SwiftFormat**](https://github.com/nicklockwood/SwiftFormat)
 
 ## Installation
 
