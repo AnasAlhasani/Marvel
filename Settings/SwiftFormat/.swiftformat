@@ -82,3 +82,6 @@
 
 --disable initCoderUnavailable
 --enable isEmpty
+
+# exclude
+--exclude ../../**/Generated
