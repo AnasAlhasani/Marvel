@@ -41,7 +41,7 @@ extension CharacterDetailViewModel {
     }
 
     private func loadItem(of type: MediaType) {
-        let parameter = MediaParameter(id: character.value.id, type: type)
+        let parameter = MediaParameter(id: character.value.model.id, type: type)
         mediaUseCase.loadMediaItems(with: parameter).then {
             let viewItems = $0.results.map { MediaViewItem(comic: $0) }
             self.updateItem(type: type, with: .populated(viewItems))
