@@ -35,6 +35,7 @@ playground.xcworkspace
 # Swift Package Manager
 /.build
 /Packages
+/SourcePackages
 
 # CocoaPods
 Pods/
@@ -42,7 +43,6 @@ Pods/
 # Carthage
 Carthage/Checkouts
 Carthage/Build
-Cartfile.resolved
 
 # Accio dependency management
 Dependencies/

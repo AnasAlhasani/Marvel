@@ -12,9 +12,14 @@ lane :test do
 
     begin
         scan(
+            device: "iPhone 8 (14.5)",
             code_coverage: true,
+            disable_concurrent_testing: true,
+            fail_build: true,
             skip_slack: true,
             prelaunch_simulator: true,
+            xcargs: "-UseNewBuildSystem=YES",
+            cloned_source_packages_path: "SourcePackages"
         )
     rescue => ex
         UI.important("Tests failed for #{ex}")
