@@ -9,17 +9,15 @@
 import UIKit
 
 struct CharacterViewItem: Equatable {
-    let id: MarvelCharacter.ID
-    let imageURL: URL?
-    let name: String
-    let description: String
+    private(set) var model: MarvelCharacter
+
+    var imageURL: URL? { model.thumbnail?.url }
+    var name: String { model.name.defaultIfEmpty }
+    var description: String { model.description.defaultIfEmpty }
     var nameTitle: String { L10n.Character.name }
     var descriptionTitle: String { L10n.Character.description }
 
-    init(_ character: MarvelCharacter) {
-        self.id = character.id
-        self.name = character.name.defaultIfEmpty
-        self.description = character.description.defaultIfEmpty
-        self.imageURL = character.thumbnail?.url
+    init(_ model: MarvelCharacter) {
+        self.model = model
     }
 }
