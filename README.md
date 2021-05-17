@@ -8,7 +8,7 @@
       <img alt="codebeat badge" src="https://codebeat.co/badges/83c897c4-7ea2-4db6-9b6a-b5b855f29b46" />
     </a>
     <a href="https://codecov.io/gh/anasalhasani/marvel">
-      <img src="https://codecov.io/gh/anasalhasani/marvel/branch/master/graph/badge.svg" />
+      <img src="https://codecov.io/gh/anasalhasani/marvel/branch/develop/graph/badge.svg" />
     </a>
 </p>
 
