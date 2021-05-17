@@ -18,8 +18,8 @@ final class CharacterDetailViewModel {
     private let mediaUseCase: MediaUseCase
     private(set) var character: Dynamic<CharacterViewItem>
     private(set) lazy var state = Dynamic<CharacterDetailState>(.populated([comicsItem, seriesItem]))
-    private lazy var comicsItem = CharacterDetailsViewItem(type: .comics)
-    private lazy var seriesItem = CharacterDetailsViewItem(type: .series)
+    private(set) lazy var comicsItem = CharacterDetailsViewItem(type: .comics)
+    private(set) lazy var seriesItem = CharacterDetailsViewItem(type: .series)
 
     // MARK: - Init / Deinit
 
@@ -36,21 +36,20 @@ final class CharacterDetailViewModel {
 
 extension CharacterDetailViewModel {
     func loadItems() {
-        loadItem(of: .comics)
-        loadItem(of: .series)
+        MediaType.allCases.forEach(loadItem)
     }
 
     private func loadItem(of type: MediaType) {
         let parameter = MediaParameter(id: character.value.model.id, type: type)
         mediaUseCase.loadMediaItems(with: parameter).then {
-            let viewItems = $0.results.map { MediaViewItem(comic: $0) }
+            let viewItems = $0.results.map(CharacterDetailsViewItem.MediaItem.init)
             self.updateItem(type: type, with: .populated(viewItems))
         }.catch {
             self.state.value = .error($0)
         }
     }
 
-    private func updateItem(type: MediaType, with state: State<MediaViewItem>) {
+    private func updateItem(type: MediaType, with state: State<CharacterDetailsViewItem.MediaItem>) {
         switch type {
         case .comics:
             comicsItem.state = state

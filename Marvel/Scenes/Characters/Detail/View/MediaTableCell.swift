@@ -25,7 +25,7 @@ final class MediaTableCell: UITableViewCell {
 
 extension MediaTableCell: CellConfigurable {
     func configure(with item: CharacterDetailsViewItem) {
-        titleLabel.text = item.type.title
+        titleLabel.text = item.title
         dataSource.state = item.state
     }
 }

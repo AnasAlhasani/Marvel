@@ -8,16 +8,7 @@
 
 import Foundation
 
-enum MediaType: String {
+enum MediaType: String, CaseIterable, Equatable {
     case comics
     case series
-
-    var title: String {
-        switch self {
-        case .comics:
-            return L10n.Character.comics
-        case .series:
-            return L10n.Character.series
-        }
-    }
 }
