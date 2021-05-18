@@ -18,7 +18,7 @@ final class MediaCollectionCell: UICollectionViewCell {
 // MARK: - CellConfigurable
 
 extension MediaCollectionCell: CellConfigurable {
-    func configure(with item: CharacterDetailsViewItem.MediaItem) {
+    func configure(with item: CharacterDetailsItem.MediaItem) {
         nameLabel.text = item.title
         comicImageView.download(image: item.imageURL)
     }

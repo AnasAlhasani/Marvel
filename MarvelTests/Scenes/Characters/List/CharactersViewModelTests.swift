@@ -40,7 +40,7 @@ final class CharactersViewModelTests: XCTestCase {
         // Given
         let query = "ANY"
         let results = MarvelCharacter.items()
-        let items = results.map(CharacterViewItem.init)
+        let items = results.map(CharacterItem.init)
         useCaseStub.promise = .init { Paginator.value(results: results) }
 
         // When
@@ -72,11 +72,11 @@ final class CharactersViewModelTests: XCTestCase {
         let total = 40
         let count = 20
         let totalResults = MarvelCharacter.items(numberOfElements: total)
-        let totalItems = totalResults.map(CharacterViewItem.init)
+        let totalItems = totalResults.map(CharacterItem.init)
         let initialResults = Array(totalResults.prefix(count))
         let initialPaginator = Paginator.value(total: total, results: initialResults)
-        let initalItems = initialResults.map(CharacterViewItem.init)
-        let initalState: State<CharacterViewItem> = .paging(initalItems, next: initialPaginator.nextOffset)
+        let initalItems = initialResults.map(CharacterItem.init)
+        let initalState: State<CharacterItem> = .paging(initalItems, next: initialPaginator.nextOffset)
         useCaseStub.promise = .init { initialPaginator }
 
         XCTAssertTrue(viewModel.shouldLoadCharecters)
@@ -93,7 +93,7 @@ final class CharactersViewModelTests: XCTestCase {
         // Given
         let nextResults = Array(totalResults.suffix(count))
         let nextPaginator = initialPaginator.next(with: nextResults)
-        let nextState: State<CharacterViewItem> = .populated(totalItems)
+        let nextState: State<CharacterItem> = .populated(totalItems)
         useCaseStub.promise = .init { nextPaginator }
 
         // When
@@ -109,7 +109,7 @@ final class CharactersViewModelTests: XCTestCase {
     func testLoadCharactersWithPaginationFailed() {
         // Given
         let error = MarvelError.general
-        let state: State<CharacterViewItem> = .error(error)
+        let state: State<CharacterItem> = .error(error)
         useCaseStub.promise = .init(error)
 
         // When
@@ -124,7 +124,7 @@ final class CharactersViewModelTests: XCTestCase {
         // Given
         let indexPath = IndexPath(row: 0, section: 0)
         let results = MarvelCharacter.items()
-        let items = results.map(CharacterViewItem.init)
+        let items = results.map(CharacterItem.init)
         useCaseStub.promise = .init { Paginator.value(results: results) }
 
         // When

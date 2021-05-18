@@ -13,14 +13,14 @@ final class CharacterDetailsCoordinator {
 
     private let router: Router
     private let mediaUseCase: MediaUseCase
-    private let character: CharacterViewItem
+    private let character: CharacterItem
 
     // MARK: - Init / Deinit
 
     init(
         router: Router,
         mediaUseCase: MediaUseCase,
-        character: CharacterViewItem
+        character: CharacterItem
     ) {
         self.router = router
         self.mediaUseCase = mediaUseCase

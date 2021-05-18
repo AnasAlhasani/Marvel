@@ -11,13 +11,13 @@ import Foundation
 protocol CharactersCoordinatorDelegate: AnyObject {
     func didTapSearch()
     func didTapCancelSearch()
-    func didSelect(character: CharacterViewItem)
+    func didSelect(character: CharacterItem)
 }
 
 final class CharactersViewModel {
     // MARK: - Typealias
 
-    typealias CharacterItemState = State<CharacterViewItem>
+    typealias CharacterItemState = State<CharacterItem>
 
     // MARK: - Properties
 
@@ -91,10 +91,10 @@ extension CharactersViewModel {
     }
 
     private func handleCharecters(paginator: Paginator<MarvelCharacter>) {
-        let viewItems = paginator.results.map { CharacterViewItem($0) }
+        let items = paginator.results.map(CharacterItem.init)
 
         var allItems = state.value.items
-        allItems.append(contentsOf: viewItems)
+        allItems.append(contentsOf: items)
 
         if paginator.hasMorePages {
             state.value = .paging(allItems, next: paginator.nextOffset)
