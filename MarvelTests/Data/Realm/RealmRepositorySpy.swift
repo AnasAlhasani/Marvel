@@ -6,25 +6,26 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 @testable import Marvel
 
 final class RealmRepositorySpy<Entity: IdentifiableEntity>: AbstractRepository {
     var entites = [Entity]()
-    var savePromise: Promise<Void>!
+    var savePublisher: AnyPublisher<Void, Error>!
     var saveCallCount = 0
 
     var fetchCallCount = 0
-    var fetchPromise: Promise<[Entity]>!
+    var fetchPublisher: AnyPublisher<[Entity], Error>!
 
-    func save(entites: [Entity]) -> Promise<Void> {
+    func save(entites: [Entity]) -> AnyPublisher<Void, Error> {
         saveCallCount += 1
         self.entites = entites
-        return savePromise
+        return savePublisher
     }
 
-    func fetchAll() -> Promise<[Entity]> {
+    func fetchAll() -> AnyPublisher<[Entity], Error> {
         fetchCallCount += 1
-        return fetchPromise
+        return fetchPublisher
     }
 }

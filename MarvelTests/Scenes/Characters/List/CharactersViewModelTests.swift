@@ -7,7 +7,6 @@
 //
 
 @testable import Marvel
-@testable import Promises
 import XCTest
 
 final class CharactersViewModelTests: XCTestCase {
@@ -41,7 +40,7 @@ final class CharactersViewModelTests: XCTestCase {
         let query = "ANY"
         let results = MarvelCharacter.items()
         let items = results.map(CharacterItem.init)
-        useCaseStub.promise = .init { Paginator.value(results: results) }
+        useCaseStub.publisher = .just(Paginator.value(results: results))
 
         // When
         viewModel.loadCharecters(with: query)
@@ -54,7 +53,6 @@ final class CharactersViewModelTests: XCTestCase {
         throttlerSpy.completion()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(throttlerSpy.callCount, 1)
         XCTAssertEqual(viewModel.state.value.items, items)
 
@@ -62,7 +60,6 @@ final class CharactersViewModelTests: XCTestCase {
         viewModel.loadCharecters()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(viewModel.state.value, .idle)
         XCTAssertEqual(viewModel.query, query.lowercased())
     }
@@ -77,7 +74,7 @@ final class CharactersViewModelTests: XCTestCase {
         let initialPaginator = Paginator.value(total: total, results: initialResults)
         let initalItems = initialResults.map(CharacterItem.init)
         let initalState: State<CharacterItem> = .paging(initalItems, next: initialPaginator.nextOffset)
-        useCaseStub.promise = .init { initialPaginator }
+        useCaseStub.publisher = .just(initialPaginator)
 
         XCTAssertTrue(viewModel.shouldLoadCharecters)
 
@@ -85,8 +82,6 @@ final class CharactersViewModelTests: XCTestCase {
         viewModel.loadCharecters(at: .zero)
 
         // Then
-        XCTAssertFalse(viewModel.shouldLoadCharecters)
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(viewModel.state.value, initalState)
         XCTAssertTrue(viewModel.shouldLoadCharecters)
 
@@ -94,14 +89,12 @@ final class CharactersViewModelTests: XCTestCase {
         let nextResults = Array(totalResults.suffix(count))
         let nextPaginator = initialPaginator.next(with: nextResults)
         let nextState: State<CharacterItem> = .populated(totalItems)
-        useCaseStub.promise = .init { nextPaginator }
+        useCaseStub.publisher = .just(nextPaginator)
 
         // When
         viewModel.loadCharecters(at: nextState.nextPage)
 
         // Then
-        XCTAssertFalse(viewModel.shouldLoadCharecters)
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(viewModel.state.value, nextState)
         XCTAssertTrue(viewModel.shouldLoadCharecters)
     }
@@ -110,13 +103,12 @@ final class CharactersViewModelTests: XCTestCase {
         // Given
         let error = MarvelError.general
         let state: State<CharacterItem> = .error(error)
-        useCaseStub.promise = .init(error)
+        useCaseStub.publisher = .fail(with: error)
 
         // When
         viewModel.loadCharecters(at: .zero)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(viewModel.state.value, state)
     }
 
@@ -125,11 +117,10 @@ final class CharactersViewModelTests: XCTestCase {
         let indexPath = IndexPath(row: 0, section: 0)
         let results = MarvelCharacter.items()
         let items = results.map(CharacterItem.init)
-        useCaseStub.promise = .init { Paginator.value(results: results) }
+        useCaseStub.publisher = .just(Paginator.value(results: results))
 
         // When
         viewModel.loadCharecters(at: 0)
-        XCTAssert(waitForPromises(timeout: 10.0))
         viewModel.didSelectRow(at: indexPath)
 
         // Then

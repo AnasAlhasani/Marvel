@@ -6,6 +6,7 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 // MARK: - Paginator
@@ -33,7 +34,7 @@ struct CharacterParameter: Parameter {
 // MARK: - UseCase
 
 protocol CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> Promise<CharacterPaginator>
+    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error>
 }
 
 final class DefaultCharacterUseCase {
@@ -47,10 +48,15 @@ final class DefaultCharacterUseCase {
 }
 
 extension DefaultCharacterUseCase: CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> Promise<CharacterPaginator> {
+    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error> {
         gateway
             .loadCharacters(with: .init(parameter))
-            .then { self.repository.save(entites: $0.results) }
-            .recover { _ in self.repository.fetchAll().then { CharacterPaginator(results: $0) } }
+            .map { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
+                repository.save(entites: paginator.results)
+                return .just(paginator)
+            }
+            .switchToLatest()
+            .catch { [repository] _ in repository.fetchAll().map { CharacterPaginator(results: $0) } }
+            .eraseToAnyPublisher()
     }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import CoreNetwork
 import Foundation
 @testable import Marvel

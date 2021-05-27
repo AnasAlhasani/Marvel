@@ -6,6 +6,7 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 protocol CharactersCoordinatorDelegate: AnyObject {
@@ -27,6 +28,7 @@ final class CharactersViewModel {
     private(set) var throttler: Throttler
     private(set) var shouldLoadCharecters = true
     private(set) var query: String?
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init / Deinit
 
@@ -81,13 +83,18 @@ extension CharactersViewModel {
         guard shouldLoadCharecters else { return }
         shouldLoadCharecters = false
         let parameter = CharacterParameter(query: query, limit: Constant.limit, offset: offset)
-        characterUseCase.loadCharacters(with: parameter).then {
-            self.handleCharecters(paginator: $0)
-        }.catch {
-            self.state.value = .error($0)
-        }.always {
-            self.shouldLoadCharecters = true
-        }
+
+        characterUseCase.loadCharacters(with: parameter)
+            .convertToResult()
+            .sink { [weak self] result in
+                self?.shouldLoadCharecters = true
+                switch result {
+                case let .success(value):
+                    self?.handleCharecters(paginator: value)
+                case let .failure(error):
+                    self?.state.value = .error(error)
+                }
+            }.store(in: &cancellables)
     }
 
     private func handleCharecters(paginator: Paginator<MarvelCharacter>) {

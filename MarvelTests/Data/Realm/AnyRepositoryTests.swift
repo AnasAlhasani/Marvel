@@ -7,7 +7,6 @@
 //
 
 @testable import Marvel
-@testable import Promises
 import XCTest
 
 final class AnyRepositoryTests: XCTestCase {
@@ -25,66 +24,65 @@ final class AnyRepositoryTests: XCTestCase {
         super.tearDown()
     }
 
-    func testSaveEntitiesWithSuccess() {
+    func testSaveEntitiesWithSuccess() throws {
         // Given
         let entites = EntityTestDouble.items()
-        spy.savePromise = .init {}
+        spy.savePublisher = .just(())
 
         // When
-        let promise = repository.save(entites: entites)
+        let publisher = repository.save(entites: entites)
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-        XCTAssertTrue(promise.value! == ())
-        XCTAssertNil(promise.error)
+        XCTAssertTrue(try result.get() == ())
+        XCTAssertNil(result.error)
         XCTAssertEqual(spy.entites, entites)
         XCTAssertEqual(spy.saveCallCount, 1)
     }
 
-    func testSaveEntitiesWithFailure() {
+    func testSaveEntitiesWithFailure() throws {
         // Given
         let entites = EntityTestDouble.items()
         let error = MarvelError.general
-        spy.savePromise = .init(error)
+        spy.savePublisher = .fail(with: error)
 
         // When
-        let promise = repository.save(entites: entites)
+        let publisher = repository.save(entites: entites)
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-        XCTAssertNil(promise.value)
-        XCTAssertEqual(promise.error as? MarvelError, error)
+        XCTAssertEqual(result.error as? MarvelError, error)
         XCTAssertEqual(spy.entites, entites)
         XCTAssertEqual(spy.saveCallCount, 1)
     }
 
-    func testFetchAllWithSuccess() {
+    func testFetchAllWithSuccess() throws {
         // Given
         let entites = EntityTestDouble.items()
-        spy.fetchPromise = .init { entites }
+        spy.fetchPublisher = .just(entites)
 
         // When
-        let promise = repository.fetchAll()
+        let publisher = repository.fetchAll()
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-        XCTAssertEqual(promise.value, entites)
-        XCTAssertNil(promise.error)
+        XCTAssertEqual(try result.get(), entites)
+        XCTAssertNil(result.error)
         XCTAssertEqual(spy.fetchCallCount, 1)
     }
 
-    func testFetchAllWithFailure() {
+    func testFetchAllWithFailure() throws {
         // Given
         let error = MarvelError.general
-        spy.fetchPromise = .init(error)
+        spy.fetchPublisher = .fail(with: error)
 
         // When
-        let promise = repository.fetchAll()
+        let publisher = repository.fetchAll()
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-        XCTAssertNil(promise.value)
-        XCTAssertEqual(promise.error as? MarvelError, error)
+        XCTAssertNil(try? result.get())
+        XCTAssertEqual(result.error as? MarvelError, error)
         XCTAssertEqual(spy.fetchCallCount, 1)
     }
 }

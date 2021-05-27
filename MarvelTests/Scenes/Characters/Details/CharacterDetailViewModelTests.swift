@@ -7,7 +7,6 @@
 //
 
 @testable import Marvel
-@testable import Promises
 import XCTest
 
 final class CharacterDetailViewModelTests: XCTestCase {
@@ -48,13 +47,12 @@ final class CharacterDetailViewModelTests: XCTestCase {
             CharacterDetailsItem(type: $0, state: .populated(mediaItems))
         }
         let state: State<CharacterDetailsItem> = .populated(detailsItems)
-        useCaseStub.promise = .init { Paginator.value(results: results) }
+        useCaseStub.publisher = .just(Paginator.value(results: results))
 
         // When
         viewModel.loadItems()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(useCaseStub.callCount, numberOfElements)
         XCTAssertEqual(viewModel.state.value, state)
     }
@@ -63,13 +61,12 @@ final class CharacterDetailViewModelTests: XCTestCase {
         // Given
         let error = MarvelError.general
         let state: State<CharacterDetailsItem> = .error(error)
-        useCaseStub.promise = .init(error)
+        useCaseStub.publisher = .fail(with: error)
 
         // When
         viewModel.loadItems()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(viewModel.state.value, state)
     }
 }
