@@ -6,6 +6,7 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import CoreNetwork
 
 final class APICharacterGateway: CharacterGateway {
@@ -17,7 +18,7 @@ final class APICharacterGateway: CharacterGateway {
 }
 
 extension APICharacterGateway {
-    func loadCharacters(with parameter: MarvelParameter<CharacterParameter>) -> Promise<CharacterPaginator> {
+    func loadCharacters(with parameter: MarvelParameter<CharacterParameter>) -> AnyPublisher<CharacterPaginator, Error> {
         let request = RequestBuilder<MarvelCharacter>()
             .path("characters")
             .method(.get)

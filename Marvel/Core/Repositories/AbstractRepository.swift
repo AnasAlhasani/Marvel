@@ -6,14 +6,15 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 protocol AbstractRepository {
     associatedtype Entity
 
     @discardableResult
-    func save(entites: [Entity]) -> Promise<Void>
-    func fetchAll() -> Promise<[Entity]>
+    func save(entites: [Entity]) -> AnyPublisher<Void, Error>
+    func fetchAll() -> AnyPublisher<[Entity], Error>
 }
 
 extension AbstractRepository {
@@ -23,8 +24,8 @@ extension AbstractRepository {
 }
 
 final class AnyRepository<E>: AbstractRepository {
-    private typealias SaveAction = ([E]) -> Promise<Void>
-    private typealias FetchAllAction = () -> Promise<[E]>
+    private typealias SaveAction = ([E]) -> AnyPublisher<Void, Error>
+    private typealias FetchAllAction = () -> AnyPublisher<[E], Error>
 
     private let saveAction: SaveAction
     private let fetchAllAction: FetchAllAction
@@ -35,11 +36,11 @@ final class AnyRepository<E>: AbstractRepository {
     }
 
     @discardableResult
-    func save(entites: [E]) -> Promise<Void> {
+    func save(entites: [E]) -> AnyPublisher<Void, Error> {
         saveAction(entites)
     }
 
-    func fetchAll() -> Promise<[E]> {
+    func fetchAll() -> AnyPublisher<[E], Error> {
         fetchAllAction()
     }
 }

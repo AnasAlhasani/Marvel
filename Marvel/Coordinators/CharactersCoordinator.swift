@@ -57,7 +57,7 @@ extension CharactersCoordinator: CharactersCoordinatorDelegate {
         router.pop()
     }
 
-    func didSelect(character: CharacterViewItem) {
+    func didSelect(character: CharacterItem) {
         let coordinator = CharacterDetailsCoordinator(
             router: router,
             mediaUseCase: mediaUseCase,

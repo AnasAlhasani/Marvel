@@ -6,8 +6,9 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 protocol CharacterGateway {
-    func loadCharacters(with parameter: MarvelParameter<CharacterParameter>) -> Promise<CharacterPaginator>
+    func loadCharacters(with parameter: MarvelParameter<CharacterParameter>) -> AnyPublisher<CharacterPaginator, Error>
 }

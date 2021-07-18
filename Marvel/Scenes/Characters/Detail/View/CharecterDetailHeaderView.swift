@@ -33,7 +33,7 @@ final class CharecterDetailHeaderView: UIView {
 // MARK: - Configurations
 
 extension CharecterDetailHeaderView {
-    func configure(with item: CharacterViewItem) {
+    func configure(with item: CharacterItem) {
         characterImageView.download(image: item.imageURL)
         nameTitleLabel.text = item.nameTitle
         nameValueLabel.text = item.name

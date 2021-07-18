@@ -13,7 +13,7 @@ final class CharactersCoordinatorDelegateSpy: CharactersCoordinatorDelegate {
     var didTapSearchCallCount = 0
     var didTapCancelSearchCallCount = 0
     var didSelectCharacterCallCount = 0
-    var character: CharacterViewItem!
+    var character: CharacterItem!
 
     func didTapSearch() {
         didTapSearchCallCount += 1
@@ -23,7 +23,7 @@ final class CharactersCoordinatorDelegateSpy: CharactersCoordinatorDelegate {
         didTapCancelSearchCallCount += 1
     }
 
-    func didSelect(character: CharacterViewItem) {
+    func didSelect(character: CharacterItem) {
         didSelectCharacterCallCount += 1
         self.character = character
     }

@@ -7,12 +7,11 @@
 //
 
 @testable import Marvel
-@testable import Promises
 import XCTest
 
 final class CharacterDetailViewModelTests: XCTestCase {
     var useCaseStub: MediaUseCaseStub!
-    var characterItem: CharacterViewItem!
+    var characterItem: CharacterItem!
     var viewModel: CharacterDetailViewModel!
 
     override func setUp() {
@@ -33,7 +32,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
     }
 
     func testInitStateValues() {
-        let items: [CharacterDetailsViewItem] = [.init(type: .comics), .init(type: .series)]
+        let items: [CharacterDetailsItem] = [.init(type: .comics), .init(type: .series)]
         XCTAssertEqual(viewModel.comicsItem.state, .loading)
         XCTAssertEqual(viewModel.seriesItem.state, .loading)
         XCTAssertEqual(viewModel.state.value, .populated(items))
@@ -43,18 +42,17 @@ final class CharacterDetailViewModelTests: XCTestCase {
         // Given
         let numberOfElements = MediaType.allCases.count
         let results = Media.items(numberOfElements: numberOfElements)
-        let mediaItems = results.map(CharacterDetailsViewItem.MediaItem.init)
+        let mediaItems = results.map(CharacterDetailsItem.MediaItem.init)
         let detailsItems = MediaType.allCases.map {
-            CharacterDetailsViewItem(type: $0, state: .populated(mediaItems))
+            CharacterDetailsItem(type: $0, state: .populated(mediaItems))
         }
-        let state: State<CharacterDetailsViewItem> = .populated(detailsItems)
-        useCaseStub.promise = .init { Paginator.value(results: results) }
+        let state: State<CharacterDetailsItem> = .populated(detailsItems)
+        useCaseStub.publisher = .just(Paginator.value(results: results))
 
         // When
         viewModel.loadItems()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(useCaseStub.callCount, numberOfElements)
         XCTAssertEqual(viewModel.state.value, state)
     }
@@ -62,14 +60,13 @@ final class CharacterDetailViewModelTests: XCTestCase {
     func testLoadItemsFailed() {
         // Given
         let error = MarvelError.general
-        let state: State<CharacterDetailsViewItem> = .error(error)
-        useCaseStub.promise = .init(error)
+        let state: State<CharacterDetailsItem> = .error(error)
+        useCaseStub.publisher = .fail(with: error)
 
         // When
         viewModel.loadItems()
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(viewModel.state.value, state)
     }
 }

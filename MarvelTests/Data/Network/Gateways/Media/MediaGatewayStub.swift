@@ -6,19 +6,20 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 @testable import Marvel
 
 final class MediaGatewayStub: MediaGateway {
     var parameter: MarvelParameter<MediaParameter>!
-    var promise: Promise<MediaPaginator>!
+    var publisher: AnyPublisher<MediaPaginator, Error>!
     var callCount = 0
 
     func loadMediaItems(
         with parameter: MarvelParameter<MediaParameter>
-    ) -> Promise<MediaPaginator> {
+    ) -> AnyPublisher<MediaPaginator, Error> {
         self.parameter = parameter
         callCount += 1
-        return promise
+        return publisher
     }
 }

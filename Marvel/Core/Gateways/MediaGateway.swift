@@ -6,8 +6,9 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 protocol MediaGateway {
-    func loadMediaItems(with parameter: MarvelParameter<MediaParameter>) -> Promise<MediaPaginator>
+    func loadMediaItems(with parameter: MarvelParameter<MediaParameter>) -> AnyPublisher<MediaPaginator, Error>
 }

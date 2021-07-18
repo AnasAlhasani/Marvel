@@ -7,7 +7,6 @@
 //
 
 @testable import Marvel
-@testable import Promises
 import RealmSwift
 import XCTest
 
@@ -24,44 +23,44 @@ final class RealmRepositoryTests: XCTestCase {
         super.tearDown()
     }
 
-    func testSaveEntitiesWithSuccess() {
+    func testSaveEntitiesWithSuccess() throws {
         // Given
         let entites = EntityTestDouble.items()
 
         // When
-        let promise = repository.save(entites: entites)
+        let publisher = repository.save(entites: entites)
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-        XCTAssertTrue(promise.value! == ())
-        XCTAssertNil(promise.error)
+        XCTAssertTrue(try result.get() == ())
+        XCTAssertNil(result.error)
     }
 
-    func testSaveEntitiesWithFailure() {
+    func testSaveEntitiesWithFailure() throws {
         // Given
         let error = MarvelError.general
         let entites = EntityTestDouble.items(isThrowable: true)
 
         // When
-        let promise = repository.save(entites: entites)
+        let publisher = repository.save(entites: entites)
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-        XCTAssertNil(promise.value)
-        XCTAssertEqual(promise.error as? MarvelError, error)
+        XCTAssertNil(try? result.get())
+        XCTAssertEqual(result.error as? MarvelError, error)
     }
 
-    func testFetchAllWithSuccess() {
+    func testFetchAllWithSuccess() throws {
         // Given
         let entites = EntityTestDouble.items().sorted { $0.id.rawValue > $1.id.rawValue }
 
         // When
         repository.save(entites: entites)
-        let promise = repository.fetchAll()
+        let publisher = repository.fetchAll()
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-        XCTAssertEqual(promise.value, entites)
-        XCTAssertNil(promise.error)
+        XCTAssertEqual(try result.get(), entites)
+        XCTAssertNil(result.error)
     }
 }

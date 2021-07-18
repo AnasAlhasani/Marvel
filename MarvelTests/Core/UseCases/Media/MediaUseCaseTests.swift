@@ -6,10 +6,8 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
-import XCTest
-
 @testable import Marvel
-@testable import Promises
+import XCTest
 
 final class MediaUseCaseTests: XCTestCase {
     var repositroyStub: RepositoryStub<Media>!
@@ -33,59 +31,57 @@ final class MediaUseCaseTests: XCTestCase {
         super.tearDown()
     }
 
-    func testLoadMedia() {
+    func testLoadMedia() throws {
         // Given
         let results = Media.items()
         let paginator = Paginator.value(results: results)
         let parameter = MediaParameter(id: 1, type: .comics)
-        gatewayStub.promise = .init { paginator }
-        repositroyStub.savePromise = .init {}
+        gatewayStub.publisher = .just(paginator)
+        repositroyStub.savePublisher = .just(())
 
         // When
-        let promise = useCase.loadMediaItems(with: parameter)
+        let publisher = useCase.loadMediaItems(with: parameter)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-
+        let result = try awaits(for: publisher)
         // XCTAssertEqual(gatewayStub.parameter, .init(parameter))
         XCTAssertEqual(gatewayStub.callCount, 1)
-        XCTAssertEqual(gatewayStub.promise.value, paginator)
-        XCTAssertNil(gatewayStub.promise.error)
+        XCTAssertEqual(gatewayStub.publisher.value, paginator)
+        XCTAssertNil(gatewayStub.publisher.error)
 
         XCTAssertEqual(repositroyStub.entites, results)
         XCTAssertEqual(repositroyStub.saveCallCount, 1)
-        XCTAssertTrue(repositroyStub.savePromise.value! == ())
-        XCTAssertNil(repositroyStub.savePromise.error)
+        XCTAssertTrue(repositroyStub.savePublisher.value! == ())
+        XCTAssertNil(repositroyStub.savePublisher.error)
 
-        XCTAssertEqual(promise.value, paginator)
-        XCTAssertNil(promise.error)
+        XCTAssertEqual(try result.get(), paginator)
+        XCTAssertNil(result.error)
     }
 
-    func testLoadMediaWithRecoverWhenAPIFails() {
+    func testLoadMediaWithRecoverWhenAPIFails() throws {
         // Given
         let error = MarvelError.general
         let results = Media.items()
         let paginator = Paginator.value(offset: 0, limit: 0, total: 0, count: 0, results: results)
         let parameter = MediaParameter(id: 1, type: .comics)
-        gatewayStub.promise = .init(error)
-        repositroyStub.savePromise = .init {}
-        repositroyStub.fetchPromise = .init { results }
+        gatewayStub.publisher = .fail(with: error)
+        repositroyStub.savePublisher = .just(())
+        repositroyStub.fetchPublisher = .just(results)
 
         // When
-        let promise = useCase.loadMediaItems(with: parameter)
+        let publisher = useCase.loadMediaItems(with: parameter)
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-
         XCTAssertEqual(gatewayStub.callCount, 1)
-        XCTAssertNil(gatewayStub.promise.value)
-        XCTAssertEqual(gatewayStub.promise.error as? MarvelError, error)
+        XCTAssertNil(gatewayStub.publisher.value)
+        XCTAssertEqual(gatewayStub.publisher.error as? MarvelError, error)
 
         XCTAssertEqual(repositroyStub.fetchCallCount, 1)
-        XCTAssertEqual(repositroyStub.fetchPromise.value, results)
-        XCTAssertNil(repositroyStub.fetchPromise.error)
+        XCTAssertEqual(repositroyStub.fetchPublisher.value, results)
+        XCTAssertNil(repositroyStub.fetchPublisher.error)
 
-        XCTAssertEqual(promise.value, paginator)
-        XCTAssertNil(promise.error)
+        XCTAssertEqual(try result.get(), paginator)
+        XCTAssertNil(result.error)
     }
 }

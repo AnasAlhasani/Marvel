@@ -8,7 +8,6 @@
 
 import Foundation
 @testable import Marvel
-@testable import Promises
 import XCTest
 
 final class MediaGatewayTests: XCTestCase {
@@ -26,7 +25,7 @@ final class MediaGatewayTests: XCTestCase {
         super.tearDown()
     }
 
-    func testLoadMediaWithSuccess() {
+    func testLoadMediaWithSuccess() throws {
         // Given
         let results = Media.items()
         let paginator = Paginator.value(results: results)
@@ -34,35 +33,32 @@ final class MediaGatewayTests: XCTestCase {
         apiClientSpy.promise = .init { MarvelResponse(data: paginator) }
 
         // When
-        let promise = mediaGateway.loadMediaItems(with: parameter)
+        let publisher = mediaGateway.loadMediaItems(with: parameter)
+        let result = try awaits(for: publisher)
 
         // Then
-
-        XCTAssert(waitForPromises(timeout: 10.0))
         XCTAssertEqual(apiClientSpy.request.path, "characters/\(parameter.value.id)/\(parameter.value.type.rawValue)")
         XCTAssertEqual(apiClientSpy.request.method, .get)
         XCTAssertEqual(
             apiClientSpy.request.urlParameters,
             try? MarvelParameter(parameter).encoded()
         )
-        XCTAssertEqual(promise.value, paginator)
-        XCTAssertNil(promise.error)
+        XCTAssertEqual(try result.get(), paginator)
+        XCTAssertNil(result.error)
     }
 
-    func testLoadMediaWithFailure() {
+    func testLoadMediaWithFailure() throws {
         // Given
         let error = MarvelError.general
         let parameter = MarvelParameter(MediaParameter(id: 1, type: .comics))
         apiClientSpy.promise = .init { MarvelResponse<Media>(message: error.message) }
 
         // When
-        let promise = mediaGateway.loadMediaItems(with: parameter)
+        let publisher = mediaGateway.loadMediaItems(with: parameter)
+        let result = try awaits(for: publisher)
 
         // Then
-
-        XCTAssert(waitForPromises(timeout: 10.0))
-
-        XCTAssertNil(promise.value)
-        XCTAssertEqual(promise.error as? MarvelError, error)
+        XCTAssertNil(try? result.get())
+        XCTAssertEqual(result.error as? MarvelError, error)
     }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 // MARK: - Paginator
@@ -24,7 +25,7 @@ struct MediaParameter: Parameter {
 // MARK: - UseCase
 
 protocol MediaUseCase {
-    func loadMediaItems(with parameter: MediaParameter) -> Promise<MediaPaginator>
+    func loadMediaItems(with parameter: MediaParameter) -> AnyPublisher<MediaPaginator, Error>
 }
 
 final class DefaultMediaUseCase {
@@ -38,10 +39,15 @@ final class DefaultMediaUseCase {
 }
 
 extension DefaultMediaUseCase: MediaUseCase {
-    func loadMediaItems(with parameter: MediaParameter) -> Promise<MediaPaginator> {
+    func loadMediaItems(with parameter: MediaParameter) -> AnyPublisher<MediaPaginator, Error> {
         gateway
             .loadMediaItems(with: .init(parameter))
-            .then { self.repository.save(entites: $0.results) }
-            .recover { _ in self.repository.fetchAll().then { MediaPaginator(results: $0) } }
+            .map { [repository] paginator -> AnyPublisher<MediaPaginator, Error> in
+                repository.save(entites: paginator.results)
+                return .just(paginator)
+            }
+            .switchToLatest()
+            .catch { [repository] _ in repository.fetchAll().map { MediaPaginator(results: $0) } }
+            .eraseToAnyPublisher()
     }
 }

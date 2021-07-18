@@ -6,19 +6,20 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 @testable import Marvel
 
 final class CharacterGatewayStub: CharacterGateway {
     var parameter: MarvelParameter<CharacterParameter>!
-    var promise: Promise<CharacterPaginator>!
+    var publisher: AnyPublisher<CharacterPaginator, Error>!
     var callCount = 0
 
     func loadCharacters(
         with parameter: MarvelParameter<CharacterParameter>
-    ) -> Promise<CharacterPaginator> {
+    ) -> AnyPublisher<CharacterPaginator, Error> {
         self.parameter = parameter
         callCount += 1
-        return promise
+        return publisher
     }
 }

@@ -1,5 +1,5 @@
 //
-//  CharacterViewItem.swift
+//  CharacterItem.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/3/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CharacterViewItem: Equatable {
+struct CharacterItem: Equatable {
     private(set) var model: MarvelCharacter
 
     var imageURL: URL? { model.thumbnail?.url }

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import CoreNetwork
 
 final class APIMarvelMediaGateway: MediaGateway {
@@ -17,7 +18,7 @@ final class APIMarvelMediaGateway: MediaGateway {
 }
 
 extension APIMarvelMediaGateway {
-    func loadMediaItems(with parameter: MarvelParameter<MediaParameter>) -> Promise<MediaPaginator> {
+    func loadMediaItems(with parameter: MarvelParameter<MediaParameter>) -> AnyPublisher<MediaPaginator, Error> {
         let request = RequestBuilder<Media>()
             .path("characters/\(parameter.value.id)/\(parameter.value.type.rawValue)")
             .method(.get)
