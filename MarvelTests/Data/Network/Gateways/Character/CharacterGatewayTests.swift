@@ -30,7 +30,7 @@ final class CharacterGatewayTests: XCTestCase {
         // Given
         let results = MarvelCharacter.items()
         let paginator = Paginator.value(results: results)
-        let parameter = MarvelParameter(CharacterParameter(query: "any"))
+        let parameter = MarvelParameter(CharacterParameter(offset: 0, query: "any"))
         apiClientSpy.promise = .init { MarvelResponse(data: paginator) }
 
         // When
@@ -52,7 +52,7 @@ final class CharacterGatewayTests: XCTestCase {
     func testLoadCharactersWithFailure() {
         // Given
         let error = MarvelError.general
-        let parameter = MarvelParameter(CharacterParameter(query: "any"))
+        let parameter = MarvelParameter(CharacterParameter(offset: 0, query: "any"))
         apiClientSpy.promise = .init { MarvelResponse<MarvelCharacter>(message: error.message) }
 
         // When
