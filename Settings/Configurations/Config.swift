@@ -43,6 +43,7 @@ extension Config {
         case apiURL = "BASE_URL"
         case publicKey = "PUBLIC_KEY"
         case privateKey = "PRIVATE_KEY"
+        case pageLimit = "PAGE_LIMIT"
     }
 }
 
@@ -52,4 +53,5 @@ extension Config {
     static let apiURL = URL(string: value(for: .apiURL))
     static let publicKey: String = value(for: .publicKey)
     static let privateKey: String = value(for: .privateKey)
+    static let pageLimit: Int = value(for: .pageLimit)
 }

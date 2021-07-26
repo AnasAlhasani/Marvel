@@ -8,8 +8,6 @@
 
 import Foundation
 
-protocol GG: Equatable {}
-
 struct Paginator<Value: Entity>: Entity {
     private(set) var offset: Int
     private(set) var limit: Int

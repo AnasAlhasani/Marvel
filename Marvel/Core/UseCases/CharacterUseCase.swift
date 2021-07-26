@@ -15,18 +15,18 @@ typealias CharacterPaginator = Paginator<MarvelCharacter>
 // MARK: - Parameters
 
 struct CharacterParameter: Parameter {
+    private let offset: Int
+    private let limit: Int
     private let nameStartsWith: String?
-    private let limit: Int?
-    private let offset: Int?
 
     init(
-        query: String? = nil,
-        limit: Int? = nil,
-        offset: Int? = nil
+        offset: Int,
+        limit: Int = Config.pageLimit,
+        query: String? = nil
     ) {
-        self.nameStartsWith = query
-        self.limit = limit
         self.offset = offset
+        self.limit = limit
+        self.nameStartsWith = query
     }
 }
 

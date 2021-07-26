@@ -58,14 +58,6 @@ extension CharactersViewModel {
     }
 }
 
-// MARK: - Constants
-
-private extension CharactersViewModel {
-    enum Constant {
-        static let limit = 20
-    }
-}
-
 // MARK: - UseCase
 
 extension CharactersViewModel {
@@ -80,7 +72,7 @@ extension CharactersViewModel {
     func loadCharecters(at offset: Int) {
         guard shouldLoadCharecters else { return }
         shouldLoadCharecters = false
-        let parameter = CharacterParameter(query: query, limit: Constant.limit, offset: offset)
+        let parameter = CharacterParameter(offset: offset, query: query)
         characterUseCase.loadCharacters(with: parameter).then {
             self.handleCharecters(paginator: $0)
         }.catch {
