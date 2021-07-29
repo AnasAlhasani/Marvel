@@ -11,10 +11,10 @@
 		5D0A83CB2651ABCE0075A622 /* CharacterViewItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0A83CA2651ABCE0075A622 /* CharacterViewItemTests.swift */; };
 		5D0A83CE2651B2530075A622 /* CharacterDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0A83CD2651B2530075A622 /* CharacterDetailViewModelTests.swift */; };
 		5D0A83D02651BC6F0075A622 /* CharacterDetailsViewItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0A83CF2651BC6F0075A622 /* CharacterDetailsViewItemTests.swift */; };
-		5D161569264167E1004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D161568264167E1004D00C4 /* SwiftPackageProductDependency */; };
-		5D16156C264167FF004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156B264167FF004D00C4 /* SwiftPackageProductDependency */; };
-		5D16156F26416829004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156E26416829004D00C4 /* SwiftPackageProductDependency */; };
-		5D16157226416895004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16157126416895004D00C4 /* SwiftPackageProductDependency */; };
+		5D161569264167E1004D00C4 /* CoreNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 5D161568264167E1004D00C4 /* CoreNetwork */; };
+		5D16156C264167FF004D00C4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156B264167FF004D00C4 /* Kingfisher */; };
+		5D16156F26416829004D00C4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156E26416829004D00C4 /* CryptoSwift */; };
+		5D16157226416895004D00C4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16157126416895004D00C4 /* RealmSwift */; };
 		5D217FDB227B467B00006DBE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FDA227B467B00006DBE /* Assets.swift */; };
 		5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FE1227B4AC000006DBE /* UIImageView.swift */; };
 		5D217FE4227B4C8A00006DBE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FE3227B4C8A00006DBE /* UIColor.swift */; };
@@ -117,6 +117,7 @@
 		5DCC0D3E227B42790065DA28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC0D3C227B42790065DA28 /* Main.storyboard */; };
 		5DCC0D40227B427A0065DA28 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC0D3F227B427A0065DA28 /* Images.xcassets */; };
 		5DCC0D43227B427A0065DA28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC0D41227B427A0065DA28 /* LaunchScreen.storyboard */; };
+		5DD9DED726B313EA00A699C9 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DED626B313EA00A699C9 /* AppCore.swift */; };
 		5DF872A7227D697000DB0CCD /* MediaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A6227D697000DB0CCD /* MediaTableCell.xib */; };
 		5DF872A9227D69F600DB0CCD /* MediaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */; };
 		5DF872AB227D846200DB0CCD /* CharecterDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872AA227D846200DB0CCD /* CharecterDetailHeaderView.xib */; };
@@ -272,6 +273,7 @@
 		5DCC0D3F227B427A0065DA28 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5DCC0D42227B427A0065DA28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DCC0D44227B427A0065DA28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD9DED626B313EA00A699C9 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		5DF872A6227D697000DB0CCD /* MediaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaTableCell.xib; sourceTree = "<group>"; };
 		5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionCell.xib; sourceTree = "<group>"; };
 		5DF872AA227D846200DB0CCD /* CharecterDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharecterDetailHeaderView.xib; sourceTree = "<group>"; };
@@ -294,10 +296,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D16156C264167FF004D00C4 /* BuildFile in Frameworks */,
-				5D16156F26416829004D00C4 /* BuildFile in Frameworks */,
-				5D161569264167E1004D00C4 /* BuildFile in Frameworks */,
-				5D16157226416895004D00C4 /* BuildFile in Frameworks */,
+				5D16156C264167FF004D00C4 /* Kingfisher in Frameworks */,
+				5D16156F26416829004D00C4 /* CryptoSwift in Frameworks */,
+				5D161569264167E1004D00C4 /* CoreNetwork in Frameworks */,
+				5D16157226416895004D00C4 /* RealmSwift in Frameworks */,
 				AC5F7C7771BEF91B2DDA4F20 /* Pods_Marvel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +332,7 @@
 			children = (
 				5D217FEF227B4DBC00006DBE /* Delegate */,
 				5D217FF0227B4DD000006DBE /* Services */,
+				5DD9DED626B313EA00A699C9 /* AppCore.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1117,10 +1120,10 @@
 			);
 			name = Marvel;
 			packageProductDependencies = (
-				5D161568264167E1004D00C4 /* SwiftPackageProductDependency */,
-				5D16156B264167FF004D00C4 /* SwiftPackageProductDependency */,
-				5D16156E26416829004D00C4 /* SwiftPackageProductDependency */,
-				5D16157126416895004D00C4 /* SwiftPackageProductDependency */,
+				5D161568264167E1004D00C4 /* CoreNetwork */,
+				5D16156B264167FF004D00C4 /* Kingfisher */,
+				5D16156E26416829004D00C4 /* CryptoSwift */,
+				5D16157126416895004D00C4 /* RealmSwift */,
 			);
 			productName = Marvel;
 			productReference = 5DCC0D35227B42790065DA28 /* Marvel.app */;
@@ -1156,10 +1159,10 @@
 			);
 			mainGroup = 5DCC0D2C227B42790065DA28;
 			packageReferences = (
-				5D161567264167E1004D00C4 /* RemoteSwiftPackageReference */,
-				5D16156A264167FF004D00C4 /* RemoteSwiftPackageReference */,
-				5D16156D26416829004D00C4 /* RemoteSwiftPackageReference */,
-				5D16157026416895004D00C4 /* RemoteSwiftPackageReference */,
+				5D161567264167E1004D00C4 /* XCRemoteSwiftPackageReference "CoreNetwork" */,
+				5D16156A264167FF004D00C4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				5D16156D26416829004D00C4 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 5DCC0D36227B42790065DA28 /* Products */;
 			projectDirPath = "";
@@ -1208,7 +1211,7 @@
 			name = "[CP-User] GitHooks";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Settings/GitHooks/install.sh";
+			shellScript = $SRCROOT/Settings/GitHooks/install.sh;
 		};
 		4BF09B895EBEB4EF0A41EEDC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1262,7 +1265,7 @@
 			name = "[CP-User] SwiftGen";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Settings/SwiftGen/generate.sh";
+			shellScript = $SRCROOT/Settings/SwiftGen/generate.sh;
 		};
 		CA1613CFA1C8C1E1B4790620 /* [CP-User] SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1272,7 +1275,7 @@
 			name = "[CP-User] SwiftLint";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/Settings/SwiftLint/lint.sh";
+			shellScript = $SRCROOT/Settings/SwiftLint/lint.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1334,6 +1337,7 @@
 				5D9B671C2525234B0070C08D /* Codable.swift in Sources */,
 				5DC64845227CA6310080B1F4 /* SearchCell.swift in Sources */,
 				5D433D08227DF84B00C116FA /* StoryboardIdentifiable.swift in Sources */,
+				5DD9DED726B313EA00A699C9 /* AppCore.swift in Sources */,
 				5D217FEB227B4D3600006DBE /* KeyedDecodingContainer.swift in Sources */,
 				5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */,
 				5D9B671F25252D8A0070C08D /* Config.swift in Sources */,
@@ -1664,7 +1668,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5D161567264167E1004D00C4 /* RemoteSwiftPackageReference */ = {
+		5D161567264167E1004D00C4 /* XCRemoteSwiftPackageReference "CoreNetwork" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AnasAlhasani/CoreNetwork";
 			requirement = {
@@ -1672,7 +1676,7 @@
 				minimumVersion = 1.0.8;
 			};
 		};
-		5D16156A264167FF004D00C4 /* RemoteSwiftPackageReference */ = {
+		5D16156A264167FF004D00C4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -1680,7 +1684,7 @@
 				minimumVersion = 6.3.0;
 			};
 		};
-		5D16156D26416829004D00C4 /* RemoteSwiftPackageReference */ = {
+		5D16156D26416829004D00C4 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
 			requirement = {
@@ -1688,7 +1692,7 @@
 				minimumVersion = 1.4.0;
 			};
 		};
-		5D16157026416895004D00C4 /* RemoteSwiftPackageReference */ = {
+		5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
 			requirement = {
@@ -1699,24 +1703,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5D161568264167E1004D00C4 /* SwiftPackageProductDependency */ = {
+		5D161568264167E1004D00C4 /* CoreNetwork */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D161567264167E1004D00C4 /* RemoteSwiftPackageReference */;
+			package = 5D161567264167E1004D00C4 /* XCRemoteSwiftPackageReference "CoreNetwork" */;
 			productName = CoreNetwork;
 		};
-		5D16156B264167FF004D00C4 /* SwiftPackageProductDependency */ = {
+		5D16156B264167FF004D00C4 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D16156A264167FF004D00C4 /* RemoteSwiftPackageReference */;
+			package = 5D16156A264167FF004D00C4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		5D16156E26416829004D00C4 /* SwiftPackageProductDependency */ = {
+		5D16156E26416829004D00C4 /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D16156D26416829004D00C4 /* RemoteSwiftPackageReference */;
+			package = 5D16156D26416829004D00C4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
 		};
-		5D16157126416895004D00C4 /* SwiftPackageProductDependency */ = {
+		5D16157126416895004D00C4 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D16157026416895004D00C4 /* RemoteSwiftPackageReference */;
+			package = 5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -9,20 +9,19 @@
 import UIKit
 
 final class CharactersCoordinator {
-    // MARK: - Properties
+    // MARK: Properties
 
     private let router: Router
-    private let characterUseCase: CharacterUseCase
-    private lazy var mediaGateway = APIMarvelMediaGateway()
-    private lazy var mediaRepository = RealmRepository<Media>()
-    private lazy var mediaUseCase = DefaultMediaUseCase(gateway: mediaGateway, repository: .init(mediaRepository))
-    private lazy var throttler = DefaultThrottler(minimumDelay: 0.5)
+    private let core: AppCore
 
-    // MARK: - Init / Deinit
+    // MARK: Init / Deinit
 
-    init(router: Router, characterUseCase: CharacterUseCase) {
+    init(
+        router: Router,
+        core: AppCore
+    ) {
         self.router = router
-        self.characterUseCase = characterUseCase
+        self.core = core
     }
 }
 
@@ -33,8 +32,8 @@ extension CharactersCoordinator: Coordinator {
         let controller = CharactersViewController.instantiate()
         controller.viewModel = CharactersViewModel(
             coordinator: self,
-            characterUseCase: characterUseCase,
-            throttler: throttler
+            characterUseCase: core.characterUseCase(),
+            throttler: core.throttler()
         )
         router.push(controller, animated: true, completion: nil)
     }
@@ -46,8 +45,8 @@ extension CharactersCoordinator: CharactersCoordinatorDelegate {
     func didTapSearch() {
         let viewModel = CharactersViewModel(
             coordinator: self,
-            characterUseCase: characterUseCase,
-            throttler: throttler
+            characterUseCase: core.characterUseCase(),
+            throttler: core.throttler()
         )
         let coordinator = SearchCoordinator(router: router, viewModel: viewModel)
         coordinator.start()
@@ -60,7 +59,7 @@ extension CharactersCoordinator: CharactersCoordinatorDelegate {
     func didSelect(character: CharacterViewItem) {
         let coordinator = CharacterDetailsCoordinator(
             router: router,
-            mediaUseCase: mediaUseCase,
+            mediaUseCase: core.mediaUseCase(),
             character: character
         )
         coordinator.start()

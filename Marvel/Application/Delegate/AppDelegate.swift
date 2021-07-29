@@ -12,8 +12,12 @@ import UIKit
 final class AppDelegate: PluggableApplicationDelegate {
     override func services() -> [ApplicationService] {
         [
-            ApplicationCoordinatorService(with: window),
+            ApplicationCoordinatorService(with: window, core: AppRoot.core),
             ThemeApplicationService()
         ]
     }
+}
+
+private enum AppRoot {
+    static let core = DefaultAppCore()
 }

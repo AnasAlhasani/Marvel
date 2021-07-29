@@ -9,25 +9,30 @@
 import UIKit
 
 final class ApplicationCoordinatorService: ApplicationService {
-    // MARK: - Properties
+    // MARK: Properties
 
     private var window: UIWindow?
+    private let core: AppCore
     private var applicationCoordinator: ApplicationCoordinator?
 
-    // MARK: - Init
+    // MARK: Init
 
-    init(with window: UIWindow?) {
+    init(
+        with window: UIWindow?,
+        core: AppCore
+    ) {
         self.window = window
+        self.core = core
     }
 
-    // MARK: - ApplicationService
+    // MARK: ApplicationService
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let applicationCoordinator = ApplicationCoordinator(window: window)
+        let applicationCoordinator = ApplicationCoordinator(window: window, core: core)
         self.window = window
         self.applicationCoordinator = applicationCoordinator
         applicationCoordinator.start()

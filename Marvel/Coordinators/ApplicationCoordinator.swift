@@ -9,20 +9,23 @@
 import UIKit
 
 final class ApplicationCoordinator {
-    // MARK: - Properties
+    // MARK: Properties
 
-    let window: UIWindow
-    lazy var characterGateway = APICharacterGateway()
-    lazy var characterRepository = RealmRepository<MarvelCharacter>()
-    lazy var characterUseCase = DefaultCharacterUseCase(gateway: characterGateway, repository: .init(characterRepository))
-    lazy var rootViewController = UINavigationController()
-    lazy var router = Router(navigationController: rootViewController)
-    lazy var charactersCoordinator = CharactersCoordinator(router: router, characterUseCase: characterUseCase)
+    private let window: UIWindow
+    private let core: AppCore
 
-    // MARK: - Init / Deinit
+    private lazy var navigationController = UINavigationController()
+    private lazy var router = { Router(navigationController: navigationController) }()
+    private lazy var charactersCoordinator = CharactersCoordinator(
+        router: router,
+        core: core
+    )
 
-    init(window: UIWindow) {
+    // MARK: Init / Deinit
+
+    init(window: UIWindow, core: AppCore) {
         self.window = window
+        self.core = core
     }
 }
 

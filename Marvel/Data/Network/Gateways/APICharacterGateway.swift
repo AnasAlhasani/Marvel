@@ -11,7 +11,7 @@ import CoreNetwork
 final class APICharacterGateway: CharacterGateway {
     private let apiClient: APIClient
 
-    init(apiClient: APIClient = DefaultAPIClient()) {
+    init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
 }
