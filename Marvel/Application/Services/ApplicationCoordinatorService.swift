@@ -12,17 +12,16 @@ final class ApplicationCoordinatorService: ApplicationService {
     // MARK: Properties
 
     private var window: UIWindow?
-    private let core: AppCore
-    private var applicationCoordinator: ApplicationCoordinator?
+    private let router: AppRouter
 
     // MARK: Init
 
     init(
         with window: UIWindow?,
-        core: AppCore
+        router: AppRouter
     ) {
         self.window = window
-        self.core = core
+        self.router = router
     }
 
     // MARK: ApplicationService
@@ -31,12 +30,9 @@ final class ApplicationCoordinatorService: ApplicationService {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        let applicationCoordinator = ApplicationCoordinator(window: window, core: core)
-        self.window = window
-        self.applicationCoordinator = applicationCoordinator
-        applicationCoordinator.start()
-
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = router.charactersListView()
+        window?.makeKeyAndVisible()
         return true
     }
 }
