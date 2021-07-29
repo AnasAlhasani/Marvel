@@ -12,7 +12,7 @@
     </a>
 </p>
 
-Marvel iOS application written in Swift 5 using MVVM-C with clean architecture concepts 🚀.
+Marvel iOS application written in Swift 5 using MVVM with clean architecture concepts 🚀.
 
 ## Requirements
 
