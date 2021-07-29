@@ -11,10 +11,10 @@
 		5D0A83CB2651ABCE0075A622 /* CharacterViewItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0A83CA2651ABCE0075A622 /* CharacterViewItemTests.swift */; };
 		5D0A83CE2651B2530075A622 /* CharacterDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0A83CD2651B2530075A622 /* CharacterDetailViewModelTests.swift */; };
 		5D0A83D02651BC6F0075A622 /* CharacterDetailsViewItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0A83CF2651BC6F0075A622 /* CharacterDetailsViewItemTests.swift */; };
-		5D161569264167E1004D00C4 /* CoreNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 5D161568264167E1004D00C4 /* CoreNetwork */; };
-		5D16156C264167FF004D00C4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156B264167FF004D00C4 /* Kingfisher */; };
-		5D16156F26416829004D00C4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156E26416829004D00C4 /* CryptoSwift */; };
-		5D16157226416895004D00C4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16157126416895004D00C4 /* RealmSwift */; };
+		5D161569264167E1004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D161568264167E1004D00C4 /* SwiftPackageProductDependency */; };
+		5D16156C264167FF004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156B264167FF004D00C4 /* SwiftPackageProductDependency */; };
+		5D16156F26416829004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16156E26416829004D00C4 /* SwiftPackageProductDependency */; };
+		5D16157226416895004D00C4 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5D16157126416895004D00C4 /* SwiftPackageProductDependency */; };
 		5D217FDB227B467B00006DBE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FDA227B467B00006DBE /* Assets.swift */; };
 		5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FE1227B4AC000006DBE /* UIImageView.swift */; };
 		5D217FE4227B4C8A00006DBE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FE3227B4C8A00006DBE /* UIColor.swift */; };
@@ -175,13 +175,13 @@
 		5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiable.swift; sourceTree = "<group>"; };
 		5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		5D45D059264CBB8700345602 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
-		5D45D05A264CBBA600345602 /* swiftformat.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = swiftformat.sh; sourceTree = "<group>"; };
+		5D45D05A264CBBA600345602 /* format.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = format.sh; sourceTree = "<group>"; };
 		5D45D05B264CBD0A00345602 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		5D45D05C264CBD6C00345602 /* swiftlint.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = swiftlint.sh; sourceTree = "<group>"; };
-		5D45D05D264CBD9900345602 /* swiftgen.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = swiftgen.sh; sourceTree = "<group>"; };
+		5D45D05C264CBD6C00345602 /* lint.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lint.sh; sourceTree = "<group>"; };
+		5D45D05D264CBD9900345602 /* generate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate.sh; sourceTree = "<group>"; };
 		5D45D05E264CBDE700345602 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
-		5D45D05F264CBE5400345602 /* install-hooks.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-hooks.bash"; sourceTree = "<group>"; };
-		5D45D060264CBE6A00345602 /* pre-commit.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pre-commit.bash"; sourceTree = "<group>"; };
+		5D45D05F264CBE5400345602 /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
+		5D45D060264CBE6A00345602 /* pre-commit.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pre-commit.sh"; sourceTree = "<group>"; };
 		5D45D065264CBF5E00345602 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5D45D067264CBF8100345602 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5D45D06A264CBFF900345602 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -294,10 +294,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D16156C264167FF004D00C4 /* Kingfisher in Frameworks */,
-				5D16156F26416829004D00C4 /* CryptoSwift in Frameworks */,
-				5D161569264167E1004D00C4 /* CoreNetwork in Frameworks */,
-				5D16157226416895004D00C4 /* RealmSwift in Frameworks */,
+				5D16156C264167FF004D00C4 /* BuildFile in Frameworks */,
+				5D16156F26416829004D00C4 /* BuildFile in Frameworks */,
+				5D161569264167E1004D00C4 /* BuildFile in Frameworks */,
+				5D16157226416895004D00C4 /* BuildFile in Frameworks */,
 				AC5F7C7771BEF91B2DDA4F20 /* Pods_Marvel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,7 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				5D45D05B264CBD0A00345602 /* .swiftlint.yml */,
-				5D45D05C264CBD6C00345602 /* swiftlint.sh */,
+				5D45D05C264CBD6C00345602 /* lint.sh */,
 			);
 			path = SwiftLint;
 			sourceTree = "<group>";
@@ -592,7 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				5D45D059264CBB8700345602 /* .swiftformat */,
-				5D45D05A264CBBA600345602 /* swiftformat.sh */,
+				5D45D05A264CBBA600345602 /* format.sh */,
 			);
 			path = SwiftFormat;
 			sourceTree = "<group>";
@@ -601,7 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				5D45D05E264CBDE700345602 /* swiftgen.yml */,
-				5D45D05D264CBD9900345602 /* swiftgen.sh */,
+				5D45D05D264CBD9900345602 /* generate.sh */,
 			);
 			path = SwiftGen;
 			sourceTree = "<group>";
@@ -609,8 +609,8 @@
 		5D45D058264CBB2200345602 /* GitHooks */ = {
 			isa = PBXGroup;
 			children = (
-				5D45D05F264CBE5400345602 /* install-hooks.bash */,
-				5D45D060264CBE6A00345602 /* pre-commit.bash */,
+				5D45D05F264CBE5400345602 /* install.sh */,
+				5D45D060264CBE6A00345602 /* pre-commit.sh */,
 			);
 			path = GitHooks;
 			sourceTree = "<group>";
@@ -1104,12 +1104,12 @@
 			buildConfigurationList = 5DCC0D47227B427A0065DA28 /* Build configuration list for PBXNativeTarget "Marvel" */;
 			buildPhases = (
 				6179E4A9D1BE349CBE6FE709 /* [CP] Check Pods Manifest.lock */,
-				5D45D061264CBEA000345602 /* Install Hooks */,
-				5D217FD8227B44F800006DBE /* SwiftLint */,
-				5D217FD9227B44F900006DBE /* SwiftGen */,
 				5DCC0D31227B42790065DA28 /* Sources */,
 				5DCC0D32227B42790065DA28 /* Frameworks */,
 				5DCC0D33227B42790065DA28 /* Resources */,
+				1356C9BCA1C44CD51CB2378D /* [CP-User] GitHooks */,
+				CA1613CFA1C8C1E1B4790620 /* [CP-User] SwiftLint */,
+				69C8A7166A657A043F40C363 /* [CP-User] SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -1117,10 +1117,10 @@
 			);
 			name = Marvel;
 			packageProductDependencies = (
-				5D161568264167E1004D00C4 /* CoreNetwork */,
-				5D16156B264167FF004D00C4 /* Kingfisher */,
-				5D16156E26416829004D00C4 /* CryptoSwift */,
-				5D16157126416895004D00C4 /* RealmSwift */,
+				5D161568264167E1004D00C4 /* SwiftPackageProductDependency */,
+				5D16156B264167FF004D00C4 /* SwiftPackageProductDependency */,
+				5D16156E26416829004D00C4 /* SwiftPackageProductDependency */,
+				5D16157126416895004D00C4 /* SwiftPackageProductDependency */,
 			);
 			productName = Marvel;
 			productReference = 5DCC0D35227B42790065DA28 /* Marvel.app */;
@@ -1156,10 +1156,10 @@
 			);
 			mainGroup = 5DCC0D2C227B42790065DA28;
 			packageReferences = (
-				5D161567264167E1004D00C4 /* XCRemoteSwiftPackageReference "CoreNetwork" */,
-				5D16156A264167FF004D00C4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				5D16156D26416829004D00C4 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
-				5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				5D161567264167E1004D00C4 /* RemoteSwiftPackageReference */,
+				5D16156A264167FF004D00C4 /* RemoteSwiftPackageReference */,
+				5D16156D26416829004D00C4 /* RemoteSwiftPackageReference */,
+				5D16157026416895004D00C4 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 5DCC0D36227B42790065DA28 /* Products */;
 			projectDirPath = "";
@@ -1200,6 +1200,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1356C9BCA1C44CD51CB2378D /* [CP-User] GitHooks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] GitHooks";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Settings/GitHooks/install.sh";
+		};
 		4BF09B895EBEB4EF0A41EEDC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1222,60 +1232,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5D217FD8227B44F800006DBE /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "STRICT=false sh \"$SRCROOT/Settings/SwiftLint/swiftlint.sh\"\n\n\n";
-		};
-		5D217FD9227B44F900006DBE /* SwiftGen */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftGen;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"$SRCROOT/Settings/SwiftGen/swiftgen.sh\"\n";
-		};
-		5D45D061264CBEA000345602 /* Install Hooks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Install Hooks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"$SRCROOT/Settings/GitHooks/install-hooks.bash\"\n";
-		};
 		6179E4A9D1BE349CBE6FE709 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1297,6 +1253,26 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		69C8A7166A657A043F40C363 /* [CP-User] SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] SwiftGen";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Settings/SwiftGen/generate.sh";
+		};
+		CA1613CFA1C8C1E1B4790620 /* [CP-User] SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] SwiftLint";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/Settings/SwiftLint/lint.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1688,7 +1664,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5D161567264167E1004D00C4 /* XCRemoteSwiftPackageReference "CoreNetwork" */ = {
+		5D161567264167E1004D00C4 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AnasAlhasani/CoreNetwork";
 			requirement = {
@@ -1696,7 +1672,7 @@
 				minimumVersion = 1.0.8;
 			};
 		};
-		5D16156A264167FF004D00C4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		5D16156A264167FF004D00C4 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -1704,7 +1680,7 @@
 				minimumVersion = 6.3.0;
 			};
 		};
-		5D16156D26416829004D00C4 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+		5D16156D26416829004D00C4 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
 			requirement = {
@@ -1712,7 +1688,7 @@
 				minimumVersion = 1.4.0;
 			};
 		};
-		5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		5D16157026416895004D00C4 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
 			requirement = {
@@ -1723,24 +1699,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5D161568264167E1004D00C4 /* CoreNetwork */ = {
+		5D161568264167E1004D00C4 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D161567264167E1004D00C4 /* XCRemoteSwiftPackageReference "CoreNetwork" */;
+			package = 5D161567264167E1004D00C4 /* RemoteSwiftPackageReference */;
 			productName = CoreNetwork;
 		};
-		5D16156B264167FF004D00C4 /* Kingfisher */ = {
+		5D16156B264167FF004D00C4 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D16156A264167FF004D00C4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 5D16156A264167FF004D00C4 /* RemoteSwiftPackageReference */;
 			productName = Kingfisher;
 		};
-		5D16156E26416829004D00C4 /* CryptoSwift */ = {
+		5D16156E26416829004D00C4 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D16156D26416829004D00C4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			package = 5D16156D26416829004D00C4 /* RemoteSwiftPackageReference */;
 			productName = CryptoSwift;
 		};
-		5D16157126416895004D00C4 /* RealmSwift */ = {
+		5D16157126416895004D00C4 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = 5D16157026416895004D00C4 /* RemoteSwiftPackageReference */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
