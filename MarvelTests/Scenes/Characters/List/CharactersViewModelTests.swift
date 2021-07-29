@@ -11,25 +11,25 @@
 import XCTest
 
 final class CharactersViewModelTests: XCTestCase {
-    var coordinatorSpy: CharactersCoordinatorDelegateSpy!
+    var routerSpy: CharactersListRouterSpy!
     var useCaseStub: CharacterUseCaseStub!
     var throttlerSpy: ThrottlerSpy!
     var viewModel: CharactersViewModel!
 
     override func setUp() {
         super.setUp()
-        coordinatorSpy = .init()
+        routerSpy = .init()
         useCaseStub = .init()
         throttlerSpy = .init()
         viewModel = .init(
-            coordinator: coordinatorSpy,
+            router: routerSpy,
             characterUseCase: useCaseStub,
             throttler: throttlerSpy
         )
     }
 
     override func tearDown() {
-        coordinatorSpy = nil
+        routerSpy = nil
         useCaseStub = nil
         throttlerSpy = nil
         viewModel = nil
@@ -133,17 +133,17 @@ final class CharactersViewModelTests: XCTestCase {
         viewModel.didSelectRow(at: indexPath)
 
         // Then
-        XCTAssertEqual(coordinatorSpy.didSelectCharacterCallCount, 1)
-        XCTAssertEqual(coordinatorSpy.character, items[indexPath.row])
+        XCTAssertEqual(routerSpy.showDetailsCallCount, 1)
+        XCTAssertEqual(routerSpy.character, items[indexPath.row])
     }
 
     func testDidTapSearch() {
         viewModel.didTapSearch()
-        XCTAssertEqual(coordinatorSpy.didTapSearchCallCount, 1)
+        XCTAssertEqual(routerSpy.showSearchCallCount, 1)
     }
 
     func testDidTapCancelSearch() {
         viewModel.didTapCancelSearch()
-        XCTAssertEqual(coordinatorSpy.didTapCancelSearchCallCount, 1)
+        XCTAssertEqual(routerSpy.dismissSearchCallCount, 1)
     }
 }
