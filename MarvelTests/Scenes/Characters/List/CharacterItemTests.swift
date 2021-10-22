@@ -1,5 +1,5 @@
 //
-//  CharacterViewItemTests.swift
+//  CharacterItemTests.swift
 //  MarvelTests
 //
 //  Created by Anas Alhasani on 16/05/2021.
@@ -9,10 +9,10 @@
 @testable import Marvel
 import XCTest
 
-final class CharacterViewItemTests: XCTestCase {
+final class CharacterItemTests: XCTestCase {
     func testItemWhenFieldsAreNotNil() {
         let model = MarvelCharacter.item(index: 0)
-        let item = CharacterViewItem(model)
+        let item = CharacterItem(model)
 
         XCTAssertEqual(item.model, model)
         XCTAssertEqual(item.imageURL, model.thumbnail?.url)
@@ -29,7 +29,7 @@ final class CharacterViewItemTests: XCTestCase {
             description: nil,
             thumbnail: nil
         )
-        let item = CharacterViewItem(model)
+        let item = CharacterItem(model)
 
         XCTAssertEqual(item.model, model)
         XCTAssertEqual(item.nameTitle, L10n.Character.name)

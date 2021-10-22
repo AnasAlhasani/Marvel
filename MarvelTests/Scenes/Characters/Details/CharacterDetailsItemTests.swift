@@ -1,5 +1,5 @@
 //
-//  CharacterDetailsViewItemTests.swift
+//  CharacterDetailsItemTests.swift
 //  MarvelTests
 //
 //  Created by Anas Alhasani on 16/05/2021.
@@ -9,9 +9,9 @@
 @testable import Marvel
 import XCTest
 
-final class CharacterDetailsViewItemTests: XCTestCase {
+final class CharacterDetailsItemTests: XCTestCase {
     func testComicItem() {
-        var item = CharacterDetailsViewItem(type: .comics)
+        var item = CharacterDetailsItem(type: .comics)
         item.state = .idle
 
         XCTAssertEqual(item.title, L10n.Character.comics)
@@ -22,7 +22,7 @@ final class CharacterDetailsViewItemTests: XCTestCase {
     }
 
     func testSeriesItem() {
-        var item = CharacterDetailsViewItem(type: .series)
+        var item = CharacterDetailsItem(type: .series)
         item.state = .idle
 
         XCTAssertEqual(item.title, L10n.Character.series)
@@ -34,7 +34,7 @@ final class CharacterDetailsViewItemTests: XCTestCase {
 
     func testMediaItemWhenFeildsAreNotNil() {
         let model = Media.item(index: 0)
-        let item = CharacterDetailsViewItem.MediaItem(model: model)
+        let item = CharacterDetailsItem.MediaItem(model: model)
 
         XCTAssertEqual(item.model, model)
         XCTAssertEqual(item.title, model.title)
@@ -43,7 +43,7 @@ final class CharacterDetailsViewItemTests: XCTestCase {
 
     func testMediaItemWhenFeildsAreNil() {
         let model = Media(id: .init(rawValue: 0), title: nil, thumbnail: nil)
-        let item = CharacterDetailsViewItem.MediaItem(model: model)
+        let item = CharacterDetailsItem.MediaItem(model: model)
 
         XCTAssertEqual(item.model, model)
         XCTAssertEqual(item.title, L10n.Common.notAvailable)

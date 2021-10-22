@@ -11,7 +11,7 @@ import UIKit
 protocol AppRouter {
     func charactersListView() -> UIViewController
     func charactersSearchView() -> UIViewController
-    func characterDetailsView(for item: CharacterViewItem) -> UIViewController
+    func characterDetailsView(for item: CharacterItem) -> UIViewController
 }
 
 struct DefaultAppRouter {
@@ -49,7 +49,7 @@ extension DefaultAppRouter: AppRouter {
         return view
     }
 
-    func characterDetailsView(for item: CharacterViewItem) -> UIViewController {
+    func characterDetailsView(for item: CharacterItem) -> UIViewController {
         let view = CharacterDetailViewController.instantiate()
         let viewModel = CharacterDetailViewModel(
             mediaUseCase: core.mediaUseCase(),

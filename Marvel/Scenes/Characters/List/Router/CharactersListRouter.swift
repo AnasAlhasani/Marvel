@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CharactersListRoutable {
-    func showDetails(for item: CharacterViewItem)
+    func showDetails(for item: CharacterItem)
     func showSearch()
     func dismissSearch()
 }
@@ -28,7 +28,7 @@ struct CharactersListRouter {
 }
 
 extension CharactersListRouter: CharactersListRoutable {
-    func showDetails(for item: CharacterViewItem) {
+    func showDetails(for item: CharacterItem) {
         viewController?.show(router.characterDetailsView(for: item))
     }
 

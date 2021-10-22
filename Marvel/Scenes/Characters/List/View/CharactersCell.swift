@@ -23,7 +23,7 @@ class CharactersCell: UITableViewCell {
 // MARK: - CellConfigurable
 
 extension CharactersCell: CellConfigurable {
-    func configure(with item: CharacterViewItem) {
+    func configure(with item: CharacterItem) {
         characterImageView.download(image: item.imageURL)
         nameLabel.text = item.name
     }

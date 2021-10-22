@@ -6,33 +6,32 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import CoreNetwork
-import Promises
 
 // MARK: - Typealias
 
 typealias RequestBuilder<T: Entity> = CoreNetwork.RequestBuilder<MarvelResponse<T>>
-typealias Promise<T> = Promises.Promise<T>
 
 // MARK: - APIClient
 
-// Checkout my CoreNetwork framework: https://github.com/AnasAlhasani/CoreNetwork
 extension APIClient {
-    func execute<T: APIRequest, D: Decodable>(_ request: T) -> Promise<Paginator<D>> {
-        Promise<Paginator<D>>(on: .global(qos: .background)) { fullfill, reject in
-            self.execute(request).then {
+    /// CoreNetwork: https://github.com/AnasAlhasani/CoreNetwork
+    func execute<T: APIRequest, D: Decodable>(_ request: T) -> AnyPublisher<Paginator<D>, Error> {
+        Future { promise in
+            execute(request).then {
                 let response = $0 as? MarvelResponse<D>
 
                 if let dataContainer = response?.data {
-                    fullfill(dataContainer)
+                    promise(.success(dataContainer))
                 } else if let message = response?.message {
-                    reject(MarvelError(message))
+                    promise(.failure(MarvelError(message)))
                 } else {
-                    reject(MarvelError.general)
+                    promise(.failure(MarvelError.general))
                 }
             }.catch {
-                reject($0)
+                promise(.failure($0))
             }
-        }
+        }.eraseToAnyPublisher()
     }
 }

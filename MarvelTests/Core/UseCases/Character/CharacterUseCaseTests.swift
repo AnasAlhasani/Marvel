@@ -7,7 +7,6 @@
 //
 
 @testable import Marvel
-@testable import Promises
 import XCTest
 
 final class CharacterUseCaseTests: XCTestCase {
@@ -32,59 +31,56 @@ final class CharacterUseCaseTests: XCTestCase {
         super.tearDown()
     }
 
-    func testLoadCharacters() {
+    func testLoadCharacters() throws {
         // Given
         let results = MarvelCharacter.items()
         let paginator = Paginator.value(results: results)
         let parameter = CharacterParameter(offset: 0, query: "any")
-        gatewayStub.promise = .init { paginator }
-        repositroyStub.savePromise = .init {}
+        gatewayStub.publisher = .just(paginator)
+        repositroyStub.savePublisher = .just(())
 
         // When
-        let promise = useCase.loadCharacters(with: parameter)
+        let publisher = useCase.loadCharacters(with: parameter)
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-
-        // XCTAssertEqual(gatewayStub.parameter, .init(parameter))
         XCTAssertEqual(gatewayStub.callCount, 1)
-        XCTAssertEqual(gatewayStub.promise.value, paginator)
-        XCTAssertNil(gatewayStub.promise.error)
+        XCTAssertEqual(gatewayStub.publisher.value, paginator)
+        XCTAssertNil(gatewayStub.publisher.error)
 
         XCTAssertEqual(repositroyStub.entites, results)
         XCTAssertEqual(repositroyStub.saveCallCount, 1)
-        XCTAssertTrue(repositroyStub.savePromise.value! == ())
-        XCTAssertNil(repositroyStub.savePromise.error)
+        XCTAssertTrue(repositroyStub.savePublisher.value! == ())
+        XCTAssertNil(repositroyStub.savePublisher.error)
 
-        XCTAssertEqual(promise.value, paginator)
-        XCTAssertNil(promise.error)
+        XCTAssertEqual(try result.get(), paginator)
+        XCTAssertNil(result.error)
     }
 
-    func testLoadCharactersWithRecoverWhenAPIFails() {
+    func testLoadCharactersWithRecoverWhenAPIFails() throws {
         // Given
         let error = MarvelError.general
         let results = MarvelCharacter.items()
         let paginator = Paginator.value(offset: 0, limit: 0, total: 0, count: 0, results: results)
         let parameter = CharacterParameter(offset: 0, query: "any")
-        gatewayStub.promise = .init(error)
-        repositroyStub.savePromise = .init {}
-        repositroyStub.fetchPromise = .init { results }
+        gatewayStub.publisher = .fail(with: error)
+        repositroyStub.savePublisher = .just(())
+        repositroyStub.fetchPublisher = .just(results)
 
         // When
-        let promise = useCase.loadCharacters(with: parameter)
+        let publisher = useCase.loadCharacters(with: parameter)
+        let result = try awaits(for: publisher)
 
         // Then
-        XCTAssert(waitForPromises(timeout: 10.0))
-
         XCTAssertEqual(gatewayStub.callCount, 1)
-        XCTAssertNil(gatewayStub.promise.value)
-        XCTAssertEqual(gatewayStub.promise.error as? MarvelError, error)
+        XCTAssertNil(gatewayStub.publisher.value)
+        XCTAssertEqual(gatewayStub.publisher.error as? MarvelError, error)
 
         XCTAssertEqual(repositroyStub.fetchCallCount, 1)
-        XCTAssertEqual(repositroyStub.fetchPromise.value, results)
-        XCTAssertNil(repositroyStub.fetchPromise.error)
+        XCTAssertEqual(repositroyStub.fetchPublisher.value, results)
+        XCTAssertNil(repositroyStub.fetchPublisher.error)
 
-        XCTAssertEqual(promise.value, paginator)
-        XCTAssertNil(promise.error)
+        XCTAssertEqual(try result.get(), paginator)
+        XCTAssertNil(result.error)
     }
 }

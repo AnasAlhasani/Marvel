@@ -1,5 +1,5 @@
 //
-//  CharacterDetailsViewItem.swift
+//  CharacterDetailsItem.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CharacterDetailsViewItem: Equatable {
+struct CharacterDetailsItem: Equatable {
     private let type: MediaType
     var state: State<MediaItem>
     var title: String {
@@ -29,7 +29,7 @@ struct CharacterDetailsViewItem: Equatable {
     }
 }
 
-extension CharacterDetailsViewItem {
+extension CharacterDetailsItem {
     struct MediaItem: Equatable {
         private(set) var model: Media
 

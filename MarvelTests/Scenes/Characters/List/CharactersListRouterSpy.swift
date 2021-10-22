@@ -11,11 +11,11 @@ import Foundation
 
 final class CharactersListRouterSpy: CharactersListRoutable {
     var showDetailsCallCount = 0
-    var character: CharacterViewItem!
+    var character: CharacterItem!
     var showSearchCallCount = 0
     var dismissSearchCallCount = 0
 
-    func showDetails(for item: CharacterViewItem) {
+    func showDetails(for item: CharacterItem) {
         showDetailsCallCount += 1
         character = item
     }

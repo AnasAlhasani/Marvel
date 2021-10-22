@@ -6,17 +6,18 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 @testable import Marvel
 
 final class CharacterUseCaseStub: CharacterUseCase {
     var parameter: CharacterParameter!
-    var promise: Promise<CharacterPaginator>!
+    var publisher: AnyPublisher<CharacterPaginator, Error>!
     var callCount = 0
 
-    func loadCharacters(with parameter: CharacterParameter) -> Promise<CharacterPaginator> {
+    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error> {
         self.parameter = parameter
         callCount += 1
-        return promise
+        return publisher
     }
 }

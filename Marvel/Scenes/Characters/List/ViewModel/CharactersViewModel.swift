@@ -6,18 +6,19 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 protocol CharactersCoordinatorDelegate: AnyObject {
     func didTapSearch()
     func didTapCancelSearch()
-    func didSelect(character: CharacterViewItem)
+    func didSelect(character: CharacterItem)
 }
 
 final class CharactersViewModel {
     // MARK: - Typealias
 
-    typealias CharacterItemState = State<CharacterViewItem>
+    typealias CharacterItemState = State<CharacterItem>
 
     // MARK: - Properties
 
@@ -27,6 +28,7 @@ final class CharactersViewModel {
     private(set) var throttler: Throttler
     private(set) var shouldLoadCharecters = true
     private(set) var query: String?
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init / Deinit
 
@@ -73,20 +75,25 @@ extension CharactersViewModel {
         guard shouldLoadCharecters else { return }
         shouldLoadCharecters = false
         let parameter = CharacterParameter(offset: offset, query: query)
-        characterUseCase.loadCharacters(with: parameter).then {
-            self.handleCharecters(paginator: $0)
-        }.catch {
-            self.state.value = .error($0)
-        }.always {
-            self.shouldLoadCharecters = true
-        }
+
+        characterUseCase.loadCharacters(with: parameter)
+            .convertToResult()
+            .sink { [weak self] result in
+                self?.shouldLoadCharecters = true
+                switch result {
+                case let .success(value):
+                    self?.handleCharecters(paginator: value)
+                case let .failure(error):
+                    self?.state.value = .error(error)
+                }
+            }.store(in: &cancellables)
     }
 
     private func handleCharecters(paginator: Paginator<MarvelCharacter>) {
-        let viewItems = paginator.results.map { CharacterViewItem($0) }
+        let items = paginator.results.map(CharacterItem.init)
 
         var allItems = state.value.items
-        allItems.append(contentsOf: viewItems)
+        allItems.append(contentsOf: items)
 
         if paginator.hasMorePages {
             state.value = .paging(allItems, next: paginator.nextOffset)
