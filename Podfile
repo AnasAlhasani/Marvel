@@ -6,6 +6,14 @@ use_frameworks!
 
 workspace 'Marvel.xcworkspace'
 
+## Scripts 
+
+def scripts
+  script_phase :name => 'GitHooks', :script => "$SRCROOT/Settings/GitHooks/install.sh"
+  script_phase :name => 'SwiftLint', :script => "$SRCROOT/Settings/SwiftLint/lint.sh"
+  script_phase :name => 'SwiftGen', :script => "$SRCROOT/Settings/SwiftGen/generate.sh"
+end
+
 ## Pods
 
 def toolsPods
@@ -19,13 +27,14 @@ end
 target 'Marvel' do
   project 'Marvel.project'
   toolsPods
+  scripts
   
   target 'MarvelTests' do
     inherit! :search_paths
   end
 end
 
-## Helpers
+## Post Install
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|

@@ -37,8 +37,6 @@
 		5D21802B227C3F3900006DBE /* ErrorStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D218027227C3F3900006DBE /* ErrorStateView.swift */; };
 		5D21802C227C3F3900006DBE /* ErrorStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D218028227C3F3900006DBE /* ErrorStateView.xib */; };
 		5D433CFD227DEBBE00C116FA /* ApplicationCoordinatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433CFC227DEBBE00C116FA /* ApplicationCoordinatorService.swift */; };
-		5D433D00227DF30000C116FA /* CharacterDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433CFF227DF30000C116FA /* CharacterDetailsCoordinator.swift */; };
-		5D433D06227DF52300C116FA /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D05227DF52300C116FA /* SearchCoordinator.swift */; };
 		5D433D08227DF84B00C116FA /* StoryboardIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */; };
 		5D433D0B227E08CE00C116FA /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */; };
 		5D45D064264CBF5E00345602 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D45D066264CBF5E00345602 /* Localizable.strings */; };
@@ -77,7 +75,7 @@
 		5D606E67264EC9C400E8D23D /* MediaUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E66264EC9C400E8D23D /* MediaUseCaseTests.swift */; };
 		5D606E69264ECC4900E8D23D /* RepositoryStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E68264ECC4900E8D23D /* RepositoryStub.swift */; };
 		5D606E6E264F11E800E8D23D /* CharactersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E6D264F11E800E8D23D /* CharactersViewModelTests.swift */; };
-		5D606E70264F234100E8D23D /* CharactersCoordinatorDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E6F264F234100E8D23D /* CharactersCoordinatorDelegateSpy.swift */; };
+		5D606E70264F234100E8D23D /* CharactersListRouterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E6F264F234100E8D23D /* CharactersListRouterSpy.swift */; };
 		5D606E73264F2F7B00E8D23D /* ThrottlerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E72264F2F7B00E8D23D /* ThrottlerSpy.swift */; };
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
 		5D9228F52280F1200048C614 /* APICharacterGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F02280F1200048C614 /* APICharacterGateway.swift */; };
@@ -121,6 +119,10 @@
 		5DCC0D3E227B42790065DA28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC0D3C227B42790065DA28 /* Main.storyboard */; };
 		5DCC0D40227B427A0065DA28 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC0D3F227B427A0065DA28 /* Images.xcassets */; };
 		5DCC0D43227B427A0065DA28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC0D41227B427A0065DA28 /* LaunchScreen.storyboard */; };
+		5DD9DED726B313EA00A699C9 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DED626B313EA00A699C9 /* AppCore.swift */; };
+		5DD9DED926B31CCC00A699C9 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DED826B31CCC00A699C9 /* AppRouter.swift */; };
+		5DD9DEDC26B31F0D00A699C9 /* CharactersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DEDB26B31F0D00A699C9 /* CharactersListRouter.swift */; };
+		5DD9DEDE26B32A9D00A699C9 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DEDD26B32A9D00A699C9 /* UIViewController.swift */; };
 		5DF872A7227D697000DB0CCD /* MediaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A6227D697000DB0CCD /* MediaTableCell.xib */; };
 		5DF872A9227D69F600DB0CCD /* MediaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */; };
 		5DF872AB227D846200DB0CCD /* CharecterDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872AA227D846200DB0CCD /* CharecterDetailHeaderView.xib */; };
@@ -174,18 +176,16 @@
 		5D335AEC2650506700327BF7 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = SOURCE_ROOT; };
 		5D335AED2650506700327BF7 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = SOURCE_ROOT; };
 		5D433CFC227DEBBE00C116FA /* ApplicationCoordinatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorService.swift; sourceTree = "<group>"; };
-		5D433CFF227DF30000C116FA /* CharacterDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsCoordinator.swift; sourceTree = "<group>"; };
-		5D433D05227DF52300C116FA /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiable.swift; sourceTree = "<group>"; };
 		5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		5D45D059264CBB8700345602 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
-		5D45D05A264CBBA600345602 /* swiftformat.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = swiftformat.sh; sourceTree = "<group>"; };
+		5D45D05A264CBBA600345602 /* format.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = format.sh; sourceTree = "<group>"; };
 		5D45D05B264CBD0A00345602 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		5D45D05C264CBD6C00345602 /* swiftlint.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = swiftlint.sh; sourceTree = "<group>"; };
-		5D45D05D264CBD9900345602 /* swiftgen.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = swiftgen.sh; sourceTree = "<group>"; };
+		5D45D05C264CBD6C00345602 /* lint.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lint.sh; sourceTree = "<group>"; };
+		5D45D05D264CBD9900345602 /* generate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate.sh; sourceTree = "<group>"; };
 		5D45D05E264CBDE700345602 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
-		5D45D05F264CBE5400345602 /* install-hooks.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-hooks.bash"; sourceTree = "<group>"; };
-		5D45D060264CBE6A00345602 /* pre-commit.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pre-commit.bash"; sourceTree = "<group>"; };
+		5D45D05F264CBE5400345602 /* install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
+		5D45D060264CBE6A00345602 /* pre-commit.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "pre-commit.sh"; sourceTree = "<group>"; };
 		5D45D065264CBF5E00345602 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5D45D067264CBF8100345602 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5D45D06A264CBFF900345602 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 		5D606E66264EC9C400E8D23D /* MediaUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUseCaseTests.swift; sourceTree = "<group>"; };
 		5D606E68264ECC4900E8D23D /* RepositoryStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryStub.swift; sourceTree = "<group>"; };
 		5D606E6D264F11E800E8D23D /* CharactersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModelTests.swift; sourceTree = "<group>"; };
-		5D606E6F264F234100E8D23D /* CharactersCoordinatorDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCoordinatorDelegateSpy.swift; sourceTree = "<group>"; };
+		5D606E6F264F234100E8D23D /* CharactersListRouterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListRouterSpy.swift; sourceTree = "<group>"; };
 		5D606E72264F2F7B00E8D23D /* ThrottlerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrottlerSpy.swift; sourceTree = "<group>"; };
 		5D9228EF2280F1200048C614 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5D9228F02280F1200048C614 /* APICharacterGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICharacterGateway.swift; sourceTree = "<group>"; };
@@ -280,6 +280,10 @@
 		5DCC0D3F227B427A0065DA28 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5DCC0D42227B427A0065DA28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DCC0D44227B427A0065DA28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD9DED626B313EA00A699C9 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
+		5DD9DED826B31CCC00A699C9 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		5DD9DEDB26B31F0D00A699C9 /* CharactersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListRouter.swift; sourceTree = "<group>"; };
+		5DD9DEDD26B32A9D00A699C9 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		5DF872A6227D697000DB0CCD /* MediaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaTableCell.xib; sourceTree = "<group>"; };
 		5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionCell.xib; sourceTree = "<group>"; };
 		5DF872AA227D846200DB0CCD /* CharecterDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharecterDetailHeaderView.xib; sourceTree = "<group>"; };
@@ -336,8 +340,10 @@
 		5D217FD4227B444300006DBE /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				5D217FEF227B4DBC00006DBE /* Delegate */,
 				5D217FF0227B4DD000006DBE /* Services */,
+				5DCC0D38227B42790065DA28 /* AppDelegate.swift */,
+				5DD9DED626B313EA00A699C9 /* AppCore.swift */,
+				5DD9DED826B31CCC00A699C9 /* AppRouter.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -411,6 +417,7 @@
 				5DC6482D227C42150080B1F4 /* UIView.swift */,
 				5DC64851227D03750080B1F4 /* UICollectionView.swift */,
 				5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */,
+				5DD9DEDD26B32A9D00A699C9 /* UIViewController.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -437,14 +444,6 @@
 				5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		5D217FEF227B4DBC00006DBE /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				5DCC0D38227B42790065DA28 /* AppDelegate.swift */,
-			);
-			path = Delegate;
 			sourceTree = "<group>";
 		};
 		5D217FF0227B4DD000006DBE /* Services */ = {
@@ -562,14 +561,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5D433D0C227E1B4E00C116FA /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				5DB531DD227DDBE70044E86F /* Coordinator.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		5D45D053264CBAB200345602 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,7 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				5D45D05B264CBD0A00345602 /* .swiftlint.yml */,
-				5D45D05C264CBD6C00345602 /* swiftlint.sh */,
+				5D45D05C264CBD6C00345602 /* lint.sh */,
 			);
 			path = SwiftLint;
 			sourceTree = "<group>";
@@ -602,7 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				5D45D059264CBB8700345602 /* .swiftformat */,
-				5D45D05A264CBBA600345602 /* swiftformat.sh */,
+				5D45D05A264CBBA600345602 /* format.sh */,
 			);
 			path = SwiftFormat;
 			sourceTree = "<group>";
@@ -611,7 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				5D45D05E264CBDE700345602 /* swiftgen.yml */,
-				5D45D05D264CBD9900345602 /* swiftgen.sh */,
+				5D45D05D264CBD9900345602 /* generate.sh */,
 			);
 			path = SwiftGen;
 			sourceTree = "<group>";
@@ -619,8 +610,8 @@
 		5D45D058264CBB2200345602 /* GitHooks */ = {
 			isa = PBXGroup;
 			children = (
-				5D45D05F264CBE5400345602 /* install-hooks.bash */,
-				5D45D060264CBE6A00345602 /* pre-commit.bash */,
+				5D45D05F264CBE5400345602 /* install.sh */,
+				5D45D060264CBE6A00345602 /* pre-commit.sh */,
 			);
 			path = GitHooks;
 			sourceTree = "<group>";
@@ -838,7 +829,7 @@
 		5D606E6C264F11D200E8D23D /* List */ = {
 			isa = PBXGroup;
 			children = (
-				5D606E6F264F234100E8D23D /* CharactersCoordinatorDelegateSpy.swift */,
+				5D606E6F264F234100E8D23D /* CharactersListRouterSpy.swift */,
 				5D606E6D264F11E800E8D23D /* CharactersViewModelTests.swift */,
 				5D0A83CA2651ABCE0075A622 /* CharacterItemTests.swift */,
 			);
@@ -1000,6 +991,7 @@
 				5D433CFE227DEED100C116FA /* Model */,
 				5DF872B1227D863F00DB0CCD /* View */,
 				5DF872B2227D864800DB0CCD /* ViewModel */,
+				5DD9DEDA26B31EF800A699C9 /* Router */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1031,13 +1023,20 @@
 				5D217FD4227B444300006DBE /* Application */,
 				5D217FF9227B534000006DBE /* Core */,
 				5D217FFA227B534A00006DBE /* Data */,
-				5DB531DC227DDBCC0044E86F /* Coordinators */,
 				5D217FD5227B445400006DBE /* Scenes */,
 				5D217FDE227B4A6300006DBE /* Commons */,
 				5D217FD7227B44D500006DBE /* Resources */,
 				5D217FD6227B44C400006DBE /* Supporting Files */,
 			);
 			path = Marvel;
+			sourceTree = "<group>";
+		};
+		5DD9DEDA26B31EF800A699C9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9DEDB26B31F0D00A699C9 /* CharactersListRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		5DF872AE227D862200DB0CCD /* View */ = {
@@ -1124,12 +1123,12 @@
 			buildConfigurationList = 5DCC0D47227B427A0065DA28 /* Build configuration list for PBXNativeTarget "Marvel" */;
 			buildPhases = (
 				6179E4A9D1BE349CBE6FE709 /* [CP] Check Pods Manifest.lock */,
-				5D45D061264CBEA000345602 /* Install Hooks */,
-				5D217FD8227B44F800006DBE /* SwiftLint */,
-				5D217FD9227B44F900006DBE /* SwiftGen */,
 				5DCC0D31227B42790065DA28 /* Sources */,
 				5DCC0D32227B42790065DA28 /* Frameworks */,
 				5DCC0D33227B42790065DA28 /* Resources */,
+				1356C9BCA1C44CD51CB2378D /* [CP-User] GitHooks */,
+				CA1613CFA1C8C1E1B4790620 /* [CP-User] SwiftLint */,
+				69C8A7166A657A043F40C363 /* [CP-User] SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -1220,6 +1219,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1356C9BCA1C44CD51CB2378D /* [CP-User] GitHooks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] GitHooks";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $SRCROOT/Settings/GitHooks/install.sh;
+		};
 		4BF09B895EBEB4EF0A41EEDC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1241,60 +1250,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		5D217FD8227B44F800006DBE /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "STRICT=false sh \"$SRCROOT/Settings/SwiftLint/swiftlint.sh\"\n\n\n";
-		};
-		5D217FD9227B44F900006DBE /* SwiftGen */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftGen;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"$SRCROOT/Settings/SwiftGen/swiftgen.sh\"\n";
-		};
-		5D45D061264CBEA000345602 /* Install Hooks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Install Hooks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"$SRCROOT/Settings/GitHooks/install-hooks.bash\"\n";
 		};
 		6179E4A9D1BE349CBE6FE709 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1318,6 +1273,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		69C8A7166A657A043F40C363 /* [CP-User] SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] SwiftGen";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $SRCROOT/Settings/SwiftGen/generate.sh;
+		};
+		CA1613CFA1C8C1E1B4790620 /* [CP-User] SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] SwiftLint";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $SRCROOT/Settings/SwiftLint/lint.sh;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1331,7 +1306,7 @@
 				5D606E44264E84CA00E8D23D /* RealmRepositorySpy.swift in Sources */,
 				5D606E73264F2F7B00E8D23D /* ThrottlerSpy.swift in Sources */,
 				5DA0D0D9265FA3B8002885E3 /* XCTestCase+Publisher.swift in Sources */,
-				5D606E70264F234100E8D23D /* CharactersCoordinatorDelegateSpy.swift in Sources */,
+				5D606E70264F234100E8D23D /* CharactersListRouterSpy.swift in Sources */,
 				5D606E46264E857F00E8D23D /* AnyRepositoryTests.swift in Sources */,
 				5D606E30264D79D300E8D23D /* MarvelCharacter.swift in Sources */,
 				5D606E5C264EC7F000E8D23D /* CharacterUseCaseStub.swift in Sources */,
@@ -1357,15 +1332,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DD9DEDE26B32A9D00A699C9 /* UIViewController.swift in Sources */,
 				5DC64856227D07100080B1F4 /* MediaTableCell.swift in Sources */,
 				5DC6482E227C42150080B1F4 /* UIView.swift in Sources */,
 				5D218022227C3CEE00006DBE /* ParallelogramView.swift in Sources */,
 				5DC64858227D08860080B1F4 /* MediaCollectionCell.swift in Sources */,
 				5D9228F52280F1200048C614 /* APICharacterGateway.swift in Sources */,
 				5D606E57264EC5E700E8D23D /* MediaGateway.swift in Sources */,
-				5DB531E9227DDDF20044E86F /* Router.swift in Sources */,
-				5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */,
-				5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */,
 				5D217FE6227B4CE000006DBE /* UIAlertAction.swift in Sources */,
 				5DC64850227D019E0080B1F4 /* CollectionDataSource.swift in Sources */,
 				5D47378625251EE700360C4A /* Entity.swift in Sources */,
@@ -1375,11 +1348,12 @@
 				5DBB7169265EEA0700947A5C /* Publisher.swift in Sources */,
 				5D606E14264D60C400E8D23D /* Resources+Types.swift in Sources */,
 				5DC6483C227C88850080B1F4 /* CharactersViewModel.swift in Sources */,
-				5DB531E5227DDDAF0044E86F /* Routable.swift in Sources */,
+				5DD9DED926B31CCC00A699C9 /* AppRouter.swift in Sources */,
 				5DC64838227C81610080B1F4 /* TableDataSource.swift in Sources */,
 				5D9B671C2525234B0070C08D /* Codable.swift in Sources */,
 				5DC64845227CA6310080B1F4 /* SearchCell.swift in Sources */,
 				5D433D08227DF84B00C116FA /* StoryboardIdentifiable.swift in Sources */,
+				5DD9DED726B313EA00A699C9 /* AppCore.swift in Sources */,
 				5D217FEB227B4D3600006DBE /* KeyedDecodingContainer.swift in Sources */,
 				5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */,
 				5D9B671F25252D8A0070C08D /* Config.swift in Sources */,
@@ -1394,14 +1368,12 @@
 				5D218014227B702F00006DBE /* MarvelCharacter.swift in Sources */,
 				5D217FDB227B467B00006DBE /* Assets.swift in Sources */,
 				5DC6484C227CEAF60080B1F4 /* CharacterDetailViewController.swift in Sources */,
-				5DB531E7227DDDCC0044E86F /* Showable.swift in Sources */,
 				5D50C87C22821F37008A4BFA /* MediaType.swift in Sources */,
 				5D21801A227B9D4700006DBE /* Image.swift in Sources */,
 				5DC6482C227C41CF0080B1F4 /* TableViewable.swift in Sources */,
 				5DC6484E227CEB060080B1F4 /* CharacterDetailViewModel.swift in Sources */,
 				5DC64849227CC50B0080B1F4 /* Throttler.swift in Sources */,
 				5D47378425251E6A00360C4A /* RealmObject.swift in Sources */,
-				5D433D00227DF30000C116FA /* CharacterDetailsCoordinator.swift in Sources */,
 				5D606E55264EC5DE00E8D23D /* CharacterGateway.swift in Sources */,
 				5D218018227B996D00006DBE /* MarvelParameter.swift in Sources */,
 				5D433CFD227DEBBE00C116FA /* ApplicationCoordinatorService.swift in Sources */,
@@ -1409,12 +1381,10 @@
 				5DC6482A227C419E0080B1F4 /* State.swift in Sources */,
 				5DC64847227CBD1C0080B1F4 /* String.swift in Sources */,
 				5D217FE4227B4C8A00006DBE /* UIColor.swift in Sources */,
-				5DB531DE227DDBE70044E86F /* Coordinator.swift in Sources */,
 				5DF872AD227D84A500DB0CCD /* CharecterDetailHeaderView.swift in Sources */,
 				5D218000227B545300006DBE /* MarvelResponse.swift in Sources */,
 				5DC64854227D03F50080B1F4 /* ReusableView.swift in Sources */,
 				5D21800E227B5AEF00006DBE /* Media.swift in Sources */,
-				5D433D06227DF52300C116FA /* SearchCoordinator.swift in Sources */,
 				5DF872B4227D9C1D00DB0CCD /* CharacterDetailsItem.swift in Sources */,
 				5DC64843227CA3ED0080B1F4 /* SearchViewController.swift in Sources */,
 				5DC6483A227C838D0080B1F4 /* UITableView.swift in Sources */,
@@ -1426,6 +1396,7 @@
 				5DA0D0DB265FA542002885E3 /* Result.swift in Sources */,
 				5D606E3F264DBC3200E8D23D /* Parameter.swift in Sources */,
 				5DA0D0D4265FA202002885E3 /* AnyPublisher.swift in Sources */,
+				5DD9DEDC26B31F0D00A699C9 /* CharactersListRouter.swift in Sources */,
 				5D9229052281912B0048C614 /* AbstractRepository.swift in Sources */,
 				5D606E3D264DBC1900E8D23D /* Identifiable.swift in Sources */,
 				5D606E16264D64B900E8D23D /* EmptyStateView.swift in Sources */,

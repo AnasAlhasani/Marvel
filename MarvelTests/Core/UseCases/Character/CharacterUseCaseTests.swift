@@ -35,7 +35,7 @@ final class CharacterUseCaseTests: XCTestCase {
         // Given
         let results = MarvelCharacter.items()
         let paginator = Paginator.value(results: results)
-        let parameter = CharacterParameter(query: "any")
+        let parameter = CharacterParameter(offset: 0, query: "any")
         gatewayStub.publisher = .just(paginator)
         repositroyStub.savePublisher = .just(())
 
@@ -62,7 +62,7 @@ final class CharacterUseCaseTests: XCTestCase {
         let error = MarvelError.general
         let results = MarvelCharacter.items()
         let paginator = Paginator.value(offset: 0, limit: 0, total: 0, count: 0, results: results)
-        let parameter = CharacterParameter(query: "any")
+        let parameter = CharacterParameter(offset: 0, query: "any")
         gatewayStub.publisher = .fail(with: error)
         repositroyStub.savePublisher = .just(())
         repositroyStub.fetchPublisher = .just(results)

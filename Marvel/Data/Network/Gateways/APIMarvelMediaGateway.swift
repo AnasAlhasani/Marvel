@@ -12,7 +12,7 @@ import CoreNetwork
 final class APIMarvelMediaGateway: MediaGateway {
     private let apiClient: APIClient
 
-    init(apiClient: APIClient = DefaultAPIClient()) {
+    init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
 }

@@ -22,7 +22,7 @@ final class CharactersViewModel {
 
     // MARK: - Properties
 
-    private weak var coordinator: CharactersCoordinatorDelegate?
+    private let router: CharactersListRoutable
     private let characterUseCase: CharacterUseCase
     private(set) var state = Dynamic<CharacterItemState>(.idle)
     private(set) var throttler: Throttler
@@ -33,11 +33,11 @@ final class CharactersViewModel {
     // MARK: - Init / Deinit
 
     init(
-        coordinator: CharactersCoordinatorDelegate,
+        router: CharactersListRoutable,
         characterUseCase: CharacterUseCase,
         throttler: Throttler
     ) {
-        self.coordinator = coordinator
+        self.router = router
         self.characterUseCase = characterUseCase
         self.throttler = throttler
     }
@@ -48,23 +48,15 @@ final class CharactersViewModel {
 extension CharactersViewModel {
     func didSelectRow(at indexPath: IndexPath) {
         let item = state.value.items[indexPath.row]
-        coordinator?.didSelect(character: item)
+        router.showDetails(for: item)
     }
 
     func didTapSearch() {
-        coordinator?.didTapSearch()
+        router.showSearch()
     }
 
     func didTapCancelSearch() {
-        coordinator?.didTapCancelSearch()
-    }
-}
-
-// MARK: - Constants
-
-private extension CharactersViewModel {
-    enum Constant {
-        static let limit = 20
+        router.dismissSearch()
     }
 }
 
@@ -82,7 +74,7 @@ extension CharactersViewModel {
     func loadCharecters(at offset: Int) {
         guard shouldLoadCharecters else { return }
         shouldLoadCharecters = false
-        let parameter = CharacterParameter(query: query, limit: Constant.limit, offset: offset)
+        let parameter = CharacterParameter(offset: offset, query: query)
 
         characterUseCase.loadCharacters(with: parameter)
             .convertToResult()
