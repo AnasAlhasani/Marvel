@@ -19,7 +19,7 @@ final class CharacterDetailViewController: UIViewController {
 
     // MARK: - Properties
 
-    private lazy var dataSource = TableDataSource<MediaTableCell>(tableView)
+    private lazy var dataSource = TableViewDataSource<MediaTableCell>(tableView)
     // swiftlint:disable implicitly_unwrapped_optional
     var viewModel: CharacterDetailViewModel!
 
@@ -45,14 +45,10 @@ private extension CharacterDetailViewController {
     }
 
     func handleDataSource() {
-        dataSource.cellIndexPathHandler = { [weak self] cell, indexPath in
-            self?.didConfigure(cell, at: indexPath)
+        dataSource.cellConfigurator = { [weak self] (cell: MediaTableCell, indexPath) in
+            guard let self = self else { return }
+            let item = self.viewModel.state.value.items[indexPath.row]
+            cell.configure(with: item)
         }
-    }
-
-    func didConfigure<Cell: TableCell>(_ cell: Cell, at indexPath: IndexPath) {
-        guard let cell = cell as? MediaTableCell else { return }
-        let item = viewModel.state.value.items[indexPath.row]
-        cell.configure(with: item)
     }
 }

@@ -15,7 +15,7 @@ final class SearchViewController: UIViewController {
 
     // MARK: - Properties
 
-    private lazy var dataSource = TableDataSource<SearchCell>(tableView)
+    private lazy var dataSource = TableViewDataSource<SearchCell>(tableView)
     // swiftlint:disable implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
 

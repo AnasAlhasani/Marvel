@@ -1,5 +1,5 @@
 //
-//  TableDataSource.swift
+//  TableViewDataSource.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/3/19.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-typealias TableCell = CellConfigurable & UITableViewCell
-typealias TableDataSourceDelegate = UITableViewDataSource & UITableViewDelegate
+typealias TableViewCell = CellConfigurable & UITableViewCell
+typealias TableViewDataSourceDelegate = UITableViewDataSource & UITableViewDelegate
 
-final class TableDataSource<Cell: TableCell>: NSObject, TableDataSourceDelegate {
-    // MARK: - Typealias
+final class TableViewDataSource<Cell: TableViewCell>: NSObject, TableViewDataSourceDelegate {
+    // MARK: Types
 
     typealias DidSelectHandler = (IndexPath) -> Void
     typealias PagingHandler = (Int) -> Void
-    typealias CellIndexPathHandler = (Cell, IndexPath) -> Void
+    typealias CellConfigurator = (Cell, IndexPath) -> Void
 
-    // MARK: - Properties
+    // MARK: Properties
 
     private let tableView: UITableView
 
@@ -26,21 +26,22 @@ final class TableDataSource<Cell: TableCell>: NSObject, TableDataSourceDelegate 
         didSet { tableView.display(state) }
     }
 
-    // MARK: - Handlers
+    // MARK: Handlers
 
     var didSelectHandler: DidSelectHandler?
     var pagingHandler: PagingHandler?
-    var cellIndexPathHandler: CellIndexPathHandler?
+    var cellConfigurator: CellConfigurator?
 
-    // MARK: - Init / Deinit
+    // MARK: Init / Deinit
 
     init(_ tableView: UITableView) {
         self.tableView = tableView
         super.init()
-        setup()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
-    // MARK: - UITableViewDataSource
+    // MARK: UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -57,24 +58,13 @@ final class TableDataSource<Cell: TableCell>: NSObject, TableDataSourceDelegate 
         if case let .paging(_, nextOffset) = state, indexPath.row == state.items.count - 1 {
             pagingHandler?(nextOffset)
         }
-        cellIndexPathHandler?(cell, indexPath)
+        cellConfigurator?(cell, indexPath)
         return cell
     }
 
-    // MARK: - UITableViewDelegate
+    // MARK: UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectHandler?(indexPath)
-    }
-}
-
-// MARK: - Configurations
-
-private extension TableDataSource {
-    func setup() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = Colors.darkGray.color
     }
 }

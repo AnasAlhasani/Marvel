@@ -15,7 +15,7 @@ final class CharactersViewController: UIViewController {
 
     // MARK: - Properties
 
-    private lazy var dataSource = TableDataSource<CharactersCell>(tableView)
+    private lazy var dataSource = TableViewDataSource<CharactersCell>(tableView)
     // swiftlint:disable implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
 

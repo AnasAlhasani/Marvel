@@ -18,7 +18,7 @@ final class MediaTableCell: UITableViewCell {
 
     // MARK: - Properties
 
-    private lazy var dataSource = CollectionDataSource<MediaCollectionCell>(collectionView)
+    private lazy var dataSource = CollectionViewDataSource<MediaCollectionCell>(collectionView)
 }
 
 // MARK: - CellConfigurable

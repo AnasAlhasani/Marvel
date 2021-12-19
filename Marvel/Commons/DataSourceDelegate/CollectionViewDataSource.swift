@@ -1,5 +1,5 @@
 //
-//  CollectionDataSource.swift
+//  CollectionViewDataSource.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-typealias CollectionCell = CellConfigurable & UICollectionViewCell
-typealias CollectionDataSourceDelegate = UICollectionViewDataSource & UICollectionViewDelegate
+typealias CollectionViewCell = CellConfigurable & UICollectionViewCell
+typealias CollectionViewDataSourceDelegate = UICollectionViewDataSource & UICollectionViewDelegate
 
-final class CollectionDataSource<Cell: CollectionCell>: NSObject, CollectionDataSourceDelegate {
-    // MARK: - Typealias
+final class CollectionViewDataSource<Cell: CollectionViewCell>: NSObject, CollectionViewDataSourceDelegate {
+    // MARK: Types
 
     typealias DidSelectHandler = (IndexPath) -> Void
     typealias PagingHandler = (Int) -> Void
 
-    // MARK: - Properties
+    // MARK: Properties
 
     private let collectionView: UICollectionView
 
@@ -25,20 +25,21 @@ final class CollectionDataSource<Cell: CollectionCell>: NSObject, CollectionData
         didSet { collectionView.display(state) }
     }
 
-    // MARK: - Handlers
+    // MARK: Handlers
 
     var didSelectHandler: DidSelectHandler?
     var pagingHandler: PagingHandler?
 
-    // MARK: - Init / Deinit
+    // MARK: Init / Deinit
 
     init(_ collectionView: UICollectionView) {
         self.collectionView = collectionView
         super.init()
-        setup()
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
 
-    // MARK: - UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
@@ -61,19 +62,9 @@ final class CollectionDataSource<Cell: CollectionCell>: NSObject, CollectionData
         return cell
     }
 
-    // MARK: - UICollectionViewDelegate
+    // MARK: UICollectionViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectHandler?(indexPath)
-    }
-}
-
-// MARK: - Configurations
-
-private extension CollectionDataSource {
-    func setup() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = Colors.gray.color
     }
 }
