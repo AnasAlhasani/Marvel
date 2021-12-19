@@ -10,7 +10,9 @@
 
 import UIKit
 
-protocol ApplicationService {
+// MARK: - ApplicationPlugin
+
+protocol ApplicationPlugin {
     func application(
         _ application: UIApplication,
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -36,7 +38,7 @@ protocol ApplicationService {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
 }
 
-extension ApplicationService {
+extension ApplicationPlugin {
     func application(
         _ application: UIApplication,
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -70,24 +72,27 @@ extension ApplicationService {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {}
 }
 
-class PluggableApplicationDelegate: UIResponder, UIApplicationDelegate {
+// MARK: - ApplicationPluggableDelegate
+
+class ApplicationPluggableDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    lazy var lazyServices: [ApplicationService] = {
-        services()
-    }()
+    private(set) lazy var pluginInstances: [ApplicationPlugin] = { plugins() }()
 
-    func services() -> [ApplicationService] {
-        []
+    override init() {
+        super.init()
+        _ = pluginInstances
     }
+
+    func plugins() -> [ApplicationPlugin] { [] }
 }
 
-extension PluggableApplicationDelegate {
+extension ApplicationPluggableDelegate {
     func application(
         _ application: UIApplication,
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        lazyServices.reduce(true) {
+        pluginInstances.reduce(true) {
             $0 && $1.application(application, willFinishLaunchingWithOptions: launchOptions)
         }
     }
@@ -96,61 +101,69 @@ extension PluggableApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        lazyServices.reduce(true) {
+        pluginInstances.reduce(true) {
             $0 && $1.application(application, didFinishLaunchingWithOptions: launchOptions)
         }
     }
 }
 
-extension PluggableApplicationDelegate {
+extension ApplicationPluggableDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationWillEnterForeground(application) }
+        pluginInstances.forEach { $0.applicationWillEnterForeground(application) }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationDidEnterBackground(application) }
+        pluginInstances.forEach { $0.applicationDidEnterBackground(application) }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationDidBecomeActive(application) }
+        pluginInstances.forEach { $0.applicationDidBecomeActive(application) }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationWillResignActive(application) }
+        pluginInstances.forEach { $0.applicationWillResignActive(application) }
     }
 }
 
-extension PluggableApplicationDelegate {
+extension ApplicationPluggableDelegate {
     func applicationProtectedDataWillBecomeUnavailable(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationProtectedDataWillBecomeUnavailable(application) }
+        pluginInstances.forEach { $0.applicationProtectedDataWillBecomeUnavailable(application) }
     }
 
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationProtectedDataDidBecomeAvailable(application) }
+        pluginInstances.forEach { $0.applicationProtectedDataDidBecomeAvailable(application) }
     }
 }
 
-extension PluggableApplicationDelegate {
+extension ApplicationPluggableDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationWillTerminate(application) }
+        pluginInstances.forEach { $0.applicationWillTerminate(application) }
     }
 
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        lazyServices.forEach { $0.applicationDidReceiveMemoryWarning(application) }
+        pluginInstances.forEach { $0.applicationDidReceiveMemoryWarning(application) }
     }
 }
 
-extension PluggableApplicationDelegate {
+extension ApplicationPluggableDelegate {
     func application(
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        lazyServices.forEach {
+        pluginInstances.forEach {
             $0.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
         }
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        lazyServices.forEach { $0.application(application, didFailToRegisterForRemoteNotificationsWithError: error) }
+        pluginInstances.forEach {
+            $0.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+        }
     }
+}
+
+// MARK: - Helpers
+
+extension UIApplication {
+    var currentWindow: UIWindow? { windows.first(where: \.isKeyWindow) }
 }

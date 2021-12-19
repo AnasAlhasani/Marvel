@@ -8,12 +8,12 @@
 
 import UIKit
 
-@UIApplicationMain
-final class AppDelegate: PluggableApplicationDelegate {
-    override func services() -> [ApplicationService] {
+@main
+final class AppDelegate: ApplicationPluggableDelegate {
+    override func plugins() -> [ApplicationPlugin] {
         [
-            ApplicationCoordinatorService(with: window, factory: AppRoot.viewFactory),
-            ThemeApplicationService()
+            WindowPlugin(delegate: self, factory: viewFactory),
+            ThemePlugin(theme: core.theme())
         ]
     }
 }
@@ -21,4 +21,9 @@ final class AppDelegate: PluggableApplicationDelegate {
 private enum AppRoot {
     static let core = DefaultAppCore()
     static let viewFactory = DefaultViewFactory(core: core)
+}
+
+private extension UIApplicationDelegate {
+    var core: AppCore { AppRoot.core }
+    var viewFactory: ViewFactory { AppRoot.viewFactory }
 }

@@ -21,7 +21,7 @@
 		5D217FE6227B4CE000006DBE /* UIAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FE5227B4CE000006DBE /* UIAlertAction.swift */; };
 		5D217FEB227B4D3600006DBE /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FEA227B4D3600006DBE /* KeyedDecodingContainer.swift */; };
 		5D217FEE227B4DA900006DBE /* PluggableApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FED227B4DA900006DBE /* PluggableApplicationDelegate.swift */; };
-		5D217FF2227B4DF000006DBE /* ThemeApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FF1227B4DF000006DBE /* ThemeApplicationService.swift */; };
+		5D217FF2227B4DF000006DBE /* ThemePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FF1227B4DF000006DBE /* ThemePlugin.swift */; };
 		5D217FFE227B53C600006DBE /* MarvelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FFD227B53C600006DBE /* MarvelError.swift */; };
 		5D218000227B545300006DBE /* MarvelResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D217FFF227B545300006DBE /* MarvelResponse.swift */; };
 		5D218005227B58CE00006DBE /* CharacterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D218004227B58CE00006DBE /* CharacterUseCase.swift */; };
@@ -36,7 +36,7 @@
 		5D21802A227C3F3900006DBE /* EmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D218026227C3F3900006DBE /* EmptyStateView.xib */; };
 		5D21802B227C3F3900006DBE /* ErrorStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D218027227C3F3900006DBE /* ErrorStateView.swift */; };
 		5D21802C227C3F3900006DBE /* ErrorStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D218028227C3F3900006DBE /* ErrorStateView.xib */; };
-		5D433CFD227DEBBE00C116FA /* ApplicationCoordinatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433CFC227DEBBE00C116FA /* ApplicationCoordinatorService.swift */; };
+		5D433CFD227DEBBE00C116FA /* WindowPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433CFC227DEBBE00C116FA /* WindowPlugin.swift */; };
 		5D433D08227DF84B00C116FA /* StoryboardIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */; };
 		5D433D0B227E08CE00C116FA /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */; };
 		5D45D064264CBF5E00345602 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D45D066264CBF5E00345602 /* Localizable.strings */; };
@@ -44,6 +44,7 @@
 		5D47378425251E6A00360C4A /* RealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47378325251E6A00360C4A /* RealmObject.swift */; };
 		5D47378625251EE700360C4A /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47378525251EE700360C4A /* Entity.swift */; };
 		5D4739CE227DB6D4000941C6 /* MediaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4739CD227DB6D4000941C6 /* MediaUseCase.swift */; };
+		5D4CC878276F814100162F6C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4CC877276F814100162F6C /* Theme.swift */; };
 		5D50C87C22821F37008A4BFA /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50C87B22821F37008A4BFA /* MediaType.swift */; };
 		5D5C126E2280831600B9B4EF /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C126D2280831600B9B4EF /* Optional.swift */; };
 		5D606E12264CC98600E8D23D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E11264CC98600E8D23D /* Strings.swift */; };
@@ -149,7 +150,7 @@
 		5D217FE5227B4CE000006DBE /* UIAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertAction.swift; sourceTree = "<group>"; };
 		5D217FEA227B4D3600006DBE /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		5D217FED227B4DA900006DBE /* PluggableApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluggableApplicationDelegate.swift; sourceTree = "<group>"; };
-		5D217FF1227B4DF000006DBE /* ThemeApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeApplicationService.swift; sourceTree = "<group>"; };
+		5D217FF1227B4DF000006DBE /* ThemePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePlugin.swift; sourceTree = "<group>"; };
 		5D217FFD227B53C600006DBE /* MarvelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelError.swift; sourceTree = "<group>"; };
 		5D217FFF227B545300006DBE /* MarvelResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelResponse.swift; sourceTree = "<group>"; };
 		5D218004227B58CE00006DBE /* CharacterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUseCase.swift; sourceTree = "<group>"; };
@@ -169,7 +170,7 @@
 		5D335AEB2650506700327BF7 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5D335AEC2650506700327BF7 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = SOURCE_ROOT; };
 		5D335AED2650506700327BF7 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = SOURCE_ROOT; };
-		5D433CFC227DEBBE00C116FA /* ApplicationCoordinatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorService.swift; sourceTree = "<group>"; };
+		5D433CFC227DEBBE00C116FA /* WindowPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowPlugin.swift; sourceTree = "<group>"; };
 		5D433D07227DF84B00C116FA /* StoryboardIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiable.swift; sourceTree = "<group>"; };
 		5D433D0A227E08CE00C116FA /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
 		5D45D059264CBB8700345602 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		5D47378325251E6A00360C4A /* RealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmObject.swift; sourceTree = "<group>"; };
 		5D47378525251EE700360C4A /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5D4739CD227DB6D4000941C6 /* MediaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUseCase.swift; sourceTree = "<group>"; };
+		5D4CC877276F814100162F6C /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		5D50C87B22821F37008A4BFA /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		5D5C126D2280831600B9B4EF /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		5D606E0B264CC60600E8D23D /* Details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Details.png; sourceTree = "<group>"; };
@@ -328,7 +330,7 @@
 		5D217FD4227B444300006DBE /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				5D217FF0227B4DD000006DBE /* Services */,
+				5D217FF0227B4DD000006DBE /* Plugins */,
 				5DCC0D38227B42790065DA28 /* AppDelegate.swift */,
 				5DD9DED626B313EA00A699C9 /* AppCore.swift */,
 				5DD9DED826B31CCC00A699C9 /* ViewFactory.swift */,
@@ -434,13 +436,13 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		5D217FF0227B4DD000006DBE /* Services */ = {
+		5D217FF0227B4DD000006DBE /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				5D433CFC227DEBBE00C116FA /* ApplicationCoordinatorService.swift */,
-				5D217FF1227B4DF000006DBE /* ThemeApplicationService.swift */,
+				5D4CC875276F813000162F6C /* Window */,
+				5D4CC876276F813700162F6C /* Theme */,
 			);
-			path = Services;
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		5D217FF9227B534000006DBE /* Core */ = {
@@ -635,6 +637,23 @@
 				5D217FDA227B467B00006DBE /* Assets.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		5D4CC875276F813000162F6C /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				5D433CFC227DEBBE00C116FA /* WindowPlugin.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		5D4CC876276F813700162F6C /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				5D4CC877276F814100162F6C /* Theme.swift */,
+				5D217FF1227B4DF000006DBE /* ThemePlugin.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		5D606E0A264CC5D500E8D23D /* Assets */ = {
@@ -1309,6 +1328,7 @@
 				5D47378625251EE700360C4A /* Entity.swift in Sources */,
 				5D217FEE227B4DA900006DBE /* PluggableApplicationDelegate.swift in Sources */,
 				5D9B672125252D960070C08D /* Environment.swift in Sources */,
+				5D4CC878276F814100162F6C /* Theme.swift in Sources */,
 				5D5C126E2280831600B9B4EF /* Optional.swift in Sources */,
 				5DBB7169265EEA0700947A5C /* Publisher.swift in Sources */,
 				5D606E14264D60C400E8D23D /* Resources+Types.swift in Sources */,
@@ -1323,7 +1343,7 @@
 				5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */,
 				5D9B671F25252D8A0070C08D /* Config.swift in Sources */,
 				5D21802B227C3F3900006DBE /* ErrorStateView.swift in Sources */,
-				5D217FF2227B4DF000006DBE /* ThemeApplicationService.swift in Sources */,
+				5D217FF2227B4DF000006DBE /* ThemePlugin.swift in Sources */,
 				5D606E18264D64C500E8D23D /* LoadingStateView.swift in Sources */,
 				5D9228F42280F1200048C614 /* APIClient.swift in Sources */,
 				5D21801D227C2B7000006DBE /* CharactersViewController.swift in Sources */,
@@ -1341,7 +1361,7 @@
 				5D47378425251E6A00360C4A /* RealmObject.swift in Sources */,
 				5D606E55264EC5DE00E8D23D /* CharacterGateway.swift in Sources */,
 				5D218018227B996D00006DBE /* MarvelParameter.swift in Sources */,
-				5D433CFD227DEBBE00C116FA /* ApplicationCoordinatorService.swift in Sources */,
+				5D433CFD227DEBBE00C116FA /* WindowPlugin.swift in Sources */,
 				5DC64835227C813D0080B1F4 /* CellConfigurable.swift in Sources */,
 				5DC6482A227C419E0080B1F4 /* State.swift in Sources */,
 				5DC64847227CBD1C0080B1F4 /* String.swift in Sources */,

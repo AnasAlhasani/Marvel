@@ -12,6 +12,7 @@ import Foundation
 // MARK: - AppCore
 
 protocol AppCore {
+    func theme() -> Theme
     func throttler() -> Throttler
 
     func apiConfiguration() -> ServiceConfigurator
@@ -24,6 +25,14 @@ protocol AppCore {
 
     func characterUseCase() -> CharacterUseCase
     func mediaUseCase() -> MediaUseCase
+}
+
+// MARK: Theme
+
+extension AppCore {
+    func theme() -> Theme {
+        AppTheme()
+    }
 }
 
 // MARK: Throttler
