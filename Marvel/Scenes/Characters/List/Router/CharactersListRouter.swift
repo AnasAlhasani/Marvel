@@ -15,28 +15,28 @@ protocol CharactersListRoutable {
 }
 
 struct CharactersListRouter {
-    private let router: AppRouter
-    private weak var viewController: UIViewController?
+    private let factory: ViewFactory
+    private weak var context: UIViewController?
 
     init(
-        router: AppRouter,
-        viewController: UIViewController?
+        factory: ViewFactory,
+        context: UIViewController?
     ) {
-        self.router = router
-        self.viewController = viewController
+        self.factory = factory
+        self.context = context
     }
 }
 
 extension CharactersListRouter: CharactersListRoutable {
     func showDetails(for item: CharacterItem) {
-        viewController?.show(router.characterDetailsView(for: item))
+        context?.show(factory.makeCharacterDetailsView(for: item))
     }
 
     func showSearch() {
-        viewController?.show(router.charactersSearchView())
+        context?.show(factory.makeCharactersSearchView())
     }
 
     func dismissSearch() {
-        viewController?.dismissView()
+        context?.dismissView()
     }
 }

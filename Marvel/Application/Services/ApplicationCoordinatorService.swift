@@ -12,16 +12,16 @@ final class ApplicationCoordinatorService: ApplicationService {
     // MARK: Properties
 
     private var window: UIWindow?
-    private let router: AppRouter
+    private let factory: ViewFactory
 
     // MARK: Init
 
     init(
         with window: UIWindow?,
-        router: AppRouter
+        factory: ViewFactory
     ) {
         self.window = window
-        self.router = router
+        self.factory = factory
     }
 
     // MARK: ApplicationService
@@ -31,7 +31,7 @@ final class ApplicationCoordinatorService: ApplicationService {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = router.charactersListView()
+        window?.rootViewController = factory.makeRootView()
         window?.makeKeyAndVisible()
         return true
     }

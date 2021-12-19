@@ -1,5 +1,5 @@
 //
-//  AppRouter.swift
+//  ViewFactory.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 29/07/2021.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-protocol AppRouter {
-    func charactersListView() -> UIViewController
-    func charactersSearchView() -> UIViewController
-    func characterDetailsView(for item: CharacterItem) -> UIViewController
+protocol ViewFactory {
+    func makeRootView() -> UIViewController
+    func makeCharactersListView() -> UIViewController
+    func makeCharactersSearchView() -> UIViewController
+    func makeCharacterDetailsView(for item: CharacterItem) -> UIViewController
 }
 
-struct DefaultAppRouter {
+struct DefaultViewFactory: ViewFactory {
     private let core: AppCore
 
     init(core: AppCore) {
@@ -22,10 +23,16 @@ struct DefaultAppRouter {
     }
 }
 
-extension DefaultAppRouter: AppRouter {
-    func charactersListView() -> UIViewController {
+extension DefaultViewFactory {
+    func makeRootView() -> UIViewController {
+        makeCharactersListView()
+    }
+}
+
+extension DefaultViewFactory {
+    func makeCharactersListView() -> UIViewController {
         let view = CharactersViewController.instantiate()
-        let router = CharactersListRouter(router: self, viewController: view)
+        let router = CharactersListRouter(factory: self, context: view)
         let viewModel = CharactersViewModel(
             router: router,
             characterUseCase: core.characterUseCase(),
@@ -36,9 +43,9 @@ extension DefaultAppRouter: AppRouter {
         return UINavigationController(rootViewController: view)
     }
 
-    func charactersSearchView() -> UIViewController {
+    func makeCharactersSearchView() -> UIViewController {
         let view = SearchViewController.instantiate()
-        let router = CharactersListRouter(router: self, viewController: view)
+        let router = CharactersListRouter(factory: self, context: view)
         let viewModel = CharactersViewModel(
             router: router,
             characterUseCase: core.characterUseCase(),
@@ -49,7 +56,7 @@ extension DefaultAppRouter: AppRouter {
         return view
     }
 
-    func characterDetailsView(for item: CharacterItem) -> UIViewController {
+    func makeCharacterDetailsView(for item: CharacterItem) -> UIViewController {
         let view = CharacterDetailViewController.instantiate()
         let viewModel = CharacterDetailViewModel(
             mediaUseCase: core.mediaUseCase(),
