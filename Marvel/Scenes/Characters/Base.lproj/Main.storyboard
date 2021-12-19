@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,20 +25,20 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CharactersCell" rowHeight="180" id="5AF-2s-ju1" customClass="CharactersCell" customModule="Marvel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="180"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5AF-2s-ju1" id="BdA-m3-yWM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="179.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sDq-Tt-hEn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="179.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="sDq-Tt-hEn" secondAttribute="height" multiplier="414:179" priority="999" id="EcT-bh-eT3"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2N-US-GeO" customClass="ParallelogramView" customModule="Marvel" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="114.5" width="145" height="45"/>
+                                                    <rect key="frame" x="15" y="115" width="145" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iron Man" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="P7e-Pb-Cw4">
                                                             <rect key="frame" x="10" y="0.0" width="125" height="45"/>
@@ -78,13 +76,13 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="moF-Yr-QUI"/>
                         <constraints>
                             <constraint firstItem="8uu-f0-4Yk" firstAttribute="leading" secondItem="bfk-UJ-FCX" secondAttribute="leading" id="Fd6-js-usT"/>
                             <constraint firstAttribute="trailing" secondItem="8uu-f0-4Yk" secondAttribute="trailing" id="ZAj-sW-gYQ"/>
                             <constraint firstItem="8uu-f0-4Yk" firstAttribute="top" secondItem="bfk-UJ-FCX" secondAttribute="top" id="cIs-KP-CXI"/>
                             <constraint firstAttribute="bottom" secondItem="8uu-f0-4Yk" secondAttribute="bottom" id="frk-2d-eNe"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="moF-Yr-QUI"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="dIM-vT-X7t">
                         <nil key="title"/>
@@ -129,17 +127,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="120" id="Nt0-oo-0JX" customClass="SearchCell" customModule="Marvel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="120"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nt0-oo-0JX" id="yXw-HC-sdK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="t0n-wD-7uq">
-                                                    <rect key="frame" x="2" y="0.0" width="412" height="119.5"/>
+                                                    <rect key="frame" x="2" y="0.0" width="412" height="120"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RVC-cG-BeW">
-                                                            <rect key="frame" x="0.0" y="18.5" width="82.5" height="82.5"/>
+                                                            <rect key="frame" x="0.0" y="19" width="82.5" height="82"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="RVC-cG-BeW" secondAttribute="height" multiplier="1:1" id="EH9-L1-j1w"/>
                                                             </constraints>
@@ -172,6 +170,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="zrH-Hx-AYL"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zR1-OP-FP5" secondAttribute="trailing" id="4KY-Dm-GYU"/>
@@ -179,7 +178,6 @@
                             <constraint firstItem="zR1-OP-FP5" firstAttribute="top" secondItem="Acc-l2-1cG" secondAttribute="top" id="ZQ7-Hk-O89"/>
                             <constraint firstItem="zR1-OP-FP5" firstAttribute="leading" secondItem="Acc-l2-1cG" secondAttribute="leading" id="zl8-sy-8b0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="zrH-Hx-AYL"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="zR1-OP-FP5" id="cnT-ej-TwU"/>
@@ -200,13 +198,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="240" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AQA-0I-Kan">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="p01-M9-5vK" customClass="CharecterDetailHeaderView" customModule="Marvel" customModuleProvider="target">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="p01-M9-5vK" customClass="CharacterDetailHeaderView" customModule="Marvel" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="341"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.23529411759999999" green="0.2470588235" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </view>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="f2e-Yy-D3J"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AQA-0I-Kan" firstAttribute="top" secondItem="aDa-Mr-nUQ" secondAttribute="top" id="8Le-xH-SH0"/>
@@ -214,10 +213,9 @@
                             <constraint firstItem="AQA-0I-Kan" firstAttribute="leading" secondItem="aDa-Mr-nUQ" secondAttribute="leading" id="ScL-kk-nKv"/>
                             <constraint firstAttribute="bottom" secondItem="AQA-0I-Kan" secondAttribute="bottom" id="vey-MU-NE0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="f2e-Yy-D3J"/>
                     </view>
                     <connections>
-                        <outlet property="headerView" destination="p01-M9-5vK" id="ct8-Vj-Kt4"/>
+                        <outlet property="headerView" destination="p01-M9-5vK" id="hcr-S7-1CI"/>
                         <outlet property="tableView" destination="AQA-0I-Kan" id="Sdu-f4-Seo"/>
                     </connections>
                 </viewController>

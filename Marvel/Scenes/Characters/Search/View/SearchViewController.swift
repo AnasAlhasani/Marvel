@@ -36,7 +36,7 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigationItem()
         viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
-        dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharecters(at: $0) }
+        dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharacters(at: $0) }
         dataSource.didSelectHandler = { [weak self] in self?.viewModel.didSelectRow(at: $0) }
     }
 
@@ -59,7 +59,7 @@ private extension SearchViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.loadCharecters(with: searchBar.text)
+        viewModel.loadCharacters(with: searchBar.text)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

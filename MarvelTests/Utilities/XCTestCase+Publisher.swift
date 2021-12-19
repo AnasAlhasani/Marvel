@@ -19,24 +19,19 @@ extension AnyPublisher {
         return result
     }
 
-    var value: Output? {
-        try? result?.get()
-    }
-
-    var error: Error? {
-        result?.error
-    }
+    var value: Output? { try? result?.get() }
+    var error: Error? { result?.error }
 }
 
 extension XCTestCase {
-    func awaits<T: Publisher>(
-        for publisher: T,
+    func awaitPublisher<T: Publisher>(
+        _ publisher: T,
         timeout: TimeInterval = 10,
         file: StaticString = #file,
         line: UInt = #line
     ) throws -> Result<T.Output, Error> {
         var result: Result<T.Output, Error>?
-        let expectation = self.expectation(description: "awaitsing publisher")
+        let expectation = self.expectation(description: "awaiting publisher")
 
         let cancellable = publisher.sink(
             receiveCompletion: { completion in
@@ -59,7 +54,7 @@ extension XCTestCase {
 
         return try XCTUnwrap(
             result,
-            "awaitsed publisher did not produce any output",
+            "awaited publisher did not produce any output",
             file: file,
             line: line
         )

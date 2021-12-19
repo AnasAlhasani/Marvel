@@ -10,22 +10,22 @@
 import XCTest
 
 final class MediaUseCaseTests: XCTestCase {
-    var repositroyStub: RepositoryStub<Media>!
+    var repositoryStub: RepositoryStub<Media>!
     var gatewayStub: MediaGatewayStub!
     var useCase: MediaUseCase!
 
     override func setUp() {
         super.setUp()
-        repositroyStub = .init()
+        repositoryStub = .init()
         gatewayStub = .init()
         useCase = DefaultMediaUseCase(
             gateway: gatewayStub,
-            repository: repositroyStub.eraseToAnyRepository()
+            repository: repositoryStub.eraseToAnyRepository()
         )
     }
 
     override func tearDown() {
-        repositroyStub = nil
+        repositoryStub = nil
         gatewayStub = nil
         useCase = nil
         super.tearDown()
@@ -37,22 +37,22 @@ final class MediaUseCaseTests: XCTestCase {
         let paginator = Paginator.value(results: results)
         let parameter = MediaParameter(id: 1, type: .comics)
         gatewayStub.publisher = .just(paginator)
-        repositroyStub.savePublisher = .just(())
+        repositoryStub.savePublisher = .just(())
 
         // When
         let publisher = useCase.loadMediaItems(with: parameter)
 
         // Then
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
         // XCTAssertEqual(gatewayStub.parameter, .init(parameter))
         XCTAssertEqual(gatewayStub.callCount, 1)
         XCTAssertEqual(gatewayStub.publisher.value, paginator)
         XCTAssertNil(gatewayStub.publisher.error)
 
-        XCTAssertEqual(repositroyStub.entites, results)
-        XCTAssertEqual(repositroyStub.saveCallCount, 1)
-        XCTAssertTrue(repositroyStub.savePublisher.value! == ())
-        XCTAssertNil(repositroyStub.savePublisher.error)
+        XCTAssertEqual(repositoryStub.entites, results)
+        XCTAssertEqual(repositoryStub.saveCallCount, 1)
+        XCTAssertTrue(repositoryStub.savePublisher.value! == ())
+        XCTAssertNil(repositoryStub.savePublisher.error)
 
         XCTAssertEqual(try result.get(), paginator)
         XCTAssertNil(result.error)
@@ -65,21 +65,21 @@ final class MediaUseCaseTests: XCTestCase {
         let paginator = Paginator.value(offset: 0, limit: 0, total: 0, count: 0, results: results)
         let parameter = MediaParameter(id: 1, type: .comics)
         gatewayStub.publisher = .fail(with: error)
-        repositroyStub.savePublisher = .just(())
-        repositroyStub.fetchPublisher = .just(results)
+        repositoryStub.savePublisher = .just(())
+        repositoryStub.fetchPublisher = .just(results)
 
         // When
         let publisher = useCase.loadMediaItems(with: parameter)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertEqual(gatewayStub.callCount, 1)
         XCTAssertNil(gatewayStub.publisher.value)
         XCTAssertEqual(gatewayStub.publisher.error as? MarvelError, error)
 
-        XCTAssertEqual(repositroyStub.fetchCallCount, 1)
-        XCTAssertEqual(repositroyStub.fetchPublisher.value, results)
-        XCTAssertNil(repositroyStub.fetchPublisher.error)
+        XCTAssertEqual(repositoryStub.fetchCallCount, 1)
+        XCTAssertEqual(repositoryStub.fetchPublisher.value, results)
+        XCTAssertNil(repositoryStub.fetchPublisher.error)
 
         XCTAssertEqual(try result.get(), paginator)
         XCTAssertNil(result.error)

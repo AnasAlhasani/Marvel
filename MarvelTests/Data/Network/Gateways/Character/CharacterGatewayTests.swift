@@ -34,7 +34,7 @@ final class CharacterGatewayTests: XCTestCase {
 
         // When
         let publisher = characterGateway.loadCharacters(with: parameter)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertEqual(apiClientSpy.request.path, "characters")
@@ -55,7 +55,7 @@ final class CharacterGatewayTests: XCTestCase {
 
         // When
         let publisher = characterGateway.loadCharacters(with: parameter)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertNil(try? result.get())

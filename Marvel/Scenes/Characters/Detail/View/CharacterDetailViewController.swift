@@ -15,7 +15,7 @@ final class CharacterDetailViewController: UIViewController {
         didSet { tableView.register(MediaTableCell.self) }
     }
 
-    @IBOutlet private var headerView: CharecterDetailHeaderView!
+    @IBOutlet private var headerView: CharacterDetailHeaderView!
 
     // MARK: - Properties
 

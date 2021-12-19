@@ -88,12 +88,6 @@
 		5DA0D0D4265FA202002885E3 /* AnyPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA0D0D3265FA202002885E3 /* AnyPublisher.swift */; };
 		5DA0D0D9265FA3B8002885E3 /* XCTestCase+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA0D0D8265FA3B8002885E3 /* XCTestCase+Publisher.swift */; };
 		5DA0D0DB265FA542002885E3 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA0D0DA265FA542002885E3 /* Result.swift */; };
-		5DB531DE227DDBE70044E86F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DD227DDBE70044E86F /* Coordinator.swift */; };
-		5DB531E0227DDBF90044E86F /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */; };
-		5DB531E2227DDCA90044E86F /* CharactersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */; };
-		5DB531E5227DDDAF0044E86F /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E4227DDDAF0044E86F /* Routable.swift */; };
-		5DB531E7227DDDCC0044E86F /* Showable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E6227DDDCC0044E86F /* Showable.swift */; };
-		5DB531E9227DDDF20044E86F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB531E8227DDDF20044E86F /* Router.swift */; };
 		5DBB7169265EEA0700947A5C /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB7168265EEA0700947A5C /* Publisher.swift */; };
 		5DC6482A227C419E0080B1F4 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64829227C419E0080B1F4 /* State.swift */; };
 		5DC6482C227C41CF0080B1F4 /* TableViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6482B227C41CF0080B1F4 /* TableViewable.swift */; };
@@ -125,8 +119,8 @@
 		5DD9DEDE26B32A9D00A699C9 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DEDD26B32A9D00A699C9 /* UIViewController.swift */; };
 		5DF872A7227D697000DB0CCD /* MediaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A6227D697000DB0CCD /* MediaTableCell.xib */; };
 		5DF872A9227D69F600DB0CCD /* MediaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */; };
-		5DF872AB227D846200DB0CCD /* CharecterDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872AA227D846200DB0CCD /* CharecterDetailHeaderView.xib */; };
-		5DF872AD227D84A500DB0CCD /* CharecterDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF872AC227D84A500DB0CCD /* CharecterDetailHeaderView.swift */; };
+		5DF872AB227D846200DB0CCD /* CharacterDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872AA227D846200DB0CCD /* CharacterDetailHeaderView.xib */; };
+		5DF872AD227D84A500DB0CCD /* CharacterDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF872AC227D84A500DB0CCD /* CharacterDetailHeaderView.swift */; };
 		5DF872B4227D9C1D00DB0CCD /* CharacterDetailsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF872B3227D9C1D00DB0CCD /* CharacterDetailsItem.swift */; };
 		AC5F7C7771BEF91B2DDA4F20 /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47C1266B47794F849D7E18A /* Pods_Marvel.framework */; };
 /* End PBXBuildFile section */
@@ -247,12 +241,6 @@
 		5DA0D0D3265FA202002885E3 /* AnyPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPublisher.swift; sourceTree = "<group>"; };
 		5DA0D0D8265FA3B8002885E3 /* XCTestCase+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Publisher.swift"; sourceTree = "<group>"; };
 		5DA0D0DA265FA542002885E3 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		5DB531DD227DDBE70044E86F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
-		5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCoordinator.swift; sourceTree = "<group>"; };
-		5DB531E4227DDDAF0044E86F /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
-		5DB531E6227DDDCC0044E86F /* Showable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showable.swift; sourceTree = "<group>"; };
-		5DB531E8227DDDF20044E86F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5DBB7168265EEA0700947A5C /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		5DC64829227C419E0080B1F4 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		5DC6482B227C41CF0080B1F4 /* TableViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewable.swift; sourceTree = "<group>"; };
@@ -286,8 +274,8 @@
 		5DD9DEDD26B32A9D00A699C9 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		5DF872A6227D697000DB0CCD /* MediaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaTableCell.xib; sourceTree = "<group>"; };
 		5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionCell.xib; sourceTree = "<group>"; };
-		5DF872AA227D846200DB0CCD /* CharecterDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharecterDetailHeaderView.xib; sourceTree = "<group>"; };
-		5DF872AC227D84A500DB0CCD /* CharecterDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharecterDetailHeaderView.swift; sourceTree = "<group>"; };
+		5DF872AA227D846200DB0CCD /* CharacterDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailHeaderView.xib; sourceTree = "<group>"; };
+		5DF872AC227D84A500DB0CCD /* CharacterDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailHeaderView.swift; sourceTree = "<group>"; };
 		5DF872B3227D9C1D00DB0CCD /* CharacterDetailsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsItem.swift; sourceTree = "<group>"; };
 		9C63D743A46BA13CC52CFADB /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
 		F47C1266B47794F849D7E18A /* Pods_Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -910,29 +898,6 @@
 			path = Combine;
 			sourceTree = "<group>";
 		};
-		5DB531DC227DDBCC0044E86F /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-				5D433D0C227E1B4E00C116FA /* Protocols */,
-				5DB531E3227DDDA20044E86F /* Router */,
-				5DB531DF227DDBF90044E86F /* ApplicationCoordinator.swift */,
-				5DB531E1227DDCA90044E86F /* CharactersCoordinator.swift */,
-				5D433D05227DF52300C116FA /* SearchCoordinator.swift */,
-				5D433CFF227DF30000C116FA /* CharacterDetailsCoordinator.swift */,
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		5DB531E3227DDDA20044E86F /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				5DB531E4227DDDAF0044E86F /* Routable.swift */,
-				5DB531E6227DDDCC0044E86F /* Showable.swift */,
-				5DB531E8227DDDF20044E86F /* Router.swift */,
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
 		5DC64828227C418D0080B1F4 /* Utillties */ = {
 			isa = PBXGroup;
 			children = (
@@ -1047,8 +1012,8 @@
 				5DC64855227D07100080B1F4 /* MediaTableCell.swift */,
 				5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */,
 				5DC64857227D08860080B1F4 /* MediaCollectionCell.swift */,
-				5DF872AA227D846200DB0CCD /* CharecterDetailHeaderView.xib */,
-				5DF872AC227D84A500DB0CCD /* CharecterDetailHeaderView.swift */,
+				5DF872AA227D846200DB0CCD /* CharacterDetailHeaderView.xib */,
+				5DF872AC227D84A500DB0CCD /* CharacterDetailHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1207,7 +1172,7 @@
 				5D45D06B264CBFF900345602 /* Colors.xcassets in Resources */,
 				5DF872A7227D697000DB0CCD /* MediaTableCell.xib in Resources */,
 				5DCC0D40227B427A0065DA28 /* Images.xcassets in Resources */,
-				5DF872AB227D846200DB0CCD /* CharecterDetailHeaderView.xib in Resources */,
+				5DF872AB227D846200DB0CCD /* CharacterDetailHeaderView.xib in Resources */,
 				5D45D064264CBF5E00345602 /* Localizable.strings in Resources */,
 				5D21802C227C3F3900006DBE /* ErrorStateView.xib in Resources */,
 				5DCC0D3E227B42790065DA28 /* Main.storyboard in Resources */,
@@ -1381,7 +1346,7 @@
 				5DC6482A227C419E0080B1F4 /* State.swift in Sources */,
 				5DC64847227CBD1C0080B1F4 /* String.swift in Sources */,
 				5D217FE4227B4C8A00006DBE /* UIColor.swift in Sources */,
-				5DF872AD227D84A500DB0CCD /* CharecterDetailHeaderView.swift in Sources */,
+				5DF872AD227D84A500DB0CCD /* CharacterDetailHeaderView.swift in Sources */,
 				5D218000227B545300006DBE /* MarvelResponse.swift in Sources */,
 				5DC64854227D03F50080B1F4 /* ReusableView.swift in Sources */,
 				5D21800E227B5AEF00006DBE /* Media.swift in Sources */,

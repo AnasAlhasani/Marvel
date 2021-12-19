@@ -9,12 +9,6 @@
 import Combine
 import Foundation
 
-protocol CharactersCoordinatorDelegate: AnyObject {
-    func didTapSearch()
-    func didTapCancelSearch()
-    func didSelect(character: CharacterItem)
-}
-
 final class CharactersViewModel {
     // MARK: - Typealias
 
@@ -26,7 +20,7 @@ final class CharactersViewModel {
     private let characterUseCase: CharacterUseCase
     private(set) var state = Dynamic<CharacterItemState>(.idle)
     private(set) var throttler: Throttler
-    private(set) var shouldLoadCharecters = true
+    private(set) var shouldLoadCharacters = true
     private(set) var query: String?
     private var cancellables = Set<AnyCancellable>()
 
@@ -63,33 +57,33 @@ extension CharactersViewModel {
 // MARK: - UseCase
 
 extension CharactersViewModel {
-    func loadCharecters(with text: String? = nil) {
+    func loadCharacters(with text: String? = nil) {
         let isIdle = query != nil && text?.nilIfEmpty == nil
         guard !isIdle else { return state.value = .idle }
         query = text?.nilIfEmpty?.lowercased()
         state.value = .loading
-        throttler.throttle { [weak self] in self?.loadCharecters(at: 0) }
+        throttler.throttle { [weak self] in self?.loadCharacters(at: 0) }
     }
 
-    func loadCharecters(at offset: Int) {
-        guard shouldLoadCharecters else { return }
-        shouldLoadCharecters = false
+    func loadCharacters(at offset: Int) {
+        guard shouldLoadCharacters else { return }
+        shouldLoadCharacters = false
         let parameter = CharacterParameter(offset: offset, query: query)
 
         characterUseCase.loadCharacters(with: parameter)
             .convertToResult()
             .sink { [weak self] result in
-                self?.shouldLoadCharecters = true
+                self?.shouldLoadCharacters = true
                 switch result {
                 case let .success(value):
-                    self?.handleCharecters(paginator: value)
+                    self?.handleCharacters(paginator: value)
                 case let .failure(error):
                     self?.state.value = .error(error)
                 }
             }.store(in: &cancellables)
     }
 
-    private func handleCharecters(paginator: Paginator<MarvelCharacter>) {
+    private func handleCharacters(paginator: Paginator<MarvelCharacter>) {
         let items = paginator.results.map(CharacterItem.init)
 
         var allItems = state.value.items

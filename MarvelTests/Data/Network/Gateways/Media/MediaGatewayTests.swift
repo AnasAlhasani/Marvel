@@ -34,7 +34,7 @@ final class MediaGatewayTests: XCTestCase {
 
         // When
         let publisher = mediaGateway.loadMediaItems(with: parameter)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertEqual(apiClientSpy.request.path, "characters/\(parameter.value.id)/\(parameter.value.type.rawValue)")
@@ -55,7 +55,7 @@ final class MediaGatewayTests: XCTestCase {
 
         // When
         let publisher = mediaGateway.loadMediaItems(with: parameter)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertNil(try? result.get())

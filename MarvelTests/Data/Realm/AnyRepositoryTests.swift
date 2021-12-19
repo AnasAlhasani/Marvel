@@ -31,7 +31,7 @@ final class AnyRepositoryTests: XCTestCase {
 
         // When
         let publisher = repository.save(entites: entites)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertTrue(try result.get() == ())
@@ -48,7 +48,7 @@ final class AnyRepositoryTests: XCTestCase {
 
         // When
         let publisher = repository.save(entites: entites)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertEqual(result.error as? MarvelError, error)
@@ -63,7 +63,7 @@ final class AnyRepositoryTests: XCTestCase {
 
         // When
         let publisher = repository.fetchAll()
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertEqual(try result.get(), entites)
@@ -78,7 +78,7 @@ final class AnyRepositoryTests: XCTestCase {
 
         // When
         let publisher = repository.fetchAll()
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertNil(try? result.get())

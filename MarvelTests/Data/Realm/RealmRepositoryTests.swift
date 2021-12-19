@@ -29,7 +29,7 @@ final class RealmRepositoryTests: XCTestCase {
 
         // When
         let publisher = repository.save(entites: entites)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertTrue(try result.get() == ())
@@ -43,7 +43,7 @@ final class RealmRepositoryTests: XCTestCase {
 
         // When
         let publisher = repository.save(entites: entites)
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertNil(try? result.get())
@@ -57,7 +57,7 @@ final class RealmRepositoryTests: XCTestCase {
         // When
         repository.save(entites: entites)
         let publisher = repository.fetchAll()
-        let result = try awaits(for: publisher)
+        let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertEqual(try result.get(), entites)

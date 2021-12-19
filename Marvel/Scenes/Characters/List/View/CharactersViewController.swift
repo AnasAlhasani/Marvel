@@ -23,9 +23,9 @@ final class CharactersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.loadCharecters()
+        viewModel.loadCharacters()
         viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
-        dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharecters(at: $0) }
+        dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharacters(at: $0) }
         dataSource.didSelectHandler = { [weak self] in self?.viewModel.didSelectRow(at: $0) }
     }
 }

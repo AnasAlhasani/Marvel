@@ -43,7 +43,7 @@ final class CharactersViewModelTests: XCTestCase {
         useCaseStub.publisher = .just(Paginator.value(results: results))
 
         // When
-        viewModel.loadCharecters(with: query)
+        viewModel.loadCharacters(with: query)
 
         // Then
         XCTAssertEqual(viewModel.state.value, .loading)
@@ -57,7 +57,7 @@ final class CharactersViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.state.value.items, items)
 
         // When
-        viewModel.loadCharecters()
+        viewModel.loadCharacters()
 
         // Then
         XCTAssertEqual(viewModel.state.value, .idle)
@@ -76,14 +76,14 @@ final class CharactersViewModelTests: XCTestCase {
         let initalState: State<CharacterItem> = .paging(initalItems, next: initialPaginator.nextOffset)
         useCaseStub.publisher = .just(initialPaginator)
 
-        XCTAssertTrue(viewModel.shouldLoadCharecters)
+        XCTAssertTrue(viewModel.shouldLoadCharacters)
 
         // When
-        viewModel.loadCharecters(at: .zero)
+        viewModel.loadCharacters(at: .zero)
 
         // Then
         XCTAssertEqual(viewModel.state.value, initalState)
-        XCTAssertTrue(viewModel.shouldLoadCharecters)
+        XCTAssertTrue(viewModel.shouldLoadCharacters)
 
         // Given
         let nextResults = Array(totalResults.suffix(count))
@@ -92,11 +92,11 @@ final class CharactersViewModelTests: XCTestCase {
         useCaseStub.publisher = .just(nextPaginator)
 
         // When
-        viewModel.loadCharecters(at: nextState.nextPage)
+        viewModel.loadCharacters(at: nextState.nextPage)
 
         // Then
         XCTAssertEqual(viewModel.state.value, nextState)
-        XCTAssertTrue(viewModel.shouldLoadCharecters)
+        XCTAssertTrue(viewModel.shouldLoadCharacters)
     }
 
     func testLoadCharactersWithPaginationFailed() {
@@ -106,7 +106,7 @@ final class CharactersViewModelTests: XCTestCase {
         useCaseStub.publisher = .fail(with: error)
 
         // When
-        viewModel.loadCharecters(at: .zero)
+        viewModel.loadCharacters(at: .zero)
 
         // Then
         XCTAssertEqual(viewModel.state.value, state)
@@ -120,7 +120,7 @@ final class CharactersViewModelTests: XCTestCase {
         useCaseStub.publisher = .just(Paginator.value(results: results))
 
         // When
-        viewModel.loadCharecters(at: 0)
+        viewModel.loadCharacters(at: 0)
         viewModel.didSelectRow(at: indexPath)
 
         // Then

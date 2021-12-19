@@ -1,5 +1,5 @@
 //
-//  CharecterDetailHeaderView.swift
+//  CharacterDetailHeaderView.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CharecterDetailHeaderView: UIView {
+final class CharacterDetailHeaderView: UIView {
     // MARK: - Outlets
 
     @IBOutlet private var characterImageView: UIImageView!
@@ -32,7 +32,7 @@ final class CharecterDetailHeaderView: UIView {
 
 // MARK: - Configurations
 
-extension CharecterDetailHeaderView {
+extension CharacterDetailHeaderView {
     func configure(with item: CharacterItem) {
         characterImageView.download(image: item.imageURL)
         nameTitleLabel.text = item.nameTitle
