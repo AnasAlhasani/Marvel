@@ -9,90 +9,117 @@
 import Combine
 import Foundation
 
-final class CharactersViewModel {
-    // MARK: - Typealias
+// swiftlint:disable trailing_closure
 
-    typealias CharacterItemState = State<CharacterItem>
+protocol ViewModel {
+    associatedtype Input
+    associatedtype Output
 
-    // MARK: - Properties
+    func transform(input: Input) -> Output
+}
+
+final class CharactersViewModel: ObservableObject {
+    // MARK: Types
+
+    typealias ListState = State<CharacterItem>
+
+    // MARK: Properties
 
     private let router: CharactersListRoutable
     private let characterUseCase: CharacterUseCase
-    private(set) var state = Dynamic<CharacterItemState>(.idle)
-    private(set) var throttler: Throttler
-    private(set) var shouldLoadCharacters = true
-    private(set) var query: String?
-    private var cancellables = Set<AnyCancellable>()
+    private(set) var state: ListState = .idle
+    private var cancellable = Set<AnyCancellable>()
 
-    // MARK: - Init / Deinit
+    // MARK: Init / Deinit
 
     init(
         router: CharactersListRoutable,
-        characterUseCase: CharacterUseCase,
-        throttler: Throttler
+        characterUseCase: CharacterUseCase
     ) {
         self.router = router
         self.characterUseCase = characterUseCase
-        self.throttler = throttler
     }
 }
 
-// MARK: - Interactions
+// MARK: ViewModel - Input/Output
 
-extension CharactersViewModel {
-    func didSelectRow(at indexPath: IndexPath) {
-        let item = state.value.items[indexPath.row]
-        router.showDetails(for: item)
+extension CharactersViewModel: ViewModel {
+    struct Input {
+        private(set) var viewDidLoad: AnyPublisher<Void, Never>
+        private(set) var nextPage: AnyPublisher<Int, Never>
+        private(set) var didSelectRow: AnyPublisher<CharacterItem, Never>
+        private(set) var search: AnyPublisher<String, Never> = .passthroughSubject
+        private(set) var didTapSearch: AnyPublisher<Void, Never> = .passthroughSubject
+        private(set) var didDismissSearch: AnyPublisher<Void, Never> = .passthroughSubject
     }
 
-    func didTapSearch() {
-        router.showSearch()
-    }
+    typealias Output = AnyPublisher<State<CharacterItem>, Never>
 
-    func didTapCancelSearch() {
-        router.dismissSearch()
+    func transform(input: Input) -> Output {
+        input.didTapSearch
+            .sink { [router] in router.showSearch() }
+            .store(in: &cancellable)
+
+        input.didDismissSearch
+            .sink { [router] in router.dismissSearch() }
+            .store(in: &cancellable)
+
+        input.didSelectRow
+            .sink { [router] in router.showDetails(for: $0) }
+            .store(in: &cancellable)
+
+        let loadingState = input.viewDidLoad
+            .map { _ in ListState.loading }
+            .eraseToAnyPublisher()
+
+        let searchText = input.search
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .removeDuplicates()
+
+        let searchState: AnyPublisher<ListState, Never> = searchText
+            .map { $0.isEmpty ? .idle : .loading }
+            .eraseToAnyPublisher()
+
+        let nextPage = input.nextPage
+            .merge(with: .just(.zero))
+            .removeDuplicates()
+            .eraseToAnyPublisher()
+
+        let result = searchText
+            .filter(\.isNotEmpty)
+            .combineLatest(nextPage)
+            .flatMapLatest { [characterUseCase] query, offset -> AnyPublisher<Result<CharacterPaginator, Error>, Never> in
+                let parameter = CharacterParameter(offset: offset, query: query)
+                return characterUseCase.loadCharacters(with: parameter)
+            }
+            .map { [unowned self] in self.makeListState(from: $0) }
+            .handleEvents(receiveOutput: { [weak self] in self?.state = $0 })
+            .eraseToAnyPublisher()
+
+        return Publishers
+            .Merge3(loadingState, result, searchState)
+            .removeDuplicates()
+            .eraseToAnyPublisher()
     }
 }
 
-// MARK: - UseCase
+private extension CharactersViewModel {
+    func makeListState(from result: Result<CharacterPaginator, Error>) -> State<CharacterItem> {
+        switch result {
+        case let .success(value):
+            let items = value.results.map(CharacterItem.init)
 
-extension CharactersViewModel {
-    func loadCharacters(with text: String? = nil) {
-        let isIdle = query != nil && text?.nilIfEmpty == nil
-        guard !isIdle else { return state.value = .idle }
-        query = text?.nilIfEmpty?.lowercased()
-        state.value = .loading
-        throttler.throttle { [weak self] in self?.loadCharacters(at: 0) }
-    }
+            var allItems = state.items
+            allItems.append(contentsOf: items)
 
-    func loadCharacters(at offset: Int) {
-        guard shouldLoadCharacters else { return }
-        shouldLoadCharacters = false
-        let parameter = CharacterParameter(offset: offset, query: query)
+            if value.hasMorePages {
+                return .paging(allItems, next: value.nextOffset)
+            } else {
+                return .populated(allItems)
+            }
 
-        characterUseCase.loadCharacters(with: parameter)
-            .convertToResult()
-            .sink { [weak self] result in
-                self?.shouldLoadCharacters = true
-                switch result {
-                case let .success(value):
-                    self?.handleCharacters(paginator: value)
-                case let .failure(error):
-                    self?.state.value = .error(error)
-                }
-            }.store(in: &cancellables)
-    }
-
-    private func handleCharacters(paginator: Paginator<MarvelCharacter>) {
-        let items = paginator.results.map(CharacterItem.init)
-
-        var allItems = state.value.items
-        allItems.append(contentsOf: items)
-
-        if paginator.hasMorePages {
-            state.value = .paging(allItems, next: paginator.nextOffset)
-        } else {
-            state.value = .populated(allItems)
+        case let .failure(error):
+            return .error(error)
         }
     }
 }

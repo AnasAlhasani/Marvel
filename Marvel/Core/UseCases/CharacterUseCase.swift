@@ -21,20 +21,20 @@ struct CharacterParameter: Parameter {
     private let nameStartsWith: String?
 
     init(
-        offset: Int,
+        offset: Int = .zero,
         limit: Int = Config.pageLimit,
         query: String? = nil
     ) {
         self.offset = offset
         self.limit = limit
-        self.nameStartsWith = query
+        self.nameStartsWith = query?.nilIfEmpty?.lowercased()
     }
 }
 
 // MARK: - UseCase
 
 protocol CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error>
+    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<Result<CharacterPaginator, Error>, Never>
 }
 
 final class DefaultCharacterUseCase {
@@ -48,7 +48,7 @@ final class DefaultCharacterUseCase {
 }
 
 extension DefaultCharacterUseCase: CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error> {
+    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<Result<CharacterPaginator, Error>, Never> {
         gateway
             .loadCharacters(with: .init(parameter))
             .map { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
@@ -57,6 +57,7 @@ extension DefaultCharacterUseCase: CharacterUseCase {
             }
             .switchToLatest()
             .catch { [repository] _ in repository.fetchAll().map { CharacterPaginator(results: $0) } }
+            .convertToResult()
             .eraseToAnyPublisher()
     }
 }

@@ -6,19 +6,17 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import UIKit
 
 final class SearchViewController: UIViewController {
-    // MARK: - Outlets
+    // MARK: Outlets
 
     @IBOutlet private var tableView: UITableView!
 
-    // MARK: - Properties
+    // MARK: Properties
 
     private lazy var dataSource = TableViewDataSource<SearchCell>(tableView)
-    // swiftlint:disable implicitly_unwrapped_optional
-    var viewModel: CharactersViewModel!
-
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.definesPresentationContext = true
@@ -30,14 +28,38 @@ final class SearchViewController: UIViewController {
         return searchController
     }()
 
-    // MARK: - LifeCycle
+    // swiftlint:disable implicitly_unwrapped_optional
+    var viewModel: CharactersViewModel!
+
+    private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
+    private let nextPageSubject = PassthroughSubject<Int, Never>()
+    private let didSelectRowSubject = PassthroughSubject<CharacterItem, Never>()
+    private let searchSubject = PassthroughSubject<String, Never>()
+    private let didDismissSearchSubject = PassthroughSubject<Void, Never>()
+    private var cancellable = Set<AnyCancellable>()
+
+    // MARK: LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationItem()
-        viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
-        dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharacters(at: $0) }
-        dataSource.didSelectHandler = { [weak self] in self?.viewModel.didSelectRow(at: $0) }
+        viewModel
+            .transform(
+                input: .init(
+                    viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+                    nextPage: nextPageSubject.eraseToAnyPublisher(),
+                    didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
+                    search: searchSubject.eraseToAnyPublisher(),
+                    didDismissSearch: didDismissSearchSubject.eraseToAnyPublisher()
+                )
+            )
+            .sink { [weak self] in self?.dataSource.state = $0 }
+            .store(in: &cancellable)
+
+        dataSource.pagingHandler = { [weak self] in self?.nextPageSubject.send($0) }
+        dataSource.didSelectHandler = { [weak self, dataSource] in
+            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -59,11 +81,11 @@ private extension SearchViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.loadCharacters(with: searchBar.text)
+        searchSubject.send(searchText)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.didTapCancelSearch()
+        didDismissSearchSubject.send()
     }
 }
 
