@@ -14,10 +14,7 @@ import UIKit
 final class CharacterDetailViewController: UIViewController {
     // MARK: Outlets
 
-    @IBOutlet private var tableView: UITableView! {
-        didSet { tableView.register(MediaTableCell.self) }
-    }
-
+    @IBOutlet private var tableView: UITableView!
     @IBOutlet private var headerView: CharacterDetailHeaderView!
 
     // MARK: Properties

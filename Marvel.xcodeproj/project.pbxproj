@@ -121,9 +121,6 @@
 		5DD9DED926B31CCC00A699C9 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DED826B31CCC00A699C9 /* ViewFactory.swift */; };
 		5DD9DEDC26B31F0D00A699C9 /* CharactersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DEDB26B31F0D00A699C9 /* CharactersListRouter.swift */; };
 		5DD9DEDE26B32A9D00A699C9 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DEDD26B32A9D00A699C9 /* UIViewController.swift */; };
-		5DF872A7227D697000DB0CCD /* MediaTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A6227D697000DB0CCD /* MediaTableCell.xib */; };
-		5DF872A9227D69F600DB0CCD /* MediaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */; };
-		5DF872AB227D846200DB0CCD /* CharacterDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF872AA227D846200DB0CCD /* CharacterDetailHeaderView.xib */; };
 		5DF872AD227D84A500DB0CCD /* CharacterDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF872AC227D84A500DB0CCD /* CharacterDetailHeaderView.swift */; };
 		5DF872B4227D9C1D00DB0CCD /* CharacterDetailsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF872B3227D9C1D00DB0CCD /* CharacterDetailsItem.swift */; };
 		AC5F7C7771BEF91B2DDA4F20 /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47C1266B47794F849D7E18A /* Pods_Marvel.framework */; };
@@ -280,9 +277,6 @@
 		5DD9DED826B31CCC00A699C9 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		5DD9DEDB26B31F0D00A699C9 /* CharactersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListRouter.swift; sourceTree = "<group>"; };
 		5DD9DEDD26B32A9D00A699C9 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		5DF872A6227D697000DB0CCD /* MediaTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaTableCell.xib; sourceTree = "<group>"; };
-		5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionCell.xib; sourceTree = "<group>"; };
-		5DF872AA227D846200DB0CCD /* CharacterDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailHeaderView.xib; sourceTree = "<group>"; };
 		5DF872AC227D84A500DB0CCD /* CharacterDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailHeaderView.swift; sourceTree = "<group>"; };
 		5DF872B3227D9C1D00DB0CCD /* CharacterDetailsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsItem.swift; sourceTree = "<group>"; };
 		9C63D743A46BA13CC52CFADB /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1036,11 +1030,8 @@
 			isa = PBXGroup;
 			children = (
 				5DC6484B227CEAF60080B1F4 /* CharacterDetailViewController.swift */,
-				5DF872A6227D697000DB0CCD /* MediaTableCell.xib */,
 				5DC64855227D07100080B1F4 /* MediaTableCell.swift */,
-				5DF872A8227D69F600DB0CCD /* MediaCollectionCell.xib */,
 				5DC64857227D08860080B1F4 /* MediaCollectionCell.swift */,
-				5DF872AA227D846200DB0CCD /* CharacterDetailHeaderView.xib */,
 				5DF872AC227D84A500DB0CCD /* CharacterDetailHeaderView.swift */,
 			);
 			path = View;
@@ -1198,14 +1189,11 @@
 				5DCC0D43227B427A0065DA28 /* LaunchScreen.storyboard in Resources */,
 				5D21802A227C3F3900006DBE /* EmptyStateView.xib in Resources */,
 				5D45D06B264CBFF900345602 /* Colors.xcassets in Resources */,
-				5DF872A7227D697000DB0CCD /* MediaTableCell.xib in Resources */,
 				5DCC0D40227B427A0065DA28 /* Images.xcassets in Resources */,
-				5DF872AB227D846200DB0CCD /* CharacterDetailHeaderView.xib in Resources */,
 				5D45D064264CBF5E00345602 /* Localizable.strings in Resources */,
 				5D21802C227C3F3900006DBE /* ErrorStateView.xib in Resources */,
 				5DCC0D3E227B42790065DA28 /* Main.storyboard in Resources */,
 				5D218029227C3F3900006DBE /* LoadingStateView.xib in Resources */,
-				5DF872A9227D69F600DB0CCD /* MediaCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,9 +12,7 @@ final class MediaTableCell: UITableViewCell {
     // MARK: Outlets
 
     @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var collectionView: UICollectionView! {
-        didSet { collectionView.register(MediaCollectionCell.self) }
-    }
+    @IBOutlet private var collectionView: UICollectionView!
 
     // MARK: Properties
 
