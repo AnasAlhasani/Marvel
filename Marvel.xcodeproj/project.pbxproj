@@ -80,7 +80,6 @@
 		5D606E69264ECC4900E8D23D /* RepositoryStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E68264ECC4900E8D23D /* RepositoryStub.swift */; };
 		5D606E6E264F11E800E8D23D /* CharactersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E6D264F11E800E8D23D /* CharactersViewModelTests.swift */; };
 		5D606E70264F234100E8D23D /* CharactersListRouterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E6F264F234100E8D23D /* CharactersListRouterSpy.swift */; };
-		5D606E73264F2F7B00E8D23D /* ThrottlerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E72264F2F7B00E8D23D /* ThrottlerSpy.swift */; };
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
 		5D9228F52280F1200048C614 /* APICharacterGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F02280F1200048C614 /* APICharacterGateway.swift */; };
 		5D9228F62280F1200048C614 /* APIMarvelMediaGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F12280F1200048C614 /* APIMarvelMediaGateway.swift */; };
@@ -100,12 +99,10 @@
 		5DC64838227C81610080B1F4 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64837227C81610080B1F4 /* TableViewDataSource.swift */; };
 		5DC6483A227C838D0080B1F4 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64839227C838D0080B1F4 /* UITableView.swift */; };
 		5DC6483C227C88850080B1F4 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6483B227C88850080B1F4 /* CharactersViewModel.swift */; };
-		5DC6483E227C8ACB0080B1F4 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6483D227C8ACB0080B1F4 /* Dynamic.swift */; };
 		5DC64840227C99A90080B1F4 /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6483F227C99A90080B1F4 /* CharacterItem.swift */; };
 		5DC64843227CA3ED0080B1F4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64842227CA3ED0080B1F4 /* SearchViewController.swift */; };
 		5DC64845227CA6310080B1F4 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64844227CA6310080B1F4 /* SearchCell.swift */; };
 		5DC64847227CBD1C0080B1F4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64846227CBD1C0080B1F4 /* String.swift */; };
-		5DC64849227CC50B0080B1F4 /* Throttler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64848227CC50B0080B1F4 /* Throttler.swift */; };
 		5DC6484C227CEAF60080B1F4 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6484B227CEAF60080B1F4 /* CharacterDetailViewController.swift */; };
 		5DC6484E227CEB060080B1F4 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6484D227CEB060080B1F4 /* CharacterDetailViewModel.swift */; };
 		5DC64850227D019E0080B1F4 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6484F227D019E0080B1F4 /* CollectionViewDataSource.swift */; };
@@ -230,7 +227,6 @@
 		5D606E68264ECC4900E8D23D /* RepositoryStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryStub.swift; sourceTree = "<group>"; };
 		5D606E6D264F11E800E8D23D /* CharactersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModelTests.swift; sourceTree = "<group>"; };
 		5D606E6F264F234100E8D23D /* CharactersListRouterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListRouterSpy.swift; sourceTree = "<group>"; };
-		5D606E72264F2F7B00E8D23D /* ThrottlerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrottlerSpy.swift; sourceTree = "<group>"; };
 		5D9228EF2280F1200048C614 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5D9228F02280F1200048C614 /* APICharacterGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICharacterGateway.swift; sourceTree = "<group>"; };
 		5D9228F12280F1200048C614 /* APIMarvelMediaGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIMarvelMediaGateway.swift; sourceTree = "<group>"; };
@@ -254,12 +250,10 @@
 		5DC64837227C81610080B1F4 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		5DC64839227C838D0080B1F4 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		5DC6483B227C88850080B1F4 /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
-		5DC6483D227C8ACB0080B1F4 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		5DC6483F227C99A90080B1F4 /* CharacterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
 		5DC64842227CA3ED0080B1F4 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5DC64844227CA6310080B1F4 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		5DC64846227CBD1C0080B1F4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		5DC64848227CC50B0080B1F4 /* Throttler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throttler.swift; sourceTree = "<group>"; };
 		5DC6484B227CEAF60080B1F4 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		5DC6484D227CEB060080B1F4 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 		5DC6484F227D019E0080B1F4 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -848,7 +842,6 @@
 		5D606E71264F2F6D00E8D23D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				5D606E72264F2F7B00E8D23D /* ThrottlerSpy.swift */,
 				5DA0D0D8265FA3B8002885E3 /* XCTestCase+Publisher.swift */,
 			);
 			path = Utilities;
@@ -924,8 +917,6 @@
 			isa = PBXGroup;
 			children = (
 				5DC64829227C419E0080B1F4 /* State.swift */,
-				5DC6483D227C8ACB0080B1F4 /* Dynamic.swift */,
-				5DC64848227CC50B0080B1F4 /* Throttler.swift */,
 				5D606E4B264EBAEE00E8D23D /* Void.swift */,
 			);
 			path = Utillties;
@@ -1285,7 +1276,6 @@
 				5D606E34264DB0B400E8D23D /* MediaGatewayTests.swift in Sources */,
 				5D606E5E264EC7F900E8D23D /* MediaUseCaseStub.swift in Sources */,
 				5D606E44264E84CA00E8D23D /* RealmRepositorySpy.swift in Sources */,
-				5D606E73264F2F7B00E8D23D /* ThrottlerSpy.swift in Sources */,
 				5DA0D0D9265FA3B8002885E3 /* XCTestCase+Publisher.swift in Sources */,
 				5D606E70264F234100E8D23D /* CharactersListRouterSpy.swift in Sources */,
 				5D606E46264E857F00E8D23D /* AnyRepositoryTests.swift in Sources */,
@@ -1355,7 +1345,6 @@
 				5D21801A227B9D4700006DBE /* Image.swift in Sources */,
 				5DC6482C227C41CF0080B1F4 /* TableViewable.swift in Sources */,
 				5DC6484E227CEB060080B1F4 /* CharacterDetailViewModel.swift in Sources */,
-				5DC64849227CC50B0080B1F4 /* Throttler.swift in Sources */,
 				5D47378425251E6A00360C4A /* RealmObject.swift in Sources */,
 				5D606E55264EC5DE00E8D23D /* CharacterGateway.swift in Sources */,
 				5D218018227B996D00006DBE /* MarvelParameter.swift in Sources */,
@@ -1373,7 +1362,6 @@
 				5DC64843227CA3ED0080B1F4 /* SearchViewController.swift in Sources */,
 				5D4CC87E276FE0D900162F6C /* ViewModel.swift in Sources */,
 				5DC6483A227C838D0080B1F4 /* UITableView.swift in Sources */,
-				5DC6483E227C8ACB0080B1F4 /* Dynamic.swift in Sources */,
 				5D218005227B58CE00006DBE /* CharacterUseCase.swift in Sources */,
 				5D606E12264CC98600E8D23D /* Strings.swift in Sources */,
 				5D21801F227C318F00006DBE /* CharactersCell.swift in Sources */,

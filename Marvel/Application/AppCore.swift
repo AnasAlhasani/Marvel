@@ -13,7 +13,6 @@ import Foundation
 
 protocol AppCore {
     func theme() -> Theme
-    func throttler() -> Throttler
 
     func apiConfiguration() -> ServiceConfigurator
     func apiClient() -> APIClient
@@ -32,14 +31,6 @@ protocol AppCore {
 extension AppCore {
     func theme() -> Theme {
         AppTheme()
-    }
-}
-
-// MARK: Throttler
-
-extension AppCore {
-    func throttler() -> Throttler {
-        DefaultThrottler(minimumDelay: 0.3)
     }
 }
 
