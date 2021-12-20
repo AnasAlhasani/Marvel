@@ -57,7 +57,7 @@ extension DefaultViewFactory {
     func makeCharacterDetailsView(for item: CharacterItem) -> UIViewController {
         let view = CharacterDetailViewController.instantiate()
         let viewModel = CharacterDetailViewModel(
-            mediaUseCase: core.mediaUseCase(),
+            useCase: core.mediaUseCase(),
             character: item
         )
         view.viewModel = viewModel

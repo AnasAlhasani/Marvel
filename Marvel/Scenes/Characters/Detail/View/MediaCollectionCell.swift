@@ -9,13 +9,13 @@
 import UIKit
 
 final class MediaCollectionCell: UICollectionViewCell {
-    // MARK: - Outlets
+    // MARK: Outlets
 
     @IBOutlet private var comicImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
 }
 
-// MARK: - CellConfigurable
+// MARK: CellConfigurable
 
 extension MediaCollectionCell: CellConfigurable {
     func configure(with item: CharacterDetailsItem.MediaItem) {

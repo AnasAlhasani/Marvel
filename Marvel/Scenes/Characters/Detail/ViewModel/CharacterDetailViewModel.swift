@@ -9,60 +9,78 @@
 import Combine
 import Foundation
 
-final class CharacterDetailViewModel {
-    // MARK: - Typealias
+final class CharacterDetailViewModel: ObservableObject {
+    // MARK: Types
 
-    typealias CharacterDetailState = State<CharacterDetailsItem>
+    typealias ListState = State<CharacterDetailsItem>
 
-    // MARK: - Properties
+    struct Input {
+        let viewDidLoad: AnyPublisher<Void, Never>
+    }
 
-    private let mediaUseCase: MediaUseCase
-    private(set) var character: Dynamic<CharacterItem>
-    private(set) lazy var state = Dynamic<CharacterDetailState>(.populated([comicsItem, seriesItem]))
-    private(set) lazy var comicsItem = CharacterDetailsItem(type: .comics)
-    private(set) lazy var seriesItem = CharacterDetailsItem(type: .series)
-    private var cancellables = Set<AnyCancellable>()
+    struct Output {
+        let character: AnyPublisher<CharacterItem, Never>
+        let state: AnyPublisher<ListState, Never>
+    }
 
-    // MARK: - Init / Deinit
+    // MARK: Properties
+
+    private let useCase: MediaUseCase
+    private(set) var character: CharacterItem
+
+    // MARK: Init / Deinit
 
     init(
-        mediaUseCase: MediaUseCase,
+        useCase: MediaUseCase,
         character: CharacterItem
     ) {
-        self.mediaUseCase = mediaUseCase
-        self.character = Dynamic(character)
+        self.useCase = useCase
+        self.character = character
+    }
+
+    // MARK: Helpers
+
+    private func make(from results: [MediaResult]) -> ListState {
+        let items = results.enumerated().map { index, result -> CharacterDetailsItem in
+            // this is not a good way to get the type
+            let type = MediaType.allCases[index]
+            switch result {
+            case let .success(value):
+                let items = value.results.map(CharacterDetailsItem.MediaItem.init)
+                return CharacterDetailsItem(type: type, state: .populated(items))
+
+            case let .failure(error):
+                return CharacterDetailsItem(type: type, state: .error(error))
+            }
+        }
+
+        return .populated(items)
     }
 }
 
-// MARK: - UseCase
+// MARK: Transformation
 
-extension CharacterDetailViewModel {
-    func loadItems() {
-        MediaType.allCases.forEach(loadItem)
-    }
+extension CharacterDetailViewModel: ViewModel {
+    func transform(input: Input) -> Output {
+        let loadingState = input.viewDidLoad
+            .map { _ in ListState.loading }
+            .eraseToAnyPublisher()
 
-    private func loadItem(of type: MediaType) {
-        let parameter = MediaParameter(id: character.value.model.id, type: type)
-        mediaUseCase.loadMediaItems(with: parameter)
-            .convertToResult()
-            .sink { [weak self] result in
-                switch result {
-                case let .success(value):
-                    let items = value.results.map(CharacterDetailsItem.MediaItem.init)
-                    self?.updateItem(type: type, with: .populated(items))
-                case let .failure(error):
-                    self?.state.value = .error(error)
-                }
-            }.store(in: &cancellables)
-    }
+        let resultState = MediaType.allCases
+            .publisher
+            .flatMap { [useCase, character] type in
+                useCase.loadMediaItems(with: .init(id: character.model.id, type: type))
+            }
+            .collect()
+            .map { [unowned self] in self.make(from: $0) }
+            .eraseToAnyPublisher()
 
-    private func updateItem(type: MediaType, with state: State<CharacterDetailsItem.MediaItem>) {
-        switch type {
-        case .comics:
-            comicsItem.state = state
-        case .series:
-            seriesItem.state = state
-        }
-        self.state.value = .populated([comicsItem, seriesItem])
+        return Output(
+            character: .just(character),
+            state: Publishers
+                .Merge(loadingState, resultState)
+                .removeDuplicates()
+                .eraseToAnyPublisher()
+        )
     }
 }

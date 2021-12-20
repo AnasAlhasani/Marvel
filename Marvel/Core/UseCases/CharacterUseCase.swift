@@ -9,10 +9,11 @@
 import Combine
 import Foundation
 
-// MARK: - Paginator
+// MARK: - Types
 
 typealias CharacterPaginator = Paginator<MarvelCharacter>
 typealias CharacterResult = Result<CharacterPaginator, Error>
+typealias CharacterPublisher = AnyPublisher<CharacterResult, Never>
 
 // MARK: - Parameters
 
@@ -35,7 +36,7 @@ struct CharacterParameter: Parameter {
 // MARK: - UseCase
 
 protocol CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterResult, Never>
+    func loadCharacters(with parameter: CharacterParameter) -> CharacterPublisher
 }
 
 final class DefaultCharacterUseCase {
@@ -49,7 +50,7 @@ final class DefaultCharacterUseCase {
 }
 
 extension DefaultCharacterUseCase: CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterResult, Never> {
+    func loadCharacters(with parameter: CharacterParameter) -> CharacterPublisher {
         gateway
             .loadCharacters(with: .init(parameter))
             .map { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in

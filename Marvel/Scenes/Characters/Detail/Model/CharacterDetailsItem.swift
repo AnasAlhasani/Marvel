@@ -9,16 +9,8 @@
 import Foundation
 
 struct CharacterDetailsItem: Equatable {
-    private let type: MediaType
-    var state: State<MediaItem>
-    var title: String {
-        switch type {
-        case .comics:
-            return L10n.Character.comics
-        case .series:
-            return L10n.Character.series
-        }
-    }
+    let type: MediaType
+    let state: State<MediaItem>
 
     init(
         type: MediaType,
@@ -38,6 +30,17 @@ extension CharacterDetailsItem {
 
         init(model: Media) {
             self.model = model
+        }
+    }
+}
+
+extension MediaType {
+    var title: String {
+        switch self {
+        case .comics:
+            return L10n.Character.comics
+        case .series:
+            return L10n.Character.series
         }
     }
 }

@@ -15,6 +15,16 @@ final class CharactersViewModel: ObservableObject {
     // MARK: Types
 
     typealias ListState = State<CharacterItem>
+    typealias Output = AnyPublisher<ListState, Never>
+
+    struct Input {
+        let viewDidLoad: AnyPublisher<Void, Never>
+        let nextPage: AnyPublisher<Int, Never>
+        let didSelectRow: AnyPublisher<CharacterItem, Never>
+        let search: AnyPublisher<String, Never>
+        let didTapSearch: AnyPublisher<Void, Never>
+        let didDismissSearch: AnyPublisher<Void, Never>
+    }
 
     // MARK: Properties
 
@@ -32,22 +42,25 @@ final class CharactersViewModel: ObservableObject {
         self.router = router
         self.useCase = useCase
     }
+
+    // MARK: Helpers
+
+    private func makeState(from result: Result<CharacterPaginator, Error>) -> ListState {
+        switch result {
+        case let .success(value):
+            var allItems = state.items
+            allItems.append(contentsOf: value.results.map(CharacterItem.init))
+            return value.hasMorePages ? .paging(allItems, next: value.nextOffset) : .populated(allItems)
+
+        case let .failure(error):
+            return .error(error)
+        }
+    }
 }
 
-// MARK: ViewModel - Input/Output
+// MARK: Transformation
 
 extension CharactersViewModel: ViewModel {
-    struct Input {
-        let viewDidLoad: AnyPublisher<Void, Never>
-        let nextPage: AnyPublisher<Int, Never>
-        let didSelectRow: AnyPublisher<CharacterItem, Never>
-        let search: AnyPublisher<String, Never>
-        let didTapSearch: AnyPublisher<Void, Never>
-        let didDismissSearch: AnyPublisher<Void, Never>
-    }
-
-    typealias Output = AnyPublisher<ListState, Never>
-
     func transform(input: Input) -> Output {
         cancellable.forEach { $0.cancel() }
         cancellable.removeAll()
@@ -96,19 +109,5 @@ extension CharactersViewModel: ViewModel {
             .Merge3(loadingState, searchState, resultState)
             .removeDuplicates()
             .eraseToAnyPublisher()
-    }
-}
-
-private extension CharactersViewModel {
-    func makeState(from result: Result<CharacterPaginator, Error>) -> ListState {
-        switch result {
-        case let .success(value):
-            var allItems = state.items
-            allItems.append(contentsOf: value.results.map(CharacterItem.init))
-            return value.hasMorePages ? .paging(allItems, next: value.nextOffset) : .populated(allItems)
-
-        case let .failure(error):
-            return .error(error)
-        }
     }
 }

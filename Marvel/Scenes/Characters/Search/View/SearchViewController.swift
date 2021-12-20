@@ -9,6 +9,8 @@
 import Combine
 import UIKit
 
+// swiftlint:disable implicitly_unwrapped_optional
+
 final class SearchViewController: UIViewController {
     // MARK: Outlets
 
@@ -28,14 +30,13 @@ final class SearchViewController: UIViewController {
         return searchController
     }()
 
-    // swiftlint:disable implicitly_unwrapped_optional
-    var viewModel: CharactersViewModel!
-
     private let nextPageSubject = PassthroughSubject<Int, Never>()
     private let didSelectRowSubject = PassthroughSubject<CharacterItem, Never>()
     private let searchSubject = PassthroughSubject<String, Never>()
     private let didDismissSearchSubject = PassthroughSubject<Void, Never>()
     private var cancellable = Set<AnyCancellable>()
+
+    var viewModel: CharactersViewModel!
 
     // MARK: LifeCycle
 
@@ -60,14 +61,6 @@ private extension SearchViewController {
     }
 
     func bindViewModel() {
-        dataSource.pagingHandler = { [weak self] in
-            self?.nextPageSubject.send($0)
-        }
-
-        dataSource.didSelectHandler = { [weak self, dataSource] in
-            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
-        }
-
         let input = CharactersViewModel.Input(
             viewDidLoad: .passthroughSubject,
             nextPage: nextPageSubject.eraseToAnyPublisher(),
@@ -78,6 +71,14 @@ private extension SearchViewController {
         )
 
         let output = viewModel.transform(input: input)
+
+        dataSource.pagingHandler = { [weak self] in
+            self?.nextPageSubject.send($0)
+        }
+
+        dataSource.didSelectHandler = { [weak self, dataSource] in
+            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
+        }
 
         output
             .sink { [weak self] in self?.dataSource.state = $0 }
