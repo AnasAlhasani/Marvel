@@ -40,21 +40,15 @@ final class CharacterDetailViewModel: ObservableObject {
 
     // MARK: Helpers
 
-    private func make(from results: [MediaResult]) -> ListState {
-        let items = results.enumerated().map { index, result -> CharacterDetailsItem in
-            // this is not a good way to get the type
-            let type = MediaType.allCases[index]
-            switch result {
-            case let .success(value):
-                let items = value.results.map(CharacterDetailsItem.MediaItem.init)
-                return CharacterDetailsItem(type: type, state: .populated(items))
+    private func make(from result: MediaResult, ofType type: MediaType) -> CharacterDetailsItem {
+        switch result {
+        case let .success(value):
+            let items = value.results.map(CharacterDetailsItem.MediaItem.init)
+            return CharacterDetailsItem(type: type, state: .populated(items))
 
-            case let .failure(error):
-                return CharacterDetailsItem(type: type, state: .error(error))
-            }
+        case let .failure(error):
+            return CharacterDetailsItem(type: type, state: .error(error))
         }
-
-        return .populated(items)
     }
 }
 
@@ -66,13 +60,17 @@ extension CharacterDetailViewModel: ViewModel {
             .map { _ in ListState.loading }
             .eraseToAnyPublisher()
 
-        let resultState = MediaType.allCases
+        let resultState = MediaType
+            .allCases
             .publisher
             .flatMap { [useCase, character] type in
-                useCase.loadMediaItems(with: .init(id: character.model.id, type: type))
+                useCase
+                    .loadMediaItems(with: .init(id: character.model.id, type: type))
+                    .map { [unowned self] in self.make(from: $0, ofType: type) }
             }
             .collect()
-            .map { [unowned self] in self.make(from: $0) }
+            .map { $0.sorted { $0.type.isHigherThan($1.type) } }
+            .map { ListState.populated($0) }
             .eraseToAnyPublisher()
 
         return Output(
