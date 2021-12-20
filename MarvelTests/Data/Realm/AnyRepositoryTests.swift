@@ -26,47 +26,47 @@ final class AnyRepositoryTests: XCTestCase {
 
     func testSaveEntitiesWithSuccess() throws {
         // Given
-        let entites = EntityTestDouble.items()
+        let entities = EntityTestDouble.items()
         spy.savePublisher = .just(())
 
         // When
-        let publisher = repository.save(entites: entites)
+        let publisher = repository.save(entities: entities)
         let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertTrue(try result.get() == ())
         XCTAssertNil(result.error)
-        XCTAssertEqual(spy.entites, entites)
+        XCTAssertEqual(spy.entities, entities)
         XCTAssertEqual(spy.saveCallCount, 1)
     }
 
     func testSaveEntitiesWithFailure() throws {
         // Given
-        let entites = EntityTestDouble.items()
+        let entities = EntityTestDouble.items()
         let error = MarvelError.general
         spy.savePublisher = .fail(with: error)
 
         // When
-        let publisher = repository.save(entites: entites)
+        let publisher = repository.save(entities: entities)
         let result = try awaitPublisher(publisher)
 
         // Then
         XCTAssertEqual(result.error as? MarvelError, error)
-        XCTAssertEqual(spy.entites, entites)
+        XCTAssertEqual(spy.entities, entities)
         XCTAssertEqual(spy.saveCallCount, 1)
     }
 
     func testFetchAllWithSuccess() throws {
         // Given
-        let entites = EntityTestDouble.items()
-        spy.fetchPublisher = .just(entites)
+        let entities = EntityTestDouble.items()
+        spy.fetchPublisher = .just(entities)
 
         // When
         let publisher = repository.fetchAll()
         let result = try awaitPublisher(publisher)
 
         // Then
-        XCTAssertEqual(try result.get(), entites)
+        XCTAssertEqual(try result.get(), entities)
         XCTAssertNil(result.error)
         XCTAssertEqual(spy.fetchCallCount, 1)
     }

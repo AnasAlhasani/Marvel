@@ -25,12 +25,12 @@ final class RealmRepository<E: IdentifiableEntity>: AbstractRepository {
     }
 
     @discardableResult
-    func save(entites: [E]) -> AnyPublisher<Void, Error> {
+    func save(entities: [E]) -> AnyPublisher<Void, Error> {
         Future { promise in
             do {
                 let realm = try Realm()
                 try realm.write {
-                    let objects = try entites.map { RealmObject(id: "\($0.id)", key: E.key, data: try $0.encoded()) }
+                    let objects = try entities.map { RealmObject(id: "\($0.id)", key: E.key, data: try $0.encoded()) }
                     realm.add(objects, update: .all)
                 }
                 promise(.success)

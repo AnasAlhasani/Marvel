@@ -11,16 +11,16 @@ import Foundation
 @testable import Marvel
 
 final class RealmRepositorySpy<Entity: IdentifiableEntity>: AbstractRepository {
-    var entites = [Entity]()
+    var entities = [Entity]()
     var savePublisher: AnyPublisher<Void, Error>!
     var saveCallCount = 0
 
     var fetchCallCount = 0
     var fetchPublisher: AnyPublisher<[Entity], Error>!
 
-    func save(entites: [Entity]) -> AnyPublisher<Void, Error> {
+    func save(entities: [Entity]) -> AnyPublisher<Void, Error> {
         saveCallCount += 1
-        self.entites = entites
+        self.entities = entities
         return savePublisher
     }
 

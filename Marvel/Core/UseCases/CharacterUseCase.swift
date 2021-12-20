@@ -52,7 +52,7 @@ extension DefaultCharacterUseCase: CharacterUseCase {
         gateway
             .loadCharacters(with: .init(parameter))
             .map { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
-                repository.save(entites: paginator.results)
+                repository.save(entities: paginator.results)
                 return .just(paginator)
             }
             .switchToLatest()

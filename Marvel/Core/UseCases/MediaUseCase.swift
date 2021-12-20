@@ -43,7 +43,7 @@ extension DefaultMediaUseCase: MediaUseCase {
         gateway
             .loadMediaItems(with: .init(parameter))
             .map { [repository] paginator -> AnyPublisher<MediaPaginator, Error> in
-                repository.save(entites: paginator.results)
+                repository.save(entities: paginator.results)
                 return .just(paginator)
             }
             .switchToLatest()
