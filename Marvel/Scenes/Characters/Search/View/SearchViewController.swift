@@ -31,7 +31,6 @@ final class SearchViewController: UIViewController {
     // swiftlint:disable implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
 
-    private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
     private let nextPageSubject = PassthroughSubject<Int, Never>()
     private let didSelectRowSubject = PassthroughSubject<CharacterItem, Never>()
     private let searchSubject = PassthroughSubject<String, Never>()
@@ -43,23 +42,7 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationItem()
-        viewModel
-            .transform(
-                input: .init(
-                    viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
-                    nextPage: nextPageSubject.eraseToAnyPublisher(),
-                    didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
-                    search: searchSubject.eraseToAnyPublisher(),
-                    didDismissSearch: didDismissSearchSubject.eraseToAnyPublisher()
-                )
-            )
-            .sink { [weak self] in self?.dataSource.state = $0 }
-            .store(in: &cancellable)
-
-        dataSource.pagingHandler = { [weak self] in self?.nextPageSubject.send($0) }
-        dataSource.didSelectHandler = { [weak self, dataSource] in
-            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
-        }
+        bindViewModel()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -68,16 +51,39 @@ final class SearchViewController: UIViewController {
     }
 }
 
-// MARK: - Configurations
+// MARK: SetUp & Bindings
 
 private extension SearchViewController {
     func setUpNavigationItem() {
         navigationItem.hidesBackButton = true
         navigationItem.titleView = searchController.searchBar
     }
+
+    func bindViewModel() {
+        dataSource.pagingHandler = { [weak self] in
+            self?.nextPageSubject.send($0)
+        }
+
+        dataSource.didSelectHandler = { [weak self, dataSource] in
+            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
+        }
+
+        let input = CharactersViewModel.Input(
+            viewDidLoad: .passthroughSubject,
+            nextPage: nextPageSubject.eraseToAnyPublisher(),
+            didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
+            search: searchSubject.eraseToAnyPublisher(),
+            didTapSearch: .passthroughSubject,
+            didDismissSearch: didDismissSearchSubject.eraseToAnyPublisher()
+        )
+
+        viewModel.transform(input: input)
+            .sink { [weak self] in self?.dataSource.state = $0 }
+            .store(in: &cancellable)
+    }
 }
 
-// MARK: - UISearchBarDelegate
+// MARK: UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -89,7 +95,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - UISearchControllerDelegate
+// MARK: UISearchControllerDelegate
 
 extension SearchViewController: UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {

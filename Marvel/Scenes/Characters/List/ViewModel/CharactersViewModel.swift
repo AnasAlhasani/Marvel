@@ -38,17 +38,20 @@ final class CharactersViewModel: ObservableObject {
 
 extension CharactersViewModel: ViewModel {
     struct Input {
-        private(set) var viewDidLoad: AnyPublisher<Void, Never>
-        private(set) var nextPage: AnyPublisher<Int, Never>
-        private(set) var didSelectRow: AnyPublisher<CharacterItem, Never>
-        private(set) var search: AnyPublisher<String, Never> = .passthroughSubject
-        private(set) var didTapSearch: AnyPublisher<Void, Never> = .passthroughSubject
-        private(set) var didDismissSearch: AnyPublisher<Void, Never> = .passthroughSubject
+        let viewDidLoad: AnyPublisher<Void, Never>
+        let nextPage: AnyPublisher<Int, Never>
+        let didSelectRow: AnyPublisher<CharacterItem, Never>
+        let search: AnyPublisher<String, Never>
+        let didTapSearch: AnyPublisher<Void, Never>
+        let didDismissSearch: AnyPublisher<Void, Never>
     }
 
     typealias Output = AnyPublisher<ListState, Never>
 
     func transform(input: Input) -> Output {
+        cancellable.forEach { $0.cancel() }
+        cancellable.removeAll()
+
         input.didTapSearch
             .sink { [router] in router.showSearch() }
             .store(in: &cancellable)

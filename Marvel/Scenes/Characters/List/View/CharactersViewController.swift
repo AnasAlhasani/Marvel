@@ -30,28 +30,34 @@ final class CharactersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpBindings()
-        viewDidLoadSubject.send()
-        dataSource.pagingHandler = { [weak self] in self?.nextPageSubject.send($0) }
-        dataSource.didSelectHandler = { [weak self, dataSource] in
-            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
-        }
+        bindViewModel()
     }
 }
 
-// MARK: SetUp
+// MARK: Binding
 
 private extension CharactersViewController {
-    func setUpBindings() {
-        viewModel
-            .transform(
-                input: .init(
-                    viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
-                    nextPage: nextPageSubject.eraseToAnyPublisher(),
-                    didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
-                    didTapSearch: didTapSearchSubject.eraseToAnyPublisher()
-                )
-            )
+    func bindViewModel() {
+        viewDidLoadSubject.send()
+
+        dataSource.pagingHandler = { [weak self] in
+            self?.nextPageSubject.send($0)
+        }
+
+        dataSource.didSelectHandler = { [weak self, dataSource] in
+            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
+        }
+
+        let input = CharactersViewModel.Input(
+            viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+            nextPage: nextPageSubject.eraseToAnyPublisher(),
+            didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
+            search: .passthroughSubject,
+            didTapSearch: didTapSearchSubject.eraseToAnyPublisher(),
+            didDismissSearch: .passthroughSubject
+        )
+
+        viewModel.transform(input: input)
             .sink { [weak self] in self?.dataSource.state = $0 }
             .store(in: &cancellable)
     }
