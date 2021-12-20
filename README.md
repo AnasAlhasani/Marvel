@@ -25,9 +25,9 @@ Marvel iOS application written in Swift 5 using MVVM with clean architecture con
 <table style="width:100%">
   <tr>
     <td><img src="Settings/Assets/Launch.png" width="100%" height=375 alt="Marvel"/></td>
-    <td><img src="Settings/Assets/Characters.png" width="100% height=375 alt="Marvel"/></td>
-    <td><img src="Settings/Assets/Search.png" width="100% height=375 alt="Marvel"/></td>
-    <td><img src="Settings/Assets/Details.png" width="100% height=375 alt="Marvel"/></td>
+    <td><img src="Settings/Assets/Characters.png" width="100%" height=375 alt="Marvel"/></td>
+    <td><img src="Settings/Assets/Search.png" width="100%" height=375 alt="Marvel"/></td>
+    <td><img src="Settings/Assets/Details.png" width="100%" height=375 alt="Marvel"/></td>
   </tr>
 </table>
 
