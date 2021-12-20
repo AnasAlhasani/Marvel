@@ -12,25 +12,21 @@ import XCTest
 final class CharactersViewModelTests: XCTestCase {
     var routerSpy: CharactersListRouterSpy!
     var useCaseStub: CharacterUseCaseStub!
-    var throttlerSpy: ThrottlerSpy!
     var viewModel: CharactersViewModel!
 
     override func setUp() {
         super.setUp()
         routerSpy = .init()
         useCaseStub = .init()
-        throttlerSpy = .init()
         viewModel = .init(
             router: routerSpy,
-            characterUseCase: useCaseStub,
-            throttler: throttlerSpy
+            useCase: useCaseStub
         )
     }
 
     override func tearDown() {
         routerSpy = nil
         useCaseStub = nil
-        throttlerSpy = nil
         viewModel = nil
         super.tearDown()
     }

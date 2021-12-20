@@ -12,10 +12,10 @@ import Foundation
 
 final class CharacterUseCaseStub: CharacterUseCase {
     var parameter: CharacterParameter!
-    var publisher: AnyPublisher<CharacterPaginator, Error>!
+    var publisher: CharacterPublisher!
     var callCount = 0
 
-    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error> {
+    func loadCharacters(with parameter: CharacterParameter) -> CharacterPublisher {
         self.parameter = parameter
         callCount += 1
         return publisher

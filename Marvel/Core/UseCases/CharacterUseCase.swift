@@ -18,9 +18,9 @@ typealias CharacterPublisher = AnyPublisher<CharacterResult, Never>
 // MARK: - Parameters
 
 struct CharacterParameter: Parameter {
-    private let offset: Int
-    private let limit: Int
-    private let nameStartsWith: String?
+    private(set) var offset: Int
+    private(set) var limit: Int
+    private(set) var nameStartsWith: String?
 
     init(
         offset: Int = .zero,

@@ -12,10 +12,10 @@ import Foundation
 
 final class MediaUseCaseStub: MediaUseCase {
     var parameter: MediaParameter!
-    var publisher: AnyPublisher<MediaPaginator, Error>!
+    var publisher: MediaPublisher!
     var callCount = 0
 
-    func loadMediaItems(with parameter: MediaParameter) -> AnyPublisher<MediaPaginator, Error> {
+    func loadMediaItems(with parameter: MediaParameter) -> MediaPublisher {
         self.parameter = parameter
         callCount += 1
         return publisher

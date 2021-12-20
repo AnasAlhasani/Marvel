@@ -19,7 +19,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
         useCaseStub = .init()
         characterItem = .init(.item(index: 0))
         viewModel = .init(
-            mediaUseCase: useCaseStub,
+            useCase: useCaseStub,
             character: characterItem
         )
     }
