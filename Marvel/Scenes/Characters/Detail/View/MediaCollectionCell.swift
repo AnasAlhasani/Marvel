@@ -13,6 +13,14 @@ final class MediaCollectionCell: UICollectionViewCell {
 
     @IBOutlet private var comicImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
+
+    // MARK: Reuse
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        comicImageView.image = nil
+        comicImageView.cancelDownloading()
+    }
 }
 
 // MARK: CellConfigurable

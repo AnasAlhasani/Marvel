@@ -53,11 +53,10 @@ extension DefaultCharacterUseCase: CharacterUseCase {
     func loadCharacters(with parameter: CharacterParameter) -> CharacterPublisher {
         gateway
             .loadCharacters(with: .init(parameter))
-            .map { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
+            .flatMapLatest { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
                 repository.save(entites: paginator.results)
                 return .just(paginator)
             }
-            .switchToLatest()
             .catch { [repository] _ in repository.fetchAll().map { CharacterPaginator(results: $0) } }
             .convertToResult()
             .eraseToAnyPublisher()

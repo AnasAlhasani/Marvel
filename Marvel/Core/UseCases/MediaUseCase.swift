@@ -44,11 +44,10 @@ extension DefaultMediaUseCase: MediaUseCase {
     func loadMediaItems(with parameter: MediaParameter) -> MediaPublisher {
         gateway
             .loadMediaItems(with: .init(parameter))
-            .map { [repository] paginator -> AnyPublisher<MediaPaginator, Error> in
+            .flatMapLatest { [repository] paginator -> AnyPublisher<MediaPaginator, Error> in
                 repository.save(entites: paginator.results)
                 return .just(paginator)
             }
-            .switchToLatest()
             .catch { [repository] _ in repository.fetchAll().map { MediaPaginator(results: $0) } }
             .convertToResult()
             .eraseToAnyPublisher()
