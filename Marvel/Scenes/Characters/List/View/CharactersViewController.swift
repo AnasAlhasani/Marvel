@@ -38,8 +38,6 @@ final class CharactersViewController: UIViewController {
 
 private extension CharactersViewController {
     func bindViewModel() {
-        viewDidLoadSubject.send()
-
         dataSource.pagingHandler = { [weak self] in
             self?.nextPageSubject.send($0)
         }
@@ -57,9 +55,13 @@ private extension CharactersViewController {
             didDismissSearch: .passthroughSubject
         )
 
-        viewModel.transform(input: input)
+        let output = viewModel.transform(input: input)
+
+        output
             .sink { [weak self] in self?.dataSource.state = $0 }
             .store(in: &cancellable)
+
+        viewDidLoadSubject.send()
     }
 }
 

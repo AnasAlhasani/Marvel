@@ -77,7 +77,9 @@ private extension SearchViewController {
             didDismissSearch: didDismissSearchSubject.eraseToAnyPublisher()
         )
 
-        viewModel.transform(input: input)
+        let output = viewModel.transform(input: input)
+
+        output
             .sink { [weak self] in self?.dataSource.state = $0 }
             .store(in: &cancellable)
     }

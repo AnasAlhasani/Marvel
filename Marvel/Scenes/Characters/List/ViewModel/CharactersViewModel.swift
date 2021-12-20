@@ -19,18 +19,18 @@ final class CharactersViewModel: ObservableObject {
     // MARK: Properties
 
     private let router: CharactersListRoutable
-    private let characterUseCase: CharacterUseCase
-    private(set) var state: ListState = .idle
+    private let useCase: CharacterUseCase
+    private var state: ListState = .idle
     private var cancellable = Set<AnyCancellable>()
 
     // MARK: Init / Deinit
 
     init(
         router: CharactersListRoutable,
-        characterUseCase: CharacterUseCase
+        useCase: CharacterUseCase
     ) {
         self.router = router
-        self.characterUseCase = characterUseCase
+        self.useCase = useCase
     }
 }
 
@@ -52,17 +52,9 @@ extension CharactersViewModel: ViewModel {
         cancellable.forEach { $0.cancel() }
         cancellable.removeAll()
 
-        input.didTapSearch
-            .sink { [router] in router.showSearch() }
-            .store(in: &cancellable)
-
-        input.didDismissSearch
-            .sink { [router] in router.dismissSearch() }
-            .store(in: &cancellable)
-
-        input.didSelectRow
-            .sink { [router] in router.showDetails(for: $0) }
-            .store(in: &cancellable)
+        input.didTapSearch.sink { [router] in router.showSearch() }.store(in: &cancellable)
+        input.didDismissSearch.sink { [router] in router.dismissSearch() }.store(in: &cancellable)
+        input.didSelectRow.sink { [router] in router.showDetails(for: $0) }.store(in: &cancellable)
 
         let loadingState = input.viewDidLoad
             .map { _ in ListState.loading }
@@ -81,26 +73,34 @@ extension CharactersViewModel: ViewModel {
             .removeDuplicates()
             .eraseToAnyPublisher()
 
-        let resultState = searchText
+        let characters = input.viewDidLoad
+            .combineLatest(nextPage)
+            .flatMapLatest { [useCase] _, offset in
+                useCase.loadCharacters(with: .init(offset: offset))
+            }
+
+        let filteredCharacters = searchText
             .filter(\.isNotEmpty)
             .combineLatest(nextPage)
-            .flatMapLatest { [characterUseCase] query, offset -> AnyPublisher<CharacterResult, Never> in
-                let parameter = CharacterParameter(offset: offset, query: query)
-                return characterUseCase.loadCharacters(with: parameter)
+            .flatMapLatest { [useCase] query, offset in
+                useCase.loadCharacters(with: .init(offset: offset, query: query))
             }
-            .map { [unowned self] in self.makeListState(from: $0) }
+
+        let resultState = Publishers
+            .Merge(characters, filteredCharacters)
+            .map { [unowned self] in self.makeState(from: $0) }
             .handleEvents(receiveOutput: { [weak self] in self?.state = $0 })
             .eraseToAnyPublisher()
 
         return Publishers
-            .Merge3(loadingState, resultState, searchState)
+            .Merge3(loadingState, searchState, resultState)
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
 }
 
 private extension CharactersViewModel {
-    func makeListState(from result: Result<CharacterPaginator, Error>) -> ListState {
+    func makeState(from result: Result<CharacterPaginator, Error>) -> ListState {
         switch result {
         case let .success(value):
             var allItems = state.items
