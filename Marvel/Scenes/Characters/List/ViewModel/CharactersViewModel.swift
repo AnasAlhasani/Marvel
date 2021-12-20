@@ -11,13 +11,6 @@ import Foundation
 
 // swiftlint:disable trailing_closure
 
-protocol ViewModel {
-    associatedtype Input
-    associatedtype Output
-
-    func transform(input: Input) -> Output
-}
-
 final class CharactersViewModel: ObservableObject {
     // MARK: Types
 
@@ -53,7 +46,7 @@ extension CharactersViewModel: ViewModel {
         private(set) var didDismissSearch: AnyPublisher<Void, Never> = .passthroughSubject
     }
 
-    typealias Output = AnyPublisher<State<CharacterItem>, Never>
+    typealias Output = AnyPublisher<ListState, Never>
 
     func transform(input: Input) -> Output {
         input.didTapSearch
@@ -85,10 +78,10 @@ extension CharactersViewModel: ViewModel {
             .removeDuplicates()
             .eraseToAnyPublisher()
 
-        let result = searchText
+        let resultState = searchText
             .filter(\.isNotEmpty)
             .combineLatest(nextPage)
-            .flatMapLatest { [characterUseCase] query, offset -> AnyPublisher<Result<CharacterPaginator, Error>, Never> in
+            .flatMapLatest { [characterUseCase] query, offset -> AnyPublisher<CharacterResult, Never> in
                 let parameter = CharacterParameter(offset: offset, query: query)
                 return characterUseCase.loadCharacters(with: parameter)
             }
@@ -97,26 +90,19 @@ extension CharactersViewModel: ViewModel {
             .eraseToAnyPublisher()
 
         return Publishers
-            .Merge3(loadingState, result, searchState)
+            .Merge3(loadingState, resultState, searchState)
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
 }
 
 private extension CharactersViewModel {
-    func makeListState(from result: Result<CharacterPaginator, Error>) -> State<CharacterItem> {
+    func makeListState(from result: Result<CharacterPaginator, Error>) -> ListState {
         switch result {
         case let .success(value):
-            let items = value.results.map(CharacterItem.init)
-
             var allItems = state.items
-            allItems.append(contentsOf: items)
-
-            if value.hasMorePages {
-                return .paging(allItems, next: value.nextOffset)
-            } else {
-                return .populated(allItems)
-            }
+            allItems.append(contentsOf: value.results.map(CharacterItem.init))
+            return value.hasMorePages ? .paging(allItems, next: value.nextOffset) : .populated(allItems)
 
         case let .failure(error):
             return .error(error)
