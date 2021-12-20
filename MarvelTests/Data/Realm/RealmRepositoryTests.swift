@@ -25,10 +25,10 @@ final class RealmRepositoryTests: XCTestCase {
 
     func testSaveEntitiesWithSuccess() throws {
         // Given
-        let entites = EntityTestDouble.items()
+        let entities = EntityTestDouble.items()
 
         // When
-        let publisher = repository.save(entites: entites)
+        let publisher = repository.save(entities: entities)
         let result = try awaitPublisher(publisher)
 
         // Then
@@ -39,10 +39,10 @@ final class RealmRepositoryTests: XCTestCase {
     func testSaveEntitiesWithFailure() throws {
         // Given
         let error = MarvelError.general
-        let entites = EntityTestDouble.items(isThrowable: true)
+        let entities = EntityTestDouble.items(isThrowable: true)
 
         // When
-        let publisher = repository.save(entites: entites)
+        let publisher = repository.save(entities: entities)
         let result = try awaitPublisher(publisher)
 
         // Then
@@ -52,15 +52,15 @@ final class RealmRepositoryTests: XCTestCase {
 
     func testFetchAllWithSuccess() throws {
         // Given
-        let entites = EntityTestDouble.items().sorted { $0.id.rawValue > $1.id.rawValue }
+        let entities = EntityTestDouble.items().sorted { $0.id.rawValue > $1.id.rawValue }
 
         // When
-        repository.save(entites: entites)
+        repository.save(entities: entities)
         let publisher = repository.fetchAll()
         let result = try awaitPublisher(publisher)
 
         // Then
-        XCTAssertEqual(try result.get(), entites)
+        XCTAssertEqual(try result.get(), entities)
         XCTAssertNil(result.error)
     }
 }

@@ -54,7 +54,7 @@ extension DefaultCharacterUseCase: CharacterUseCase {
         gateway
             .loadCharacters(with: .init(parameter))
             .flatMapLatest { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
-                repository.save(entites: paginator.results)
+                repository.save(entities: paginator.results)
                 return .just(paginator)
             }
             .catch { [repository] _ in repository.fetchAll().map { CharacterPaginator(results: $0) } }

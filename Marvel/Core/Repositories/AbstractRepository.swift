@@ -13,7 +13,7 @@ protocol AbstractRepository {
     associatedtype Entity
 
     @discardableResult
-    func save(entites: [Entity]) -> AnyPublisher<Void, Error>
+    func save(entities: [Entity]) -> AnyPublisher<Void, Error>
     func fetchAll() -> AnyPublisher<[Entity], Error>
 }
 
@@ -36,8 +36,8 @@ final class AnyRepository<E>: AbstractRepository {
     }
 
     @discardableResult
-    func save(entites: [E]) -> AnyPublisher<Void, Error> {
-        saveAction(entites)
+    func save(entities: [E]) -> AnyPublisher<Void, Error> {
+        saveAction(entities)
     }
 
     func fetchAll() -> AnyPublisher<[E], Error> {

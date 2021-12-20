@@ -49,7 +49,7 @@ final class MediaUseCaseTests: XCTestCase {
         XCTAssertEqual(gatewayStub.publisher.value, paginator)
         XCTAssertNil(gatewayStub.publisher.error)
 
-        XCTAssertEqual(repositoryStub.entites, results)
+        XCTAssertEqual(repositoryStub.entities, results)
         XCTAssertEqual(repositoryStub.saveCallCount, 1)
         XCTAssertTrue(repositoryStub.savePublisher.value! == ())
         XCTAssertNil(repositoryStub.savePublisher.error)

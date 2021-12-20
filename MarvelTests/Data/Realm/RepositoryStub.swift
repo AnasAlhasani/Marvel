@@ -11,15 +11,15 @@ import Foundation
 @testable import Marvel
 
 final class RepositoryStub<Entity: IdentifiableEntity>: AbstractRepository {
-    var entites = [Entity]()
+    var entities = [Entity]()
     var savePublisher: AnyPublisher<Void, Error>!
     var saveCallCount = 0
     var fetchCallCount = 0
     var fetchPublisher: AnyPublisher<[Entity], Error>!
 
     @discardableResult
-    func save(entites: [Entity]) -> AnyPublisher<Void, Error> {
-        self.entites = entites
+    func save(entities: [Entity]) -> AnyPublisher<Void, Error> {
+        self.entities = entities
         saveCallCount += 1
         return savePublisher
     }
