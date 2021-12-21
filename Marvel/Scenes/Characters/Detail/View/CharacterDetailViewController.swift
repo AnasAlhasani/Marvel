@@ -54,10 +54,5 @@ private extension CharacterDetailViewController {
             .store(in: &cancellable)
 
         viewDidLoadSubject.send()
-
-        dataSource.cellConfigurator = { [dataSource] (cell: MediaTableCell, indexPath) in
-            let item = dataSource.state.items[indexPath.row]
-            cell.configure(with: item)
-        }
     }
 }
