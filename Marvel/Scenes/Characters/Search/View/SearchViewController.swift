@@ -70,7 +70,9 @@ private extension SearchViewController {
             didDismissSearch: didDismissSearchSubject.eraseToAnyPublisher()
         )
 
-        let output = viewModel.transform(input: input)
+        viewModel.transform(input: input)
+            .sink { [weak self] in self?.dataSource.state = $0 }
+            .store(in: &cancellable)
 
         dataSource.pagingHandler = { [weak self] in
             self?.nextPageSubject.send($0)
@@ -79,10 +81,6 @@ private extension SearchViewController {
         dataSource.didSelectHandler = { [weak self, dataSource] in
             self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
         }
-
-        output
-            .sink { [weak self] in self?.dataSource.state = $0 }
-            .store(in: &cancellable)
     }
 }
 

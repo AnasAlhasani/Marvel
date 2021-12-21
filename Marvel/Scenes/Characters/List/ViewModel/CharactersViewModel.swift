@@ -69,15 +69,15 @@ extension CharactersViewModel: ViewModel {
         input.didDismissSearch.sink { [router] in router.dismissSearch() }.store(in: &cancellable)
         input.didSelectRow.sink { [router] in router.showDetails(for: $0) }.store(in: &cancellable)
 
-        let loadingState = input.viewDidLoad
-            .map { _ in ListState.loading }
+        let loadingState: Output = input.viewDidLoad
+            .map { _ in .loading }
             .eraseToAnyPublisher()
 
         let searchText = input.search
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
 
-        let searchState: AnyPublisher<ListState, Never> = searchText
+        let searchState: Output = searchText
             .map { $0.isEmpty ? .idle : .loading }
             .eraseToAnyPublisher()
 
@@ -106,7 +106,7 @@ extension CharactersViewModel: ViewModel {
             .eraseToAnyPublisher()
 
         return Publishers
-            .Merge3(loadingState, searchState, resultState)
+            .MergeMany(loadingState, searchState, resultState)
             .removeDuplicates()
             .eraseToAnyPublisher()
     }

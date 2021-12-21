@@ -42,11 +42,6 @@ private extension CharacterDetailViewController {
 
         let output = viewModel.transform(input: input)
 
-        dataSource.cellConfigurator = { [dataSource] (cell: MediaTableCell, indexPath) in
-            let item = dataSource.state.items[indexPath.row]
-            cell.configure(with: item)
-        }
-
         output.character
             .sink { [weak self] in
                 self?.title = $0.name
@@ -59,5 +54,10 @@ private extension CharacterDetailViewController {
             .store(in: &cancellable)
 
         viewDidLoadSubject.send()
+
+        dataSource.cellConfigurator = { [dataSource] (cell: MediaTableCell, indexPath) in
+            let item = dataSource.state.items[indexPath.row]
+            cell.configure(with: item)
+        }
     }
 }
