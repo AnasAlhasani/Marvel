@@ -10,8 +10,8 @@ import Combine
 import Foundation
 
 extension AnyPublisher {
-    static func just() -> Self where Output == Void {
-        .just(())
+    static var empty: Self {
+        Empty().eraseToAnyPublisher()
     }
 
     static func just(_ output: Output) -> Self {
@@ -22,6 +22,12 @@ extension AnyPublisher {
 
     static func fail(with error: Failure) -> Self {
         Fail(error: error).eraseToAnyPublisher()
+    }
+}
+
+extension AnyPublisher where Output == Void {
+    static var just: Self {
+        .just(())
     }
 }
 

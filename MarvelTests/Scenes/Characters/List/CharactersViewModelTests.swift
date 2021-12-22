@@ -13,13 +13,12 @@ final class CharactersViewModelTests: XCTestCase {
     var routerSpy: CharactersListRouterSpy!
     var useCaseStub: CharacterUseCaseStub!
     var viewModel: CharactersViewModel!
-    var cancellable: Set<AnyCancellable>!
+    var cancellable = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
         routerSpy = .init()
         useCaseStub = .init()
-        cancellable = .init()
         viewModel = .init(
             router: routerSpy,
             useCase: useCaseStub
@@ -30,88 +29,112 @@ final class CharactersViewModelTests: XCTestCase {
         routerSpy = nil
         useCaseStub = nil
         viewModel = nil
-        cancellable = nil
         super.tearDown()
     }
 
-    func testLoadCharactersWithSearchQuery() {
-        /*
-         // Given
-         let query = "ANY"
-         let results = MarvelCharacter.items()
-         let paginator = Paginator.value(results: results)
-         let items = results.map(CharacterItem.init)
-         useCaseStub.publisher = .just(.success(paginator))
+    func testLoadCharactersWithSearch() {
+        // Given
+        var query = ""
+        let results = MarvelCharacter.items()
+        let paginator = Paginator.value(results: results)
+        let items = results.map(CharacterItem.init)
 
-         // When
-         let output = makeOutput(search: .just(query))
+        let viewDidLoad = PassthroughSubject<Void, Never>()
+        let search = PassthroughSubject<String, Never>()
+        let nextPage = PassthroughSubject<Int, Never>()
+        let output = makeOutput(viewDidLoad: viewDidLoad, nextPage: nextPage, search: search)
+        useCaseStub.publisher = .just(.success(paginator))
 
-         // Then
-         output.sink { XCTAssertEqual($0, .loading) }.store(in: &cancellable)
-         XCTAssertEqual(useCaseStub.parameter.nameStartsWith, query.lowercased())
+        // When
+        viewDidLoad.send()
+        search.send(query)
+        nextPage.send(.zero)
 
-         // When
-         throttlerSpy.completion()
+        // Then
+        output.sink {
+            XCTAssertEqual(self.useCaseStub.callCount, .zero)
+            XCTAssertEqual(self.useCaseStub.parameter.offset, .zero)
+            XCTAssertNil(self.useCaseStub.parameter.nameStartsWith)
+            XCTAssertEqual($0, .idle)
+        }.store(in: &cancellable)
 
-         // Then
-         XCTAssertEqual(throttlerSpy.callCount, 1)
-         XCTAssertEqual(viewModel.state.value.items, items)
+        // When
+        query = "ANY"
+        search.send(query)
+        nextPage.send(1)
 
-         // When
-         viewModel.loadCharacters()
-
-         // Then
-         XCTAssertEqual(viewModel.state.value, .idle)
-         XCTAssertEqual(viewModel.query, query.lowercased())
-         */
+        // Then
+        output.sink { [unowned self] in
+            XCTAssertEqual(self.useCaseStub.callCount, 2)
+            XCTAssertEqual(self.useCaseStub.parameter.offset, 1)
+            XCTAssertEqual(self.useCaseStub.parameter.nameStartsWith, query.lowercased())
+            XCTAssertEqual($0, .populated(items))
+        }.store(in: &cancellable)
     }
 
-    func testLoadCharactersPagination() {
-        /*
-         // Given
-         let total = 40
-         let count = 20
-         let totalResults = MarvelCharacter.items(numberOfElements: total)
-         let totalItems = totalResults.map(CharacterItem.init)
-         let initialResults = Array(totalResults.prefix(count))
-         let initialPaginator = Paginator.value(total: total, results: initialResults)
-         let initialItems = initialResults.map(CharacterItem.init)
-         let initialState: State<CharacterItem> = .paging(initialItems, next: initialPaginator.nextOffset)
-         useCaseStub.publisher = .just(.success(initialPaginator))
+    func testLoadCharactersPaginationWithSearch() {
+        // Given
+        let total = 40
+        let count = 20
+        let totalResults = MarvelCharacter.items(numberOfElements: total)
+        let totalItems = totalResults.map(CharacterItem.init)
+        let initialResults = Array(totalResults.prefix(count))
+        let initialPaginator = Paginator.value(total: total, results: initialResults)
+        let initialItems = initialResults.map(CharacterItem.init)
+        let initialState: State<CharacterItem> = .paging(initialItems, next: initialPaginator.nextOffset)
 
-         // When
-         let initialOutput = makeOutput(viewDidLoad: .just(), nextPage: .just(.zero))
+        let viewDidLoad = PassthroughSubject<Void, Never>()
+        let nextPage = PassthroughSubject<Int, Never>()
+        let output = makeOutput(viewDidLoad: viewDidLoad, nextPage: nextPage)
 
-         // Then
-         initialOutput.sink { XCTAssertEqual($0, initialState) }.store(in: &cancellable)
+        useCaseStub.publisher = .just(.success(initialPaginator))
 
-         // Given
-         let nextResults = Array(totalResults.suffix(count))
-         let nextPaginator = initialPaginator.next(with: nextResults)
-         let nextState: State<CharacterItem> = .populated(totalItems)
-         useCaseStub.publisher = .just(.success(nextPaginator))
+        // When
+        viewDidLoad.send()
+        nextPage.send(.zero)
 
-         // When
-         let nextOutput = makeOutput(nextPage: .just(nextState.nextPage))
+        // Then
+        output.sink { [unowned self] in
+            XCTAssertEqual(self.useCaseStub.parameter.offset, .zero)
+            XCTAssertEqual(self.useCaseStub.callCount, 1)
+            XCTAssertEqual($0, initialState)
+        }.store(in: &cancellable)
 
-         // Then
-         nextOutput.sink { XCTAssertEqual($0, nextState) }.store(in: &cancellable)
-         */
+        // Given
+        let nextResults = Array(totalResults.suffix(count))
+        let nextPaginator = initialPaginator.next(with: nextResults)
+        let nextState: State<CharacterItem> = .populated(totalItems)
+        useCaseStub.publisher = .just(.success(nextPaginator))
+
+        // When
+        nextPage.send(nextState.nextPage)
+
+        // Then
+        output.sink { [unowned self] in
+            XCTAssertEqual(self.useCaseStub.parameter.offset, nextState.nextPage)
+            XCTAssertEqual(self.useCaseStub.callCount, 2)
+            XCTAssertEqual($0, nextState)
+        }.store(in: &cancellable)
     }
 
     func testLoadCharactersFailed() throws {
-        /*
-         // Given
-         let error = MarvelError.general
-         let state: State<CharacterItem> = .error(error)
-         useCaseStub.publisher = .just(.failure(error))
+        // Given
+        let error = MarvelError.general
+        let state: State<CharacterItem> = .error(error)
 
-         // When
-         let output = makeOutput(viewDidLoad: .just())
+        let viewDidLoad = PassthroughSubject<Void, Never>()
+        let output = makeOutput(viewDidLoad: viewDidLoad)
 
-         // Then
-         output.sink { XCTAssertEqual($0, state) }.store(in: &cancellable)
-         */
+        useCaseStub.publisher = .just(.failure(error))
+
+        // When
+        viewDidLoad.send()
+
+        // Then
+        output.sink {
+            XCTAssertEqual($0, state)
+
+        }.store(in: &cancellable)
     }
 
     func testDidSelectRowAtIndexPath() {
@@ -121,13 +144,14 @@ final class CharactersViewModelTests: XCTestCase {
         let paginator = Paginator.value(results: results)
         let items = results.map(CharacterItem.init)
         let item = items[indexPath.row]
+
+        let didSelectRow = PassthroughSubject<CharacterItem, Never>()
+        makeOutput(didSelectRow: didSelectRow)
+
         useCaseStub.publisher = .just(.success(paginator))
 
         // When
-        makeOutput(
-            viewDidLoad: .just(),
-            didSelectRow: .just(item)
-        )
+        didSelectRow.send(item)
 
         // Then
         XCTAssertEqual(routerSpy.showDetailsCallCount, 1)
@@ -135,12 +159,26 @@ final class CharactersViewModelTests: XCTestCase {
     }
 
     func testDidTapSearch() {
-        makeOutput(didTapSearch: .just())
+        // Given
+        let subject = PassthroughSubject<Void, Never>()
+        makeOutput(didTapSearch: subject)
+
+        // When
+        subject.send()
+
+        // Then
         XCTAssertEqual(routerSpy.showSearchCallCount, 1)
     }
 
     func testDidTapCancelSearch() {
-        makeOutput(didDismissSearch: .just())
+        // Given
+        let subject = PassthroughSubject<Void, Never>()
+        makeOutput(didDismissSearch: subject)
+
+        // When
+        subject.send()
+
+        // Then
         XCTAssertEqual(routerSpy.dismissSearchCallCount, 1)
     }
 }
@@ -148,20 +186,20 @@ final class CharactersViewModelTests: XCTestCase {
 private extension CharactersViewModelTests {
     @discardableResult
     func makeOutput(
-        viewDidLoad: AnyPublisher<Void, Never> = .passthroughSubject,
-        nextPage: AnyPublisher<Int, Never> = .passthroughSubject,
-        didSelectRow: AnyPublisher<CharacterItem, Never> = .passthroughSubject,
-        search: AnyPublisher<String, Never> = .passthroughSubject,
-        didTapSearch: AnyPublisher<Void, Never> = .passthroughSubject,
-        didDismissSearch: AnyPublisher<Void, Never> = .passthroughSubject
+        viewDidLoad: PassthroughSubject<Void, Never> = .init(),
+        nextPage: PassthroughSubject<Int, Never> = .init(),
+        didSelectRow: PassthroughSubject<CharacterItem, Never> = .init(),
+        search: PassthroughSubject<String, Never> = .init(),
+        didTapSearch: PassthroughSubject<Void, Never> = .init(),
+        didDismissSearch: PassthroughSubject<Void, Never> = .init()
     ) -> CharactersViewModel.Output {
         let input = CharactersViewModel.Input(
-            viewDidLoad: viewDidLoad,
-            nextPage: nextPage,
-            didSelectRow: didSelectRow,
-            search: search,
-            didTapSearch: didTapSearch,
-            didDismissSearch: didDismissSearch
+            viewDidLoad: viewDidLoad.eraseToAnyPublisher(),
+            nextPage: nextPage.eraseToAnyPublisher(),
+            didSelectRow: didSelectRow.eraseToAnyPublisher(),
+            search: search.eraseToAnyPublisher(),
+            didTapSearch: didTapSearch.eraseToAnyPublisher(),
+            didDismissSearch: didDismissSearch.eraseToAnyPublisher()
         )
 
         return viewModel.transform(input: input)

@@ -36,7 +36,15 @@ final class CharacterDetailViewModelTests: XCTestCase {
     }
 
     func testCharacterItem() {
-        makeOutput()
+        // Given
+        let viewDidLoad = PassthroughSubject<Void, Never>()
+        let output = makeOutput(viewDidLoad: viewDidLoad)
+
+        // When
+        viewDidLoad.send()
+
+        // Then
+        output
             .character
             .sink { [unowned self] in XCTAssertEqual($0, characterItem) }
             .store(in: &cancellable)
@@ -51,26 +59,36 @@ final class CharacterDetailViewModelTests: XCTestCase {
         let mediaItems = results.map(CharacterDetailsItem.MediaItem.init)
         let detailItems = allCases.map { CharacterDetailsItem(type: $0, state: .populated(mediaItems)) }
         let state: State<CharacterDetailsItem> = .populated(detailItems)
+
+        let viewDidLoad = PassthroughSubject<Void, Never>()
+        let output = makeOutput(viewDidLoad: viewDidLoad)
+
         useCaseStub.publisher = .just(.success(paginator))
 
         // When
-        let output = makeOutput()
+        viewDidLoad.send()
 
         // Then
-        output.state.sink { XCTAssertEqual($0, state) }.store(in: &cancellable)
-        XCTAssertEqual(useCaseStub.callCount, numberOfElements)
-        XCTAssertEqual(useCaseStub.parameter.id, characterItem.model.id)
-        XCTAssertEqual(useCaseStub.parameter.type, allCases.last)
+        output.state.sink { [unowned self] in
+            XCTAssertEqual(self.useCaseStub.callCount, numberOfElements)
+            XCTAssertEqual(self.useCaseStub.parameter.id, characterItem.model.id)
+            XCTAssertEqual(self.useCaseStub.parameter.type, allCases.last)
+            XCTAssertEqual($0, state)
+        }.store(in: &cancellable)
     }
 
     func testLoadItemsFailed() {
         // Given
         let error = MarvelError.general
         let state: State<CharacterDetailsItem.MediaItem> = .error(error)
+
+        let viewDidLoad = PassthroughSubject<Void, Never>()
+        let output = makeOutput(viewDidLoad: viewDidLoad)
+
         useCaseStub.publisher = .just(.failure(error))
 
         // When
-        let output = makeOutput()
+        viewDidLoad.send()
 
         // Then
         output.state
@@ -83,9 +101,8 @@ final class CharacterDetailViewModelTests: XCTestCase {
 
 private extension CharacterDetailViewModelTests {
     func makeOutput(
-        viewDidLoad: AnyPublisher<Void, Never> = .passthroughSubject
+        viewDidLoad: PassthroughSubject<Void, Never> = .init()
     ) -> CharacterDetailViewModel.Output {
-        let input = CharacterDetailViewModel.Input(viewDidLoad: viewDidLoad)
-        return viewModel.transform(input: input)
+        viewModel.transform(input: .init(viewDidLoad: viewDidLoad.eraseToAnyPublisher()))
     }
 }

@@ -12,7 +12,7 @@ import Foundation
 
 final class MediaUseCaseStub: MediaUseCase {
     var parameter: MediaParameter!
-    var publisher: MediaPublisher!
+    var publisher: MediaPublisher = .empty
     var callCount = 0
 
     func loadMediaItems(with parameter: MediaParameter) -> MediaPublisher {
