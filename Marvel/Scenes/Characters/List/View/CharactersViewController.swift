@@ -44,9 +44,9 @@ private extension CharactersViewController {
             viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
             nextPage: nextPageSubject.eraseToAnyPublisher(),
             didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
-            search: .passthroughSubject,
+            search: .empty,
             didTapSearch: didTapSearchSubject.eraseToAnyPublisher(),
-            didDismissSearch: .passthroughSubject
+            didDismissSearch: .empty
         )
 
         viewModel.transform(input: input)

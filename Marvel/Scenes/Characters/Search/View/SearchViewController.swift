@@ -62,11 +62,11 @@ private extension SearchViewController {
 
     func bindViewModel() {
         let input = CharactersViewModel.Input(
-            viewDidLoad: .passthroughSubject,
+            viewDidLoad: .empty,
             nextPage: nextPageSubject.eraseToAnyPublisher(),
             didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
             search: searchSubject.eraseToAnyPublisher(),
-            didTapSearch: .passthroughSubject,
+            didTapSearch: .empty,
             didDismissSearch: didDismissSearchSubject.eraseToAnyPublisher()
         )
 

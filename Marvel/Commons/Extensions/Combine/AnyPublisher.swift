@@ -30,9 +30,3 @@ extension AnyPublisher where Output == Void {
         .just(())
     }
 }
-
-extension AnyPublisher {
-    static var passthroughSubject: Self {
-        PassthroughSubject<Output, Failure>().eraseToAnyPublisher()
-    }
-}
