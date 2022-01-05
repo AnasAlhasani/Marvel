@@ -40,14 +40,6 @@ playground.xcworkspace
 # CocoaPods
 Pods/
 
-# Carthage
-Carthage/Checkouts
-Carthage/Build
-
-# Accio dependency management
-Dependencies/
-.accio/
-
 # fastlane
 fastlane/report.xml
 fastlane/Preview.html
