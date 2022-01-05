@@ -99,13 +99,11 @@
                         </view>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="c7X-hs-TMc">
                             <color key="tintColor" red="0.85098039219999999" green="0.2156862745" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <action selector="didTapSearchButtonItem:" destination="KqW-UV-XFx" id="ZTj-WU-L9a"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="searchBarButtonItem" destination="c7X-hs-TMc" id="2se-u2-qZG"/>
                         <outlet property="tableView" destination="8uu-f0-4Yk" id="5z5-b5-HuA"/>
                         <outlet property="view" destination="bfk-UJ-FCX" id="1mE-UQ-IeF"/>
                     </connections>

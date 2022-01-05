@@ -138,11 +138,14 @@ final class CharactersViewModelTests: XCTestCase {
         useCaseStub.publisher = .just(.success(paginator))
 
         // When
-        makeOutput(didSelectRow: .just(item))
+        let didSelectRow = PassthroughSubject<IndexPath, Never>()
+        let output = makeOutput(viewDidLoad: .just, didSelectRow: didSelectRow.eraseToAnyPublisher())
+        output.sink { _ in }.store(in: &cancellable)
+        didSelectRow.send(indexPath)
 
         // Then
         XCTAssertEqual(routerSpy.showDetailsCallCount, 1)
-        XCTAssertEqual(routerSpy.character, items[indexPath.row])
+        XCTAssertEqual(routerSpy.character, item)
     }
 
     func testDidTapSearch() {
@@ -167,7 +170,7 @@ private extension CharactersViewModelTests {
     func makeOutput(
         viewDidLoad: AnyPublisher<Void, Never> = .empty,
         nextPage: AnyPublisher<Int, Never> = .empty,
-        didSelectRow: AnyPublisher<CharacterItem, Never> = .empty,
+        didSelectRow: AnyPublisher<IndexPath, Never> = .empty,
         search: AnyPublisher<String, Never> = .empty,
         didTapSearch: AnyPublisher<Void, Never> = .empty,
         didDismissSearch: AnyPublisher<Void, Never> = .empty

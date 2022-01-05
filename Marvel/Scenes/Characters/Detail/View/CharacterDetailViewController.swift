@@ -9,8 +9,6 @@
 import Combine
 import UIKit
 
-// swiftlint:disable implicitly_unwrapped_optional
-
 final class CharacterDetailViewController: UIViewController {
     // MARK: Outlets
 
@@ -22,6 +20,8 @@ final class CharacterDetailViewController: UIViewController {
     private lazy var dataSource = TableViewDataSource<MediaTableCell>(tableView)
     private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
     private var cancellable = Set<AnyCancellable>()
+
+    // swiftlint:disable:next implicitly_unwrapped_optional
     var viewModel: CharacterDetailViewModel!
 
     // MARK: LifeCycle

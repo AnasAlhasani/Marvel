@@ -1,5 +1,5 @@
 //
-//  TableViewable.swift
+//  ListView+State.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/3/19.
@@ -8,12 +8,8 @@
 
 import UIKit
 
-protocol TableViewable {
-    func display<Value>(_ state: State<Value>)
-}
-
-extension UITableView: TableViewable {
-    func display<Value>(_ state: State<Value>) {
+extension UITableView {
+    func transition<Value>(to state: State<Value>) {
         switch state {
         case .idle:
             tableFooterView = UIView(frame: .zero)
@@ -43,8 +39,8 @@ extension UITableView: TableViewable {
     }
 }
 
-extension UICollectionView: TableViewable {
-    func display<Value>(_ state: State<Value>) {
+extension UICollectionView {
+    func transition<Value>(to state: State<Value>) {
         switch state {
         case .idle:
             backgroundView = nil

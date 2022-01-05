@@ -9,22 +9,10 @@
 import Combine
 import Foundation
 
-// swiftlint:disable trailing_closure
-
 final class CharactersViewModel: ObservableObject {
     // MARK: Types
 
     typealias ListState = State<CharacterItem>
-    typealias Output = AnyPublisher<ListState, Never>
-
-    struct Input {
-        let viewDidLoad: AnyPublisher<Void, Never>
-        let nextPage: AnyPublisher<Int, Never>
-        let didSelectRow: AnyPublisher<CharacterItem, Never>
-        let search: AnyPublisher<String, Never>
-        let didTapSearch: AnyPublisher<Void, Never>
-        let didDismissSearch: AnyPublisher<Void, Never>
-    }
 
     // MARK: Properties
 
@@ -61,16 +49,27 @@ final class CharactersViewModel: ObservableObject {
     }
 }
 
-// MARK: Transformation
+// MARK: ViewModel
 
 extension CharactersViewModel: ViewModel {
+    struct Input {
+        let viewDidLoad: AnyPublisher<Void, Never>
+        let nextPage: AnyPublisher<Int, Never>
+        let didSelectRow: AnyPublisher<IndexPath, Never>
+        let search: AnyPublisher<String, Never>
+        let didTapSearch: AnyPublisher<Void, Never>
+        let didDismissSearch: AnyPublisher<Void, Never>
+    }
+
+    typealias Output = AnyPublisher<ListState, Never>
+
     func transform(input: Input) -> Output {
         cancellable.forEach { $0.cancel() }
         cancellable.removeAll()
 
         input.didTapSearch.sink { [router] in router.showSearch() }.store(in: &cancellable)
         input.didDismissSearch.sink { [router] in router.dismissSearch() }.store(in: &cancellable)
-        input.didSelectRow.sink { [router] in router.showDetails(for: $0) }.store(in: &cancellable)
+        input.didSelectRow.sink { [unowned self] in self.router.showDetails(for: self.state.items[$0.row]) }.store(in: &cancellable)
 
         let loadingState: Output = input.viewDidLoad
             .map { _ in .loading }
@@ -102,6 +101,7 @@ extension CharactersViewModel: ViewModel {
                 useCase.loadCharacters(with: .init(offset: offset, query: query))
             }
 
+        // swiftlint:disable:next trailing_closure
         let resultState = Publishers
             .Merge(characters, filteredCharacters)
             .map { [unowned self] in self.makeState(from: $0) }

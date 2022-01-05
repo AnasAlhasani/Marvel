@@ -8,27 +8,14 @@
 
 import UIKit
 
-typealias CollectionViewCell = CellConfigurable & UICollectionViewCell
-typealias CollectionViewDataSourceDelegate = UICollectionViewDataSource & UICollectionViewDelegate
-
-final class CollectionViewDataSource<Cell: CollectionViewCell>: NSObject, CollectionViewDataSourceDelegate {
-    // MARK: Types
-
-    typealias DidSelectHandler = (IndexPath) -> Void
-    typealias PagingHandler = (Int) -> Void
-
+final class CollectionViewDataSource<Cell: CellConfigurable & UICollectionViewCell>: NSObject, UICollectionViewDataSource {
     // MARK: Properties
 
     private let collectionView: UICollectionView
-
+    @Published private(set) var nextPage = 0
     var state: State<Cell.Item> = .loading {
-        didSet { collectionView.display(state) }
+        didSet { collectionView.transition(to: state) }
     }
-
-    // MARK: Handlers
-
-    var didSelectHandler: DidSelectHandler?
-    var pagingHandler: PagingHandler?
 
     // MARK: Init / Deinit
 
@@ -36,7 +23,6 @@ final class CollectionViewDataSource<Cell: CollectionViewCell>: NSObject, Collec
         self.collectionView = collectionView
         super.init()
         collectionView.dataSource = self
-        collectionView.delegate = self
     }
 
     // MARK: UICollectionViewDataSource
@@ -56,15 +42,9 @@ final class CollectionViewDataSource<Cell: CollectionViewCell>: NSObject, Collec
         let cell: Cell = collectionView.dequeueReusableCell(at: indexPath)
         let item = state.items[indexPath.row]
         cell.configure(with: item)
-        if case let .paging(_, nextOffset) = state, indexPath.row == state.items.count - 1 {
-            pagingHandler?(nextOffset)
+        if case let .paging(_, nextPage) = state, indexPath.row == state.items.count - 1 {
+            self.nextPage = nextPage
         }
         return cell
-    }
-
-    // MARK: UICollectionViewDelegate
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectHandler?(indexPath)
     }
 }

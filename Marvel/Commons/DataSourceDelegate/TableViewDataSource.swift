@@ -8,29 +8,14 @@
 
 import UIKit
 
-typealias TableViewCell = CellConfigurable & UITableViewCell
-typealias TableViewDataSourceDelegate = UITableViewDataSource & UITableViewDelegate
-
-final class TableViewDataSource<Cell: TableViewCell>: NSObject, TableViewDataSourceDelegate {
-    // MARK: Types
-
-    typealias DidSelectHandler = (IndexPath) -> Void
-    typealias PagingHandler = (Int) -> Void
-    typealias CellConfigurator = (Cell, IndexPath) -> Void
-
+final class TableViewDataSource<Cell: CellConfigurable & UITableViewCell>: NSObject, UITableViewDataSource {
     // MARK: Properties
 
     private let tableView: UITableView
-
+    @Published private(set) var nextPage = 0
     var state: State<Cell.Item> = .loading {
-        didSet { tableView.display(state) }
+        didSet { tableView.transition(to: state) }
     }
-
-    // MARK: Handlers
-
-    var didSelectHandler: DidSelectHandler?
-    var pagingHandler: PagingHandler?
-    var cellConfigurator: CellConfigurator?
 
     // MARK: Init / Deinit
 
@@ -38,7 +23,6 @@ final class TableViewDataSource<Cell: TableViewCell>: NSObject, TableViewDataSou
         self.tableView = tableView
         super.init()
         tableView.dataSource = self
-        tableView.delegate = self
     }
 
     // MARK: UITableViewDataSource
@@ -55,16 +39,9 @@ final class TableViewDataSource<Cell: TableViewCell>: NSObject, TableViewDataSou
         let cell: Cell = tableView.dequeueReusableCell(at: indexPath)
         let item = state.items[indexPath.row]
         cell.configure(with: item)
-        if case let .paging(_, nextOffset) = state, indexPath.row == state.items.count - 1 {
-            pagingHandler?(nextOffset)
+        if case let .paging(_, nextPage) = state, indexPath.row == state.items.count - 1 {
+            self.nextPage = nextPage
         }
-        cellConfigurator?(cell, indexPath)
         return cell
-    }
-
-    // MARK: UITableViewDelegate
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectHandler?(indexPath)
     }
 }
