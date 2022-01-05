@@ -14,15 +14,6 @@ final class CharacterDetailViewModel: ObservableObject {
 
     typealias ListState = State<CharacterDetailsItem>
 
-    struct Input {
-        let viewDidLoad: AnyPublisher<Void, Never>
-    }
-
-    struct Output {
-        let character: AnyPublisher<CharacterItem, Never>
-        let state: AnyPublisher<ListState, Never>
-    }
-
     // MARK: Properties
 
     private let useCase: MediaUseCase
@@ -52,9 +43,18 @@ final class CharacterDetailViewModel: ObservableObject {
     }
 }
 
-// MARK: Transformation
+// MARK: ViewModel
 
 extension CharacterDetailViewModel: ViewModel {
+    struct Input {
+        let viewDidLoad: AnyPublisher<Void, Never>
+    }
+
+    struct Output {
+        let character: AnyPublisher<CharacterItem, Never>
+        let state: AnyPublisher<ListState, Never>
+    }
+
     func transform(input: Input) -> Output {
         let loadingState = input.viewDidLoad
             .map { _ in ListState.loading }

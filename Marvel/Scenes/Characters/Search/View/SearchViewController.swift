@@ -7,9 +7,8 @@
 //
 
 import Combine
+import CombineCocoa
 import UIKit
-
-// swiftlint:disable implicitly_unwrapped_optional
 
 final class SearchViewController: UIViewController {
     // MARK: Outlets
@@ -24,18 +23,14 @@ final class SearchViewController: UIViewController {
         searchController.definesPresentationContext = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.delegate = self
         searchController.delegate = self
         searchController.searchBar.placeholder = L10n.Search.title
         return searchController
     }()
 
-    private let nextPageSubject = PassthroughSubject<Int, Never>()
-    private let didSelectRowSubject = PassthroughSubject<CharacterItem, Never>()
-    private let searchSubject = PassthroughSubject<String, Never>()
-    private let didDismissSearchSubject = PassthroughSubject<Void, Never>()
     private var cancellable = Set<AnyCancellable>()
 
+    // swiftlint:disable:next implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
 
     // MARK: LifeCycle
@@ -63,36 +58,16 @@ private extension SearchViewController {
     func bindViewModel() {
         let input = CharactersViewModel.Input(
             viewDidLoad: .empty,
-            nextPage: nextPageSubject.eraseToAnyPublisher(),
-            didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
-            search: searchSubject.eraseToAnyPublisher(),
+            nextPage: dataSource.$nextPage.eraseToAnyPublisher(),
+            didSelectRow: tableView.didSelectRowPublisher,
+            search: searchController.searchBar.textDidChangePublisher,
             didTapSearch: .empty,
-            didDismissSearch: didDismissSearchSubject.eraseToAnyPublisher()
+            didDismissSearch: searchController.searchBar.cancelButtonClickedPublisher
         )
 
         viewModel.transform(input: input)
             .sink { [weak self] in self?.dataSource.state = $0 }
             .store(in: &cancellable)
-
-        dataSource.pagingHandler = { [weak self] in
-            self?.nextPageSubject.send($0)
-        }
-
-        dataSource.didSelectHandler = { [weak self, dataSource] in
-            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
-        }
-    }
-}
-
-// MARK: UISearchBarDelegate
-
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchSubject.send(searchText)
-    }
-
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        didDismissSearchSubject.send()
     }
 }
 
