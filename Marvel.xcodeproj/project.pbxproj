@@ -76,6 +76,7 @@
 		5D606E69264ECC4900E8D23D /* RepositoryStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E68264ECC4900E8D23D /* RepositoryStub.swift */; };
 		5D606E6E264F11E800E8D23D /* CharactersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E6D264F11E800E8D23D /* CharactersViewModelTests.swift */; };
 		5D606E70264F234100E8D23D /* CharactersListRouterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E6F264F234100E8D23D /* CharactersListRouterSpy.swift */; };
+		5D6DFC2E27862B5C002078E4 /* XcodeConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 5D6DFC2D27862B5C002078E4 /* XcodeConfig */; };
 		5D9228F42280F1200048C614 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228EF2280F1200048C614 /* APIClient.swift */; };
 		5D9228F52280F1200048C614 /* APICharacterGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F02280F1200048C614 /* APICharacterGateway.swift */; };
 		5D9228F62280F1200048C614 /* APIMarvelMediaGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9228F12280F1200048C614 /* APIMarvelMediaGateway.swift */; };
@@ -288,6 +289,7 @@
 				5D16156F26416829004D00C4 /* CryptoSwift in Frameworks */,
 				5DA3D8332785C4B90067801A /* CombineSchedulers in Frameworks */,
 				5D161569264167E1004D00C4 /* CoreNetwork in Frameworks */,
+				5D6DFC2E27862B5C002078E4 /* XcodeConfig in Frameworks */,
 				5D16157226416895004D00C4 /* RealmSwift in Frameworks */,
 				5DA3D8362785D3780067801A /* CombineCocoa in Frameworks */,
 				AC5F7C7771BEF91B2DDA4F20 /* Pods_Marvel.framework in Frameworks */,
@@ -1109,6 +1111,7 @@
 				5D16157126416895004D00C4 /* RealmSwift */,
 				5DA3D8322785C4B90067801A /* CombineSchedulers */,
 				5DA3D8352785D3780067801A /* CombineCocoa */,
+				5D6DFC2D27862B5C002078E4 /* XcodeConfig */,
 			);
 			productName = Marvel;
 			productReference = 5DCC0D35227B42790065DA28 /* Marvel.app */;
@@ -1150,6 +1153,7 @@
 				5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				5DA3D8312785C4B90067801A /* XCRemoteSwiftPackageReference "combine-schedulers" */,
 				5DA3D8342785D3780067801A /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				5D6DFC2C27862B5C002078E4 /* XCRemoteSwiftPackageReference "XcodeConfig" */,
 			);
 			productRefGroup = 5DCC0D36227B42790065DA28 /* Products */;
 			projectDirPath = "";
@@ -1680,6 +1684,14 @@
 				minimumVersion = 10.7.4;
 			};
 		};
+		5D6DFC2C27862B5C002078E4 /* XCRemoteSwiftPackageReference "XcodeConfig" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AnasAlhasani/XcodeConfig";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		5DA3D8312785C4B90067801A /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/combine-schedulers";
@@ -1718,6 +1730,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		5D6DFC2D27862B5C002078E4 /* XcodeConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D6DFC2C27862B5C002078E4 /* XCRemoteSwiftPackageReference "XcodeConfig" */;
+			productName = XcodeConfig;
 		};
 		5DA3D8322785C4B90067801A /* CombineSchedulers */ = {
 			isa = XCSwiftPackageProductDependency;

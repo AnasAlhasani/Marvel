@@ -48,7 +48,7 @@ extension AppCore {
 
 extension AppCore {
     func apiConfiguration() -> ServiceConfigurator {
-        ServiceConfigurator()
+        ServiceConfigurator(baseURL: Config.apiURL)
     }
 
     func apiClient() -> APIClient {

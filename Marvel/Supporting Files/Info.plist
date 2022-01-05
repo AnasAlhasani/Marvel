@@ -31,11 +31,8 @@
 	<string>$(PAGE_LIMIT)</string>
 	<key>PUBLIC_KEY</key>
 	<string>$(PUBLIC_KEY)</string>
-	<key>ServerConfiguration</key>
-	<dict>
-		<key>baseURL</key>
-		<string>$(BASE_URL)</string>
-	</dict>
+	<key>API_URL</key>
+	<string>$(API_URL)</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

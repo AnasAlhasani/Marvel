@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "XcodeConfig",
+        "repositoryURL": "https://github.com/AnasAlhasani/XcodeConfig",
+        "state": {
+          "branch": "master",
+          "revision": "db5553445ea333d5e98ecaab63f76e658a7ec2b8",
+          "version": null
+        }
+      },
+      {
         "package": "xctest-dynamic-overlay",
         "repositoryURL": "https://github.com/pointfreeco/xctest-dynamic-overlay",
         "state": {
