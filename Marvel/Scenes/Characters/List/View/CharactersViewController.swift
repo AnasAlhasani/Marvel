@@ -6,35 +6,70 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import UIKit
 
+// swiftlint:disable implicitly_unwrapped_optional
+
 final class CharactersViewController: UIViewController {
-    // MARK: - Outlets
+    // MARK: Outlets
 
     @IBOutlet private var tableView: UITableView!
 
-    // MARK: - Properties
+    // MARK: Properties
 
     private lazy var dataSource = TableViewDataSource<CharactersCell>(tableView)
-    // swiftlint:disable implicitly_unwrapped_optional
+
+    private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
+    private let nextPageSubject = PassthroughSubject<Int, Never>()
+    private let didSelectRowSubject = PassthroughSubject<CharacterItem, Never>()
+    private let didTapSearchSubject = PassthroughSubject<Void, Never>()
+    private var cancellable = Set<AnyCancellable>()
+
     var viewModel: CharactersViewModel!
 
-    // MARK: - LifeCycle
+    // MARK: LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.loadCharacters()
-        viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
-        dataSource.pagingHandler = { [weak self] in self?.viewModel.loadCharacters(at: $0) }
-        dataSource.didSelectHandler = { [weak self] in self?.viewModel.didSelectRow(at: $0) }
+        bindViewModel()
     }
 }
 
-// MARK: - Interactions
+// MARK: Binding
+
+private extension CharactersViewController {
+    func bindViewModel() {
+        let input = CharactersViewModel.Input(
+            viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
+            nextPage: nextPageSubject.eraseToAnyPublisher(),
+            didSelectRow: didSelectRowSubject.eraseToAnyPublisher(),
+            search: .empty,
+            didTapSearch: didTapSearchSubject.eraseToAnyPublisher(),
+            didDismissSearch: .empty
+        )
+
+        viewModel.transform(input: input)
+            .sink { [weak self] in self?.dataSource.state = $0 }
+            .store(in: &cancellable)
+
+        viewDidLoadSubject.send()
+
+        dataSource.pagingHandler = { [weak self] in
+            self?.nextPageSubject.send($0)
+        }
+
+        dataSource.didSelectHandler = { [weak self, dataSource] in
+            self?.didSelectRowSubject.send(dataSource.state.items[$0.row])
+        }
+    }
+}
+
+// MARK: Interactions
 
 private extension CharactersViewController {
     @IBAction
     func didTapSearchButtonItem(_ sender: UIBarButtonItem) {
-        viewModel.didTapSearch()
+        didTapSearchSubject.send()
     }
 }

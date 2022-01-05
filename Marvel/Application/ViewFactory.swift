@@ -35,8 +35,8 @@ extension DefaultViewFactory {
         let router = CharactersListRouter(factory: self, context: view)
         let viewModel = CharactersViewModel(
             router: router,
-            characterUseCase: core.characterUseCase(),
-            throttler: core.throttler()
+            useCase: core.characterUseCase(),
+            scheduler: core.scheduler()
         )
 
         view.viewModel = viewModel
@@ -48,8 +48,8 @@ extension DefaultViewFactory {
         let router = CharactersListRouter(factory: self, context: view)
         let viewModel = CharactersViewModel(
             router: router,
-            characterUseCase: core.characterUseCase(),
-            throttler: core.throttler()
+            useCase: core.characterUseCase(),
+            scheduler: core.scheduler()
         )
 
         view.viewModel = viewModel
@@ -59,7 +59,7 @@ extension DefaultViewFactory {
     func makeCharacterDetailsView(for item: CharacterItem) -> UIViewController {
         let view = CharacterDetailViewController.instantiate()
         let viewModel = CharacterDetailViewModel(
-            mediaUseCase: core.mediaUseCase(),
+            useCase: core.mediaUseCase(),
             character: item
         )
         view.viewModel = viewModel

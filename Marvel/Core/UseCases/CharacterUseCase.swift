@@ -9,32 +9,34 @@
 import Combine
 import Foundation
 
-// MARK: - Paginator
+// MARK: - Types
 
 typealias CharacterPaginator = Paginator<MarvelCharacter>
+typealias CharacterResult = Result<CharacterPaginator, Error>
+typealias CharacterPublisher = AnyPublisher<CharacterResult, Never>
 
 // MARK: - Parameters
 
 struct CharacterParameter: Parameter {
-    private let offset: Int
-    private let limit: Int
-    private let nameStartsWith: String?
+    private(set) var offset: Int
+    private(set) var limit: Int
+    private(set) var nameStartsWith: String?
 
     init(
-        offset: Int,
+        offset: Int = .zero,
         limit: Int = Config.pageLimit,
         query: String? = nil
     ) {
         self.offset = offset
         self.limit = limit
-        self.nameStartsWith = query
+        self.nameStartsWith = query?.nilIfEmpty?.lowercased()
     }
 }
 
 // MARK: - UseCase
 
 protocol CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error>
+    func loadCharacters(with parameter: CharacterParameter) -> CharacterPublisher
 }
 
 final class DefaultCharacterUseCase {
@@ -48,15 +50,15 @@ final class DefaultCharacterUseCase {
 }
 
 extension DefaultCharacterUseCase: CharacterUseCase {
-    func loadCharacters(with parameter: CharacterParameter) -> AnyPublisher<CharacterPaginator, Error> {
+    func loadCharacters(with parameter: CharacterParameter) -> CharacterPublisher {
         gateway
             .loadCharacters(with: .init(parameter))
-            .map { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
+            .flatMapLatest { [repository] paginator -> AnyPublisher<CharacterPaginator, Error> in
                 repository.save(entities: paginator.results)
                 return .just(paginator)
             }
-            .switchToLatest()
             .catch { [repository] _ in repository.fetchAll().map { CharacterPaginator(results: $0) } }
+            .convertToResult()
             .eraseToAnyPublisher()
     }
 }

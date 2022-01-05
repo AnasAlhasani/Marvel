@@ -6,49 +6,53 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 import UIKit
 
+// swiftlint:disable implicitly_unwrapped_optional
+
 final class CharacterDetailViewController: UIViewController {
-    // MARK: - Outlets
+    // MARK: Outlets
 
-    @IBOutlet private var tableView: UITableView! {
-        didSet { tableView.register(MediaTableCell.self) }
-    }
-
+    @IBOutlet private var tableView: UITableView!
     @IBOutlet private var headerView: CharacterDetailHeaderView!
 
-    // MARK: - Properties
+    // MARK: Properties
 
     private lazy var dataSource = TableViewDataSource<MediaTableCell>(tableView)
-    // swiftlint:disable implicitly_unwrapped_optional
+    private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
+    private var cancellable = Set<AnyCancellable>()
     var viewModel: CharacterDetailViewModel!
 
-    // MARK: - LifeCycle
+    // MARK: LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        handleViewModel()
-        handleDataSource()
+        bindViewModel()
     }
 }
 
-// MARK: - Configurations
+// MARK: Bindings
 
 private extension CharacterDetailViewController {
-    func handleViewModel() {
-        viewModel.loadItems()
-        viewModel.state.bind { [weak self] in self?.dataSource.state = $0 }
-        viewModel.character.bind { [weak self] in
-            self?.title = $0.name
-            self?.headerView.configure(with: $0)
-        }
-    }
+    func bindViewModel() {
+        let input = CharacterDetailViewModel.Input(
+            viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher()
+        )
 
-    func handleDataSource() {
-        dataSource.cellConfigurator = { [weak self] (cell: MediaTableCell, indexPath) in
-            guard let self = self else { return }
-            let item = self.viewModel.state.value.items[indexPath.row]
-            cell.configure(with: item)
-        }
+        let output = viewModel.transform(input: input)
+
+        output.character
+            .sink { [weak self] in
+                self?.title = $0.name
+                self?.headerView.configure(with: $0)
+            }
+            .store(in: &cancellable)
+
+        output.state
+            .sink { [weak self] in self?.dataSource.state = $0 }
+            .store(in: &cancellable)
+
+        viewDidLoadSubject.send()
     }
 }

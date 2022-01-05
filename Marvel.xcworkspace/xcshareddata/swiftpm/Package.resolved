@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "combine-schedulers",
+        "repositoryURL": "https://github.com/pointfreeco/combine-schedulers",
+        "state": {
+          "branch": "main",
+          "revision": "c148b06890a079dc342ecd740ce534391abe90d5",
+          "version": null
+        }
+      },
+      {
         "package": "CoreNetwork",
         "repositoryURL": "https://github.com/AnasAlhasani/CoreNetwork",
         "state": {
@@ -62,6 +71,15 @@
           "branch": null,
           "revision": "018adb3469c2882904febca251778129ef4a9b70",
           "version": "10.7.2"
+        }
+      },
+      {
+        "package": "xctest-dynamic-overlay",
+        "repositoryURL": "https://github.com/pointfreeco/xctest-dynamic-overlay",
+        "state": {
+          "branch": null,
+          "revision": "50a70a9d3583fe228ce672e8923010c8df2deddd",
+          "version": "0.2.1"
         }
       }
     ]

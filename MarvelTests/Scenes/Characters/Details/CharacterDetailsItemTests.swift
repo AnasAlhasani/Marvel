@@ -11,28 +11,20 @@ import XCTest
 
 final class CharacterDetailsItemTests: XCTestCase {
     func testComicItem() {
-        var item = CharacterDetailsItem(type: .comics)
-        item.state = .idle
+        let item = CharacterDetailsItem(type: .comics, state: .idle)
 
-        XCTAssertEqual(item.title, L10n.Character.comics)
+        XCTAssertEqual(item.type.title, L10n.Character.comics)
         XCTAssertEqual(item.state, .idle)
-
-        item.state = .loading
-        XCTAssertEqual(item.state, .loading)
     }
 
     func testSeriesItem() {
-        var item = CharacterDetailsItem(type: .series)
-        item.state = .idle
+        let item = CharacterDetailsItem(type: .series, state: .idle)
 
-        XCTAssertEqual(item.title, L10n.Character.series)
+        XCTAssertEqual(item.type.title, L10n.Character.series)
         XCTAssertEqual(item.state, .idle)
-
-        item.state = .loading
-        XCTAssertEqual(item.state, .loading)
     }
 
-    func testMediaItemWhenFeildsAreNotNil() {
+    func testMediaItemWhenFieldsAreNotNil() {
         let model = Media.item(index: 0)
         let item = CharacterDetailsItem.MediaItem(model: model)
 
@@ -41,12 +33,17 @@ final class CharacterDetailsItemTests: XCTestCase {
         XCTAssertEqual(item.imageURL, model.thumbnail?.url)
     }
 
-    func testMediaItemWhenFeildsAreNil() {
+    func testMediaItemWhenFieldsAreNil() {
         let model = Media(id: .init(rawValue: 0), title: nil, thumbnail: nil)
         let item = CharacterDetailsItem.MediaItem(model: model)
 
         XCTAssertEqual(item.model, model)
         XCTAssertEqual(item.title, L10n.Common.notAvailable)
         XCTAssertNil(item.imageURL)
+    }
+
+    func testMediaTypePosition() {
+        XCTAssertTrue(MediaType.comics.isHigherThan(.series))
+        XCTAssertFalse(MediaType.series.isHigherThan(.comics))
     }
 }

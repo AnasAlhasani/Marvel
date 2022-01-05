@@ -6,20 +6,23 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
 @testable import Marvel
 import XCTest
 
 final class CharacterDetailViewModelTests: XCTestCase {
     var useCaseStub: MediaUseCaseStub!
     var characterItem: CharacterItem!
+    var cancellable: Set<AnyCancellable>!
     var viewModel: CharacterDetailViewModel!
 
     override func setUp() {
         super.setUp()
         useCaseStub = .init()
         characterItem = .init(.item(index: 0))
+        cancellable = .init()
         viewModel = .init(
-            mediaUseCase: useCaseStub,
+            useCase: useCaseStub,
             character: characterItem
         )
     }
@@ -28,45 +31,58 @@ final class CharacterDetailViewModelTests: XCTestCase {
         useCaseStub = nil
         characterItem = nil
         viewModel = nil
+        cancellable = nil
         super.tearDown()
     }
 
-    func testInitStateValues() {
-        let items: [CharacterDetailsItem] = [.init(type: .comics), .init(type: .series)]
-        XCTAssertEqual(viewModel.comicsItem.state, .loading)
-        XCTAssertEqual(viewModel.seriesItem.state, .loading)
-        XCTAssertEqual(viewModel.state.value, .populated(items))
+    func testCharacterItem() {
+        // Given
+        let output = viewModel.transform(input: .init(viewDidLoad: .just))
+
+        // Then
+        output
+            .character
+            .sink { [unowned self] in XCTAssertEqual($0, characterItem) }
+            .store(in: &cancellable)
     }
 
     func testLoadItemsSuccessfully() {
         // Given
         let numberOfElements = MediaType.allCases.count
         let results = Media.items(numberOfElements: numberOfElements)
+        let paginator = Paginator.value(results: results)
+        let allCases = MediaType.allCases
         let mediaItems = results.map(CharacterDetailsItem.MediaItem.init)
-        let detailsItems = MediaType.allCases.map {
-            CharacterDetailsItem(type: $0, state: .populated(mediaItems))
-        }
-        let state: State<CharacterDetailsItem> = .populated(detailsItems)
-        useCaseStub.publisher = .just(Paginator.value(results: results))
+        let items = allCases.map { CharacterDetailsItem(type: $0, state: .populated(mediaItems)) }
+        var states = [State<CharacterDetailsItem>]()
+
+        useCaseStub.publisher = .just(.success(paginator))
 
         // When
-        viewModel.loadItems()
+        let output = viewModel.transform(input: .init(viewDidLoad: .just))
 
         // Then
+        XCTAssertEqual(states, [])
+        output.state.sink { states.append($0) }.store(in: &cancellable)
+        XCTAssertEqual(useCaseStub.parameter.id, characterItem.model.id)
+        XCTAssertEqual(useCaseStub.parameter.type, allCases.last)
         XCTAssertEqual(useCaseStub.callCount, numberOfElements)
-        XCTAssertEqual(viewModel.state.value, state)
+        XCTAssertEqual(states, [.loading, .populated(items)])
     }
 
     func testLoadItemsFailed() {
         // Given
         let error = MarvelError.general
-        let state: State<CharacterDetailsItem> = .error(error)
-        useCaseStub.publisher = .fail(with: error)
+        let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .error(error)) }
+        var states = [State<CharacterDetailsItem>]()
+        useCaseStub.publisher = .just(.failure(error))
 
         // When
-        viewModel.loadItems()
+        let output = viewModel.transform(input: .init(viewDidLoad: .just))
 
         // Then
-        XCTAssertEqual(viewModel.state.value, state)
+        XCTAssertEqual(states, [])
+        output.state.sink { states.append($0) }.store(in: &cancellable)
+        XCTAssertEqual(states, [.loading, .populated(items)])
     }
 }

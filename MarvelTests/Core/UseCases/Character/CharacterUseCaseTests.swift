@@ -41,7 +41,7 @@ final class CharacterUseCaseTests: XCTestCase {
 
         // When
         let publisher = useCase.loadCharacters(with: parameter)
-        let result = try awaitPublisher(publisher)
+        let result = try awaitPublisher(publisher).get()
 
         // Then
         XCTAssertEqual(gatewayStub.callCount, 1)
@@ -69,7 +69,7 @@ final class CharacterUseCaseTests: XCTestCase {
 
         // When
         let publisher = useCase.loadCharacters(with: parameter)
-        let result = try awaitPublisher(publisher)
+        let result = try awaitPublisher(publisher).get()
 
         // Then
         XCTAssertEqual(gatewayStub.callCount, 1)

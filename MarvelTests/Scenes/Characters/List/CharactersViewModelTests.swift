@@ -6,122 +6,139 @@
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
 
+import Combine
+import CombineSchedulers
 @testable import Marvel
 import XCTest
 
 final class CharactersViewModelTests: XCTestCase {
     var routerSpy: CharactersListRouterSpy!
     var useCaseStub: CharacterUseCaseStub!
-    var throttlerSpy: ThrottlerSpy!
+    let scheduler = DispatchQueue.test
     var viewModel: CharactersViewModel!
+    var cancellable: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
         routerSpy = .init()
         useCaseStub = .init()
-        throttlerSpy = .init()
         viewModel = .init(
             router: routerSpy,
-            characterUseCase: useCaseStub,
-            throttler: throttlerSpy
+            useCase: useCaseStub,
+            scheduler: scheduler.eraseToAnyScheduler()
         )
+        cancellable = .init()
     }
 
     override func tearDown() {
         routerSpy = nil
         useCaseStub = nil
-        throttlerSpy = nil
         viewModel = nil
+        cancellable.forEach { $0.cancel() }
+        cancellable.removeAll()
         super.tearDown()
     }
 
-    func testLoadCharactersWithSearchQuery() {
+    func testLoadCharactersWithSearch() {
         // Given
-        let query = "ANY"
+        var query = ""
         let results = MarvelCharacter.items()
+        let paginator = Paginator.value(results: results)
         let items = results.map(CharacterItem.init)
-        useCaseStub.publisher = .just(Paginator.value(results: results))
+        var states = [State<CharacterItem>]()
+        useCaseStub.publisher = .just(.success(paginator))
 
         // When
-        viewModel.loadCharacters(with: query)
+        let searchSubject = PassthroughSubject<String, Never>()
+        let output = makeOutput(search: searchSubject.eraseToAnyPublisher())
 
         // Then
-        XCTAssertEqual(viewModel.state.value, .loading)
-        XCTAssertEqual(viewModel.query, query.lowercased())
+        XCTAssertEqual(states, [])
+        output.sink { states.append($0) }.store(in: &cancellable)
+        searchSubject.send(query)
+        scheduler.advance(by: .milliseconds(500))
+        XCTAssertEqual(states, [.idle])
+        XCTAssertEqual(useCaseStub.callCount, 0)
 
         // When
-        throttlerSpy.completion()
+        query = "ANY"
+        searchSubject.send(query)
+        scheduler.advance(by: .milliseconds(500))
 
         // Then
-        XCTAssertEqual(throttlerSpy.callCount, 1)
-        XCTAssertEqual(viewModel.state.value.items, items)
-
-        // When
-        viewModel.loadCharacters()
-
-        // Then
-        XCTAssertEqual(viewModel.state.value, .idle)
-        XCTAssertEqual(viewModel.query, query.lowercased())
+        XCTAssertEqual(useCaseStub.callCount, 1)
+        XCTAssertEqual(useCaseStub.parameter.nameStartsWith, query.lowercased())
+        XCTAssertEqual(states, [.idle, .loading, .populated(items)])
     }
 
-    func testLoadCharactersWithPaginationSuccess() {
+    func testLoadCharactersPagination() {
         // Given
         let total = 40
-        let count = 20
-        let totalResults = MarvelCharacter.items(numberOfElements: total)
-        let totalItems = totalResults.map(CharacterItem.init)
-        let initialResults = Array(totalResults.prefix(count))
+        let limit = 20
+        let results = MarvelCharacter.items(numberOfElements: total)
+        let allItems = results.map(CharacterItem.init)
+        var states = [State<CharacterItem>]()
+        let initialResults = Array(results.prefix(limit))
         let initialPaginator = Paginator.value(total: total, results: initialResults)
-        let initalItems = initialResults.map(CharacterItem.init)
-        let initalState: State<CharacterItem> = .paging(initalItems, next: initialPaginator.nextOffset)
-        useCaseStub.publisher = .just(initialPaginator)
-
-        XCTAssertTrue(viewModel.shouldLoadCharacters)
+        let initialItems = initialResults.map(CharacterItem.init)
+        let pagingState: State<CharacterItem> = .paging(initialItems, next: initialPaginator.nextOffset)
+        useCaseStub.publisher = .just(.success(initialPaginator))
 
         // When
-        viewModel.loadCharacters(at: .zero)
+        let nextPageSubject = PassthroughSubject<Int, Never>()
+        let output = makeOutput(
+            viewDidLoad: .just,
+            nextPage: nextPageSubject.eraseToAnyPublisher()
+        )
 
         // Then
-        XCTAssertEqual(viewModel.state.value, initalState)
-        XCTAssertTrue(viewModel.shouldLoadCharacters)
+        XCTAssertEqual(states, [])
+        output.sink { states.append($0) }.store(in: &cancellable)
+        XCTAssertEqual(useCaseStub.parameter.offset, initialPaginator.offset)
+        XCTAssertEqual(useCaseStub.callCount, 1)
+        XCTAssertEqual(states, [.loading, pagingState])
 
         // Given
-        let nextResults = Array(totalResults.suffix(count))
+        let nextResults = Array(results.suffix(limit))
         let nextPaginator = initialPaginator.next(with: nextResults)
-        let nextState: State<CharacterItem> = .populated(totalItems)
-        useCaseStub.publisher = .just(nextPaginator)
+        let populatedState: State<CharacterItem> = .populated(allItems)
+        useCaseStub.publisher = .just(.success(nextPaginator))
 
         // When
-        viewModel.loadCharacters(at: nextState.nextPage)
+        nextPageSubject.send(nextPaginator.offset)
 
         // Then
-        XCTAssertEqual(viewModel.state.value, nextState)
-        XCTAssertTrue(viewModel.shouldLoadCharacters)
+        XCTAssertEqual(useCaseStub.parameter.offset, nextPaginator.offset)
+        XCTAssertEqual(useCaseStub.callCount, 2)
+        XCTAssertEqual(states, [.loading, pagingState, populatedState])
     }
 
-    func testLoadCharactersWithPaginationFailed() {
+    func testLoadCharactersFailed() {
         // Given
         let error = MarvelError.general
-        let state: State<CharacterItem> = .error(error)
-        useCaseStub.publisher = .fail(with: error)
+        var states = [State<CharacterItem>]()
+        useCaseStub.publisher = .just(.failure(error))
 
         // When
-        viewModel.loadCharacters(at: .zero)
+        let output = makeOutput(viewDidLoad: .just)
 
         // Then
-        XCTAssertEqual(viewModel.state.value, state)
+        XCTAssertEqual(states, [])
+        output.sink { states.append($0) }.store(in: &cancellable)
+        XCTAssertEqual(states, [.loading, .error(error)])
     }
 
     func testDidSelectRowAtIndexPath() {
         // Given
         let indexPath = IndexPath(row: 0, section: 0)
         let results = MarvelCharacter.items()
+        let paginator = Paginator.value(results: results)
         let items = results.map(CharacterItem.init)
-        useCaseStub.publisher = .just(Paginator.value(results: results))
+        let item = items[indexPath.row]
+        useCaseStub.publisher = .just(.success(paginator))
 
         // When
-        viewModel.loadCharacters(at: 0)
-        viewModel.didSelectRow(at: indexPath)
+        makeOutput(didSelectRow: .just(item))
 
         // Then
         XCTAssertEqual(routerSpy.showDetailsCallCount, 1)
@@ -129,12 +146,41 @@ final class CharactersViewModelTests: XCTestCase {
     }
 
     func testDidTapSearch() {
-        viewModel.didTapSearch()
+        // When
+        makeOutput(didTapSearch: .just)
+
+        // Then
         XCTAssertEqual(routerSpy.showSearchCallCount, 1)
     }
 
     func testDidTapCancelSearch() {
-        viewModel.didTapCancelSearch()
+        // When
+        makeOutput(didDismissSearch: .just)
+
+        // Then
         XCTAssertEqual(routerSpy.dismissSearchCallCount, 1)
+    }
+}
+
+private extension CharactersViewModelTests {
+    @discardableResult
+    func makeOutput(
+        viewDidLoad: AnyPublisher<Void, Never> = .empty,
+        nextPage: AnyPublisher<Int, Never> = .empty,
+        didSelectRow: AnyPublisher<CharacterItem, Never> = .empty,
+        search: AnyPublisher<String, Never> = .empty,
+        didTapSearch: AnyPublisher<Void, Never> = .empty,
+        didDismissSearch: AnyPublisher<Void, Never> = .empty
+    ) -> CharactersViewModel.Output {
+        let input = CharactersViewModel.Input(
+            viewDidLoad: viewDidLoad,
+            nextPage: nextPage,
+            didSelectRow: didSelectRow,
+            search: search,
+            didTapSearch: didTapSearch,
+            didDismissSearch: didDismissSearch
+        )
+
+        return viewModel.transform(input: input)
     }
 }

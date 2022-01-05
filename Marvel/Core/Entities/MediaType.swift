@@ -12,3 +12,23 @@ enum MediaType: String, CaseIterable, Equatable {
     case comics
     case series
 }
+
+extension MediaType {
+    func isHigherThan(_ type: MediaType) -> Bool {
+        position.rawValue <= type.position.rawValue
+    }
+}
+
+private extension MediaType {
+    enum Position: Int {
+        case top
+        case bottom
+    }
+
+    var position: Position {
+        switch self {
+        case .comics: return .top
+        case .series: return .bottom
+        }
+    }
+}

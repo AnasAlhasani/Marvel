@@ -10,19 +10,19 @@
 import XCTest
 
 final class PaginatorTests: XCTestCase {
-    func test() {
+    func testPagination() {
         // Given
         let offset = 0
         let limit = 20
         let total = 40
         let count = 20
-        let totalResults = EntityTestDouble.items(numberOfElements: total)
+        let results = EntityTestDouble.items(numberOfElements: total)
         var paginator = Paginator.value(
             offset: offset,
             limit: limit,
             total: total,
             count: count,
-            results: .init(totalResults.prefix(limit))
+            results: .init(results.prefix(limit))
         )
 
         // Then
@@ -30,7 +30,7 @@ final class PaginatorTests: XCTestCase {
         XCTAssertEqual(paginator.nextOffset, offset + limit)
 
         // Given
-        paginator = paginator.next(with: .init(totalResults.suffix(limit)))
+        paginator = paginator.next(with: .init(results.suffix(limit)))
 
         // Then
         XCTAssertFalse(paginator.hasMorePages)
@@ -42,7 +42,7 @@ extension Paginator {
     static func value(
         offset: Int = 0,
         limit: Int = 20,
-        total: Int = 40,
+        total: Int = 20,
         count: Int = 20,
         results: [Value]
     ) -> Self {

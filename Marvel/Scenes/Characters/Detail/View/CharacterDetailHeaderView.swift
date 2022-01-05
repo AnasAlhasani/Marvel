@@ -9,28 +9,16 @@
 import UIKit
 
 final class CharacterDetailHeaderView: UIView {
-    // MARK: - Outlets
+    // MARK: Outlets
 
     @IBOutlet private var characterImageView: UIImageView!
     @IBOutlet private var nameTitleLabel: UILabel!
     @IBOutlet private var nameValueLabel: UILabel!
     @IBOutlet private var descriptionTitleLabel: UILabel!
     @IBOutlet private var descriptionValueLabel: UILabel!
-
-    // MARK: - LifeCycle
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        loadFromNib()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        loadFromNib()
-    }
 }
 
-// MARK: - Configurations
+// MARK: Configurations
 
 extension CharacterDetailHeaderView {
     func configure(with item: CharacterItem) {

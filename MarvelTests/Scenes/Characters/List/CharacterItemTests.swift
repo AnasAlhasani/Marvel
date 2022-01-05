@@ -22,7 +22,7 @@ final class CharacterItemTests: XCTestCase {
         XCTAssertEqual(item.description, model.description)
     }
 
-    func testItemWhenFeildsAreNil() {
+    func testItemWhenFieldsAreNil() {
         let model = MarvelCharacter(
             id: .init(rawValue: 0),
             name: nil,

@@ -9,23 +9,21 @@
 import UIKit
 
 final class MediaTableCell: UITableViewCell {
-    // MARK: - Outlets
+    // MARK: Outlets
 
     @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var collectionView: UICollectionView! {
-        didSet { collectionView.register(MediaCollectionCell.self) }
-    }
+    @IBOutlet private var collectionView: UICollectionView!
 
-    // MARK: - Properties
+    // MARK: Properties
 
     private lazy var dataSource = CollectionViewDataSource<MediaCollectionCell>(collectionView)
 }
 
-// MARK: - CellConfigurable
+// MARK: CellConfigurable
 
 extension MediaTableCell: CellConfigurable {
     func configure(with item: CharacterDetailsItem) {
-        titleLabel.text = item.title
+        titleLabel.text = item.type.title
         dataSource.state = item.state
     }
 }

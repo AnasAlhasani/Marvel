@@ -43,7 +43,7 @@ final class MediaUseCaseTests: XCTestCase {
         let publisher = useCase.loadMediaItems(with: parameter)
 
         // Then
-        let result = try awaitPublisher(publisher)
+        let result = try awaitPublisher(publisher).get()
         // XCTAssertEqual(gatewayStub.parameter, .init(parameter))
         XCTAssertEqual(gatewayStub.callCount, 1)
         XCTAssertEqual(gatewayStub.publisher.value, paginator)
@@ -70,7 +70,7 @@ final class MediaUseCaseTests: XCTestCase {
 
         // When
         let publisher = useCase.loadMediaItems(with: parameter)
-        let result = try awaitPublisher(publisher)
+        let result = try awaitPublisher(publisher).get()
 
         // Then
         XCTAssertEqual(gatewayStub.callCount, 1)

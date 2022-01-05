@@ -9,18 +9,21 @@
 import UIKit
 
 class CharactersCell: UITableViewCell {
-    // MARK: - Outlets
+    // MARK: Outlets
 
     @IBOutlet private var characterImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
 
+    // MARK: Reuse
+
     override func prepareForReuse() {
         super.prepareForReuse()
         characterImageView.image = nil
+        characterImageView.cancelDownloading()
     }
 }
 
-// MARK: - CellConfigurable
+// MARK: CellConfigurable
 
 extension CharactersCell: CellConfigurable {
     func configure(with item: CharacterItem) {

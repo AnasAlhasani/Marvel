@@ -13,7 +13,8 @@ import Foundation
 
 protocol AppCore {
     func theme() -> Theme
-    func throttler() -> Throttler
+
+    func scheduler() -> AnyScheduler<DispatchQueue>
 
     func apiConfiguration() -> ServiceConfigurator
     func apiClient() -> APIClient
@@ -35,11 +36,11 @@ extension AppCore {
     }
 }
 
-// MARK: Throttler
+// MARK: Scheduler
 
 extension AppCore {
-    func throttler() -> Throttler {
-        DefaultThrottler(minimumDelay: 0.3)
+    func scheduler() -> AnyScheduler<DispatchQueue> {
+        .main
     }
 }
 

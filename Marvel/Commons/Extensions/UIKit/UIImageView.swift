@@ -10,6 +10,10 @@ import Kingfisher
 import UIKit
 
 extension UIImageView {
+    func cancelDownloading() {
+        kf.cancelDownloadTask()
+    }
+
     func download(image url: URL?, placeholder: ImageAsset? = nil) {
         guard let url = url else { return }
         kf.indicatorType = .activity

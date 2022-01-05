@@ -10,6 +10,10 @@ import Combine
 import Foundation
 
 extension AnyPublisher {
+    static var empty: Self {
+        Empty().eraseToAnyPublisher()
+    }
+
     static func just(_ output: Output) -> Self {
         Just(output)
             .setFailureType(to: Failure.self)
@@ -18,5 +22,11 @@ extension AnyPublisher {
 
     static func fail(with error: Failure) -> Self {
         Fail(error: error).eraseToAnyPublisher()
+    }
+}
+
+extension AnyPublisher where Output == Void {
+    static var just: Self {
+        .just(())
     }
 }

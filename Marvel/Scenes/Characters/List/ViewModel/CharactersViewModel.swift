@@ -9,90 +9,108 @@
 import Combine
 import Foundation
 
-final class CharactersViewModel {
-    // MARK: - Typealias
+// swiftlint:disable trailing_closure
 
-    typealias CharacterItemState = State<CharacterItem>
+final class CharactersViewModel: ObservableObject {
+    // MARK: Types
 
-    // MARK: - Properties
+    typealias ListState = State<CharacterItem>
+    typealias Output = AnyPublisher<ListState, Never>
+
+    struct Input {
+        let viewDidLoad: AnyPublisher<Void, Never>
+        let nextPage: AnyPublisher<Int, Never>
+        let didSelectRow: AnyPublisher<CharacterItem, Never>
+        let search: AnyPublisher<String, Never>
+        let didTapSearch: AnyPublisher<Void, Never>
+        let didDismissSearch: AnyPublisher<Void, Never>
+    }
+
+    // MARK: Properties
 
     private let router: CharactersListRoutable
-    private let characterUseCase: CharacterUseCase
-    private(set) var state = Dynamic<CharacterItemState>(.idle)
-    private(set) var throttler: Throttler
-    private(set) var shouldLoadCharacters = true
-    private(set) var query: String?
-    private var cancellables = Set<AnyCancellable>()
+    private let useCase: CharacterUseCase
+    private let scheduler: AnyScheduler<DispatchQueue>
+    private var state: ListState = .idle
+    private var cancellable = Set<AnyCancellable>()
 
-    // MARK: - Init / Deinit
+    // MARK: Init / Deinit
 
     init(
         router: CharactersListRoutable,
-        characterUseCase: CharacterUseCase,
-        throttler: Throttler
+        useCase: CharacterUseCase,
+        scheduler: AnyScheduler<DispatchQueue>
     ) {
         self.router = router
-        self.characterUseCase = characterUseCase
-        self.throttler = throttler
-    }
-}
-
-// MARK: - Interactions
-
-extension CharactersViewModel {
-    func didSelectRow(at indexPath: IndexPath) {
-        let item = state.value.items[indexPath.row]
-        router.showDetails(for: item)
+        self.useCase = useCase
+        self.scheduler = scheduler
     }
 
-    func didTapSearch() {
-        router.showSearch()
-    }
+    // MARK: Helpers
 
-    func didTapCancelSearch() {
-        router.dismissSearch()
-    }
-}
+    private func makeState(from result: Result<CharacterPaginator, Error>) -> ListState {
+        switch result {
+        case let .success(value):
+            var allItems = state.items
+            allItems.append(contentsOf: value.results.map(CharacterItem.init))
+            return value.hasMorePages ? .paging(allItems, next: value.nextOffset) : .populated(allItems)
 
-// MARK: - UseCase
-
-extension CharactersViewModel {
-    func loadCharacters(with text: String? = nil) {
-        let isIdle = query != nil && text?.nilIfEmpty == nil
-        guard !isIdle else { return state.value = .idle }
-        query = text?.nilIfEmpty?.lowercased()
-        state.value = .loading
-        throttler.throttle { [weak self] in self?.loadCharacters(at: 0) }
-    }
-
-    func loadCharacters(at offset: Int) {
-        guard shouldLoadCharacters else { return }
-        shouldLoadCharacters = false
-        let parameter = CharacterParameter(offset: offset, query: query)
-
-        characterUseCase.loadCharacters(with: parameter)
-            .convertToResult()
-            .sink { [weak self] result in
-                self?.shouldLoadCharacters = true
-                switch result {
-                case let .success(value):
-                    self?.handleCharacters(paginator: value)
-                case let .failure(error):
-                    self?.state.value = .error(error)
-                }
-            }.store(in: &cancellables)
-    }
-
-    private func handleCharacters(paginator: Paginator<MarvelCharacter>) {
-        let items = paginator.results.map(CharacterItem.init)
-
-        var allItems = state.value.items
-        allItems.append(contentsOf: items)
-
-        if paginator.hasMorePages {
-            state.value = .paging(allItems, next: paginator.nextOffset)
-        } else {
-            state.value = .populated(allItems)
+        case let .failure(error):
+            return .error(error)
         }
+    }
+}
+
+// MARK: Transformation
+
+extension CharactersViewModel: ViewModel {
+    func transform(input: Input) -> Output {
+        cancellable.forEach { $0.cancel() }
+        cancellable.removeAll()
+
+        input.didTapSearch.sink { [router] in router.showSearch() }.store(in: &cancellable)
+        input.didDismissSearch.sink { [router] in router.dismissSearch() }.store(in: &cancellable)
+        input.didSelectRow.sink { [router] in router.showDetails(for: $0) }.store(in: &cancellable)
+
+        let loadingState: Output = input.viewDidLoad
+            .map { _ in .loading }
+            .eraseToAnyPublisher()
+
+        let searchText = input.search
+            .debounce(for: 0.3, scheduler: scheduler)
+            .removeDuplicates()
+
+        let searchState: Output = searchText
+            .map { $0.isEmpty ? .idle : .loading }
+            .eraseToAnyPublisher()
+
+        let nextPage = input.nextPage
+            .merge(with: .just(.zero))
+            .removeDuplicates()
+            .eraseToAnyPublisher()
+
+        let characters = input.viewDidLoad
+            .combineLatest(nextPage)
+            .flatMapLatest { [useCase] _, offset in
+                useCase.loadCharacters(with: .init(offset: offset))
+            }
+
+        let filteredCharacters = searchText
+            .filter(\.isNotEmpty)
+            .combineLatest(nextPage)
+            .flatMapLatest { [useCase] query, offset in
+                useCase.loadCharacters(with: .init(offset: offset, query: query))
+            }
+
+        let resultState = Publishers
+            .Merge(characters, filteredCharacters)
+            .map { [unowned self] in self.makeState(from: $0) }
+            .handleEvents(receiveOutput: { [weak self] in self?.state = $0 })
+            .eraseToAnyPublisher()
+
+        return Publishers
+            .MergeMany(loadingState, searchState, resultState)
+            .removeDuplicates()
+            .eraseToAnyPublisher()
     }
 }

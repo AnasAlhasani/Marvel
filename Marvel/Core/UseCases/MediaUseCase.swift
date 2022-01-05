@@ -9,9 +9,11 @@
 import Combine
 import Foundation
 
-// MARK: - Paginator
+// MARK: - Typealias
 
 typealias MediaPaginator = Paginator<Media>
+typealias MediaResult = Result<Paginator<Media>, Error>
+typealias MediaPublisher = AnyPublisher<MediaResult, Never>
 
 // MARK: - Parameters
 
@@ -25,7 +27,7 @@ struct MediaParameter: Parameter {
 // MARK: - UseCase
 
 protocol MediaUseCase {
-    func loadMediaItems(with parameter: MediaParameter) -> AnyPublisher<MediaPaginator, Error>
+    func loadMediaItems(with parameter: MediaParameter) -> MediaPublisher
 }
 
 final class DefaultMediaUseCase {
@@ -39,15 +41,15 @@ final class DefaultMediaUseCase {
 }
 
 extension DefaultMediaUseCase: MediaUseCase {
-    func loadMediaItems(with parameter: MediaParameter) -> AnyPublisher<MediaPaginator, Error> {
+    func loadMediaItems(with parameter: MediaParameter) -> MediaPublisher {
         gateway
             .loadMediaItems(with: .init(parameter))
-            .map { [repository] paginator -> AnyPublisher<MediaPaginator, Error> in
+            .flatMapLatest { [repository] paginator -> AnyPublisher<MediaPaginator, Error> in
                 repository.save(entities: paginator.results)
                 return .just(paginator)
             }
-            .switchToLatest()
             .catch { [repository] _ in repository.fetchAll().map { MediaPaginator(results: $0) } }
+            .convertToResult()
             .eraseToAnyPublisher()
     }
 }
