@@ -30,6 +30,7 @@ final class CharactersViewModel: ObservableObject {
 
     private let router: CharactersListRoutable
     private let useCase: CharacterUseCase
+    private let scheduler: AnyScheduler<DispatchQueue>
     private var state: ListState = .idle
     private var cancellable = Set<AnyCancellable>()
 
@@ -37,10 +38,12 @@ final class CharactersViewModel: ObservableObject {
 
     init(
         router: CharactersListRoutable,
-        useCase: CharacterUseCase
+        useCase: CharacterUseCase,
+        scheduler: AnyScheduler<DispatchQueue>
     ) {
         self.router = router
         self.useCase = useCase
+        self.scheduler = scheduler
     }
 
     // MARK: Helpers
@@ -74,7 +77,7 @@ extension CharactersViewModel: ViewModel {
             .eraseToAnyPublisher()
 
         let searchText = input.search
-            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .debounce(for: 0.3, scheduler: scheduler)
             .removeDuplicates()
 
         let searchState: Output = searchText

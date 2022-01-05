@@ -14,6 +14,8 @@ import Foundation
 protocol AppCore {
     func theme() -> Theme
 
+    func scheduler() -> AnyScheduler<DispatchQueue>
+
     func apiConfiguration() -> ServiceConfigurator
     func apiClient() -> APIClient
 
@@ -31,6 +33,14 @@ protocol AppCore {
 extension AppCore {
     func theme() -> Theme {
         AppTheme()
+    }
+}
+
+// MARK: Scheduler
+
+extension AppCore {
+    func scheduler() -> AnyScheduler<DispatchQueue> {
+        .main
     }
 }
 

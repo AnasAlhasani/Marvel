@@ -5,13 +5,16 @@
 //  Created by Anas Alhasani on 14/05/2021.
 //  Copyright © 2021 Anas Alhasani. All rights reserved.
 //
+
 import Combine
+import CombineSchedulers
 @testable import Marvel
 import XCTest
 
 final class CharactersViewModelTests: XCTestCase {
     var routerSpy: CharactersListRouterSpy!
     var useCaseStub: CharacterUseCaseStub!
+    let scheduler = DispatchQueue.test
     var viewModel: CharactersViewModel!
     var cancellable: Set<AnyCancellable>!
 
@@ -19,7 +22,11 @@ final class CharactersViewModelTests: XCTestCase {
         super.setUp()
         routerSpy = .init()
         useCaseStub = .init()
-        viewModel = .init(router: routerSpy, useCase: useCaseStub)
+        viewModel = .init(
+            router: routerSpy,
+            useCase: useCaseStub,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
         cancellable = .init()
     }
 
@@ -32,37 +39,37 @@ final class CharactersViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    /*
-     func testLoadCharactersWithSearch() {
-         // Given
-         var query = ""
-         let results = MarvelCharacter.items()
-         let paginator = Paginator.value(results: results)
-         let items = results.map(CharacterItem.init)
-         var states = [State<CharacterItem>]()
-         useCaseStub.publisher = .just(.success(paginator))
+    func testLoadCharactersWithSearch() {
+        // Given
+        var query = ""
+        let results = MarvelCharacter.items()
+        let paginator = Paginator.value(results: results)
+        let items = results.map(CharacterItem.init)
+        var states = [State<CharacterItem>]()
+        useCaseStub.publisher = .just(.success(paginator))
 
-         // When
-         let searchSubject = PassthroughSubject<String, Never>()
-         let output = makeOutput(search: searchSubject.eraseToAnyPublisher())
+        // When
+        let searchSubject = PassthroughSubject<String, Never>()
+        let output = makeOutput(search: searchSubject.eraseToAnyPublisher())
 
-         // Then
-         XCTAssertEqual(states, [])
-         output.sink { states.append($0) }.store(in: &cancellable)
-         searchSubject.send(query)
-         XCTAssertEqual(states, [.idle])
-         XCTAssertEqual(useCaseStub.callCount, 0)
+        // Then
+        XCTAssertEqual(states, [])
+        output.sink { states.append($0) }.store(in: &cancellable)
+        searchSubject.send(query)
+        scheduler.advance(by: .milliseconds(500))
+        XCTAssertEqual(states, [.idle])
+        XCTAssertEqual(useCaseStub.callCount, 0)
 
-         // When
-         query = "ANY"
-         searchSubject.send(query)
+        // When
+        query = "ANY"
+        searchSubject.send(query)
+        scheduler.advance(by: .milliseconds(500))
 
-         // Then
-         XCTAssertEqual(useCaseStub.callCount, 1)
-         XCTAssertEqual(useCaseStub.parameter.nameStartsWith, query.lowercased())
-         XCTAssertEqual(states, [.idle, .loading, .populated(items)])
-     }
-     */
+        // Then
+        XCTAssertEqual(useCaseStub.callCount, 1)
+        XCTAssertEqual(useCaseStub.parameter.nameStartsWith, query.lowercased())
+        XCTAssertEqual(states, [.idle, .loading, .populated(items)])
+    }
 
     func testLoadCharactersPagination() {
         // Given

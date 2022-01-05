@@ -91,6 +91,8 @@
 		5DA0D0D4265FA202002885E3 /* AnyPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA0D0D3265FA202002885E3 /* AnyPublisher.swift */; };
 		5DA0D0D9265FA3B8002885E3 /* XCTestCase+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA0D0D8265FA3B8002885E3 /* XCTestCase+Publisher.swift */; };
 		5DA0D0DB265FA542002885E3 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA0D0DA265FA542002885E3 /* Result.swift */; };
+		5DA3D8302785C47F0067801A /* AnyScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3D82F2785C47F0067801A /* AnyScheduler.swift */; };
+		5DA3D8332785C4B90067801A /* CombineSchedulers in Frameworks */ = {isa = PBXBuildFile; productRef = 5DA3D8322785C4B90067801A /* CombineSchedulers */; };
 		5DBB7169265EEA0700947A5C /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBB7168265EEA0700947A5C /* Publisher.swift */; };
 		5DC6482A227C419E0080B1F4 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC64829227C419E0080B1F4 /* State.swift */; };
 		5DC6482C227C41CF0080B1F4 /* TableViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6482B227C41CF0080B1F4 /* TableViewable.swift */; };
@@ -242,6 +244,7 @@
 		5DA0D0D3265FA202002885E3 /* AnyPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPublisher.swift; sourceTree = "<group>"; };
 		5DA0D0D8265FA3B8002885E3 /* XCTestCase+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Publisher.swift"; sourceTree = "<group>"; };
 		5DA0D0DA265FA542002885E3 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		5DA3D82F2785C47F0067801A /* AnyScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyScheduler.swift; sourceTree = "<group>"; };
 		5DBB7168265EEA0700947A5C /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		5DC64829227C419E0080B1F4 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		5DC6482B227C41CF0080B1F4 /* TableViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewable.swift; sourceTree = "<group>"; };
@@ -292,6 +295,7 @@
 			files = (
 				5D16156C264167FF004D00C4 /* Kingfisher in Frameworks */,
 				5D16156F26416829004D00C4 /* CryptoSwift in Frameworks */,
+				5DA3D8332785C4B90067801A /* CombineSchedulers in Frameworks */,
 				5D161569264167E1004D00C4 /* CoreNetwork in Frameworks */,
 				5D16157226416895004D00C4 /* RealmSwift in Frameworks */,
 				AC5F7C7771BEF91B2DDA4F20 /* Pods_Marvel.framework in Frameworks */,
@@ -909,6 +913,7 @@
 				5DBB7168265EEA0700947A5C /* Publisher.swift */,
 				5DA0D0D3265FA202002885E3 /* AnyPublisher.swift */,
 				5D4CC879276F9CFF00162F6C /* PassthroughSubject.swift */,
+				5DA3D82F2785C47F0067801A /* AnyScheduler.swift */,
 			);
 			path = Combine;
 			sourceTree = "<group>";
@@ -1115,6 +1120,7 @@
 				5D16156B264167FF004D00C4 /* Kingfisher */,
 				5D16156E26416829004D00C4 /* CryptoSwift */,
 				5D16157126416895004D00C4 /* RealmSwift */,
+				5DA3D8322785C4B90067801A /* CombineSchedulers */,
 			);
 			productName = Marvel;
 			productReference = 5DCC0D35227B42790065DA28 /* Marvel.app */;
@@ -1154,6 +1160,7 @@
 				5D16156A264167FF004D00C4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				5D16156D26416829004D00C4 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				5DA3D8312785C4B90067801A /* XCRemoteSwiftPackageReference "combine-schedulers" */,
 			);
 			productRefGroup = 5DCC0D36227B42790065DA28 /* Products */;
 			projectDirPath = "";
@@ -1369,6 +1376,7 @@
 				5DA0D0DB265FA542002885E3 /* Result.swift in Sources */,
 				5D606E3F264DBC3200E8D23D /* Parameter.swift in Sources */,
 				5DA0D0D4265FA202002885E3 /* AnyPublisher.swift in Sources */,
+				5DA3D8302785C47F0067801A /* AnyScheduler.swift in Sources */,
 				5DD9DEDC26B31F0D00A699C9 /* CharactersListRouter.swift in Sources */,
 				5D9229052281912B0048C614 /* AbstractRepository.swift in Sources */,
 				5D606E3D264DBC1900E8D23D /* Identifiable.swift in Sources */,
@@ -1688,6 +1696,14 @@
 				minimumVersion = 10.7.4;
 			};
 		};
+		5DA3D8312785C4B90067801A /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/combine-schedulers";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1710,6 +1726,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D16157026416895004D00C4 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		5DA3D8322785C4B90067801A /* CombineSchedulers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DA3D8312785C4B90067801A /* XCRemoteSwiftPackageReference "combine-schedulers" */;
+			productName = CombineSchedulers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
