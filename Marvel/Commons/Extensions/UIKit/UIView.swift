@@ -20,23 +20,4 @@ extension UIView {
 
         return instanceFromNib()
     }
-
-    static func loadView(form nibName: String) -> UIView {
-        let nib = UINib(nibName: nibName, bundle: nil)
-        guard let view = nib.instantiate(withOwner: nil, options: nil).first as? UIView else {
-            fatalError("Could not instantiate view \(nibName)")
-        }
-        return view
-    }
-
-    func loadFromNib() {
-        guard let subView = UINib(nibName: "\(type(of: self))", bundle: nil)
-            .instantiate(withOwner: self, options: nil).first as? UIView
-        else { return }
-
-        subView.frame = bounds
-        subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-        addSubview(subView)
-    }
 }

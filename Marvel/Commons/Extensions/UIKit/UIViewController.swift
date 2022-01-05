@@ -9,6 +9,17 @@
 import UIKit
 
 extension UIViewController {
+    static func instantiate() -> Self {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let identifier = String(describing: self)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: identifier) as? Self else {
+            fatalError("Couldn't instantiate view controller with identifier: \(identifier)")
+        }
+        return viewController
+    }
+}
+
+extension UIViewController {
     func present<T: UIViewController>(
         _ viewController: T,
         animated: Bool = true,
