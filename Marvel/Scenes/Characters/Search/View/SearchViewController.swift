@@ -17,7 +17,6 @@ final class SearchViewController: UIViewController {
 
     // MARK: Properties
 
-    private lazy var dataSource = TableViewDataSource<SearchCell>(tableView)
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.definesPresentationContext = true
@@ -58,7 +57,7 @@ private extension SearchViewController {
     func bindViewModel() {
         let input = CharactersViewModel.Input(
             viewDidLoad: .empty,
-            nextPage: dataSource.$nextPage.eraseToAnyPublisher(),
+            nextPage: tableView.nextPagePublisher,
             didSelectRow: tableView.didSelectRowPublisher,
             search: searchController.searchBar.textDidChangePublisher,
             didTapSearch: .empty,
@@ -66,7 +65,7 @@ private extension SearchViewController {
         )
 
         viewModel.transform(input: input)
-            .sink { [weak self] in self?.dataSource.state = $0 }
+            .bind(to: tableView.items(cellType: SearchCell.self))
             .store(in: &cancellable)
     }
 }

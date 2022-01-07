@@ -128,6 +128,20 @@ final class CharactersViewModelTests: XCTestCase {
         XCTAssertEqual(states, [.loading, .error(error)])
     }
 
+    func testLoadEmptyItems() {
+        // Given
+        var states = [State<CharacterItem>]()
+        useCaseStub.publisher = .just(.success(.value(results: [])))
+
+        // When
+        let output = makeOutput(viewDidLoad: .just)
+
+        // Then
+        XCTAssertEqual(states, [])
+        output.sink { states.append($0) }.store(in: &cancellable)
+        XCTAssertEqual(states, [.loading, .empty])
+    }
+
     func testDidSelectRowAtIndexPath() {
         // Given
         let indexPath = IndexPath(row: 0, section: 0)

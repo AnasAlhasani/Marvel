@@ -17,7 +17,6 @@ final class CharacterDetailViewController: UIViewController {
 
     // MARK: Properties
 
-    private lazy var dataSource = TableViewDataSource<MediaTableCell>(tableView)
     private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
     private var cancellable = Set<AnyCancellable>()
 
@@ -50,7 +49,7 @@ private extension CharacterDetailViewController {
             .store(in: &cancellable)
 
         output.state
-            .sink { [weak self] in self?.dataSource.state = $0 }
+            .bind(to: tableView.items(cellType: MediaTableCell.self))
             .store(in: &cancellable)
 
         viewDidLoadSubject.send()

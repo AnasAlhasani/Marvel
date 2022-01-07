@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum State<Value: Equatable> {
+enum State<Value: Hashable> {
     case idle
     case loading
     case paging([Value], next: Int)

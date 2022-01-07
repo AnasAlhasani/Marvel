@@ -27,15 +27,10 @@ extension UITableView {
             tableFooterView = UIView(frame: .zero)
         case .paging:
             tableFooterView = LoadingStateView.instantiateFromNib()
-        case let .populated(items):
-            if items.isEmpty {
-                backgroundView = EmptyStateView.instantiateFromNib()
-            } else {
-                backgroundView = nil
-            }
+        case .populated:
+            backgroundView = nil
             tableFooterView = UIView(frame: .zero)
         }
-        reloadData()
     }
 }
 
@@ -52,13 +47,8 @@ extension UICollectionView {
             let errorView = ErrorStateView.instantiateFromNib()
             errorView.display(message: error.localizedDescription)
             backgroundView = errorView
-        case let .populated(items):
-            if items.isEmpty {
-                backgroundView = EmptyStateView.instantiateFromNib()
-            } else {
-                backgroundView = nil
-            }
+        case .populated:
+            backgroundView = nil
         }
-        reloadData()
     }
 }

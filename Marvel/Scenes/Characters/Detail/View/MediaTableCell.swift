@@ -16,7 +16,10 @@ final class MediaTableCell: UITableViewCell {
 
     // MARK: Properties
 
-    private lazy var dataSource = CollectionViewDataSource<MediaCollectionCell>(collectionView)
+    private lazy var dataSource: CollectionViewDataSource = .make(
+        collectionView: collectionView,
+        cellType: MediaCollectionCell.self
+    )
 }
 
 // MARK: CellConfigurable
@@ -24,6 +27,6 @@ final class MediaTableCell: UITableViewCell {
 extension MediaTableCell: CellConfigurable {
     func configure(with item: CharacterDetailsItem) {
         titleLabel.text = item.type.title
-        dataSource.state = item.state
+        dataSource.append(item.state.items, toSection: 0)
     }
 }
