@@ -31,7 +31,8 @@ final class CharacterDetailViewModelTests: XCTestCase {
         useCaseStub = nil
         characterItem = nil
         viewModel = nil
-        cancellable = nil
+        cancellable.forEach { $0.cancel() }
+        cancellable.removeAll()
         super.tearDown()
     }
 
@@ -76,6 +77,21 @@ final class CharacterDetailViewModelTests: XCTestCase {
         let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .error(error)) }
         var states = [State<CharacterDetailsItem>]()
         useCaseStub.publisher = .just(.failure(error))
+
+        // When
+        let output = viewModel.transform(input: .init(viewDidLoad: .just))
+
+        // Then
+        XCTAssertEqual(states, [])
+        output.state.sink { states.append($0) }.store(in: &cancellable)
+        XCTAssertEqual(states, [.loading, .populated(items)])
+    }
+
+    func testLoadEmptyItems() {
+        // Given
+        var states = [State<CharacterDetailsItem>]()
+        let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .empty) }
+        useCaseStub.publisher = .just(.success(.value(results: [])))
 
         // When
         let output = viewModel.transform(input: .init(viewDidLoad: .just))
