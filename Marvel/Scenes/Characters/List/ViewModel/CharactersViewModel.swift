@@ -38,10 +38,13 @@ final class CharactersViewModel: ObservableObject {
 
     private func makeState(from result: Result<CharacterPaginator, Error>) -> ListState {
         switch result {
+        case let .success(value) where value.results.isEmpty:
+            return .empty
+
         case let .success(value):
-            var allItems = state.items
-            allItems.append(contentsOf: value.results.map(CharacterItem.init))
-            return value.hasMorePages ? .paging(allItems, next: value.nextOffset) : .populated(allItems)
+            var items = state.items
+            items.append(contentsOf: value.results.map(CharacterItem.init))
+            return value.hasMorePages ? .paging(items, next: value.nextOffset) : .populated(items)
 
         case let .failure(error):
             return .error(error)

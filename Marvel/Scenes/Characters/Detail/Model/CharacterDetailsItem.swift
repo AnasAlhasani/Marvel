@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CharacterDetailsItem: Equatable {
+struct CharacterDetailsItem: Hashable {
     let type: MediaType
     let state: State<MediaItem>
 
@@ -19,10 +19,14 @@ struct CharacterDetailsItem: Equatable {
         self.type = type
         self.state = state
     }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(type)
+    }
 }
 
 extension CharacterDetailsItem {
-    struct MediaItem: Equatable {
+    struct MediaItem: Hashable {
         private(set) var model: Media
 
         var title: String { model.title.defaultIfEmpty }

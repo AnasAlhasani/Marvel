@@ -27,3 +27,14 @@ extension Publisher {
         map(transform).switchToLatest()
     }
 }
+
+extension Publisher where Failure == Never {
+    func bind<S: Subscriber>(to subscriber: S) -> AnyCancellable where S.Failure == Never, S.Input == Output {
+        // swiftlint:disable:next trailing_closure
+        handleEvents(
+            receiveSubscription: { subscription in subscriber.receive(subscription: subscription) }
+        ).sink { value in
+            _ = subscriber.receive(value)
+        }
+    }
+}

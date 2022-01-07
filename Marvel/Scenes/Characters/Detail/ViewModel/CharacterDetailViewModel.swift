@@ -33,12 +33,15 @@ final class CharacterDetailViewModel: ObservableObject {
 
     private func make(from result: MediaResult, ofType type: MediaType) -> CharacterDetailsItem {
         switch result {
+        case let .success(value) where value.results.isEmpty:
+            return .init(type: type, state: .empty)
+
         case let .success(value):
             let items = value.results.map(CharacterDetailsItem.MediaItem.init)
-            return CharacterDetailsItem(type: type, state: .populated(items))
+            return .init(type: type, state: .populated(items))
 
         case let .failure(error):
-            return CharacterDetailsItem(type: type, state: .error(error))
+            return .init(type: type, state: .error(error))
         }
     }
 }
@@ -70,7 +73,7 @@ extension CharacterDetailViewModel: ViewModel {
             }
             .collect()
             .map { $0.sorted { $0.type.isHigherThan($1.type) } }
-            .map { ListState.populated($0) }
+            .map(ListState.populated)
             .eraseToAnyPublisher()
 
         return Output(

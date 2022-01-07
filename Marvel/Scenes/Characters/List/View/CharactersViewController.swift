@@ -18,7 +18,6 @@ final class CharactersViewController: UIViewController {
 
     // MARK: Properties
 
-    private lazy var dataSource = TableViewDataSource<CharactersCell>(tableView)
     private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
     private var cancellable = Set<AnyCancellable>()
 
@@ -39,15 +38,17 @@ private extension CharactersViewController {
     func bindViewModel() {
         let input = CharactersViewModel.Input(
             viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
-            nextPage: dataSource.$nextPage.eraseToAnyPublisher(),
+            nextPage: tableView.nextPagePublisher,
             didSelectRow: tableView.didSelectRowPublisher,
             search: .empty,
             didTapSearch: searchBarButtonItem.tapPublisher,
             didDismissSearch: .empty
         )
 
-        viewModel.transform(input: input)
-            .sink { [weak self] in self?.dataSource.state = $0 }
+        let output = viewModel.transform(input: input)
+
+        output
+            .bind(to: tableView.items(cellType: CharactersCell.self))
             .store(in: &cancellable)
 
         viewDidLoadSubject.send()

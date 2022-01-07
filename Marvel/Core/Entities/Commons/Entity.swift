@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Entity: Codable, Equatable {}
+protocol Entity: Codable, Hashable {}
 protocol IdentifiableEntity: Entity, Identifiable where RawIdentifier == Int {}
 
 extension Entity {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CharacterItem: Equatable {
+struct CharacterItem: Hashable {
     private(set) var model: MarvelCharacter
 
     init(_ model: MarvelCharacter) {

@@ -371,7 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				5D218020227C3CD600006DBE /* UIComponents */,
-				5DC64836227C814F0080B1F4 /* DataSourceDelegate */,
+				5DC64836227C814F0080B1F4 /* DataSource */,
 				5D217FEC227B4D9B00006DBE /* Protocols */,
 				5DC64828227C418D0080B1F4 /* Utillties */,
 				5D217FDF227B4A6D00006DBE /* Extensions */,
@@ -929,14 +929,14 @@
 			path = Commons;
 			sourceTree = "<group>";
 		};
-		5DC64836227C814F0080B1F4 /* DataSourceDelegate */ = {
+		5DC64836227C814F0080B1F4 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
 				5DC6482B227C41CF0080B1F4 /* ListView+State.swift */,
 				5DC64837227C81610080B1F4 /* TableViewDataSource.swift */,
 				5DC6484F227D019E0080B1F4 /* CollectionViewDataSource.swift */,
 			);
-			path = DataSourceDelegate;
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		5DC64841227CA3C80080B1F4 /* Search */ = {
