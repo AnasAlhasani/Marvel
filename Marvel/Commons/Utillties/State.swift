@@ -11,14 +11,14 @@ import Foundation
 enum State<Value: Hashable> {
     case idle
     case loading
-    case paging([Value], next: Int)
+    case paging([Value], nextPage: Int)
     case populated([Value])
     case empty
-    case error(Error)
+    case failed(Error)
 
-    var nextPage: Int {
+    var nextPage: Int? {
         guard case let .paging(_, nextPage) = self else {
-            return 0
+            return nil
         }
         return nextPage
     }
@@ -40,16 +40,22 @@ extension State: Equatable {
         switch (lhs, rhs) {
         case (.idle, .idle):
             return true
+
         case (.loading, .loading):
             return true
+
         case (.empty, .empty):
             return true
-        case let (.error(lhsError), .error(rhsError)):
+
+        case let (.failed(lhsError), .failed(rhsError)):
             return lhsError.localizedDescription == rhsError.localizedDescription
+
         case let (.populated(lhsValue), .populated(rhsValue)):
             return lhsValue == rhsValue
-        case let (.paging(lhsValue, lhsNextPage), .paging(rhsValue, next: rhsNextPage)):
+
+        case let (.paging(lhsValue, lhsNextPage), .paging(rhsValue, rhsNextPage)):
             return lhsValue == rhsValue && lhsNextPage == rhsNextPage
+
         default:
             return false
         }

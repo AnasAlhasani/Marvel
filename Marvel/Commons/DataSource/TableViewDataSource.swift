@@ -39,13 +39,22 @@ extension UITableViewDiffableDataSource {
     }
 }
 
+private var nextPageKey = 0
+
 extension UITableView {
     typealias DataSourceSubscriber<Item: Hashable> = AnySubscriber<State<Item>, Never>
 
+    private var nextPage: Int? {
+        get { value(for: &nextPageKey) }
+        set { setValue(newValue, for: &nextPageKey) }
+    }
+
     var nextPagePublisher: AnyPublisher<Int, Never> {
         willDisplayCellPublisher
-            .filter { [unowned self] _, indexPath in indexPath.row == self.numberOfRows(inSection: 0) - 1 }
-            .map { [unowned self] _ in self.numberOfRows(inSection: 0) }
+            .filter { [unowned self] in
+                nextPage != .none && $1.row == numberOfRows(inSection: 0) - 1
+            }
+            .compactMap { [unowned self] _ in nextPage }
             .eraseToAnyPublisher()
     }
 
@@ -59,6 +68,7 @@ extension UITableView {
             receiveValue: { [weak self] state -> Subscribers.Demand in
                 guard let self = self else { return .none }
                 if self.dataSource == nil { self.dataSource = dataSource }
+                self.nextPage = state.nextPage
                 self.transition(to: state)
                 dataSource.append(state.items, toSection: 0)
                 return .unlimited

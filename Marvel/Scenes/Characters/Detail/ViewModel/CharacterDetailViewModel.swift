@@ -41,7 +41,7 @@ final class CharacterDetailViewModel: ObservableObject {
             return .init(type: type, state: .populated(items))
 
         case let .failure(error):
-            return .init(type: type, state: .error(error))
+            return .init(type: type, state: .failed(error))
         }
     }
 }

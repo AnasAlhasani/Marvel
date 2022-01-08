@@ -38,13 +38,22 @@ extension UICollectionViewDiffableDataSource {
     }
 }
 
+private var nextPageKey = 0
+
 extension UICollectionView {
     typealias DataSourceSubscriber<Item: Hashable> = AnySubscriber<State<Item>, Never>
 
+    private var nextPage: Int? {
+        get { value(for: &nextPageKey) }
+        set { setValue(newValue, for: &nextPageKey) }
+    }
+
     var nextPagePublisher: AnyPublisher<Int, Never> {
         willDisplayCellPublisher
-            .filter { [unowned self] _, indexPath in indexPath.row == self.numberOfItems(inSection: 0) - 1 }
-            .map { [unowned self] _ in self.numberOfItems(inSection: 0) }
+            .filter { [unowned self] in
+                nextPage != .none && $1.row == numberOfItems(inSection: 0) - 1
+            }
+            .compactMap { [unowned self] _ in nextPage }
             .eraseToAnyPublisher()
     }
 
@@ -58,6 +67,7 @@ extension UICollectionView {
             receiveValue: { [weak self] state -> Subscribers.Demand in
                 guard let self = self else { return .none }
                 if self.dataSource == nil { self.dataSource = dataSource }
+                self.nextPage = state.nextPage
                 self.transition(to: state)
                 dataSource.append(state.items, toSection: 0)
                 return .unlimited

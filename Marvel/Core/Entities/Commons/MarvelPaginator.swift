@@ -30,7 +30,7 @@ struct Paginator<Value: Entity>: Entity {
     }
 
     var hasMorePages: Bool {
-        total - (offset + limit) > 0
+        offset + count < total
     }
 
     var nextOffset: Int {

@@ -74,7 +74,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
     func testLoadItemsFailed() {
         // Given
         let error = MarvelError.general
-        let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .error(error)) }
+        let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .failed(error)) }
         var states = [State<CharacterDetailsItem>]()
         useCaseStub.publisher = .just(.failure(error))
 

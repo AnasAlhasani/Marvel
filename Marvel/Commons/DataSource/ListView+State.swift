@@ -20,7 +20,7 @@ extension UITableView {
         case .empty:
             backgroundView = EmptyStateView.instantiateFromNib()
             tableFooterView = UIView(frame: .zero)
-        case let .error(error):
+        case let .failed(error):
             let errorView = ErrorStateView.instantiateFromNib()
             errorView.display(message: error.localizedDescription)
             backgroundView = errorView
@@ -43,7 +43,7 @@ extension UICollectionView {
             backgroundView = LoadingStateView.instantiateFromNib()
         case .empty:
             backgroundView = EmptyStateView.instantiateFromNib()
-        case let .error(error):
+        case let .failed(error):
             let errorView = ErrorStateView.instantiateFromNib()
             errorView.display(message: error.localizedDescription)
             backgroundView = errorView

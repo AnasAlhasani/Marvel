@@ -81,7 +81,7 @@ final class CharactersViewModelTests: XCTestCase {
         let initialResults = Array(results.prefix(limit))
         let initialPaginator = Paginator.value(total: total, results: initialResults)
         let initialItems = initialResults.map(CharacterItem.init)
-        let pagingState: State<CharacterItem> = .paging(initialItems, next: initialPaginator.nextOffset)
+        let pagingState: State<CharacterItem> = .paging(initialItems, nextPage: initialPaginator.nextOffset)
         useCaseStub.publisher = .just(.success(initialPaginator))
 
         // When
@@ -125,7 +125,7 @@ final class CharactersViewModelTests: XCTestCase {
         // Then
         XCTAssertEqual(states, [])
         output.sink { states.append($0) }.store(in: &cancellable)
-        XCTAssertEqual(states, [.loading, .error(error)])
+        XCTAssertEqual(states, [.loading, .failed(error)])
     }
 
     func testLoadEmptyItems() {

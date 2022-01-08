@@ -44,10 +44,10 @@ final class CharactersViewModel: ObservableObject {
         case let .success(value):
             var items = state.items
             items.append(contentsOf: value.results.map(CharacterItem.init))
-            return value.hasMorePages ? .paging(items, next: value.nextOffset) : .populated(items)
+            return value.hasMorePages ? .paging(items, nextPage: value.nextOffset) : .populated(items)
 
         case let .failure(error):
-            return .error(error)
+            return .failed(error)
         }
     }
 }
