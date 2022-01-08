@@ -55,7 +55,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
         let allCases = MediaType.allCases
         let mediaItems = results.map(CharacterDetailsItem.MediaItem.init)
         let items = allCases.map { CharacterDetailsItem(type: $0, state: .populated(mediaItems)) }
-        var states = [State<CharacterDetailsItem>]()
+        var states = [ListState<CharacterDetailsItem>]()
 
         useCaseStub.publisher = .just(.success(paginator))
 
@@ -75,7 +75,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
         // Given
         let error = MarvelError.general
         let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .failed(error)) }
-        var states = [State<CharacterDetailsItem>]()
+        var states = [ListState<CharacterDetailsItem>]()
         useCaseStub.publisher = .just(.failure(error))
 
         // When
@@ -89,7 +89,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
 
     func testLoadEmptyItems() {
         // Given
-        var states = [State<CharacterDetailsItem>]()
+        var states = [ListState<CharacterDetailsItem>]()
         let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .empty) }
         useCaseStub.publisher = .just(.success(.value(results: [])))
 

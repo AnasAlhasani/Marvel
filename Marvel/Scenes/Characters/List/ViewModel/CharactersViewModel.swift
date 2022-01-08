@@ -12,7 +12,7 @@ import Foundation
 final class CharactersViewModel: ObservableObject {
     // MARK: Types
 
-    typealias ListState = State<CharacterItem>
+    typealias ListState = Marvel.ListState<CharacterItem>
 
     // MARK: Properties
 

@@ -42,7 +42,7 @@ extension UITableViewDiffableDataSource {
 private var nextPageKey = 0
 
 extension UITableView {
-    typealias DataSourceSubscriber<Item: Hashable> = AnySubscriber<State<Item>, Never>
+    typealias DataSourceSubscriber<Item: Hashable> = AnySubscriber<ListState<Item>, Never>
 
     private var nextPage: Int? {
         get { value(for: &nextPageKey) }

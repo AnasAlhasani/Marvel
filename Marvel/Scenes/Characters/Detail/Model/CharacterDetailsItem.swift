@@ -10,11 +10,11 @@ import Foundation
 
 struct CharacterDetailsItem: Hashable {
     let type: MediaType
-    let state: State<MediaItem>
+    let state: ListState<MediaItem>
 
     init(
         type: MediaType,
-        state: State<MediaItem> = .loading
+        state: ListState<MediaItem> = .loading
     ) {
         self.type = type
         self.state = state

@@ -9,7 +9,7 @@
 import UIKit
 
 extension UITableView {
-    func transition<Value>(to state: State<Value>) {
+    func transition<Value>(to state: ListState<Value>) {
         switch state {
         case .idle:
             tableFooterView = UIView(frame: .zero)
@@ -35,7 +35,7 @@ extension UITableView {
 }
 
 extension UICollectionView {
-    func transition<Value>(to state: State<Value>) {
+    func transition<Value>(to state: ListState<Value>) {
         switch state {
         case .idle:
             backgroundView = nil

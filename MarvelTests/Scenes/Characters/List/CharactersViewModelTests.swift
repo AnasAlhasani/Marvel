@@ -45,7 +45,7 @@ final class CharactersViewModelTests: XCTestCase {
         let results = MarvelCharacter.items()
         let paginator = Paginator.value(results: results)
         let items = results.map(CharacterItem.init)
-        var states = [State<CharacterItem>]()
+        var states = [ListState<CharacterItem>]()
         useCaseStub.publisher = .just(.success(paginator))
 
         // When
@@ -77,11 +77,11 @@ final class CharactersViewModelTests: XCTestCase {
         let limit = 20
         let results = MarvelCharacter.items(numberOfElements: total)
         let allItems = results.map(CharacterItem.init)
-        var states = [State<CharacterItem>]()
+        var states = [ListState<CharacterItem>]()
         let initialResults = Array(results.prefix(limit))
         let initialPaginator = Paginator.value(total: total, results: initialResults)
         let initialItems = initialResults.map(CharacterItem.init)
-        let pagingState: State<CharacterItem> = .paging(initialItems, nextPage: initialPaginator.nextOffset)
+        let pagingState: ListState<CharacterItem> = .paging(initialItems, nextPage: initialPaginator.nextOffset)
         useCaseStub.publisher = .just(.success(initialPaginator))
 
         // When
@@ -101,7 +101,7 @@ final class CharactersViewModelTests: XCTestCase {
         // Given
         let nextResults = Array(results.suffix(limit))
         let nextPaginator = initialPaginator.next(with: nextResults)
-        let populatedState: State<CharacterItem> = .populated(allItems)
+        let populatedState: ListState<CharacterItem> = .populated(allItems)
         useCaseStub.publisher = .just(.success(nextPaginator))
 
         // When
@@ -116,7 +116,7 @@ final class CharactersViewModelTests: XCTestCase {
     func testLoadCharactersFailed() {
         // Given
         let error = MarvelError.general
-        var states = [State<CharacterItem>]()
+        var states = [ListState<CharacterItem>]()
         useCaseStub.publisher = .just(.failure(error))
 
         // When
@@ -130,7 +130,7 @@ final class CharactersViewModelTests: XCTestCase {
 
     func testLoadEmptyItems() {
         // Given
-        var states = [State<CharacterItem>]()
+        var states = [ListState<CharacterItem>]()
         useCaseStub.publisher = .just(.success(.value(results: [])))
 
         // When

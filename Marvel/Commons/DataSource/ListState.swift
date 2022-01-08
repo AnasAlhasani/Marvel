@@ -1,5 +1,5 @@
 //
-//  State.swift
+//  ListState.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/3/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum State<Value: Hashable> {
+enum ListState<Value: Hashable> {
     case idle
     case loading
     case paging([Value], nextPage: Int)
@@ -35,8 +35,8 @@ enum State<Value: Hashable> {
     }
 }
 
-extension State: Equatable {
-    static func == (lhs: State<Value>, rhs: State<Value>) -> Bool {
+extension ListState: Equatable {
+    static func == (lhs: ListState<Value>, rhs: ListState<Value>) -> Bool {
         switch (lhs, rhs) {
         case (.idle, .idle):
             return true

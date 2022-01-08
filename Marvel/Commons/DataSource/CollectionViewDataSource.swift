@@ -41,7 +41,7 @@ extension UICollectionViewDiffableDataSource {
 private var nextPageKey = 0
 
 extension UICollectionView {
-    typealias DataSourceSubscriber<Item: Hashable> = AnySubscriber<State<Item>, Never>
+    typealias DataSourceSubscriber<Item: Hashable> = AnySubscriber<ListState<Item>, Never>
 
     private var nextPage: Int? {
         get { value(for: &nextPageKey) }

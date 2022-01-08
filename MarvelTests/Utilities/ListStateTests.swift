@@ -1,5 +1,5 @@
 //
-//  StateTests.swift
+//  ListStateTests.swift
 //  MarvelTests
 //
 //  Created by Anas Alhasani on 08/01/2022.
@@ -9,15 +9,15 @@
 @testable import Marvel
 import XCTest
 
-final class StateTests: XCTestCase {
+final class ListStateTests: XCTestCase {
     func testStatesWhenItemsAreEmpty() {
-        func testState(_ state: State<Int>) {
+        func testState(_ state: ListState<Int>) {
             XCTAssertEqual(state, state)
             XCTAssertNil(state.nextPage)
             XCTAssertTrue(state.items.isEmpty)
         }
 
-        let testCases: [State<Int>] = [
+        let testCases: [ListState<Int>] = [
             .idle,
             .loading,
             .empty,
@@ -29,7 +29,7 @@ final class StateTests: XCTestCase {
 
     func testPopulatedState() {
         let items = [1, 2, 3]
-        let state: State<Int> = .populated(items)
+        let state: ListState<Int> = .populated(items)
 
         XCTAssertEqual(state.items, items)
         XCTAssertNil(state.nextPage)
@@ -38,7 +38,7 @@ final class StateTests: XCTestCase {
     func testPagingState() {
         let items = [1, 2, 3]
         let nextPage = 1
-        let state: State<Int> = .paging(items, nextPage: nextPage)
+        let state: ListState<Int> = .paging(items, nextPage: nextPage)
 
         XCTAssertEqual(state.items, items)
         XCTAssertEqual(state.nextPage, nextPage)
