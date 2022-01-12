@@ -139,7 +139,7 @@ final class CharactersViewModelTests: XCTestCase {
         // Then
         XCTAssertEqual(states, [])
         output.sink { states.append($0) }.store(in: &cancellable)
-        XCTAssertEqual(states, [.loading, .empty])
+        XCTAssertEqual(states, [.loading, .empty()])
     }
 
     func testDidSelectRowAtIndexPath() {

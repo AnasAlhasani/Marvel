@@ -10,45 +10,41 @@ import UIKit
 
 extension UITableView {
     func transition<Value>(to state: ListState<Value>) {
-        switch state {
-        case .idle:
-            tableFooterView = UIView(frame: .zero)
-            backgroundView = nil
-        case .loading:
-            backgroundView = LoadingStateView.instantiateFromNib()
-            tableFooterView = UIView(frame: .zero)
-        case .empty:
-            backgroundView = EmptyStateView.instantiateFromNib()
-            tableFooterView = UIView(frame: .zero)
-        case let .failed(error):
-            let errorView = ErrorStateView.instantiateFromNib()
-            errorView.display(message: error.localizedDescription)
-            backgroundView = errorView
-            tableFooterView = UIView(frame: .zero)
-        case .paging:
-            tableFooterView = LoadingStateView.instantiateFromNib()
-        case .populated:
-            backgroundView = nil
-            tableFooterView = UIView(frame: .zero)
-        }
+        backgroundView = state.backgroundView
+        tableFooterView = state.footerView
     }
 }
 
 extension UICollectionView {
     func transition<Value>(to state: ListState<Value>) {
-        switch state {
-        case .idle:
-            backgroundView = nil
-        case .loading, .paging:
-            backgroundView = LoadingStateView.instantiateFromNib()
-        case .empty:
-            backgroundView = EmptyStateView.instantiateFromNib()
+        backgroundView = state.backgroundView
+    }
+}
+
+private extension ListState {
+    var backgroundView: UIView? {
+        switch self {
+        case let .empty(message):
+            return ListStateView(.empty(message))
+
         case let .failed(error):
-            let errorView = ErrorStateView.instantiateFromNib()
-            errorView.display(message: error.localizedDescription)
-            backgroundView = errorView
-        case .populated:
-            backgroundView = nil
+            return ListStateView(.failed(error))
+
+        case .loading, .paging:
+            return ListStateView(.loading)
+
+        case .idle, .populated:
+            return nil
+        }
+    }
+
+    var footerView: UIView {
+        switch self {
+        case .paging:
+            return ListStateView(.loading)
+
+        default:
+            return UIView(frame: .zero)
         }
     }
 }

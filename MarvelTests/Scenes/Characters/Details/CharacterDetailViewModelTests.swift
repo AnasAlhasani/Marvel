@@ -90,7 +90,7 @@ final class CharacterDetailViewModelTests: XCTestCase {
     func testLoadEmptyItems() {
         // Given
         var states = [ListState<CharacterDetailsItem>]()
-        let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .empty) }
+        let items = MediaType.allCases.map { CharacterDetailsItem(type: $0, state: .empty()) }
         useCaseStub.publisher = .just(.success(.value(results: [])))
 
         // When

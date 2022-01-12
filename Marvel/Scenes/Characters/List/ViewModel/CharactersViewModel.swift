@@ -39,7 +39,7 @@ final class CharactersViewModel: ObservableObject {
     private func makeState(from result: Result<CharacterPaginator, Error>) -> ListState {
         switch result {
         case let .success(value) where value.results.isEmpty:
-            return .empty
+            return .empty()
 
         case let .success(value):
             var items = state.items

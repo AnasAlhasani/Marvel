@@ -31,11 +31,9 @@
 		5D21801D227C2B7000006DBE /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D21801C227C2B7000006DBE /* CharactersViewController.swift */; };
 		5D21801F227C318F00006DBE /* CharactersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D21801E227C318F00006DBE /* CharactersCell.swift */; };
 		5D218022227C3CEE00006DBE /* ParallelogramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D218021227C3CEE00006DBE /* ParallelogramView.swift */; };
-		5D218029227C3F3900006DBE /* LoadingStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D218025227C3F3900006DBE /* LoadingStateView.xib */; };
-		5D21802A227C3F3900006DBE /* EmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D218026227C3F3900006DBE /* EmptyStateView.xib */; };
-		5D21802B227C3F3900006DBE /* ErrorStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D218027227C3F3900006DBE /* ErrorStateView.swift */; };
-		5D21802C227C3F3900006DBE /* ErrorStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D218028227C3F3900006DBE /* ErrorStateView.xib */; };
 		5D433CFD227DEBBE00C116FA /* WindowPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D433CFC227DEBBE00C116FA /* WindowPlugin.swift */; };
+		5D455191278E5E4F00C01AFC /* ListStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D455190278E5E4F00C01AFC /* ListStateView.swift */; };
+		5D455193278E5EE800C01AFC /* ListStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D455192278E5EE800C01AFC /* ListStateView.xib */; };
 		5D45D064264CBF5E00345602 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D45D066264CBF5E00345602 /* Localizable.strings */; };
 		5D45D06B264CBFF900345602 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D45D06A264CBFF900345602 /* Colors.xcassets */; };
 		5D47378425251E6A00360C4A /* RealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47378325251E6A00360C4A /* RealmObject.swift */; };
@@ -49,8 +47,6 @@
 		5D5C126E2280831600B9B4EF /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C126D2280831600B9B4EF /* Optional.swift */; };
 		5D606E12264CC98600E8D23D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E11264CC98600E8D23D /* Strings.swift */; };
 		5D606E14264D60C400E8D23D /* Resources+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E13264D60C400E8D23D /* Resources+Types.swift */; };
-		5D606E16264D64B900E8D23D /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E15264D64B900E8D23D /* EmptyStateView.swift */; };
-		5D606E18264D64C500E8D23D /* LoadingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E17264D64C500E8D23D /* LoadingStateView.swift */; };
 		5D606E29264D752200E8D23D /* APIClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E28264D752200E8D23D /* APIClientSpy.swift */; };
 		5D606E2C264D757400E8D23D /* EntityTestDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E2B264D757400E8D23D /* EntityTestDouble.swift */; };
 		5D606E2E264D773900E8D23D /* CharacterGatewayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D606E2D264D773900E8D23D /* CharacterGatewayTests.swift */; };
@@ -159,16 +155,14 @@
 		5D21801C227C2B7000006DBE /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		5D21801E227C318F00006DBE /* CharactersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCell.swift; sourceTree = "<group>"; };
 		5D218021227C3CEE00006DBE /* ParallelogramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallelogramView.swift; sourceTree = "<group>"; };
-		5D218025227C3F3900006DBE /* LoadingStateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingStateView.xib; sourceTree = "<group>"; };
-		5D218026227C3F3900006DBE /* EmptyStateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyStateView.xib; sourceTree = "<group>"; };
-		5D218027227C3F3900006DBE /* ErrorStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorStateView.swift; sourceTree = "<group>"; };
-		5D218028227C3F3900006DBE /* ErrorStateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorStateView.xib; sourceTree = "<group>"; };
 		5D335AE92650504E00327BF7 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		5D335AEA2650506700327BF7 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = SOURCE_ROOT; };
 		5D335AEB2650506700327BF7 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5D335AEC2650506700327BF7 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = SOURCE_ROOT; };
 		5D335AED2650506700327BF7 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = SOURCE_ROOT; };
 		5D433CFC227DEBBE00C116FA /* WindowPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowPlugin.swift; sourceTree = "<group>"; };
+		5D455190278E5E4F00C01AFC /* ListStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStateView.swift; sourceTree = "<group>"; };
+		5D455192278E5EE800C01AFC /* ListStateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListStateView.xib; sourceTree = "<group>"; };
 		5D45D059264CBB8700345602 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 		5D45D05A264CBBA600345602 /* format.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = format.sh; sourceTree = "<group>"; };
 		5D45D05B264CBD0A00345602 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -196,8 +190,6 @@
 		5D606E10264CC8AD00E8D23D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		5D606E11264CC98600E8D23D /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		5D606E13264D60C400E8D23D /* Resources+Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resources+Types.swift"; sourceTree = "<group>"; };
-		5D606E15264D64B900E8D23D /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
-		5D606E17264D64C500E8D23D /* LoadingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateView.swift; sourceTree = "<group>"; };
 		5D606E1D264D71AA00E8D23D /* MarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D606E21264D71AA00E8D23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D606E28264D752200E8D23D /* APIClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSpy.swift; sourceTree = "<group>"; };
@@ -495,7 +487,7 @@
 		5D218020227C3CD600006DBE /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				5D218024227C3F1F00006DBE /* StateView */,
+				5D218024227C3F1F00006DBE /* ListStateView */,
 				5D218023227C3F1900006DBE /* ParallelogramView */,
 			);
 			path = UIComponents;
@@ -509,17 +501,13 @@
 			path = ParallelogramView;
 			sourceTree = "<group>";
 		};
-		5D218024227C3F1F00006DBE /* StateView */ = {
+		5D218024227C3F1F00006DBE /* ListStateView */ = {
 			isa = PBXGroup;
 			children = (
-				5D606E15264D64B900E8D23D /* EmptyStateView.swift */,
-				5D218026227C3F3900006DBE /* EmptyStateView.xib */,
-				5D218027227C3F3900006DBE /* ErrorStateView.swift */,
-				5D218028227C3F3900006DBE /* ErrorStateView.xib */,
-				5D606E17264D64C500E8D23D /* LoadingStateView.swift */,
-				5D218025227C3F3900006DBE /* LoadingStateView.xib */,
+				5D455190278E5E4F00C01AFC /* ListStateView.swift */,
+				5D455192278E5EE800C01AFC /* ListStateView.xib */,
 			);
-			path = StateView;
+			path = ListStateView;
 			sourceTree = "<group>";
 		};
 		5D335AE82650504E00327BF7 /* Fastlane */ = {
@@ -1179,13 +1167,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DCC0D43227B427A0065DA28 /* LaunchScreen.storyboard in Resources */,
-				5D21802A227C3F3900006DBE /* EmptyStateView.xib in Resources */,
 				5D45D06B264CBFF900345602 /* Colors.xcassets in Resources */,
 				5DCC0D40227B427A0065DA28 /* Images.xcassets in Resources */,
 				5D45D064264CBF5E00345602 /* Localizable.strings in Resources */,
-				5D21802C227C3F3900006DBE /* ErrorStateView.xib in Resources */,
+				5D455193278E5EE800C01AFC /* ListStateView.xib in Resources */,
 				5DCC0D3E227B42790065DA28 /* Main.storyboard in Resources */,
-				5D218029227C3F3900006DBE /* LoadingStateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,9 +1317,8 @@
 				5D217FEB227B4D3600006DBE /* KeyedDecodingContainer.swift in Sources */,
 				5D217FE2227B4AC000006DBE /* UIImageView.swift in Sources */,
 				5D9B671F25252D8A0070C08D /* Config.swift in Sources */,
-				5D21802B227C3F3900006DBE /* ErrorStateView.swift in Sources */,
+				5D455191278E5E4F00C01AFC /* ListStateView.swift in Sources */,
 				5D217FF2227B4DF000006DBE /* ThemePlugin.swift in Sources */,
-				5D606E18264D64C500E8D23D /* LoadingStateView.swift in Sources */,
 				5D9228F42280F1200048C614 /* APIClient.swift in Sources */,
 				5D21801D227C2B7000006DBE /* CharactersViewController.swift in Sources */,
 				5DC64840227C99A90080B1F4 /* CharacterItem.swift in Sources */,
@@ -1372,7 +1357,6 @@
 				5DD9DEDC26B31F0D00A699C9 /* CharactersListRouter.swift in Sources */,
 				5D9229052281912B0048C614 /* AbstractRepository.swift in Sources */,
 				5D606E3D264DBC1900E8D23D /* Identifiable.swift in Sources */,
-				5D606E16264D64B900E8D23D /* EmptyStateView.swift in Sources */,
 				5D217FFE227B53C600006DBE /* MarvelError.swift in Sources */,
 				5D922907228191360048C614 /* RealmRepository.swift in Sources */,
 				5DD2C1072789FADC00ADDB12 /* AssociatedObject.swift in Sources */,

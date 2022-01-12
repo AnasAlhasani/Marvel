@@ -13,7 +13,7 @@ enum ListState<Value: Hashable> {
     case loading
     case paging([Value], nextPage: Int)
     case populated([Value])
-    case empty
+    case empty(String = L10n.State.empty)
     case failed(Error)
 
     var nextPage: Int? {
@@ -44,8 +44,8 @@ extension ListState: Equatable {
         case (.loading, .loading):
             return true
 
-        case (.empty, .empty):
-            return true
+        case let (.empty(lhsMessage), .empty(rhsMessage)):
+            return lhsMessage == rhsMessage
 
         case let (.failed(lhsError), .failed(rhsError)):
             return lhsError.localizedDescription == rhsError.localizedDescription

@@ -34,7 +34,7 @@ final class CharacterDetailViewModel: ObservableObject {
     private func make(from result: MediaResult, ofType type: MediaType) -> CharacterDetailsItem {
         switch result {
         case let .success(value) where value.results.isEmpty:
-            return .init(type: type, state: .empty)
+            return .init(type: type, state: .empty())
 
         case let .success(value):
             let items = value.results.map(CharacterDetailsItem.MediaItem.init)
