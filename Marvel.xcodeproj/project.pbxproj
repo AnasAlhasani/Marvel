@@ -630,10 +630,10 @@
 		5D606E1E264D71AA00E8D23D /* MarvelTests */ = {
 			isa = PBXGroup;
 			children = (
-				5D606E71264F2F6D00E8D23D /* Utilities */,
 				5D606E2A264D755E00E8D23D /* Core */,
 				5D606E59264EC79A00E8D23D /* Data */,
 				5D606E6A264F11AA00E8D23D /* Scenes */,
+				5D606E71264F2F6D00E8D23D /* Commons */,
 				5D606E21264D71AA00E8D23D /* Info.plist */,
 			);
 			path = MarvelTests;
@@ -803,14 +803,14 @@
 			path = List;
 			sourceTree = "<group>";
 		};
-		5D606E71264F2F6D00E8D23D /* Utilities */ = {
+		5D606E71264F2F6D00E8D23D /* Commons */ = {
 			isa = PBXGroup;
 			children = (
 				5DA0D0D8265FA3B8002885E3 /* XCTestCase+Publisher.swift */,
 				5DD2C1082789FC0E00ADDB12 /* AssociatedObjectTests.swift */,
 				5DD2C10A278A03BF00ADDB12 /* ListStateTests.swift */,
 			);
-			path = Utilities;
+			path = Commons;
 			sourceTree = "<group>";
 		};
 		5D8D572E2791B963009AA7AB /* Commons */ = {
