@@ -46,9 +46,9 @@ final class CharacterDetailsViewModel: ObservableObject {
     }
 }
 
-// MARK: ViewModel
+// MARK: ViewModelType
 
-extension CharacterDetailsViewModel: ViewModel {
+extension CharacterDetailsViewModel: ViewModelType {
     struct Input {
         let viewDidLoad: AnyPublisher<Void, Never>
     }

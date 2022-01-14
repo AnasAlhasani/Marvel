@@ -1,5 +1,5 @@
 //
-//  ListView+State.swift
+//  ListState+Transition.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/3/19.

@@ -52,9 +52,9 @@ final class CharactersViewModel: ObservableObject {
     }
 }
 
-// MARK: ViewModel
+// MARK: ViewModelType
 
-extension CharactersViewModel: ViewModel {
+extension CharactersViewModel: ViewModelType {
     struct Input {
         let viewDidLoad: AnyPublisher<Void, Never>
         let nextPage: AnyPublisher<Int, Never>

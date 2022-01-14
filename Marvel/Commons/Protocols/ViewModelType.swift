@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  ViewModelType.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 19/12/2021.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ViewModel: AnyObject {
+protocol ViewModelType: AnyObject {
     associatedtype Input
     associatedtype Output
 
