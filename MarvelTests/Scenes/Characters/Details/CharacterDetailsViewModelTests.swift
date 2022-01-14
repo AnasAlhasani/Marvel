@@ -1,5 +1,5 @@
 //
-//  CharacterDetailViewModelTests.swift
+//  CharacterDetailsViewModelTests.swift
 //  MarvelTests
 //
 //  Created by Anas Alhasani on 16/05/2021.
@@ -10,11 +10,11 @@ import Combine
 @testable import Marvel
 import XCTest
 
-final class CharacterDetailViewModelTests: XCTestCase {
+final class CharacterDetailsViewModelTests: XCTestCase {
     var useCaseStub: MediaUseCaseStub!
     var characterItem: CharacterItem!
     var cancellable: Set<AnyCancellable>!
-    var viewModel: CharacterDetailViewModel!
+    var viewModel: CharacterDetailsViewModel!
 
     override func setUp() {
         super.setUp()

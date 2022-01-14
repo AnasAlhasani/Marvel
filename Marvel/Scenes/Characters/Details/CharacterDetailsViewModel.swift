@@ -1,5 +1,5 @@
 //
-//  CharacterDetailViewModel.swift
+//  CharacterDetailsViewModel.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-final class CharacterDetailViewModel: ObservableObject {
+final class CharacterDetailsViewModel: ObservableObject {
     // MARK: Types
 
     typealias ListState = Marvel.ListState<CharacterDetailsItem>
@@ -48,7 +48,7 @@ final class CharacterDetailViewModel: ObservableObject {
 
 // MARK: ViewModel
 
-extension CharacterDetailViewModel: ViewModel {
+extension CharacterDetailsViewModel: ViewModel {
     struct Input {
         let viewDidLoad: AnyPublisher<Void, Never>
     }

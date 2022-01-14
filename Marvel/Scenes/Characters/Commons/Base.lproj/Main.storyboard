@@ -185,10 +185,10 @@
             </objects>
             <point key="canvasLocation" x="1357" y="13"/>
         </scene>
-        <!--Character Detail View Controller-->
+        <!--Character Details View Controller-->
         <scene sceneID="zW7-Sf-Udb">
             <objects>
-                <viewController storyboardIdentifier="CharacterDetailViewController" id="o2Q-lc-Q9N" customClass="CharacterDetailViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterDetailsViewController" id="o2Q-lc-Q9N" customClass="CharacterDetailsViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aDa-Mr-nUQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,7 +196,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="240" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AQA-0I-Kan">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="hmd-ui-1Lh" customClass="CharacterDetailHeaderView" customModule="Marvel" customModuleProvider="target">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="hmd-ui-1Lh" customClass="CharacterDetailsHeaderView" customModule="Marvel" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="341"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>

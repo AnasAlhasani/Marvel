@@ -1,5 +1,5 @@
 //
-//  CharacterDetailViewController.swift
+//  CharacterDetailsViewController.swift
 //  Marvel
 //
 //  Created by Anas Alhasani on 5/4/19.
@@ -9,11 +9,11 @@
 import Combine
 import UIKit
 
-final class CharacterDetailViewController: UIViewController {
+final class CharacterDetailsViewController: UIViewController {
     // MARK: Outlets
 
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var headerView: CharacterDetailHeaderView!
+    @IBOutlet private var headerView: CharacterDetailsHeaderView!
 
     // MARK: Properties
 
@@ -21,7 +21,7 @@ final class CharacterDetailViewController: UIViewController {
     private var cancellable = Set<AnyCancellable>()
 
     // swiftlint:disable:next implicitly_unwrapped_optional
-    var viewModel: CharacterDetailViewModel!
+    var viewModel: CharacterDetailsViewModel!
 
     // MARK: LifeCycle
 
@@ -33,9 +33,9 @@ final class CharacterDetailViewController: UIViewController {
 
 // MARK: Bindings
 
-private extension CharacterDetailViewController {
+private extension CharacterDetailsViewController {
     func bindViewModel() {
-        let input = CharacterDetailViewModel.Input(
+        let input = CharacterDetailsViewModel.Input(
             viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher()
         )
 

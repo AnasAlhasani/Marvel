@@ -20,7 +20,7 @@ final class ListStateTests: XCTestCase {
         let testCases: [ListState<Int>] = [
             .idle,
             .loading,
-            .empty,
+            .empty(),
             .failed(MarvelError.general)
         ]
 
