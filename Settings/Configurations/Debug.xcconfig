@@ -7,3 +7,7 @@
 //
 
 #include "Settings/Configurations/Default.xcconfig"
+#include "Pods/Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"
+#include "Pods/Target Support Files/Pods-MarvelTests/Pods-MarvelTests.debug.xcconfig"
+
+APP_NAME = $(inherited) α

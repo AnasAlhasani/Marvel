@@ -1,3 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 iOS_version = '12.0'
 platform :ios, iOS_version
 

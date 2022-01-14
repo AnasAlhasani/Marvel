@@ -6,7 +6,11 @@
 //  Copyright © 2020 Anas Alhasani. All rights reserved.
 //
 
-API_URL = https:/$()/gateway.marvel.com/v1/public
+SCHEME = https
+HOST = gateway.marvel.com
+VERSION = v1
+API_URL = $(SCHEME):/$()/$(HOST)/$(VERSION)/public
 PUBLIC_KEY = 5d94fab0240e515bd064e7d9362f8e78
 PRIVATE_KEY = 1098df006e7e6edce50211c7be6431daabee3d73
 PAGE_LIMIT = 20
+APP_NAME = Marvel

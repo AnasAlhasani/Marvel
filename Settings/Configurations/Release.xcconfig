@@ -7,3 +7,5 @@
 //
 
 #include "Settings/Configurations/Default.xcconfig"
+#include "Pods/Target Support Files/Pods-Marvel/Pods-Marvel.release.xcconfig"
+#include "Pods/Target Support Files/Pods-MarvelTests/Pods-MarvelTests.release.xcconfig"
