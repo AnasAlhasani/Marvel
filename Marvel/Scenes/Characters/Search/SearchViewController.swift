@@ -6,7 +6,6 @@
 //  Copyright © 2019 Anas Alhasani. All rights reserved.
 //
 
-import Combine
 import CombineCocoa
 import UIKit
 
@@ -27,8 +26,7 @@ final class SearchViewController: UIViewController {
         return searchController
     }()
 
-    private var cancellable = Set<AnyCancellable>()
-
+    private let cancelBag = CancelBag()
     // swiftlint:disable:next implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
 
@@ -66,7 +64,7 @@ private extension SearchViewController {
 
         viewModel.transform(input: input)
             .bind(to: tableView.items(cellType: SearchCell.self))
-            .store(in: &cancellable)
+            .store(in: cancelBag)
     }
 }
 

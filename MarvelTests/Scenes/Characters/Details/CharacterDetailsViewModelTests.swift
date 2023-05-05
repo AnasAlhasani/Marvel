@@ -13,14 +13,14 @@ import XCTest
 final class CharacterDetailsViewModelTests: XCTestCase {
     var useCaseStub: MediaUseCaseStub!
     var characterItem: CharacterItem!
-    var cancellable: Set<AnyCancellable>!
+    var cancelBag: CancelBag!
     var viewModel: CharacterDetailsViewModel!
 
     override func setUp() {
         super.setUp()
+        cancelBag = .init()
         useCaseStub = .init()
         characterItem = .init(.item(index: 0))
-        cancellable = .init()
         viewModel = .init(
             useCase: useCaseStub,
             character: characterItem
@@ -28,11 +28,10 @@ final class CharacterDetailsViewModelTests: XCTestCase {
     }
 
     override func tearDown() {
+        cancelBag = nil
         useCaseStub = nil
         characterItem = nil
         viewModel = nil
-        cancellable.forEach { $0.cancel() }
-        cancellable.removeAll()
         super.tearDown()
     }
 
@@ -44,7 +43,7 @@ final class CharacterDetailsViewModelTests: XCTestCase {
         output
             .character
             .sink { [unowned self] in XCTAssertEqual($0, characterItem) }
-            .store(in: &cancellable)
+            .store(in: cancelBag)
     }
 
     func testLoadItemsSuccessfully() {
@@ -64,7 +63,7 @@ final class CharacterDetailsViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(states, [])
-        output.state.sink { states.append($0) }.store(in: &cancellable)
+        output.state.sink { states.append($0) }.store(in: cancelBag)
         XCTAssertEqual(useCaseStub.parameter.id, characterItem.model.id)
         XCTAssertEqual(useCaseStub.parameter.type, allCases.last)
         XCTAssertEqual(useCaseStub.callCount, numberOfElements)
@@ -83,7 +82,7 @@ final class CharacterDetailsViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(states, [])
-        output.state.sink { states.append($0) }.store(in: &cancellable)
+        output.state.sink { states.append($0) }.store(in: cancelBag)
         XCTAssertEqual(states, [.loading, .populated(items)])
     }
 
@@ -98,7 +97,7 @@ final class CharacterDetailsViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(states, [])
-        output.state.sink { states.append($0) }.store(in: &cancellable)
+        output.state.sink { states.append($0) }.store(in: cancelBag)
         XCTAssertEqual(states, [.loading, .populated(items)])
     }
 }

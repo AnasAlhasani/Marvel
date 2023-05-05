@@ -18,7 +18,7 @@ final class CharacterDetailsViewController: UIViewController {
     // MARK: Properties
 
     private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
-    private var cancellable = Set<AnyCancellable>()
+    private let cancelBag = CancelBag()
 
     // swiftlint:disable:next implicitly_unwrapped_optional
     var viewModel: CharacterDetailsViewModel!
@@ -28,6 +28,13 @@ final class CharacterDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+    }
+
+    // MARK: Set Up
+
+    private func configure(with item: CharacterItem) {
+        title = item.name
+        headerView.configure(with: item)
     }
 }
 
@@ -41,16 +48,10 @@ private extension CharacterDetailsViewController {
 
         let output = viewModel.transform(input: input)
 
-        output.character
-            .sink { [weak self] in
-                self?.title = $0.name
-                self?.headerView.configure(with: $0)
-            }
-            .store(in: &cancellable)
-
-        output.state
-            .bind(to: tableView.items(cellType: MediaTableCell.self))
-            .store(in: &cancellable)
+        cancelBag.collect {
+            output.character.sink { [weak self] in self?.configure(with: $0) }
+            output.state.bind(to: tableView.items(cellType: MediaTableCell.self))
+        }
 
         viewDidLoadSubject.send()
     }
