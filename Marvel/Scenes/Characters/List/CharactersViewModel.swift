@@ -20,7 +20,7 @@ final class CharactersViewModel: ObservableObject {
     private let useCase: CharacterUseCase
     private let scheduler: AnyScheduler<DispatchQueue>
     private var state: ListState = .idle
-    private var cancellable = Set<AnyCancellable>()
+    private let cancelBag = CancelBag()
 
     // MARK: Init / Deinit
 
@@ -67,12 +67,11 @@ extension CharactersViewModel: ViewModelType {
     typealias Output = AnyPublisher<ListState, Never>
 
     func transform(input: Input) -> Output {
-        cancellable.forEach { $0.cancel() }
-        cancellable.removeAll()
-
-        input.didTapSearch.sink { [router] in router.showSearch() }.store(in: &cancellable)
-        input.didDismissSearch.sink { [router] in router.dismissSearch() }.store(in: &cancellable)
-        input.didSelectRow.sink { [unowned self] in self.router.showDetails(for: self.state.items[$0.row]) }.store(in: &cancellable)
+        cancelBag.collect {
+            input.didTapSearch.sink { [router] in router.showSearch() }
+            input.didDismissSearch.sink { [router] in router.dismissSearch() }
+            input.didSelectRow.sink { [unowned self] in router.showDetails(for: state.items[$0.row]) }
+        }
 
         let loadingState: Output = input.viewDidLoad
             .map { _ in .loading }
@@ -107,7 +106,7 @@ extension CharactersViewModel: ViewModelType {
         // swiftlint:disable:next trailing_closure
         let resultState = Publishers
             .Merge(characters, filteredCharacters)
-            .map { [unowned self] in self.makeState(from: $0) }
+            .map { [unowned self] in makeState(from: $0) }
             .handleEvents(receiveOutput: { [weak self] in self?.state = $0 })
             .eraseToAnyPublisher()
 

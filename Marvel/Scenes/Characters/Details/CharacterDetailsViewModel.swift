@@ -69,7 +69,7 @@ extension CharacterDetailsViewModel: ViewModelType {
             .flatMap { [useCase, character] type in
                 useCase
                     .loadMediaItems(with: .init(id: character.model.id, type: type))
-                    .map { [unowned self] in self.make(from: $0, ofType: type) }
+                    .map { [unowned self] in make(from: $0, ofType: type) }
             }
             .collect()
             .map { $0.sorted { $0.type.isHigherThan($1.type) } }

@@ -16,10 +16,11 @@ final class CharactersViewModelTests: XCTestCase {
     var useCaseStub: CharacterUseCaseStub!
     let scheduler = DispatchQueue.test
     var viewModel: CharactersViewModel!
-    var cancellable: Set<AnyCancellable>!
+    var cancelBag: CancelBag!
 
     override func setUp() {
         super.setUp()
+        cancelBag = .init()
         routerSpy = .init()
         useCaseStub = .init()
         viewModel = .init(
@@ -27,15 +28,13 @@ final class CharactersViewModelTests: XCTestCase {
             useCase: useCaseStub,
             scheduler: scheduler.eraseToAnyScheduler()
         )
-        cancellable = .init()
     }
 
     override func tearDown() {
+        cancelBag = nil
         routerSpy = nil
         useCaseStub = nil
         viewModel = nil
-        cancellable.forEach { $0.cancel() }
-        cancellable.removeAll()
         super.tearDown()
     }
 
@@ -54,7 +53,7 @@ final class CharactersViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(states, [])
-        output.sink { states.append($0) }.store(in: &cancellable)
+        output.sink { states.append($0) }.store(in: cancelBag)
         searchSubject.send(query)
         scheduler.advance(by: .milliseconds(500))
         XCTAssertEqual(states, [.idle])
@@ -93,7 +92,7 @@ final class CharactersViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(states, [])
-        output.sink { states.append($0) }.store(in: &cancellable)
+        output.sink { states.append($0) }.store(in: cancelBag)
         XCTAssertEqual(useCaseStub.parameter.offset, initialPaginator.offset)
         XCTAssertEqual(useCaseStub.callCount, 1)
         XCTAssertEqual(states, [.loading, pagingState])
@@ -124,7 +123,7 @@ final class CharactersViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(states, [])
-        output.sink { states.append($0) }.store(in: &cancellable)
+        output.sink { states.append($0) }.store(in: cancelBag)
         XCTAssertEqual(states, [.loading, .failed(error)])
     }
 
@@ -138,7 +137,7 @@ final class CharactersViewModelTests: XCTestCase {
 
         // Then
         XCTAssertEqual(states, [])
-        output.sink { states.append($0) }.store(in: &cancellable)
+        output.sink { states.append($0) }.store(in: cancelBag)
         XCTAssertEqual(states, [.loading, .empty()])
     }
 
@@ -154,7 +153,7 @@ final class CharactersViewModelTests: XCTestCase {
         // When
         let didSelectRow = PassthroughSubject<IndexPath, Never>()
         let output = makeOutput(viewDidLoad: .just, didSelectRow: didSelectRow.eraseToAnyPublisher())
-        output.sink { _ in }.store(in: &cancellable)
+        output.sink { _ in }.store(in: cancelBag)
         didSelectRow.send(indexPath)
 
         // Then

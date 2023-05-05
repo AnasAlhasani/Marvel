@@ -19,7 +19,7 @@ final class CharactersViewController: UIViewController {
     // MARK: Properties
 
     private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
-    private var cancellable = Set<AnyCancellable>()
+    private let cancelBag = CancelBag()
 
     // swiftlint:disable:next implicitly_unwrapped_optional
     var viewModel: CharactersViewModel!
@@ -49,7 +49,7 @@ private extension CharactersViewController {
 
         output
             .bind(to: tableView.items(cellType: CharactersCell.self))
-            .store(in: &cancellable)
+            .store(in: cancelBag)
 
         viewDidLoadSubject.send()
     }
